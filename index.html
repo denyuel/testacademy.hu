@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Senior QA Mentoring, Playwright, TypeScript automatizációs képzések és tanácsadás. Valódi funkcionális tudás." />
+  <meta property="og:title" content="TestAcademy | Senior QA Mentoring & AI Automation" />
+  <meta property="og:description" content="Senior QA Mentoring, Playwright, TypeScript automatizációs képzések és tanácsadás. Valódi funkcionális tudás." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://testacademy.hu/" />
+  <!-- Modify the href below to your actual favicon.ico location once you add one -->
+  <link rel="icon" href="/favicon.ico" />
   <title>TestAcademy | Senior QA Mentoring & AI Automation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html { scroll-behavior: smooth; }
-    .lang-hidden { display: none; }
-    .curriculum-content, .faq-answer { display: none; }
-    .curriculum-content.active, .faq-answer.active { display: block; animation: fadeIn 0.3s ease-in; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+  <link rel="stylesheet" href="./output.css" />
 </head>
 <body class="bg-slate-900 text-slate-100 antialiased font-sans selection:bg-blue-500/30 text-balance">
   <div class="min-h-screen">
@@ -268,11 +268,19 @@
             </div>
 
             <form action="https://formspree.io/f/mreygyry" method="POST" class="space-y-4">
-                <input type="text" name="name" id="form-name" required class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500">
-                <input type="email" name="email" id="form-email" required class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500">
-                <select name="course" id="form-course" class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none">
+                <!-- Redirects back to site after submit -->
+                <input type="hidden" name="_next" value="https://testacademy.hu/">
+
+                <label for="form-name" class="sr-only">Név / Name</label>
+                <input aria-label="Név / Name" type="text" name="name" id="form-name" required class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500">
+                
+                <label for="form-email" class="sr-only">E-mail</label>
+                <input aria-label="E-mail" type="email" name="email" id="form-email" required class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500">
+                
+                <label for="form-course" class="sr-only">Jelentkezés típusa / Course Selection</label>
+                <select aria-label="Jelentkezés típusa / Course Selection" name="course" id="form-course" class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none">
                 </select>
-                <button type="submit" class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-4 italic">
+                <button type="submit" aria-label="Küldés / Send" class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-4 italic">
                   <span class="lang-hu">Küldés</span><span class="lang-en lang-hidden">Send</span>
                 </button>
             </form>
@@ -353,7 +361,7 @@
       document.getElementById(id).classList.toggle('active');
     }
 
-    window.onload = () => setLanguage('hu');
+    document.addEventListener('DOMContentLoaded', () => setLanguage('hu'));
   </script>
 </body>
 </html>
