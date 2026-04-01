@@ -58,10 +58,13 @@
         </p>
       </section>
 
-      <div id="courses" class="grid gap-10 md:grid-cols-2">
-        <div class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-10 flex flex-col hover:border-blue-500/30 transition-all">
+      <div id="courses" class="grid gap-8 lg:grid-cols-3">
+        <div class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50">
           <div class="flex justify-between items-start mb-6">
-            <span class="text-blue-500 font-black text-xs uppercase tracking-widest bg-blue-500/10 px-4 py-1.5 rounded-full italic">4 Hétvége</span>
+            <div class="flex gap-2">
+              <span class="text-blue-500 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic">4 Hétvége</span>
+              <span class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic">Remote</span>
+            </div>
             <span class="text-2xl font-black text-white italic tracking-tighter">149.000 Ft</span>
           </div>
           <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">Junior Manual</h2>
@@ -81,9 +84,12 @@
           </a>
         </div>
 
-        <div class="group bg-blue-600/5 rounded-[2.5rem] border-2 border-blue-500 p-10 flex flex-col shadow-2xl shadow-blue-500/10">
+        <div class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50">
           <div class="flex justify-between items-start mb-6">
-            <span class="text-blue-400 font-black text-xs uppercase tracking-widest bg-blue-500/20 px-4 py-1.5 rounded-full italic">8 Hétvége</span>
+            <div class="flex gap-2">
+              <span class="text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic">8 Hétvége</span>
+              <span class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic">Remote</span>
+            </div>
             <span class="text-2xl font-black text-white italic tracking-tighter text-blue-400">299.000 Ft</span>
           </div>
           <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">Playwright Pro</h2>
@@ -98,8 +104,39 @@
             <p>• AI & GitHub Copilot integráció</p>
             <p>• CI/CD (GitHub Actions)</p>
           </div>
-          <a href="#join" class="mt-auto bg-blue-600 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-500 uppercase text-xs tracking-widest">
+          <a href="#join" class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest">
             <span class="lang-hu">Jelentkezem</span><span class="lang-en lang-hidden">Enroll Now</span>
+          </a>
+        </div>
+
+        <div class="group bg-blue-600/5 rounded-[2.5rem] border-2 border-blue-500 p-8 flex flex-col shadow-2xl shadow-blue-500/20 relative scale-100 lg:scale-105 z-10">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic shadow-lg shadow-blue-500/20 whitespace-nowrap">
+            <span class="lang-hu">Legjobb Ajánlat</span><span class="lang-en lang-hidden">Best Value</span>
+          </div>
+          <div class="flex justify-between items-start mb-6 mt-2">
+            <div class="flex gap-2">
+              <span class="text-white font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500 px-3 py-1.5 rounded-full italic shadow-md shadow-blue-500/20">12 Hétvége</span>
+              <span class="text-indigo-200 font-black text-[10px] uppercase tracking-widest bg-indigo-500/30 px-3 py-1.5 rounded-full italic">Remote / Bp</span>
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="text-[10px] text-slate-400 line-through italic">448.000 Ft</span>
+              <span class="text-2xl font-black text-white italic tracking-tighter text-blue-400">399.000 Ft</span>
+            </div>
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-black text-white mb-6 italic tracking-tight">Zero to Hero Masterclass</h2>
+          <p class="text-slate-300 mb-8 font-light leading-relaxed italic text-sm">
+              <span class="lang-hu">A Manual és Playwright kurzusok egyben. Építsd fel a karriered az alapoktól a senior szintű architektúra építésig.</span>
+              <span class="lang-en lang-hidden">Manual and Playwright courses combined. Build your career from basics to senior architecture.</span>
+          </p>
+          <button onclick="toggleElement('hero-curr')" class="text-blue-400 font-bold text-sm mb-8 flex items-center gap-2">▶ <span class="lang-hu">Részletes tematika</span><span class="lang-en lang-hidden">Detailed Curriculum</span></button>
+          <div id="hero-curr" class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20">
+            <p>• Minden a Manual kurzusból</p>
+            <p>• Minden a Playwright kurzusból</p>
+            <p>• <span class="text-blue-400 font-bold">+</span> 1-on-1 Karriertervezés</p>
+            <p>• <span class="text-blue-400 font-bold">+</span> Ingyenes Interview Prep</p>
+          </div>
+          <a href="#join" class="mt-auto bg-blue-600 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 uppercase text-xs tracking-widest">
+            <span class="lang-hu">Erre Jelentkezem</span><span class="lang-en lang-hidden">Enroll to Masterclass</span>
           </a>
         </div>
       </div>
@@ -294,6 +331,7 @@
         namePlaceholder: "Teljes név",
         emailPlaceholder: "E-mail cím",
         courses: [
+          { val: "ZeroToHero", text: "Zero to Hero QA Masterclass (399k) - BEST VALUE" },
           { val: "Manual", text: "Junior Manual (149k)" },
           { val: "Automation", text: "Playwright Pro (299k)" },
           { val: "InterviewReady", text: "Interview Ready Csomag (99k)" },
@@ -305,6 +343,7 @@
         namePlaceholder: "Full Name",
         emailPlaceholder: "Email Address",
         courses: [
+          { val: "ZeroToHero", text: "Zero to Hero QA Masterclass (399k) - BEST VALUE" },
           { val: "Manual", text: "Junior Manual (149k)" },
           { val: "Automation", text: "Playwright Pro (299k)" },
           { val: "InterviewReady", text: "Interview Ready Package (99k)" },
