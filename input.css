@@ -1,0 +1,15 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html { scroll-behavior: smooth; }
+.lang-hidden { display: none; }
+.curriculum-content, .faq-answer { display: none; }
+.curriculum-content.active, .faq-answer.active { 
+    display: block; 
+    animation: fadeIn 0.3s ease-in; 
+}
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(-10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
