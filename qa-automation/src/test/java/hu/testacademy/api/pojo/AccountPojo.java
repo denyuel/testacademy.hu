@@ -2,22 +2,19 @@ package hu.testacademy.api.pojo;
 
 import java.util.List;
 
-// Fő POJO a banki fiókhoz
 public class AccountPojo {
     
-    // Privát mezők = A JSON kulcsai
     private String id;
     private String customerName;
     private String accountType;
     private Double balance;
     private String currency;
     private String status;
-    private BranchDetails branchDetails; // Egy másik POJO beágyazva! (A Komplexítás!)
+    private BranchDetails branchDetails;
     private List<String> flags;
 
-    public AccountPojo() {} // Kötelező üres Java konstruktor az automatikus konverzióhoz
+    public AccountPojo() {}
 
-    // Gyors építőkonstruktor
     public AccountPojo(String customerName, String accountType, Double balance, String currency, String status, BranchDetails branchDetails, List<String> flags) {
         this.customerName = customerName;
         this.accountType = accountType;
@@ -28,7 +25,6 @@ public class AccountPojo {
         this.flags = flags;
     }
 
-    // --- GETTEREK ÉS SETTEREK ---
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
