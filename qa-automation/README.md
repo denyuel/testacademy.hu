@@ -38,6 +38,11 @@ This framework is built upon the following industry-standard pillars:
 - **GitHub Actions:** Configured to trigger on every push to the repository.
 - **Background Processes:** The pipeline boots up a fresh Linux runner, installs Java 17 and Node.js, launches a background Mock API server (`npx json-server &`) so the terminal doesn't freeze, and then executes the full Maven test suite automatically. Any failures prevent code from being merged.
 
+### 5. Git Operations & Cross-Team Collaboration
+**The Goal:** Handling merge conflicts safely without breaking overlapping team features.
+- **Conflict Resolution (Accessibility vs Testability):** During the PR merge, a classic conflict occurred: the `main` branch added `aria-label="Küldés / Send"` for frontend accessibility, while our `feature` branch added `data-testid="submit-btn"` for Selenide automation tracking.
+- **The Solution:** Instead of overwriting one side and "breaking the build", we executed a local `git pull` and surgically combined both attributes into the same `<button>` element. This unified approach guarantees that **both** W3C Accessibility standards and UI Automation locators function flawlessly.
+
 ---
 ## 🚀 How to Run Locally
 
