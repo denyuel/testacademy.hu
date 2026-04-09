@@ -48,7 +48,7 @@
           <span class="lang-hu">10 év Lead tapasztalat • AI-támogatott tananyag</span>
           <span class="lang-en lang-hidden">10 Years Lead Experience • AI-Powered Syllabus</span>
         </div>
-        <h1 class="text-5xl font-black leading-tight text-white md:text-8xl tracking-tighter mb-10 italic">
+        <h1 id="hero-title" class="text-5xl font-black leading-tight text-white md:text-8xl tracking-tighter mb-10 italic">
           <span class="lang-hu">Valódi <span class="text-blue-500">funkcionális</span> tudás.</span>
           <span class="lang-en lang-hidden">Real <span class="text-blue-500">functional</span> skills.</span>
         </h1>
@@ -79,7 +79,7 @@
             <p>• SQL & API Testing (Postman)</p>
             <p>• AI-támogatott teszttervezés</p>
           </div>
-          <a href="#join" class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest">
+          <a href="#join" data-testid="enroll-manual-btn" class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest">
             <span class="lang-hu">Jelentkezem</span><span class="lang-en lang-hidden">Enroll Now</span>
           </a>
         </div>
@@ -309,7 +309,7 @@
                 <input type="email" name="email" id="form-email" required class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500">
                 <select name="course" id="form-course" class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl p-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none">
                 </select>
-                <button type="submit" class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-4 italic">
+                <button type="submit" data-testid="submit-btn" class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-4 italic">
                   <span class="lang-hu">Küldés</span><span class="lang-en lang-hidden">Send</span>
                 </button>
             </form>

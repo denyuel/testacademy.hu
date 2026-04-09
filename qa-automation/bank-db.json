@@ -1,0 +1,30 @@
+{
+  "accounts": [
+    {
+      "id": "A1001",
+      "customerName": "Daniel Tester",
+      "accountType": "SAVINGS",
+      "balance": 150000.5,
+      "currency": "HUF",
+      "status": "ACTIVE",
+      "branchDetails": {
+        "branchId": "BR-05",
+        "region": "Budapest"
+      },
+      "flags": [
+        "VIP",
+        "NO_FEES"
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "id": "T5001",
+      "accountId": "A1001",
+      "amount": -5000,
+      "type": "DEBIT",
+      "timestamp": "2026-04-09T10:00:00Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,50 @@
+name: TestAcademy QA Integration Pipeline
+
+# -------------------------------------------------------------
+# 1. TRIGGER BLOCK: When should the pipeline run?
+# -------------------------------------------------------------
+on:
+  push:
+    branches: [ "main", "master", "feature/*" ]
+  pull_request:
+    branches: [ "main", "master", "feature/*" ]
+
+# -------------------------------------------------------------
+# 2. JOBS BLOCK: Server environments and execution steps
+# -------------------------------------------------------------
+jobs:
+  automation-tests:
+    name: Run API, UI & DB Tests
+    runs-on: ubuntu-latest # Standard GitHub Linux runner
+
+    steps:
+      # Step 1: Download the repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Java 17 and enable Maven caching
+      - name: Setup Java 17 (Eclipse Adoptium)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      # Step 3: Setup Node.js for mocking API server
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Step 4: Install and start the dummy JSON server in the background
+      - name: Start Mock API Server (JSON-Server)
+        working-directory: ./qa-automation
+        run: |
+          npm install -g json-server
+          npx json-server --watch bank-db.json --port 3000 &
+          sleep 5 # Wait for the background process to initialize
+      
+      # Step 5: Execute all test suites (Headless Chrome connects perfectly here)
+      - name: Run Maven Tests (API, UI, DB)
+        working-directory: ./qa-automation
+        run: mvn clean test

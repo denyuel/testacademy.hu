@@ -1,93 +1,99 @@
-# AI Asszisztens Szabályok és Védett Tartalmak (TestAcademy)
+# AI Assistant Rules and Protected Content (TestAcademy)
 
-**FONTOS:** Ez a dokumentum a `TestAcademy` webolal stabil, rögzített tartalmait és struktúráját tartalmazza. AI asszisztensként **SZIGORÚAN TILOS** a benne foglalt szövegeket, árakat, elérhetőségeket és alapvető üzleti logikákat a felhasználó (Daniel) KIFEJEZETT és EGYÉRTELMŰ kérése nélkül módosítani, törölni vagy véletlenül átírni.
+**IMPORTANT:** This document contains the stable, fixed content and structure of the `TestAcademy` website. As an AI assistant, it is **STRICTLY FORBIDDEN** to modify, delete, or accidentally rewrite the text, prices, contact information, and fundamental business logic in it without the EXPLICIT and CLEAR request of the user (Daniel).
 
-Biztosítsd, hogy ha kódolási vagy dizájn módosításokat kérnek, ezek a tartalmi elemek érintetlenek maradjanak!
+Ensure that if coding or design modifications are requested, these content elements remain completely untouched!
 
 ---
 
-## 1. Alapvető Üzleti Adatok és Elérhetőségek (VÉDETT)
-- **Név:** TestAcademy | Senior QA Mentoring & AI Automation
+## 1. Core Business Data and Contact Info (PROTECTED)
+- **Name:** TestAcademy | Senior QA Mentoring & AI Automation
 - **Email:** testacademyhungary@gmail.com
-- **Telefonszám:** +36 30 309 3302
-- **Form Action (Jelentkezés):** `https://formspree.io/f/mreygyry`
-- **Szerzői jog:** &copy; 2026 TestAcademy
+- **Phone:** +36 30 309 3302
+- **Form Action (Application):** `https://formspree.io/f/mreygyry`
+- **Copyright:** &copy; 2026 TestAcademy
 
 ---
 
-## 2. Fő Címsorok és Szlogenek (VÉDETT)
+## 2. Main Headlines and Slogans (PROTECTED)
 - **HU:** 10 év Lead tapasztalat • AI-támogatott tananyag
 - **EN:** 10 Years Lead Experience • AI-Powered Syllabus
-- **Főcím HU:** Valódi funkcionális tudás.
-- **Főcím EN:** Real functional skills.
-- **Alcím HU:** Hétvégi képzések Playwright és TypeScript alapokon. Tanulj a szakma sűrűjéből.
-- **Alcím EN:** Weekend courses with Playwright & TypeScript. Learn from the professionals.
+- **Main Headline HU:** Valódi funkcionális tudás.
+- **Main Headline EN:** Real functional skills.
+- **Subheadline HU:** Hétvégi képzések Playwright és TypeScript alapokon. Tanulj a szakma sűrűjéből.
+- **Subheadline EN:** Weekend courses with Playwright & TypeScript. Learn from the professionals.
 
 ---
 
-## 3. Képzések és Árazások (VÉDETT)
+## 3. Courses and Pricing (PROTECTED)
 
-Ezek a kurzusok és az áruk fixek:
+These courses and their prices are fixed:
 
-### Kurzusok (Hétvégi Képzések)
+### Courses (Weekend Training)
 1. **Junior Manual**
-   - **Ár:** 149.000 Ft
-   - **Időtartam:** 4 Hétvége
-   - **Leírás:** A tesztelés alapjai, Jira, SQL és valódi projektek. Nem csak elmélet: nálunk rutint szerzel.
+   - **Price:** 149.000 Ft
+   - **Duration:** 4 Weekends
+   - **Description:** Testing fundamentals, Jira, SQL, and real projects. Not just theory: you gain routine here.
 
 2. **Playwright Pro**
-   - **Ár:** 299.000 Ft
-   - **Időtartam:** 8 Hétvége
-   - **Leírás:** Modern automatizálás Playwright + TypeScript alapon. Komplex architektúra építés és CI/CD.
+   - **Price:** 299.000 Ft
+   - **Duration:** 8 Weekends
+   - **Description:** Modern automation with Playwright + TypeScript. Complex architecture building and CI/CD.
 
-3. **Zero to Hero QA Masterclass (Kombinált)**
-   - **Ár:** 399.000 Ft
-   - **Időtartam:** 12 Hétvége
-   - **Leírás:** A Junior Manual és a Playwright Pro teljes anyaga egyben kedvezményes áron. Teljes transzformáció a manuális alapoktól a senior szintű automatizálásig.
+3. **Zero to Hero QA Masterclass (Combined)**
+   - **Price:** 399.000 Ft
+   - **Duration:** 12 Weekends
+   - **Description:** The complete material of Junior Manual and Playwright Pro at a discounted price. Full transformation from manual basics to senior-level automation.
 
-### Egyéni Fejlődés / Mentoring
-1. **Tanácsadás & Coaching**
-   - **Ár:** 15.000 Ft / hr (óra)
-   - **Típus:** 1-on-1 alkalmak, specifikus technikai elakadások, karrierút-tervezés.
+### Personal Growth / Mentoring
+1. **Consulting & Coaching**
+   - **Price:** 15.000 Ft / hr
+   - **Type:** 1-on-1 sessions, specific technical blockers, career path planning.
 
-2. **Interview Ready Csomag (Legnépszerűbb)**
-   - **Ár:** 99.000 Ft
-   - **Tartalma:** CV & LinkedIn Audit, Mock Interviews (HU/EN), Soft Skill Boost, Kérdezéstechnika.
+2. **Interview Ready Package (Most Popular)**
+   - **Price:** 99.000 Ft
+   - **Includes:** CV & LinkedIn Audit, Mock Interviews (HU/EN), Soft Skill Boost, Interviewing Techniques.
 
-### Vállalati Tréningek / B2B
+### Corporate Training / B2B
 1. **AI Expert Deep Dive**
-   - **Ár:** 199.000 Ft / nap
-   - **Időtartam:** 1 Day
-   - **Célcsoport:** Tapasztalt csapatoknak.
+   - **Price:** 199.000 Ft / day
+   - **Duration:** 1 Day
+   - **Target Audience:** Experienced teams.
 
 2. **QA Bridge Workshop (Bestseller)**
-   - **Ár:** 199.000 Ft / nap
-   - **Időtartam:** 2 Days
-   - **Célcsoport:** Manuális tesztelők átvezetése az automatizálásba.
+   - **Price:** 199.000 Ft / day
+   - **Duration:** 2 Days
+   - **Target Audience:** Transitioning manual testers into automation.
 
 3. **Enterprise / Custom**
-   - **Ár:** Egyedi ajánlat / Custom Quote
-   - **Típus:** Több napos bővített tematika, egyedi igényekre.
+   - **Price:** Custom Quote
+   - **Type:** Multi-day extended curriculum, tailored to unique needs.
 
 ---
 
-## 4. Technikai és Strukturális Alapelvek (NEM VÁLTOZTATHATÓ)
+## 4. Technical and Structural Principles (STATIC)
 
-1. **Kétnyelvűség Script Alapon:**
-   - A kétnyelvűség (HU/EN) kliensoldali JavaScripttel van megoldva, CSS classok (`.lang-hu`, `.lang-en`, `.lang-hidden`) segítségével.
-   - Bármilyen új szöveg hozzáadásakor kötelező elkészíteni a `lang-hu` és a rá vonatkozó `lang-en` (`lang-hidden`) spaneket.
-   - Ne cseréld le a rendszert komplexebb (pl. i18n) csomagokra kifejezett kérés nélkül!
+1. **Script-Based Bilingualism:**
+   - Bilingual support (HU/EN) is resolved using client-side JavaScript via CSS classes (`.lang-hu`, `.lang-en`, `.lang-hidden`).
+   - When adding any new text, it is mandatory to create both the `lang-hu` and its corresponding `lang-en` (`lang-hidden`) spans.
+   - Do not replace this system with complex packages (e.g., i18n) without an explicit request!
 
 2. **Styling / UI Framework:**
-   - A projekt **Tailwind CSS**-t használ CDN-en keresztül (`<script src="https://cdn.tailwindcss.com"></script>`). Nem hasznosítunk külső, bonyolult build toolokat (pl. webpack, vite) amíg arra határozott utasítás nem érkezik.
+   - The project uses **Tailwind CSS** via CDN (`<script src="https://cdn.tailwindcss.com"></script>`). Do not use external, complex build tools (e.g., webpack, vite) unless strictly instructed.
 
-3. **Űrlap és Select opciók:**
-   - Az űrlap legördülő (select) listái `translations` nevű globális JavaScript objektumból töltődnek be a választott nyelvnek megfelelően! 
-   - Ha egy termék ára/neve változik, azt **kötelező** a `<script>` blokkban szereplő `translations` adattömbben is frissíteni.
+3. **Form and Select Options:**
+   - The form dropdown (select) lists are populated from a global JavaScript object named `translations` based on the selected language!
+   - If a product price/name changes, it **MUST** be updated in the `translations` data array within the `<script>` block.
 
-4. **Helyszín és Remote Stratégia:**
-   - A képzések elsődlegesen **Remote (Online)** fókuszúak a jobb skálázhatóság, az alacsonyabb overhead és a képernyőmegosztásos hatékonyság miatt.
-   - Igény esetén **Budapest** lehet az in-person helyszín (ha összejön a minimális létszám), Szeged esetében csak speciális, egyedi esetekben. Emiatt az oldalon mindig a weben fókuszáljunk a Remote opció kiemelésére.
+4. **Location and Remote Strategy:**
+   - The courses are primarily **Remote (Online)** focused due to better scalability, lower overhead, and screen-sharing efficiency.
+   - In-person location can be **Budapest** upon request (if minimum capacity is met), Szeged only in special, unique cases. Thus, always emphasize the Remote option on the web.
 
 ---
-**ÖSSZEGZÉS:** Mielőtt bármely fájl tartalmát megváltoztatod, először olvasd el ezt a `.md` fájlt az emlékezet frissítése érdekében. Biztosítsd, hogy a fenti üzleti tartalmak konzisztensek maradnak!
+
+## 5. Coding Standards (STATIC)
+1. **ONLY ENGLISH CODE RULE:**
+   - All source code (Java classes, YAML configurations, HTML attributes apart from text content, Pom.xml, etc.), including names, methods, commit messages, logging, and **ALL IN-CODE COMMENTS AND MARKDOWN DOCUMENTATION**, must be written EXCLUSIVELY in English. Programming is international. The only exception is the Hungarian textual content displayed on the website targeted at the Hungarian audience.
+
+---
+**SUMMARY:** Before modifying the contents of any file, read this `.md` file first to refresh your memory. Ensure that the business contents above remain consistent!
