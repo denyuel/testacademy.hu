@@ -145,3 +145,8 @@ vite.config.ts.timestamp-*
 target/
 qa-automation/target/
 *.class
+
+# Allure Reporting
+allure-results/
+allure-report/
+.allure/
