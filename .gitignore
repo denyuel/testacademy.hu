@@ -140,3 +140,13 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Java & Maven
+target/
+qa-automation/target/
+*.class
+
+# Allure Reporting
+allure-results/
+allure-report/
+.allure/
