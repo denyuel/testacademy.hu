@@ -1,9 +1,0 @@
-hu\testacademy\api\HttpMethodsCrudTest.class
-hu\testacademy\api\pojo\BranchDetails.class
-hu\testacademy\ui\pages\HomePage.class
-hu\testacademy\db\SqlIntegrationTest.class
-hu\testacademy\api\pojo\AccountPojo.class
-hu\testacademy\ui\MainWebUiTest.class
-hu\testacademy\db\DatabaseManager.class
-hu\testacademy\api\JsonPlaceholderApiTest.class
-hu\testacademy\api\BankingWorkflowApiTest.class
