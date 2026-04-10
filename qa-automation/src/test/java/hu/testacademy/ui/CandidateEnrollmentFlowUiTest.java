@@ -12,6 +12,8 @@ import static com.codeborne.selenide.Selenide.open;
 @DisplayName("Advanced Multi-Assertion Candidate Enrollment UI Flow")
 public class CandidateEnrollmentFlowUiTest {
 
+    private static String LOCAL_HTML_URL;
+
     @BeforeAll
     public static void setup() {
         Configuration.browser = "chrome";
@@ -19,13 +21,13 @@ public class CandidateEnrollmentFlowUiTest {
         Configuration.timeout = 5000;
         
         java.io.File htmlFile = new java.io.File("../index.html");
-        Configuration.baseUrl = htmlFile.toURI().toString();
+        LOCAL_HTML_URL = htmlFile.toURI().toString();
     }
 
     @Test
     @DisplayName("Verify multiple UI components concurrently using Soft Assertions")
     public void executeSoftAssertionEnrollmentSweep() {
-        open("/index.html");
+        open(LOCAL_HTML_URL);
         
         HomePage homePage = new HomePage();
         
