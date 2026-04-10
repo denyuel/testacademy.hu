@@ -34,7 +34,7 @@ jobs:
         working-directory: ./qa-automation
         run: |
           npm install -g json-server
-          npx json-server --watch bank-db.json --port 3000 &
+          npx json-server --watch bank-db.json --middlewares middleware.js --port 3000 &
           sleep 5
       
       - name: Execute Maven Test Lifecycle (API, UI, DB)
