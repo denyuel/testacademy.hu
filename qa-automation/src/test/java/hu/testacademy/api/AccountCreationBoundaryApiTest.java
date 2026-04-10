@@ -28,7 +28,7 @@ public class AccountCreationBoundaryApiTest {
         "'John Doe', -500, 400"   // Negative balance constraint
     })
     @DisplayName("Verify strict business rules via Data-Driven Matrix")
-    public void executeBoundaryValidations(String ownerName, int initialBalance, int expectedStatusCode) {
+    public void executeBoundaryValidations(String ownerName, double initialBalance, int expectedStatusCode) {
         
         BranchDetails branch = new BranchDetails("HU000", "ConstraintTestRegion");
         AccountPojo invalidPayload = new AccountPojo(null, ownerName, initialBalance, "EUR", "PENDING", branch, Collections.emptyList());

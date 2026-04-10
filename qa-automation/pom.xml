@@ -72,6 +72,13 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
+        <!-- JUnit Jupiter Params for Data-Driven Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Allure Test Reporting for JUnit 5 -->
         <dependency>
