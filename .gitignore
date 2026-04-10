@@ -306,3 +306,5 @@ cv_updated_draft.md
 *.pdf
 *.docx
 *.doc
+
+dist/
