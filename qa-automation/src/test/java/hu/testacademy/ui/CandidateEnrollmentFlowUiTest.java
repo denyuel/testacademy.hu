@@ -17,7 +17,6 @@ public class CandidateEnrollmentFlowUiTest {
         Configuration.browser = "chrome";
         Configuration.headless = true;
         Configuration.timeout = 5000;
-        Configuration.assertionMode = com.codeborne.selenide.AssertionMode.SOFT;
         
         java.io.File htmlFile = new java.io.File("../index.html");
         Configuration.baseUrl = htmlFile.toURI().toString();

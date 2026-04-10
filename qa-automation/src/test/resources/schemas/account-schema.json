@@ -2,13 +2,17 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Account Schema",
   "type": "object",
-  "required": ["owner", "balance", "currency", "status"],
+  "required": ["customerName", "balance", "currency", "status"],
   "properties": {
     "id": {
       "type": "string"
     },
-    "owner": {
+    "customerName": {
       "type": "string"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": ["SAVINGS", "CURRENT"]
     },
     "balance": {
       "type": "number"
@@ -23,9 +27,9 @@
     },
     "branchDetails": {
       "type": "object",
-      "required": ["branchCode", "region"],
+      "required": ["branchId", "region"],
       "properties": {
-        "branchCode": {
+        "branchId": {
           "type": "string"
         },
         "region": {

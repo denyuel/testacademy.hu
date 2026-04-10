@@ -24,7 +24,7 @@ public class BankingContractSchemaApiTest {
         given()
             .contentType(ContentType.JSON)
         .when()
-            .get("/accounts/1")
+            .get("/accounts/A1001")
         .then()
             .statusCode(200)
             .assertThat()
