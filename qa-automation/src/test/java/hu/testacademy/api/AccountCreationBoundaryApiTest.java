@@ -12,7 +12,6 @@ import hu.testacademy.api.pojo.BranchDetails;
 import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 @DisplayName("API Domain Constraints & Boundary Validation")
 public class AccountCreationBoundaryApiTest {
