@@ -301,6 +301,8 @@ allure-report/
 # Local workspace configurations
 .workspace-notes.md
 .profile-drafts.md
+cv_raw_text.txt
+cv_updated_draft.md
 *.pdf
 *.docx
 *.doc
