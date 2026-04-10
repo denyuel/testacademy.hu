@@ -39,6 +39,6 @@ public class SqlIntegrationTest {
         
         int finalBalance = dbManager.executeSelectInt("SELECT balance FROM bank_accounts WHERE id = 101", "balance");
         
-        assertEquals(3000, finalBalance, "Database row did not update to the expected deducted balance");
+        assertEquals(initialBalance - 2000, finalBalance, "Database row did not update to the expected deducted balance");
     }
 }

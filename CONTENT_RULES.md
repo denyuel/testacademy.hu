@@ -20,8 +20,8 @@ Ensure that if coding or design modifications are requested, these content eleme
 - **EN:** 10 Years Lead Experience • AI-Powered Syllabus
 - **Main Headline HU:** Valódi funkcionális tudás.
 - **Main Headline EN:** Real functional skills.
-- **Subheadline HU:** Hétvégi képzések Playwright és TypeScript alapokon. Tanulj a szakma sűrűjéből.
-- **Subheadline EN:** Weekend courses with Playwright & TypeScript. Learn from the professionals.
+- **Subheadline HU:** Hétvégi képzések Java 17, Selenide és REST Assured alapokon. Tanulj a szakma sűrűjéből.
+- **Subheadline EN:** Weekend courses with Java 17 & Selenide. Learn from the professionals.
 
 ---
 
@@ -35,15 +35,15 @@ These courses and their prices are fixed:
    - **Duration:** 4 Weekends
    - **Description:** Testing fundamentals, Jira, SQL, and real projects. Not just theory: you gain routine here.
 
-2. **Playwright Pro**
+2. **Enterprise Java Automation**
    - **Price:** 299.000 Ft
    - **Duration:** 8 Weekends
-   - **Description:** Modern automation with Playwright + TypeScript. Complex architecture building and CI/CD.
+   - **Description:** Modern Enterprise automation with Java 17 + Selenide. Complex API & UI architecture and CI/CD.
 
 3. **Zero to Hero QA Masterclass (Combined)**
    - **Price:** 399.000 Ft
    - **Duration:** 12 Weekends
-   - **Description:** The complete material of Junior Manual and Playwright Pro at a discounted price. Full transformation from manual basics to senior-level automation.
+   - **Description:** The complete material of Junior Manual and Enterprise Java Automation at a discounted price. Full transformation from manual basics to senior-level architecture.
 
 ### Personal Growth / Mentoring
 1. **Consulting & Coaching**
@@ -88,12 +88,6 @@ These courses and their prices are fixed:
 4. **Location and Remote Strategy:**
    - The courses are primarily **Remote (Online)** focused due to better scalability, lower overhead, and screen-sharing efficiency.
    - In-person location can be **Budapest** upon request (if minimum capacity is met), Szeged only in special, unique cases. Thus, always emphasize the Remote option on the web.
-
----
-
-## 5. Coding Standards (STATIC)
-1. **ONLY ENGLISH CODE RULE:**
-   - All source code (Java classes, YAML configurations, HTML attributes apart from text content, Pom.xml, etc.), including names, methods, commit messages, logging, and **ALL IN-CODE COMMENTS AND MARKDOWN DOCUMENTATION**, must be written EXCLUSIVELY in English. Programming is international. The only exception is the Hungarian textual content displayed on the website targeted at the Hungarian audience.
 
 ---
 **SUMMARY:** Before modifying the contents of any file, read this `.md` file first to refresh your memory. Ensure that the business contents above remain consistent!

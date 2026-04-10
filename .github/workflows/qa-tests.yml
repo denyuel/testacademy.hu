@@ -1,54 +1,42 @@
 name: TestAcademy QA Integration Pipeline
 
-# -------------------------------------------------------------
-# 1. TRIGGER BLOCK: When should the pipeline run?
-# -------------------------------------------------------------
 on:
   push:
     branches: [ "main", "master", "feature/*" ]
   pull_request:
     branches: [ "main", "master", "feature/*" ]
 
-# Force GitHub actions to use Node 24 to silence the deprecation warning
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-# -------------------------------------------------------------
-# 2. JOBS BLOCK: Server environments and execution steps
-# -------------------------------------------------------------
 jobs:
   automation-tests:
     name: Run API, UI & DB Tests
-    runs-on: ubuntu-latest # Standard GitHub Linux runner
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Download the repository code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Setup Java 17 and enable Maven caching
-      - name: Setup Java 17 (Eclipse Adoptium)
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
       
-      # Step 3: Setup Node.js for mocking API server
-      - name: Setup Node.js Environment
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      # Step 4: Install and start the dummy JSON server in the background
-      - name: Start Mock API Server (JSON-Server)
+      - name: Initialize Mock API Server
         working-directory: ./qa-automation
         run: |
-          npm install -g json-server
-          npx json-server --watch bank-db.json --port 3000 &
-          sleep 5 # Wait for the background process to initialize
+          npm install -g json-server@0.17.4
+          npx json-server --watch bank-db.json --middlewares middleware.js --port 3000 &
+          sleep 5
       
-      # Step 5: Execute all test suites (Headless Chrome connects perfectly here)
-      - name: Run Maven Tests (API, UI, DB)
+      - name: Execute Maven Test Lifecycle (API, UI, DB)
         working-directory: ./qa-automation
         run: mvn clean test
