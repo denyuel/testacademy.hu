@@ -18,9 +18,9 @@ public class CandidateEnrollmentFlowUiTest {
         Configuration.headless = true;
         Configuration.timeout = 5000;
         Configuration.assertionMode = com.codeborne.selenide.AssertionMode.SOFT;
-        // Using an absolute path to the local HTML file for integration stability
-        String projectPath = System.getProperty("user.dir").replace("\\qa-automation", "");
-        Configuration.baseUrl = "file:///" + projectPath.replace("\\", "/");
+        
+        java.io.File htmlFile = new java.io.File("../index.html");
+        Configuration.baseUrl = htmlFile.toURI().toString();
     }
 
     @Test

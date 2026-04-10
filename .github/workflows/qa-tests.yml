@@ -33,7 +33,7 @@ jobs:
       - name: Initialize Mock API Server
         working-directory: ./qa-automation
         run: |
-          npm install -g json-server
+          npm install -g json-server@0.17.4
           npx json-server --watch bank-db.json --middlewares middleware.js --port 3000 &
           sleep 5
       
