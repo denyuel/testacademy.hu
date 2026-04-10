@@ -308,3 +308,8 @@ cv_updated_draft.md
 *.doc
 
 
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
