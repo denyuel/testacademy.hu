@@ -1,0 +1,42 @@
+name: TestAcademy QA Integration Pipeline
+
+on:
+  push:
+    branches: [ "main", "master", "feature/*" ]
+  pull_request:
+    branches: [ "main", "master", "feature/*" ]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  automation-tests:
+    name: Run API, UI & DB Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Initialize Mock API Server
+        working-directory: ./qa-automation
+        run: |
+          npm install -g json-server@0.17.4
+          npx json-server --watch bank-db.json --middlewares middleware.js --port 3000 &
+          sleep 5
+      
+      - name: Execute Maven Test Lifecycle (API, UI, DB)
+        working-directory: ./qa-automation
+        run: mvn clean test

@@ -1,0 +1,56 @@
+package hu.testacademy.ui;
+
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.assertj.core.api.SoftAssertions;
+import hu.testacademy.ui.pages.HomePage;
+
+import static com.codeborne.selenide.Selenide.open;
+
+@DisplayName("Advanced Multi-Assertion Candidate Enrollment UI Flow")
+public class CandidateEnrollmentFlowUiTest {
+
+    private static String LOCAL_HTML_URL;
+
+    @BeforeAll
+    public static void setup() {
+        Configuration.browser = "chrome";
+        Configuration.headless = true;
+        Configuration.timeout = 5000;
+        
+        java.io.File htmlFile = new java.io.File("../index.html");
+        LOCAL_HTML_URL = htmlFile.toURI().toString();
+    }
+
+    @Test
+    @DisplayName("Verify multiple UI components concurrently using Soft Assertions")
+    public void executeSoftAssertionEnrollmentSweep() {
+        open(LOCAL_HTML_URL);
+        
+        HomePage homePage = new HomePage();
+        
+        // Setup cross-domain soft assertions
+        SoftAssertions softly = new SoftAssertions();
+
+        // Standard interaction
+        homePage.fillApplicationForm("Jane Doe");
+
+        // UI Soft Asserts (Will collect all failures without stopping execution loop)
+        softly.assertThat(homePage.submitBtn.exists())
+            .as("Enrollment submission mechanism must be inherently visible")
+            .isTrue();
+
+        softly.assertThat(homePage.heroTitle.getText())
+            .as("Primary marketing directive must map to expected value")
+            .contains("Val");
+
+        softly.assertThat(homePage.languageEnBtn.isDisplayed())
+            .as("Language toggles must map to visible quadrant")
+            .isTrue();
+
+        // Commit all collected assertions to the reporting engine
+        softly.assertAll();
+    }
+}

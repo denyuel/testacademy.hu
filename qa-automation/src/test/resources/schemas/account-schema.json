@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Account Schema",
+  "type": "object",
+  "required": ["customerName", "balance", "currency", "status"],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "customerName": {
+      "type": "string"
+    },
+    "accountType": {
+      "type": "string",
+      "enum": ["SAVINGS", "CURRENT"]
+    },
+    "balance": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["HUF", "EUR", "USD"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "PENDING", "SUSPENDED"]
+    },
+    "branchDetails": {
+      "type": "object",
+      "required": ["branchId", "region"],
+      "properties": {
+        "branchId": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        }
+      }
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
