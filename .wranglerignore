@@ -1,0 +1,12 @@
+node_modules/
+qa-automation/
+.git/
+.github/
+*.pdf
+*.docx
+*.doc
+cv_raw_text.txt
+cv_updated_draft.md
+.workspace-notes.md
+.profile-drafts.md
+input.css

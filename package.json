@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx tailwindcss -i ./input.css -o ./output.css --minify",
+    "build": "npx tailwindcss -i ./input.css -o ./output.css --minify && node -e \"const fs=require('fs');fs.mkdirSync('dist',{recursive:true});['index.html','output.css','thanks.html','_redirects','favicon.ico','og-image.png'].forEach(f=>{try{fs.copyFileSync(f,'dist/'+f)}catch(e){}})\"",
     "dev": "npx tailwindcss -i ./input.css -o ./output.css --watch",
     "lint": "npm run lint:html",
     "format": "prettier --write .",
