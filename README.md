@@ -20,4 +20,4 @@ The `qa-automation` repository demonstrates mastery over:
 *   **Frontend:** The landing page is stateless and can be launched directly via `localhost` or served statically.
 *   **Pipeline:** CI validations trigger strictly on Pull Requests against the Main branch.
 
-*Authored by Daniel Borbás | Lead Test Automation Architect*
+*Authored by Dániel Borbás | Senior Automation Engineer | QA Lead*
