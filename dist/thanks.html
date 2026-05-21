@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Köszönjük! | TestAcademy</title>
   <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./output.css" />
-  <!-- Let's force dark mode layout since it's the standard design -->
+  <style>
+    .lang-hidden { display: none !important; }
+  </style>
 </head>
 <body class="bg-slate-900 text-slate-100 antialiased font-sans selection:bg-blue-500/30 text-balance min-h-screen flex items-center justify-center">
   <div class="max-w-xl p-10 mx-auto text-center bg-slate-800/30 border border-slate-800 rounded-[3rem] shadow-2xl relative overflow-hidden m-4">
@@ -17,16 +22,37 @@
       </div>
       <div>
         <h1 class="text-4xl font-black text-white italic tracking-tight mb-4">
-           Sikeres <span class="text-blue-500">Jelentkezés!</span>
+           <span class="lang-hu">Sikeres <span class="text-blue-500">Jelentkezés!</span></span>
+           <span class="lang-en lang-hidden">Registration <span class="text-blue-500">Successful!</span></span>
         </h1>
         <p class="text-slate-400 italic font-medium leading-relaxed">
-          Szuper! A jelentkezésedet sikeresen rögzítettük. Hamarosan, maximum 24 órán belül felvesszük veled a kapcsolatot a megadott e-mail címen.
+            <span class="lang-hu">Szuper! A jelentkezésedet sikeresen rögzítettem. Hamarosan, maximum 24 órán belül felveszem veled a kapcsolatot a megadott e-mail címen.</span>
+            <span class="lang-en lang-hidden">Awesome! Your registration has been successfully recorded. I will contact you at the email address provided within 24 hours.</span>
         </p>
       </div>
       <a href="index.html" class="inline-block bg-blue-600 text-white font-black py-4 px-10 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest text-xs italic hover:bg-blue-500">
-        Vissza a főoldalra
+        <span class="lang-hu">Vissza a főoldalra</span>
+        <span class="lang-en lang-hidden">Back to Main Page</span>
       </a>
     </div>
   </div>
+
+  <script>
+    window.onload = () => {
+      const lang = localStorage.getItem("preferredLang") || "hu";
+      const huElements = document.querySelectorAll(".lang-hu");
+      const enElements = document.querySelectorAll(".lang-en");
+
+      if (lang === "en") {
+        huElements.forEach(el => el.classList.add("lang-hidden"));
+        enElements.forEach(el => el.classList.remove("lang-hidden"));
+        document.title = "Thank You! | TestAcademy";
+      } else {
+        enElements.forEach(el => el.classList.add("lang-hidden"));
+        huElements.forEach(el => el.classList.remove("lang-hidden"));
+        document.title = "Köszönjük! | TestAcademy";
+      }
+    };
+  </script>
 </body>
 </html>

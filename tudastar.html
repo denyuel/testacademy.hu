@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TestAcademy Tudástár - Ingyenes szakmai anyagok szoftvertesztelőknek. Java, Selenide, API és Karrier." />
+  <title>Tudástár | TestAcademy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./output.css" />
+  <script src="./articles.js"></script>
+  <style>
+    .lang-hidden { display: none !important; }
+    .category-btn.active { background-color: #2563eb !important; color: white !important; border-color: #2563eb !important; }
+    #modal-content code { background: #1e293b; padding: 2px 6px; border-radius: 4px; color: #60a5fa; font-family: monospace; }
+    #modal-content pre { background: #0f172a; padding: 1.25rem; border: 1px solid #1e293b; border-radius: 16px; overflow-x: auto; margin-bottom: 1.5rem; }
+    #modal-content pre code { background: transparent; padding: 0; color: #93c5fd; border-radius: 0; font-family: monospace; }
+    #modal-content h2 { font-style: italic; font-weight: 900; margin-top: 2rem; margin-bottom: 1rem; }
+    #modal-content p { margin-bottom: 1.5rem; }
+    #modal-content ul { margin-bottom: 1.5rem; list-style: none; padding-left: 0; }
+    #modal-content li { margin-bottom: 0.5rem; display: flex; gap: 10px; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased font-sans selection:bg-blue-500/30 text-balance italic">
+  <div class="min-h-screen flex flex-col">
+    
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20 group-hover:border-blue-500/40 transition-all">
+            <svg class="w-8 h-8 text-blue-500" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="5" width="90" height="90" rx="20" fill="currentColor" fill-opacity="0.1"/>
+              <path d="M25 35H75M50 35V75" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+              <path d="M70 65L80 75L95 55" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-black tracking-tighter text-white leading-none">TestAcademy</span>
+            <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-blue-400 italic">Senior Lead Mentoring</span>
+          </div>
+        </a>
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70 text-xs hidden md:block">
+            <span class="lang-hu">Vissza a főoldalra</span>
+            <span class="lang-en lang-hidden">Back to Main</span>
+          </a>
+          <div class="flex bg-slate-800 rounded-lg p-1 border border-slate-700">
+            <button onclick="setLanguage('hu')" id="btn-hu" class="px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase">HU</button>
+            <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase">EN</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="flex-grow mx-auto w-full max-w-6xl px-6 py-20">
+      
+      <!-- HEADER -->
+      <header class="mb-12">
+        <h1 class="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">
+          <span class="lang-hu">SZAKMAI <span class="text-blue-500">TUDÁSTÁR</span></span>
+          <span class="lang-en lang-hidden">KNOWLEDGE <span class="text-blue-500">BASE</span></span>
+        </h1>
+        <p class="text-slate-400 text-xl max-w-3xl leading-relaxed">
+          <span class="lang-hu">Válogatott cikkek, útmutatók és esettanulmányok a modern szoftvertesztelés világából. Tanulj a szakma sűrűjéből, teljesen ingyen.</span>
+          <span class="lang-en lang-hidden">Curated articles, guides and case studies from the world of modern software testing. Learn from the pros, for free.</span>
+        </p>
+      </header>
+
+      <!-- SEARCH & FILTERS -->
+      <div class="flex flex-col gap-10 mb-16">
+        <div class="relative w-72">
+            <input type="text" id="article-search" aria-label="Keresés a cikkek között / Search articles" placeholder="Keresés..." class="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 px-6 focus:border-blue-500 outline-none italic text-slate-100 placeholder-slate-500">
+            <span class="absolute right-6 top-1/2 -translate-y-1/2 text-slate-500">🔍</span>
+        </div>
+        <div class="flex gap-4 overflow-x-auto pb-2 md:pb-0" id="filter-buttons">
+            <button onclick="filterArticles('Mind')" class="category-btn active px-10 py-4 rounded-2xl border border-slate-700 font-bold text-xs uppercase tracking-widest italic transition-all whitespace-nowrap">Mind</button>
+            <button onclick="filterArticles('Tech')" class="category-btn px-10 py-4 rounded-2xl border border-slate-700 font-bold text-xs uppercase tracking-widest italic transition-all whitespace-nowrap">Tech</button>
+            <button onclick="filterArticles('Karrier')" class="category-btn px-10 py-4 rounded-2xl border border-slate-700 font-bold text-xs uppercase tracking-widest italic transition-all whitespace-nowrap">Karrier</button>
+            <button onclick="filterArticles('API')" class="category-btn px-10 py-4 rounded-2xl border border-slate-700 font-bold text-xs uppercase tracking-widest italic transition-all whitespace-nowrap">API</button>
+        </div>
+      </div>
+
+      <!-- ARTICLES GRID -->
+      <div id="articles-grid" class="grid md:grid-cols-2 lg:grid-cols-3" style="display: grid; gap: 60px;">
+        <!-- Articles generated by JS -->
+      </div>
+    </main>
+
+    <footer class="border-t border-slate-800 py-12 text-center bg-slate-950">
+        <p class="text-slate-500 text-xs font-bold uppercase tracking-[0.5em] italic">&copy; 2026 TestAcademy Hungary</p>
+    </footer>
+
+    <!-- ARTICLE MODAL -->
+    <div id="article-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(8px);" onclick="closeArticle()"></div>
+      <div style="position: relative; background: #0f172a; border: 1px solid #1e293b; width: 100%; max-width: 900px; max-height: 90vh; border-radius: 40px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden; display: flex; flex-direction: column; z-index: 1000000;">
+        <button onclick="closeArticle()" style="position: absolute; top: 20px; right: 25px; color: #94a3b8; font-size: 30px; border: none; background: none; cursor: pointer; z-index: 20;">✕</button>
+        <div id="modal-content" style="overflow-y: auto; padding: 40px; color: #cbd5e1; font-family: sans-serif; font-style: normal; line-height: 1.6;">
+          <!-- Content injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let currentFilter = 'Mind';
+
+    function generateArticles() {
+      const grid = document.getElementById('articles-grid');
+      const searchTerm = document.getElementById('article-search').value.toLowerCase();
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      grid.innerHTML = '';
+      
+      const filtered = articles.filter(art => {
+        const title = lang === 'hu' ? art.titleHu : art.titleEn;
+        const matchesSearch = title.toLowerCase().includes(searchTerm);
+        const matchesFilter = currentFilter === 'Mind' || art.category === currentFilter;
+        return matchesSearch && matchesFilter;
+      });
+
+      filtered.forEach(art => {
+        const title = lang === 'hu' ? art.titleHu : art.titleEn;
+        const excerpt = lang === 'hu' ? art.excerptHu : art.excerptEn;
+        
+        const card = `
+          <article class="group cursor-pointer" onclick="openArticle('${art.id}')">
+            <div class="relative overflow-hidden rounded-3xl mb-6 bg-slate-800 shadow-lg border border-slate-700/50 group-hover:border-${art.color}-500/50 transition-all" style="height: 200px;">
+              <div class="absolute inset-0 bg-${art.color}-900/20 group-hover:bg-transparent transition-all z-10"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80 z-10"></div>
+              <div class="absolute top-4 left-4 bg-${art.color}-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest italic z-20 shadow-lg">${art.category}</div>
+              <img src="${art.img}" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+            </div>
+            <div style="min-height: 70px;">
+              <h3 class="text-xl font-black text-white mb-3 italic group-hover:text-blue-400 transition-colors leading-tight">${title}</h3>
+            </div>
+            <div style="min-height: 80px;">
+              <p class="text-slate-400 text-sm italic leading-relaxed mb-4">${excerpt}</p>
+            </div>
+            <div class="flex items-center text-blue-500 font-bold text-xs uppercase tracking-widest italic gap-2 group-hover:gap-4 transition-all">
+              <span>${lang === 'hu' ? 'Tovább az olvasáshoz' : 'Read more'}</span>
+              <span class="text-lg">→</span>
+            </div>
+          </article>
+        `;
+        grid.innerHTML += card;
+      });
+    }
+
+    function filterArticles(category) {
+      currentFilter = category;
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.trim() === category);
+      });
+      generateArticles();
+    }
+
+    document.getElementById('article-search').addEventListener('input', generateArticles);
+
+    function openArticle(id) {
+      const modal = document.getElementById('article-modal');
+      const content = document.getElementById('modal-content');
+      const lang = localStorage.getItem('preferredLang') || 'hu';
+      const art = articles.find(a => a.id === id);
+      content.innerHTML = lang === 'hu' ? art.contentHu : art.contentEn;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticle() {
+      document.getElementById('article-modal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function setLanguage(lang) {
+      localStorage.setItem('preferredLang', lang);
+      const huElements = document.querySelectorAll('.lang-hu');
+      const enElements = document.querySelectorAll('.lang-en');
+      const btnHu = document.getElementById('btn-hu');
+      const btnEn = document.getElementById('btn-en');
+
+      if (lang === 'en') {
+        huElements.forEach(el => el.classList.add('lang-hidden'));
+        enElements.forEach(el => el.classList.remove('lang-hidden'));
+        btnEn.classList.add('bg-blue-500', 'text-white');
+        btnEn.classList.remove('text-slate-400');
+        btnHu.classList.remove('bg-blue-500', 'text-white');
+        btnHu.classList.add('text-slate-400');
+        
+        document.title = "Knowledge Base | TestAcademy";
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute("content", "TestAcademy Knowledge Base - Free professional materials for software testers. Java, Selenide, API and Career.");
+        }
+      } else {
+        enElements.forEach(el => el.classList.add('lang-hidden'));
+        huElements.forEach(el => el.classList.remove('lang-hidden'));
+        btnHu.classList.add('bg-blue-500', 'text-white');
+        btnHu.classList.remove('text-slate-400');
+        btnEn.classList.remove('bg-blue-500', 'text-white');
+        btnEn.classList.add('text-slate-400');
+        
+        document.title = "Tudástár | TestAcademy";
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute("content", "TestAcademy Tudástár - Ingyenes szakmai anyagok szoftvertesztelőknek. Java, Selenide, API és Karrier.");
+        }
+      }
+      generateArticles();
+    }
+
+    window.onload = () => {
+      setLanguage(localStorage.getItem('preferredLang') || 'hu');
+    };
+  </script>
+</body>
+</html>
