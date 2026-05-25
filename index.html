@@ -101,14 +101,8 @@
             <a
               href="#courses"
               class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
-              ><span class="lang-hu">Kurzusok</span
-              ><span class="lang-en lang-hidden">Courses</span></a
-            >
-            <a
-              href="#blog"
-              class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
-              ><span class="lang-hu">Tudástár</span
-              ><span class="lang-en lang-hidden">Knowledge Base</span></a
+              ><span class="lang-hu">Programok</span
+              ><span class="lang-en lang-hidden">Programs</span></a
             >
             <a
               href="#mentoring"
@@ -180,7 +174,7 @@
           </a>
         </section>
 
-        <div id="courses" class="grid gap-12 lg:grid-cols-3">
+        <div id="courses" class="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
           <!-- Junior Manual -->
           <div
             class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full"
@@ -230,14 +224,77 @@
               id="manual-curr"
               class="curriculum-content mb-8 bg-slate-900/50 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-slate-800"
             >
-              <p>• SDLC & Agile alapok</p>
-              <p>• Test Design & Bug Reporting</p>
-              <p>• SQL & API Testing (Postman)</p>
-              <p>• AI-támogatott teszttervezés</p>
+              <p>• <span class="lang-hu">Agilis módszertanok (Agile & SDLC) auditálása és folyamatai</span><span class="lang-en lang-hidden">Agile & SDLC methodologies auditing and engineering flows</span></p>
+              <p>• <span class="lang-hu">Professzionális Test Design és hatékony hiba-életciklus menedzsment</span><span class="lang-en lang-hidden">Professional Test Design & highly effective defect lifecycle management</span></p>
+              <p>• <span class="lang-hu">Relációs adatbázisok (SQL) lekérdezése és manuális API auditálás (Postman)</span><span class="lang-en lang-hidden">Relational databases (SQL) querying & manual API auditing (Postman)</span></p>
+              <p>• <span class="lang-hu">AI-asszisztált teszttervezési stratégiák és hatékony prompt engineering</span><span class="lang-en lang-hidden">AI-assisted test suite generation & custom prompt engineering</span></p>
             </div>
             <a
               href="#join"
               data-testid="enroll-manual-btn"
+              class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest"
+            >
+              <span class="lang-hu">Jelentkezem</span
+              ><span class="lang-en lang-hidden">Enroll Now</span>
+            </a>
+          </div>
+
+          <!-- Modern Playwright Automation -->
+          <div
+            class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full"
+          >
+            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-10 mt-2">
+              <div class="flex gap-2">
+                <span
+                  class="text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic whitespace-nowrap"
+                  >8 Hétvége</span
+                >
+                <span
+                  class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic"
+                  >Remote</span
+                >
+              </div>
+              <span
+                class="text-2xl font-black text-white italic tracking-tighter text-blue-400 whitespace-nowrap"
+                >299.000 Ft</span
+              >
+            </div>
+            <div style="min-height: 100px">
+              <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">
+                Modern Playwright Automation
+              </h2>
+            </div>
+            <div style="min-height: 140px">
+              <p class="text-slate-400 mb-8 font-light leading-relaxed italic text-sm">
+                <span class="lang-hu"
+                  >Modern UI és API tesztautomatizálás TypeScript (vagy Python) alapon, a leggyorsabb és legstabilabb Playwright keretrendszerrel. CI/CD integráció és valódi projektek.</span
+                >
+                <span class="lang-en lang-hidden"
+                  >Modern UI & API automation using TypeScript (or Python) with the ultra-fast and stable Playwright framework. CI/CD pipelines & real-world projects.</span
+                >
+              </p>
+            </div>
+            <div style="min-height: 50px" class="mb-4">
+              <button
+                onclick="toggleElement('playwright-curr')"
+                class="text-blue-400 font-bold text-sm mb-8 flex items-center gap-2"
+              >
+                ▶ <span class="lang-hu">Részletes tematika</span
+                ><span class="lang-en lang-hidden">Detailed Curriculum</span>
+              </button>
+            </div>
+            <div
+              id="playwright-curr"
+              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20"
+            >
+              <p>• <span class="lang-hu">TypeScript / JS (vagy Python) QA-fókuszú programozási alapok & aszinkron működés</span><span class="lang-en lang-hidden">TypeScript / JS (or Python) QA-focused core & async operations</span></p>
+              <p>• <span class="lang-hu">Playwright Test Runner, automatikus várakozás (auto-waiting) és lokátorok</span><span class="lang-en lang-hidden">Playwright Test Runner, auto-waiting & locator strategies</span></p>
+              <p>• <span class="lang-hu">Page Object Model (POM) architektúra és fejlett interakciók kezelése</span><span class="lang-en lang-hidden">Page Object Model (POM) architecture & advanced interaction flows</span></p>
+              <p>• <span class="lang-hu">API tesztelés, request interception (kérések elfogása) és mockolás</span><span class="lang-en lang-hidden">API testing, request interception & robust mock servers</span></p>
+              <p>• <span class="lang-hu">CI/CD integráció (GitHub Actions), párhuzamos futtatás és HTML Trace Viewer</span><span class="lang-en lang-hidden">CI/CD pipeline integration (GitHub Actions), parallel runs & Trace Viewer</span></p>
+            </div>
+            <a
+              href="#join"
               class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest"
             >
               <span class="lang-hu">Jelentkezem</span
@@ -295,10 +352,11 @@
               id="auto-curr"
               class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20"
             >
-              <p>• Java 17 & OOP mélyalapozás</p>
-              <p>• POM & Selenide (UI) + REST Assured (API)</p>
-              <p>• Data-Driven Testing & JSON Schema</p>
-              <p>• CI/CD & NodeJS Mock Server Integráció</p>
+              <p>• <span class="lang-hu">Java 17 OOP mélyalapozás és tiszta kód (Clean Code) elvek</span><span class="lang-en lang-hidden">Java 17 OOP core architecture & Clean Code principles</span></p>
+              <p>• <span class="lang-hu">Page Object Model tervezési minták és Selenide UI tesztautomatizálás</span><span class="lang-en lang-hidden">Page Object Model patterns & Selenide UI automation framework</span></p>
+              <p>• <span class="lang-hu">REST Assured API integrációs tesztek és automatizált validációk</span><span class="lang-en lang-hidden">REST Assured API integration testing & automated endpoints validation</span></p>
+              <p>• <span class="lang-hu">Data-Driven tesztelés, külső adatforrások és JSON séma-ellenőrzések</span><span class="lang-en lang-hidden">Data-Driven testing strategies, external sources & JSON Schema validation</span></p>
+              <p>• <span class="lang-hu">GitHub Actions CI/CD folyamatok és NodeJS Mock szerver integrációk</span><span class="lang-en lang-hidden">GitHub Actions CI/CD pipelines & NodeJS Mock server integrations</span></p>
             </div>
             <a
               href="#join"
@@ -343,12 +401,10 @@
             <div style="min-height: 140px">
               <p class="text-slate-300 font-light leading-relaxed italic text-sm">
                 <span class="lang-hu"
-                  >A Manual és Java Automation kurzusok egyben. Építsd fel a karriered az alapoktól
-                  a senior szintű architektúra építésig.</span
+                  >A teljes manuális és automatizációs módszertan egyben, választható Java+Selenide vagy modern Playwright (TypeScript/Python) technológiákkal. Karrier-transzformáció a senior szintű architektúra tervezésig.</span
                 >
                 <span class="lang-en lang-hidden"
-                  >Manual and Java Automation courses combined. Build your career from basics to
-                  senior architecture.</span
+                  >The ultimate combination of manual methodology and modern automation (Java + Selenide or Playwright with TypeScript/Python). Rapid career transformation up to senior architecture design.</span
                 >
               </p>
             </div>
@@ -363,12 +419,22 @@
             </div>
             <div
               id="hero-curr"
-              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20"
+              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-3 border border-blue-500/20"
             >
-              <p>• Minden a Manual kurzusból</p>
-              <p>• Minden a Java Automation kurzusból</p>
-              <p>• <span class="text-blue-400 font-bold">+</span> 1-on-1 Karriertervezés</p>
-              <p>• <span class="text-blue-400 font-bold">+</span> Ingyenes Interview Prep</p>
+              <div>
+                <p class="font-bold text-white mb-1"><span class="lang-hu">Módszertani alapok:</span><span class="lang-en lang-hidden">Methodology Core:</span></p>
+                <p class="text-slate-400 pl-4">• <span class="lang-hu">Manuális és funkcionális elemzés, SQL és Postman vizsgálatok</span><span class="lang-en lang-hidden">Manual and functional analysis, SQL & Postman audits</span></p>
+              </div>
+              <div>
+                <p class="font-bold text-white mb-1"><span class="lang-hu">Választható automatizációs utak:</span><span class="lang-en lang-hidden">Automation Tracks (Optional):</span></p>
+                <p class="text-slate-400 pl-4">• <span class="lang-hu">Enterprise Java + Selenide + REST Assured keretrendszer</span><span class="lang-en lang-hidden">Enterprise Java + Selenide + REST Assured architecture</span></p>
+                <p class="text-slate-400 pl-4">• <span class="lang-hu">Modern Playwright (TypeScript / Python) + CI/CD integráció</span><span class="lang-en lang-hidden">Modern Playwright (TypeScript / Python) + CI/CD pipelines</span></p>
+              </div>
+              <div>
+                <p class="font-bold text-white mb-1"><span class="lang-hu">Karrier transzformáció:</span><span class="lang-en lang-hidden">Career Transformation:</span></p>
+                <p class="text-slate-400 pl-4">• <span class="lang-hu">1-on-1 karriertervezés és személyre szabott CV/LinkedIn optimalizálás</span><span class="lang-en lang-hidden">1-on-1 career mapping & custom CV/LinkedIn optimization</span></p>
+                <p class="text-slate-400 pl-4">• <span class="lang-hu">Szimulált szakmai interjúk és senior szintű technikai felkészítés</span><span class="lang-en lang-hidden">Simulated technical interviews and senior-level prep</span></p>
+              </div>
             </div>
             <a
               href="#join"
@@ -414,8 +480,7 @@
               </div>
               <div class="flex items-center justify-between border-t border-slate-800 pt-6 mt-auto">
                 <span class="text-2xl font-black text-blue-500 whitespace-nowrap"
-                  >15.000 Ft <span class="text-xs text-slate-500 italic">/ hr</span></span
-                >
+                  >15.000 Ft <span class="text-xs text-slate-500 italic"><span class="lang-hu">/ óra</span><span class="lang-en lang-hidden">/ hr</span></span></span>
                 <a
                   href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
                   target="_blank"
@@ -437,7 +502,7 @@
                 ><span class="lang-en lang-hidden">Most Popular</span>
               </div>
               <div>
-                <h3 class="text-xl font-black text-white italic mb-4">Interview Ready Csomag</h3>
+                <h3 class="text-xl font-black text-white italic mb-4"><span class="lang-hu">Interview Ready Csomag</span><span class="lang-en lang-hidden">Interview Ready Package</span></h3>
                 <ul class="text-slate-400 text-sm space-y-3 mb-8 italic">
                   <li>✅ <b>CV & LinkedIn Audit</b></li>
                   <li>✅ <b>Mock Interviews</b> (HU/EN)</li>
@@ -514,7 +579,7 @@
               <div class="mb-6">
                 <span
                   class="bg-slate-700 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
-                  >1 Day</span
+                  ><span class="lang-hu">1 nap</span><span class="lang-en lang-hidden">1 Day</span></span
                 >
                 <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
                   AI Expert Deep Dive
@@ -570,7 +635,7 @@
               <div class="mb-6">
                 <span
                   class="bg-blue-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
-                  >2 Days</span
+                  ><span class="lang-hu">2 nap</span><span class="lang-en lang-hidden">2 Days</span></span
                 >
                 <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
                   QA Bridge Workshop
@@ -620,7 +685,7 @@
               <div class="mb-6">
                 <span
                   class="bg-slate-700 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
-                  >Custom</span
+                  ><span class="lang-hu">Egyedi</span><span class="lang-en lang-hidden">Custom</span></span
                 >
                 <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
                   Enterprise / Custom
@@ -743,7 +808,7 @@
               <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
                 <div class="relative p-8 md:p-12 bg-slate-800/30 backdrop-blur-md rounded-[48px] group transition-all duration-500 h-full flex flex-col items-start text-left border border-slate-800/50 hover:border-blue-500/30">
                   <div class="mb-8">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" 
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" 
                          alt="Molnár Dávid" 
                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-700 group-hover:border-blue-500 transition-all duration-500 shadow-2xl">
                   </div>
@@ -778,10 +843,10 @@
           <div class="relative z-10 grid md:grid-cols-2 gap-12">
             <div>
               <h2 class="text-4xl font-black italic tracking-tighter leading-none mb-6">
-                <span class="lang-hu text-blue-500 text-3xl">Jelentkezz</span
-                ><span class="lang-en lang-hidden text-blue-500 text-3xl">Apply</span><br />
-                <span class="lang-hu text-white">most!</span
-                ><span class="lang-en lang-hidden text-white uppercase">now!</span>
+                <span class="lang-hu text-blue-500 text-3xl">Jelentkezz</span>
+                <span class="lang-en lang-hidden text-blue-500 text-3xl">Apply</span><br />
+                <span class="lang-hu text-white">most!</span>
+                <span class="lang-en lang-hidden text-white uppercase">now!</span>
               </h2>
               <div
                 class="space-y-4 text-xs font-bold italic text-slate-500 mt-8 uppercase tracking-widest"
@@ -838,6 +903,7 @@
                 id="form-course"
                 style="padding-left: 1.5rem"
                 class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl py-3 md:py-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none text-sm md:text-base"
+              >
               </select>
               <div class="flex items-start gap-3 mt-4 text-left">
                 <input
@@ -1100,13 +1166,24 @@
     </div>
 
     <script>
-      const courseOptions = [
-        { val: "Manual", text: "Junior Manual (149k Ft)" },
-        { val: "Automation", text: "Enterprise Java Automation (299k Ft)" },
-        { val: "Masterclass", text: "Zero to Hero Masterclass (399k Ft)" },
-        { val: "Mentoring", text: "Konzultáció (15k/hr)" },
-        { val: "Corporate", text: "Vállalati Műhelymunka" },
-      ];
+      const courseOptions = {
+        hu: [
+          { val: "Manual", text: "Junior Manual (149k Ft)" },
+          { val: "Playwright", text: "Modern Playwright Automation (299k Ft)" },
+          { val: "Automation", text: "Enterprise Java Automation (299k Ft)" },
+          { val: "Masterclass", text: "Zero to Hero Masterclass (399k Ft)" },
+          { val: "Mentoring", text: "Konzultáció (15k/óra)" },
+          { val: "Corporate", text: "Vállalati Műhelymunka" }
+        ],
+        en: [
+          { val: "Manual", text: "Junior Manual (149k Ft)" },
+          { val: "Playwright", text: "Modern Playwright Automation (299k Ft)" },
+          { val: "Automation", text: "Enterprise Java Automation (299k Ft)" },
+          { val: "Masterclass", text: "Zero to Hero Masterclass (399k Ft)" },
+          { val: "Mentoring", text: "Consultation (15k/hr)" },
+          { val: "Corporate", text: "Corporate Quote" }
+        ]
+      };
 
       function setLanguage(lang) {
         const huElements = document.querySelectorAll(".lang-hu");
@@ -1122,9 +1199,6 @@
             "px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase";
           btnEn.className =
             "px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase";
-          select.innerHTML = courseOptions
-            .map((opt) => `<option value="${opt.val}">${opt.text}</option>`)
-            .join("");
           
           document.title = "TestAcademy | Senior QA Mentoring & AI Automatizáció";
           const metaDesc = document.querySelector('meta[name="description"]');
@@ -1138,14 +1212,18 @@
             "px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase";
           btnHu.className =
             "px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase";
-          select.innerHTML =
-            '<option value="Manual">Junior Manual (149k Ft)</option><option value="Automation">Enterprise Java Automation (299k Ft)</option><option value="Masterclass">Masterclass Mentoring (399k Ft)</option><option value="Mentoring">Consultation (15k/hr)</option><option value="Corporate">Corporate Quote</option>';
           
           document.title = "TestAcademy | Senior QA Mentoring & AI Automation";
           const metaDesc = document.querySelector('meta[name="description"]');
           if (metaDesc) {
             metaDesc.setAttribute("content", "Senior QA Mentoring, Java 17, Selenide automation consulting and mentoring. Real functional knowledge.");
           }
+        }
+        
+        if (select) {
+          select.innerHTML = courseOptions[lang]
+            .map((opt) => `<option value="${opt.val}">${opt.text}</option>`)
+            .join("");
         }
         localStorage.setItem("preferredLang", lang);
       }
