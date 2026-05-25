@@ -319,3 +319,9 @@ testacademy.hu/
 pdfparser/
 
 oktatasi_anyag/
+
+# Exclude Knowledge Base intellectual property files from repository
+articles.js
+tudastar.html
+dist/articles.js
+dist/tudastar.html
