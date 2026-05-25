@@ -849,10 +849,10 @@
                 />
                 <label for="form-terms" class="text-xs text-slate-400 italic font-medium leading-relaxed select-none cursor-pointer">
                   <span class="lang-hu">
-                    Megértettem és elfogadom az <span class="text-blue-400 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <span class="text-blue-400 font-bold">Mentori és Szakértői Konzultációs Szerződés</span> feltételeit.
+                    Megértettem és elfogadom az <span class="text-blue-400 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <a href="#" onclick="openContractModal(event)" class="text-blue-400 font-bold underline hover:text-blue-300 transition-colors">Mentori és Szakértői Konzultációs Szerződés</a> feltételeit.
                   </span>
                   <span class="lang-en lang-hidden">
-                    I understand and accept the <span class="text-blue-400 font-bold">Privacy Policy</span> and the terms of the <span class="text-blue-400 font-bold">Mentoring & Consulting Agreement</span>.
+                    I understand and accept the <span class="text-blue-400 font-bold">Privacy Policy</span> and the terms of the <a href="#" onclick="openContractModal(event)" class="text-blue-400 font-bold underline hover:text-blue-300 transition-colors">Mentoring & Consulting Agreement</a>.
                   </span>
                 </label>
               </div>
@@ -860,7 +860,7 @@
                 type="submit"
                 data-testid="submit-btn"
                 aria-label="Küldés / Send"
-                class="w-full bg-blue-600 text-white font-black py-5 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-4 italic"
+                class="w-full max-w-xs mx-auto bg-blue-600 text-white font-black py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-6 italic block text-center cursor-pointer hover:bg-blue-500"
               >
                 <span class="lang-hu">Küldés</span><span class="lang-en lang-hidden">Send</span>
               </button>
@@ -1023,6 +1023,79 @@
         </p>
       </footer>
 
+      <!-- CONTRACT MODAL -->
+      <div
+        id="contract-modal"
+        style="
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 999999;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(8px);
+          "
+          onclick="closeContractModal()"
+        ></div>
+        <div
+          style="
+            position: relative;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            width: 100%;
+            max-width: 800px;
+            max-height: 80vh;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000000;
+          "
+        >
+          <button
+            onclick="closeContractModal()"
+            style="
+              position: absolute;
+              top: 20px;
+              right: 25px;
+              color: #94a3b8;
+              font-size: 30px;
+              border: none;
+              background: none;
+              cursor: pointer;
+              z-index: 20;
+            "
+          >
+            ✕
+          </button>
+          <div
+            id="contract-modal-content"
+            style="
+              overflow-y: auto;
+              padding: 40px;
+              color: #cbd5e1;
+              font-family: sans-serif;
+              font-style: italic;
+              line-height: 1.6;
+            "
+          ></div>
+        </div>
+      </div>
 
     </div>
 
@@ -1109,6 +1182,54 @@
       }
 
 
+
+      function openContractModal(event) {
+        if (event) event.preventDefault();
+        const modal = document.getElementById("contract-modal");
+        const content = document.getElementById("contract-modal-content");
+        const lang = localStorage.getItem("preferredLang") || "hu";
+        
+        if (lang === "hu") {
+          content.innerHTML = `
+            <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: white; font-style: italic; text-transform: uppercase;">MENTORI ÉS SZAKÉRTŐI KONZULTÁCIÓS SZERZŐDÉS TERVEZET</h1>
+            <p style="margin-bottom: 15px; color: #94a3b8;">Ez a dokumentum a TestAcademy mentori támogatás és szakértői konzultáció általános szerződéses feltételeinek tervezete (Megbízási Szerződés a Ptk. 6:272. § alapján).</p>
+            <hr style="border: 0; border-top: 1px solid #1e293b; margin-bottom: 20px;" />
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">1. A Szerződés háttere és célja</h2>
+            <p style="margin-bottom: 15px;">A szolgáltatás egyéni megbízáson alapuló, rugalmas szakértői konzultáció, stratégiai egyeztetés és egyénre szabott szakmai műhelymunka (workshop). Nem minősül felnőttképzési törvény hatálya alá tartozó kötött oktatási tevékenységnek.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">2. A Szolgáltatás tartalma</h2>
+            <p style="margin-bottom: 15px;">Személyre szabott szakmai konzultáció, kód-felülvizsgálat (code review), gyakorlati műhelymunka és szoftvertesztelési/automatizálási projektek közös auditálása és optimalizálása.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">3. Szellemi Tulajdon és Titoktartás (IP-Védelem)</h2>
+            <p style="margin-bottom: 15px;">A konzultációk során átadott minden szakmai anyag, kódpélda és egyedi TestAcademy struktúra a Mentor kizárólagos szellemi tulajdonát képezi. Az Ügyfél ezt kizárólag saját belső céljaira használhatja fel. Szigorúan tilos az anyagokat harmadik fél számára továbbadni, közzétenni, oktatási vagy egyéb üzleti célból terjeszteni vagy értékesíteni.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">4. Adatkezelés és Titoktartás</h2>
+            <p style="margin-bottom: 15px;">A Felek a teljesítés során megismert minden projektadatot és üzleti információt bizalmasan kezelnek. Személyes adataidat kizárólag a szerződés teljesítése és számlázás céljából kezeljük, harmadik félnek nem adjuk át.</p>
+            <p style="margin-top: 25px; font-weight: bold; color: #60a5fa;">A teljes hivatalos szerződéstervezetet a jelentkezésed után, a személyes egyeztetés alkalmával küldjük el részedre.</p>
+          `;
+        } else {
+          content.innerHTML = `
+            <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: white; font-style: italic; text-transform: uppercase;">MENTORING & CONSULTING AGREEMENT DRAFT</h1>
+            <p style="margin-bottom: 15px; color: #94a3b8;">This document is a draft of the general terms for TestAcademy mentoring support and professional consulting (Service Agreement under Hungarian Civil Code Section 6:272).</p>
+            <hr style="border: 0; border-top: 1px solid #1e293b; margin-bottom: 20px;" />
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">1. Scope & Objective</h2>
+            <p style="margin-bottom: 15px;">The services are custom, flexible expert consultations, strategic alignment, and practical B2B/individual workshops. They do not constitute government-regulated curriculum training.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">2. Mentoring Contents</h2>
+            <p style="margin-bottom: 15px;">Custom engineering support, detailed code reviews, hands-on workshops, and collaborative testing framework auditing/optimization.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">3. Intellectual Property (IP Protection) & NDA</h2>
+            <p style="margin-bottom: 15px;">All technical guides, code snippets, and custom TestAcademy structures provided during mentoring are the exclusive intellectual property of the Mentor. The Client is authorized to use them for internal purposes only. Distribution, publication, copying, or reselling of these materials to any third party is strictly prohibited.</p>
+            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">4. Privacy & Confidentiality</h2>
+            <p style="margin-bottom: 15px;">Both parties agree to treat all business information and project details disclosed during consultations as highly confidential. Personal data is processed strictly in accordance with GDPR for billing and contract execution only.</p>
+            <p style="margin-top: 25px; font-weight: bold; color: #60a5fa;">The full official agreement template will be provided to you during our initial introductory call after submission.</p>
+          `;
+        }
+        
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeContractModal() {
+        const modal = document.getElementById("contract-modal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
 
       window.onload = () => {
         const savedLang = localStorage.getItem("preferredLang") || "hu";
