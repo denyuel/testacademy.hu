@@ -22,7 +22,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./output.css" />
-    <script src="./articles.js"></script>
     <style>
       .lang-hidden {
         display: none !important;
@@ -673,69 +672,6 @@
           </div>
         </section>
 
-
-
-        <!-- KNOWLEDGE BASE (BLOG) SECTION -->
-        <section id="blog" class="mt-32 mb-10" data-testid="knowledge-base-section">
-          <div class="mb-16">
-            <h2
-              class="text-3xl lg:text-4xl font-black text-white mb-4 italic tracking-tight uppercase"
-            >
-              <span class="lang-hu"
-                >Szakmai <span class="text-blue-500">Tudástár</span> & Blog</span
-              >
-              <span class="lang-en lang-hidden"
-                >Professional <span class="text-blue-500">Knowledge Base</span> & Blog</span
-              >
-            </h2>
-            <div class="h-1.5 w-24 bg-blue-500 rounded-full mb-6 block"></div>
-            <p class="text-slate-400 italic max-w-2xl leading-relaxed">
-              <span class="lang-hu"
-                >Mélyedj el a szoftvertesztelés technikai és karrier aspektusaiban. Cikkek a Lead
-                tapasztalataim alapján.</span
-              >
-              <span class="lang-en lang-hidden"
-                >Deep dive into technical and career aspects of software testing. Articles based on
-                my Lead experience.</span
-              >
-            </p>
-          </div>
-
-          <div id="articles-grid-main" class="grid md:grid-cols-2 lg:grid-cols-3" style="display: grid; gap: 60px"></div>
-
-          <div class="clearfix"></div>
-        </section>
-
-        <!-- BROWSE ALL CTA CARD (BRIDGE) -->
-        <section
-          id="library-bridge"
-          class="max-w-6xl mx-auto px-6 mt-32 mb-32 relative z-20 overflow-hidden"
-        >
-          <a
-            href="tudastar.html"
-            class="block group relative overflow-hidden bg-slate-800/40 backdrop-blur-md border border-slate-700/50 p-10 rounded-[32px] hover:border-blue-500/50 transition-all text-center shadow-2xl shadow-blue-900/10"
-          >
-            <div class="relative z-10 flex flex-col items-center justify-center">
-              <div class="flex flex-col text-center">
-                <span
-                  class="text-blue-400 font-black text-xs uppercase tracking-[0.3em] mb-3 italic"
-                  >TestAcademy Library</span
-                >
-                <h3
-                  class="text-2xl md:text-4xl font-black text-white italic uppercase tracking-tighter"
-                >
-                  <span class="lang-hu"
-                    >Összes szakmai anyag <span class="text-blue-500">böngészése</span></span
-                  >
-                  <span class="lang-en lang-hidden"
-                    >Browse all <span class="text-blue-500">professional materials</span></span
-                  >
-                </h3>
-              </div>
-            </div>
-          </a>
-        </section>
-
         <!-- TESTIMONIAL CAROUSEL SECTION -->
         <section id="testimonials" class="mt-40 mb-32 overflow-hidden relative max-w-6xl mx-auto px-6">
           <div class="text-center mb-24">
@@ -902,7 +838,24 @@
                 id="form-course"
                 style="padding-left: 1.5rem"
                 class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl py-3 md:py-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none text-sm md:text-base"
-              ></select>
+              </select>
+              <div class="flex items-start gap-3 mt-4 text-left">
+                <input
+                  type="checkbox"
+                  id="form-terms"
+                  name="terms_agreement"
+                  required
+                  class="mt-1 w-5 h-5 rounded border-slate-700 bg-slate-900/50 text-blue-500 focus:ring-blue-500 accent-blue-600 cursor-pointer"
+                />
+                <label for="form-terms" class="text-xs text-slate-400 italic font-medium leading-relaxed select-none cursor-pointer">
+                  <span class="lang-hu">
+                    Megértettem és elfogadom az <span class="text-blue-400 font-bold">Adatkezelési Tájékoztatót</span>, valamint tudomásul veszem, hogy a tanfolyam megkezdése a <span class="text-blue-400 font-bold">Felnőttképzési Szerződés</span> megkötésével jár (2013. évi LXXVII. törvény 21. §).
+                  </span>
+                  <span class="lang-en lang-hidden">
+                    I understand and accept the <span class="text-blue-400 font-bold">Privacy Policy</span>, and acknowledge that starting the course entails entering into an <span class="text-blue-400 font-bold">Adult Education Agreement</span> (Act LXXVII of 2013, Section 21).
+                  </span>
+                </label>
+              </div>
               <button
                 type="submit"
                 data-testid="submit-btn"
@@ -1070,79 +1023,7 @@
         </p>
       </footer>
 
-      <!-- ARTICLE MODAL -->
-      <div
-        id="article-modal"
-        style="
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 999999;
-          align-items: center;
-          justify-content: center;
-          padding: 20px;
-        "
-      >
-        <div
-          style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2, 6, 23, 0.95);
-            backdrop-filter: blur(8px);
-          "
-          onclick="closeArticle()"
-        ></div>
-        <div
-          style="
-            position: relative;
-            background: #0f172a;
-            border: 1px solid #1e293b;
-            width: 100%;
-            max-width: 900px;
-            max-height: 90vh;
-            border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            z-index: 1000000;
-          "
-        >
-          <button
-            onclick="closeArticle()"
-            style="
-              position: absolute;
-              top: 20px;
-              right: 25px;
-              color: #94a3b8;
-              font-size: 30px;
-              border: none;
-              background: none;
-              cursor: pointer;
-              z-index: 20;
-            "
-          >
-            ✕
-          </button>
-          <div
-            id="modal-content"
-            style="
-              overflow-y: auto;
-              padding: 40px;
-              color: #cbd5e1;
-              font-family: sans-serif;
-              font-style: italic;
-              line-height: 1.6;
-            "
-          ></div>
-        </div>
-      </div>
+
     </div>
 
     <script>
@@ -1194,7 +1075,6 @@
           }
         }
         localStorage.setItem("preferredLang", lang);
-        renderMainPageArticles();
       }
 
       function toggleElement(id) {
@@ -1228,85 +1108,7 @@
         }
       }
 
-      function renderMainPageArticles() {
-        const grid = document.getElementById("articles-grid-main");
-        if (!grid) return;
-        const lang = localStorage.getItem("preferredLang") || "hu";
-        grid.innerHTML = "";
-        
-        // Render first 3 progressive articles from the global 'articles' array
-        const featured = articles.slice(0, 3);
-        featured.forEach(art => {
-          const title = lang === "hu" ? art.titleHu : art.titleEn;
-          const excerpt = lang === "hu" ? art.excerptHu : art.excerptEn;
-          
-          const card = `
-            <article class="group cursor-pointer" onclick="openArticle('${art.id}')">
-              <div
-                class="relative overflow-hidden rounded-3xl mb-6 bg-slate-800 shadow-lg border border-slate-700/50 group-hover:border-${art.color}-500/50 transition-all"
-                style="height: 200px"
-              >
-                <div
-                  class="absolute inset-0 bg-${art.color}-900/20 group-hover:bg-transparent transition-all z-10"
-                ></div>
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-80 z-10"
-                ></div>
-                <div
-                  class="absolute top-4 left-4 bg-${art.color}-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest italic z-20 shadow-lg"
-                >
-                  ${art.category}
-                </div>
-                <img
-                  src="${art.img}"
-                  alt="${title}"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100"
-                />
-              </div>
-              <div style="min-height: 70px">
-                <h3
-                  class="text-xl font-black text-white mb-3 italic group-hover:text-blue-400 transition-colors leading-tight"
-                >
-                  <span>${title}</span>
-                </h3>
-              </div>
-              <div style="min-height: 80px">
-                <p class="text-slate-400 text-sm italic leading-relaxed mb-4">
-                  <span>${excerpt}</span>
-                </p>
-              </div>
-              <div
-                class="flex items-center text-blue-500 font-bold text-xs uppercase tracking-widest italic gap-2 group-hover:gap-4 transition-all"
-              >
-                <span>${lang === "hu" ? "Tovább az olvasáshoz" : "Read more"}</span>
-                <span class="text-lg">→</span>
-              </div>
-            </article>
-          `;
-          grid.innerHTML += card;
-        });
-      }
 
-      function openArticle(id) {
-        const modal = document.getElementById("article-modal");
-        const content = document.getElementById("modal-content");
-        const lang = localStorage.getItem("preferredLang") || "hu";
-        const article = articles.find(a => a.id === id);
-        if (!article) return;
-
-        content.innerHTML = `
-        <h1 style="font-size: 32px; font-weight: 900; margin-bottom: 20px; color: white; font-style: italic; text-transform: uppercase;">${lang === "hu" ? article.titleHu : article.titleEn}</h1>
-        ${lang === "hu" ? article.contentHu : article.contentEn}
-      `;
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-      }
-
-      function closeArticle() {
-        const modal = document.getElementById("article-modal");
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-      }
 
       window.onload = () => {
         const savedLang = localStorage.getItem("preferredLang") || "hu";
