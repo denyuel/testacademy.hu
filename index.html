@@ -215,44 +215,91 @@
           </div>
         </section>
 
-        <!-- MENTOR PROFILE SECTION -->
-        <section id="mentor" class="mt-12 mb-16 max-w-5xl mx-auto px-6">
-          <div class="bg-white border border-slate-200/60 rounded-[3rem] p-8 md:p-12 shadow-xl shadow-slate-100/80 relative overflow-hidden">
-            <div class="grid md:grid-cols-12 gap-8 items-center">
+        <!-- MENTOR PROFILE SECTION (BORBÁS WEBDESIGN STYLE) -->
+        <section id="mentor" class="my-14 md:my-18 max-w-5xl mx-auto">
+          <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 md:p-12 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-sky-500/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid md:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <!-- Portrait photo container (tight, elegant aspect-square) -->
               <div class="md:col-span-4 flex justify-center">
-                <img src="./daniel-portrait.jpg" alt="Borbás Dániel" class="w-64 h-64 md:w-full md:h-auto rounded-[2rem] object-cover border border-slate-200/80 shadow-lg" />
+                <div class="relative group">
+                  <div class="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-1 ring-slate-200/80 bg-slate-100 flex-shrink-0">
+                    <img
+                      src="./daniel-portrait.jpg"
+                      alt="Borbás Dániel - Senior QA Engineer & Mentor"
+                      class="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                  <!-- Floating experience pill badge -->
+                  <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-md py-1 px-3.5 rounded-full text-center">
+                    <span class="text-[10px] font-bold text-sky-600 uppercase tracking-wider flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                      12+ év QA • Carl Zeiss
+                    </span>
+                  </div>
+                </div>
               </div>
-              <div class="md:col-span-8 space-y-4">
-                <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest italic">
+
+              <!-- Content Column -->
+              <div class="md:col-span-8 space-y-4 text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider">
                   <span class="lang-hu">A Mentorod</span>
                   <span class="lang-en lang-hidden">Your Mentor</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-black text-slate-900 italic tracking-tight uppercase leading-none">
-                  Borbás Dániel
-                </h2>
-                <p class="text-sm font-bold text-blue-600 uppercase tracking-wider italic">
-                  Senior QA Engineer & Consultant
-                </p>
-                <p class="text-slate-600 text-sm md:text-base leading-relaxed italic">
+                
+                <div>
+                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+                    <span class="lang-hu">Személyes figyelem, <span class="font-heading italic font-normal text-sky-600">elméleti sallangok nélkül</span></span>
+                    <span class="lang-en lang-hidden">Personal mentoring, <span class="font-heading italic font-normal text-sky-600">no theoretical fluff</span></span>
+                  </h2>
+                  <p class="text-xs sm:text-sm font-bold text-slate-500 uppercase tracking-wider mt-1">
+                    Borbás Dániel • Senior QA Engineer & Consultant
+                  </p>
+                </div>
+
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed">
                   <span class="lang-hu">
-                    Több mint 12 év szoftvertesztelői és tesztautomatizálási tapasztalattal rendelkezem. Pályafutásom során olyan vállalatoknál dolgoztam, mint az EPAM és az Envision Pharma Group, jelenleg pedig a Carl Zeiss csapatát erősítem Senior QA mérnökként. A TestAcademy alapítójaként az a célom, hogy az elavult elméleti diasorok helyett a szakma sűrűjéből származó, azonnal használható és értékteremtő gyakorlati tudást adjak át neked.
+                    Több mint 12 év szoftvertesztelői és automatizálási tapasztalattal rendelkezem olyan vállalatoknál, mint az EPAM, az Envision Pharma Group és jelenleg a Carl Zeiss. A TestAcademy-nél nem unalmas diasorokat mutogatok: a célom, hogy azonnal használható, éles nagyvállalati rutint adjak a kezedbe, amivel kiemelkedsz az interjúkon és magabiztosan megállod a helyed bármelyik modern mérnökcsapatban.
                   </span>
                   <span class="lang-en lang-hidden">
-                    I have over 12 years of experience in software testing and test automation. Throughout my career, I have worked at companies like EPAM and Envision Pharma Group, and I currently work as a Senior QA Engineer at Carl Zeiss. As the founder of TestAcademy, my goal is to provide you with practical, ready-to-use, and value-generating knowledge directly from the industry, rather than outdated theoretical slide decks.
+                    With over 12 years of software testing and automation engineering experience at companies like EPAM, Envision Pharma Group, and currently Carl Zeiss, my goal is to give you practical, enterprise-grade engineering skills that make you stand out in technical interviews and thrive in modern tech teams.
                   </span>
                 </p>
-                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100 text-xs text-slate-500 font-semibold uppercase tracking-wider italic">
-                  <div>
-                    ✓ <span class="lang-hu">12+ Év QA Tapasztalat</span><span class="lang-en lang-hidden">12+ Years of QA Exp</span>
+
+                <!-- Value highlight box (Borbas Webdesign style) -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex items-start gap-3">
+                  <span class="text-lg flex-shrink-0">✨</span>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong class="font-bold text-slate-900">
+                      <span class="lang-hu">Éles kód & 1-on-1 támogatás:</span>
+                      <span class="lang-en lang-hidden">Live code & 1-on-1 support:</span>
+                    </strong>
+                    <span class="lang-hu"> Nem hagylak magadra a problémákkal. Minden konzultáción közvetlenül a te kódodat nézzük át, valós hibákat oldunk meg és a legmodernebb eszközöket (Java 17, Selenide, Playwright, AI tooling) használjuk.</span>
+                    <span class="lang-en lang-hidden"> You won't be left alone with blockers. In every session, we review your actual code, debug real-world scenarios, and work with the modern QA tech stack.</span>
+                  </p>
+                </div>
+
+                <!-- Credibility tags -->
+                <div class="grid grid-cols-2 gap-2.5 pt-2 text-xs text-slate-600 font-medium">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-teal-600 font-bold">✓</span>
+                    <span class="lang-hu">12+ Év QA Tapasztalat</span>
+                    <span class="lang-en lang-hidden">12+ Years QA Experience</span>
                   </div>
-                  <div>
-                    ✓ <span class="lang-hu">1-on-1 Kód Felülvizsgálat</span><span class="lang-en lang-hidden">1-on-1 Code Reviews</span>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-teal-600 font-bold">✓</span>
+                    <span class="lang-hu">1-on-1 Kód Felülvizsgálat</span>
+                    <span class="lang-en lang-hidden">1-on-1 Code Review</span>
                   </div>
-                  <div>
-                    ✓ ISTQB Certified
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-teal-600 font-bold">✓</span>
+                    <span>ISTQB Certified</span>
                   </div>
-                  <div>
-                    ✓ <span class="lang-hu">Valódi Vállalati Projektek</span><span class="lang-en lang-hidden">Real-World Projects</span>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-teal-600 font-bold">✓</span>
+                    <span class="lang-hu">Valódi Vállalati Projektek</span>
+                    <span class="lang-en lang-hidden">Real-World Projects</span>
                   </div>
                 </div>
               </div>
@@ -1321,130 +1368,144 @@
           </div>
         </section>
 
-        <!-- TESTIMONIAL CAROUSEL SECTION -->
-        <section id="testimonials" class="mt-20 mb-20 overflow-hidden relative max-w-6xl mx-auto px-6">
-          <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900 italic tracking-tight leading-tight mb-4 uppercase">
-              <span class="lang-hu">Ezt mondták a <span class="text-blue-600">TestAcademy-ről</span></span>
-              <span class="lang-en lang-hidden">What they say <span class="text-blue-600">about TestAcademy</span></span>
+        <!-- TESTIMONIALS SECTION (BORBÁS WEBDESIGN STYLE) -->
+        <section id="testimonials" class="my-14 md:my-18 max-w-6xl mx-auto">
+          <div class="text-center max-w-2xl mx-auto mb-10 md:mb-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+              <span class="text-amber-500">★★★★★</span>
+              <span class="lang-hu">5.0 Értékelés • Valós Karriersikerek</span>
+              <span class="lang-en lang-hidden">5.0 Rating • Real Career Success</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+              <span class="lang-hu">Ezt mondták a <span class="font-heading italic font-normal text-sky-600">TestAcademy-ről</span></span>
+              <span class="lang-en lang-hidden">What they say about <span class="font-heading italic font-normal text-sky-600">TestAcademy</span></span>
             </h2>
-            <div class="h-1.5 w-24 bg-blue-600 rounded-full mx-auto"></div>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+              <span class="lang-hu">Végzett mentoráltjaim ma már elismert hazai és nemzetközi technológiai vállalatoknál dolgoznak automatizációs és mérnöki pozíciókban.</span>
+              <span class="lang-en lang-hidden">Graduates now work as automation engineers and QA specialists at top tech companies.</span>
+            </p>
           </div>
 
-          <!-- Carousel Controls -->
-          <div class="relative">
-            <!-- Left Button -->
-            <button onclick="app.scrollTestimonials(-1)" aria-label="Előző / Previous" class="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-md border border-slate-200 text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all cursor-pointer">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
-              </svg>
-            </button>
-            
-            <!-- Right Button -->
-            <button onclick="app.scrollTestimonials(1)" aria-label="Következő / Next" class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-md border border-slate-200 text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all cursor-pointer">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
-
-            <!-- Carousel Wrapper -->
-            <div id="testimonials-track" class="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar scroll-smooth">
-              
-              <!-- Card 1 -->
-              <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
-                  <div class="mb-8">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200" 
-                          alt="Kovács Bence" 
-                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
-                  </div>
-                  <div class="w-full">
-                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Kovács Bence</h3>
-                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior QA Engineer @ EPAM</p>
-                    <p class="text-slate-600 italic leading-relaxed text-lg">
-                      <span class="lang-hu">"A TestAcademy mentori programja nem csak technikai tudást adott, hanem egy teljesen új szemléletmódot a szoftverminőség biztosításában. A váltás után egy nemzetközi cégnél kaptam megálmodott pozíciót."</span>
-                      <span class="lang-en lang-hidden">"The TestAcademy mentoring program provided not just technical knowledge, but a completely new perspective on software quality assurance. After the transition, I landed my dream position at a multinational company."</span>
-                    </p>
-                  </div>
+          <div id="testimonials-track" class="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex text-amber-400 text-sm">★★★★★</div>
+                  <span class="text-[10px] font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">
+                    <span class="lang-hu">✓ Igazolt résztvevő</span>
+                    <span class="lang-en lang-hidden">✓ Verified</span>
+                  </span>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                  <span class="lang-hu">"A TestAcademy mentori programja nem csak technikai tudást adott, hanem teljesen új szemléletmódot. A kód-felülvizsgálatoknak és az éles projekteknek köszönhetően magabiztosan szereztem meg a senior ajánlatot."</span>
+                  <span class="lang-en lang-hidden">"The mentoring program provided not just technical skills, but a completely new engineering mindset. Thanks to code reviews and real projects, I landed a senior role with confidence."</span>
+                </p>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0">
+                  KB
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Kovács Bence</h4>
+                  <p class="text-xs text-sky-600 font-semibold">Senior QA Engineer @ EPAM</p>
                 </div>
               </div>
+            </div>
 
-              <!-- Card 2 -->
-              <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
-                  <div class="mb-8">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" 
-                          alt="Tóth Alexandra" 
-                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
-                  </div>
-                  <div class="w-full">
-                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Tóth Alexandra</h3>
-                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Lead Automation Engineer @ Prezi</p>
-                    <p class="text-slate-600 italic leading-relaxed text-lg">
-                      <span class="lang-hu">"A gyakorlatias megközelítés és a kódminőségre való könyörtelen fókuszálás az ami kiemelt a többi jelölt közül az interjúk során. A TestAcademy mentoraival való közös munka professzionális szintlépés volt."</span>
-                      <span class="lang-en lang-hidden">"The practical approach and relentless focus on code quality is what stood out among other candidates during interviews. Collaborating with the TestAcademy mentors was a professional milestone."</span>
-                    </p>
-                  </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex text-amber-400 text-sm">★★★★★</div>
+                  <span class="text-[10px] font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">
+                    <span class="lang-hu">✓ Igazolt résztvevő</span>
+                    <span class="lang-en lang-hidden">✓ Verified</span>
+                  </span>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                  <span class="lang-hu">"A gyakorlatias megközelítés és a kódminőségre való fókusz az, ami azonnal kiemelt az interjúk során. Dániel tapasztalata és közvetlen visszajelzései professzionális szintlépést jelentettek a karrieremben."</span>
+                  <span class="lang-en lang-hidden">"The hands-on approach and focus on clean code is what immediately set me apart during interviews. Daniel's feedback was a true professional turning point."</span>
+                </p>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-sky-600 text-white flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0">
+                  TA
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Tóth Alexandra</h4>
+                  <p class="text-xs text-sky-600 font-semibold">Lead Automation Engineer @ Prezi</p>
                 </div>
               </div>
+            </div>
 
-              <!-- Card 3 -->
-              <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
-                  <div class="mb-8">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" 
-                          alt="Molnár Dávid" 
-                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
-                  </div>
-                  <div class="w-full">
-                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Molnár Dávid</h3>
-                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior SDET @ SAP</p>
-                    <p class="text-slate-600 italic leading-relaxed text-lg">
-                      <span class="lang-hu">"Nem csak technikai tudást, hanem magabiztosságot is kaptam. A mentorommal való közös munka minden percét élveztem, és a projektjeim minősége ugrásszerűen javult."</span>
-                      <span class="lang-en lang-hidden">"I received not only technical skills, but immense self-confidence. I thoroughly enjoyed every minute of working with my mentor, and the quality of my test suites improved dramatically."</span>
-                    </p>
-                  </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex text-amber-400 text-sm">★★★★★</div>
+                  <span class="text-[10px] font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100">
+                    <span class="lang-hu">✓ Igazolt résztvevő</span>
+                    <span class="lang-en lang-hidden">✓ Verified</span>
+                  </span>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                  <span class="lang-hu">"Nemcsak mély technikai tudást (Java 17, Selenide, Playwright), hanem magabiztosságot is kaptam. Minden kérdésemre azonnali, éles iparági választ kaptam. Nagyon ajánlom mindenkinek!"</span>
+                  <span class="lang-en lang-hidden">"I received not just deep technical know-how (Java 17, Selenide, Playwright), but genuine confidence. Real-world industry answers to every challenge."</span>
+                </p>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-sky-600 text-white flex items-center justify-center font-bold text-xs shadow-sm flex-shrink-0">
+                  MD
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm leading-tight">Molnár Dávid</h4>
+                  <p class="text-xs text-sky-600 font-semibold">Senior SDET @ SAP</p>
                 </div>
               </div>
-
             </div>
           </div>
-
-          <style>
-            .no-scrollbar::-webkit-scrollbar { display: none; }
-            .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-          </style>
         </section>
 
-        <!-- JOIN SECTION -->
+        <!-- JOIN SECTION (BORBÁS WEBDESIGN STYLE) -->
         <section
           id="join"
-          class="mt-20 max-w-4xl mx-auto bg-white border border-slate-200/60 rounded-[3rem] p-8 md:p-16 text-slate-800 shadow-2xl relative overflow-hidden"
+          class="my-14 md:my-18 max-w-4xl mx-auto bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 md:p-12 shadow-sm relative overflow-hidden"
         >
-          <div class="relative z-10 grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 class="text-4xl font-black italic tracking-tighter leading-none mb-6">
-                <span class="lang-hu text-blue-600 text-3xl">Jelentkezz</span>
-                <span class="lang-en lang-hidden text-blue-600 text-3xl">Apply</span><br />
-                <span class="lang-hu text-slate-900">most!</span>
-                <span class="lang-en lang-hidden text-slate-900 uppercase">now!</span>
+          <div class="relative z-10 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider">
+                <span class="lang-hu">Kapcsolat & Jelentkezés</span>
+                <span class="lang-en lang-hidden">Contact & Enrollment</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+                <span class="lang-hu">Kezdjük el a közös munkát, <span class="font-heading italic font-normal text-sky-600">kötöttségek nélkül</span>.</span>
+                <span class="lang-en lang-hidden">Let's start collaborating, <span class="font-heading italic font-normal text-sky-600">no strings attached</span>.</span>
               </h2>
-              <div
-                class="space-y-4 text-xs font-bold italic text-slate-400 mt-8 uppercase tracking-widest"
-              >
-                <p>
-                  ✓ <span class="lang-hu">Szintfelmérő</span><span class="lang-en lang-hidden">Assessment</span>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                <span class="lang-hu">Töltsd ki az űrlapot, és 24 órán belül visszahívlak vagy írok neked. A jelentkezés nem jár semmilyen azonnali fizetési kötelezettséggel: először átbeszéljük a céljaidat egy ingyenes egyeztetésen!</span>
+                <span class="lang-en lang-hidden">Fill out the form and I'll reach out within 24 hours. Submitting does not require any upfront payment: we will discuss your goals first on a free call!</span>
+              </p>
+              <div class="space-y-2.5 text-xs font-semibold text-slate-600 pt-2">
+                <p class="flex items-center gap-2">
+                  <span class="text-teal-600 font-bold">✓</span>
+                  <span class="lang-hu">Ingyenes 15 perces szintfelmérés és tanácsadás</span>
+                  <span class="lang-en lang-hidden">Free 15-minute assessment & advice</span>
                 </p>
-                <p>
-                  ✓ <span class="lang-hu">Karrier tanácsadás</span><span class="lang-en lang-hidden">Coaching</span>
+                <p class="flex items-center gap-2">
+                  <span class="text-teal-600 font-bold">✓</span>
+                  <span class="lang-hu">Személyre szabott tanterv és karrier-stratégia</span>
+                  <span class="lang-en lang-hidden">Custom curriculum & career roadmap</span>
                 </p>
-                <p>
-                  ✓ <span class="lang-hu">Portfólió építés</span><span class="lang-en lang-hidden">Portfolio</span>
+                <p class="flex items-center gap-2">
+                  <span class="text-teal-600 font-bold">✓</span>
+                  <span class="lang-hu">Kamatmentes részletfizetés minden csomagra</span>
+                  <span class="lang-en lang-hidden">Interest-free installments on all courses</span>
                 </p>
               </div>
             </div>
 
-            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 bg-slate-50/70 p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm">
               <!-- Web3Forms Access Key -->
               <input type="hidden" name="access_key" value="87c4fa66-64b6-4431-9c4e-d20da0ff1cef" />
               <!-- Redirection to Thanks Page -->
@@ -1452,69 +1513,88 @@
               <!-- Customize Email Sender Info -->
               <input type="hidden" name="from_name" value="TestAcademy Jelentkezés" />
               <input type="hidden" name="subject" value="Új jelentkezés érkezett!" />
-              <label for="form-name" class="sr-only">Név / Name</label>
-              <input
-                aria-label="Név / Name"
-                type="text"
-                name="name"
-                id="form-name"
-                placeholder="Név / Name"
-                required
-                style="padding-left: 1.5rem"
-                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 placeholder-slate-400 focus:bg-white"
-              />
-              <label for="form-email" class="sr-only">E-mail</label>
-              <input
-                aria-label="E-mail"
-                type="email"
-                name="email"
-                id="form-email"
-                placeholder="E-mail"
-                required
-                style="padding-left: 1.5rem"
-                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 placeholder-slate-400 focus:bg-white"
-              />
-              <label for="form-course" class="sr-only">Jelentkezés típusa / Course Selection</label>
-              <select
-                aria-label="Jelentkezés típusa / Course Selection"
-                name="course"
-                id="form-course"
-                style="padding-left: 1.5rem"
-                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 md:py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 appearance-none text-sm md:text-base focus:bg-white"
-              >
-                <option value="AI-Basics">Gyakorlati AI Alapok (59k Ft)</option>
-                <option value="Manual">Junior Manual QA (249k Ft)</option>
-                <option value="Playwright">Modern Playwright Automation (449k Ft)</option>
-                <option value="Automation">Enterprise Java Automation (449k Ft)</option>
-                <option value="Masterclass">Zero to Hero Masterclass (649k Ft)</option>
-                <option value="Mentoring">Konzultáció (22k/óra)</option>
-                <option value="Corporate">Vállalati Műhelymunka</option>
-              </select>
+              
+              <div>
+                <label for="form-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  <span class="lang-hu">Teljes Neved</span>
+                  <span class="lang-en lang-hidden">Full Name</span>
+                </label>
+                <input
+                  aria-label="Név / Name"
+                  type="text"
+                  name="name"
+                  id="form-name"
+                  placeholder="pl. Kis János"
+                  required
+                  class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none font-medium text-slate-800 placeholder-slate-400 transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label for="form-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  <span class="lang-hu">E-mail címed</span>
+                  <span class="lang-en lang-hidden">Email Address</span>
+                </label>
+                <input
+                  aria-label="E-mail"
+                  type="email"
+                  name="email"
+                  id="form-email"
+                  placeholder="pl. janos@example.com"
+                  required
+                  class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none font-medium text-slate-800 placeholder-slate-400 transition-all text-sm"
+                />
+              </div>
+
+              <div>
+                <label for="form-course" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  <span class="lang-hu">Választott Képzés / Csomag</span>
+                  <span class="lang-en lang-hidden">Selected Program / Track</span>
+                </label>
+                <select
+                  aria-label="Jelentkezés típusa / Course Selection"
+                  name="course"
+                  id="form-course"
+                  class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none font-medium text-slate-800 appearance-none text-sm transition-all cursor-pointer"
+                >
+                  <option value="AI-Basics">Gyakorlati AI Alapok (59k Ft)</option>
+                  <option value="Manual">Junior Manual QA (249k Ft)</option>
+                  <option value="Playwright">Modern Playwright Automation (449k Ft)</option>
+                  <option value="Automation">Enterprise Java Automation (449k Ft)</option>
+                  <option value="Masterclass">Zero to Hero Masterclass (649k Ft)</option>
+                  <option value="Mentoring">Konzultáció (22k/óra)</option>
+                  <option value="Corporate">Vállalati Műhelymunka</option>
+                </select>
+              </div>
+
               <input type="hidden" name="kalkulator_reszletek" id="form-calc-details" value="" />
-              <div class="flex items-start gap-3 mt-4 text-left">
+              
+              <div class="flex items-start gap-2.5 pt-1 text-left">
                 <input
                   type="checkbox"
                   id="form-terms"
                   name="terms_agreement"
                   required
-                  class="mt-1 w-5 h-5 rounded border-slate-300 bg-slate-50 text-blue-600 focus:ring-blue-500 accent-blue-600 cursor-pointer"
+                  class="mt-1 w-4 h-4 rounded border-slate-300 bg-white text-sky-600 focus:ring-sky-500 accent-sky-600 cursor-pointer flex-shrink-0"
                 />
-                <label for="form-terms" class="text-xs text-slate-500 italic font-medium leading-relaxed select-none cursor-pointer">
+                <label for="form-terms" class="text-[11px] text-slate-500 leading-relaxed select-none cursor-pointer">
                   <span class="lang-hu">
-                    Megértettem és elfogadom az <span class="text-blue-600 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <a href="#" onclick="app.openContractModal(event)" class="text-blue-600 font-bold underline hover:text-blue-700 transition-colors">Mentori és Szakértői Konzultációs Szerződés</a> feltételeit.
+                    Elfogadom az <span class="text-sky-600 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <a href="#" onclick="app.openContractModal(event)" class="text-sky-600 font-bold underline hover:text-sky-700 transition-colors">Mentori és Szakértői Szerződés</a> feltételeit.
                   </span>
                   <span class="lang-en lang-hidden">
-                    I understand and accept the <span class="text-blue-600 font-bold">Privacy Policy</span> and the terms of the <a href="#" onclick="app.openContractModal(event)" class="text-blue-600 font-bold underline hover:text-blue-700 transition-colors">Mentoring & Consulting Agreement</a>.
+                    I accept the <span class="text-sky-600 font-bold">Privacy Policy</span> and the terms of the <a href="#" onclick="app.openContractModal(event)" class="text-sky-600 font-bold underline hover:text-sky-700 transition-colors">Mentoring Agreement</a>.
                   </span>
                 </label>
               </div>
+
               <button
                 type="submit"
                 data-testid="submit-btn"
                 aria-label="Küldés / Send"
-                class="w-full max-w-xs mx-auto bg-blue-600 text-white font-black py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/10 uppercase tracking-widest mt-6 italic block text-center cursor-pointer hover:bg-blue-700"
+                class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-md shadow-sky-600/20 uppercase tracking-wider text-xs block text-center cursor-pointer mt-4"
               >
-                <span class="lang-hu">Küldés</span><span class="lang-en lang-hidden">Send</span>
+                <span class="lang-hu">Jelentkezés Elküldése →</span>
+                <span class="lang-en lang-hidden">Send Application →</span>
               </button>
             </form>
           </div>
@@ -1667,12 +1747,87 @@
         </section>
       </main>
 
-      <footer class="border-t border-slate-200 py-12 text-center bg-white">
-        <p class="text-xl font-black text-slate-900 mb-2 italic">daniel.borbas@testacademy.hu</p>
-        <p class="text-slate-600 mb-8 font-bold">+36 30 309 3302</p>
-        <p class="text-[8px] text-slate-400 uppercase tracking-[1.5em] font-bold">
-          &copy; 2026 TestAcademy
-        </p>
+      <!-- FOOTER (BORBÁS WEBDESIGN STYLE) -->
+      <footer class="border-t border-slate-200/80 bg-white pt-14 pb-12">
+        <div class="max-w-6xl mx-auto px-6">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-10 border-b border-slate-100">
+            <!-- Brand Column -->
+            <div class="md:col-span-5 space-y-4 text-left">
+              <a href="#" class="inline-flex items-center gap-3 group">
+                <div class="p-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-600">
+                  <svg class="w-6 h-6" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="5" width="90" height="90" rx="20" fill="currentColor" fill-opacity="0.1"/>
+                    <path d="M25 35H75M50 35V75" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+                    <path d="M70 65L80 75L95 55" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-lg font-black tracking-tight text-slate-900 leading-tight">TestAcademy</span>
+                  <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-sky-600">Senior QA Mentoring & AI</span>
+                </div>
+              </a>
+              <p class="text-xs text-slate-500 leading-relaxed max-w-sm">
+                <span class="lang-hu">Valódi funkcionális és tesztautomatizációs tudás a szakma sűrűjéből. 12+ év tapasztalat, egyéni mentoring és modern AI kurzusok Borbás Dánieltől.</span>
+                <span class="lang-en lang-hidden">Real-world functional & test automation engineering skills. 12+ years of senior experience, 1-on-1 mentoring and modern AI courses by Dániel Borbás.</span>
+              </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="md:col-span-3 space-y-3 text-left">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900">
+                <span class="lang-hu">Gyors Navigáció</span>
+                <span class="lang-en lang-hidden">Navigation</span>
+              </h4>
+              <ul class="space-y-2 text-xs text-slate-600 font-medium">
+                <li><a href="#courses" class="hover:text-sky-600 transition-colors"><span class="lang-hu">Képzések & Árak</span><span class="lang-en lang-hidden">Courses & Pricing</span></a></li>
+                <li><a href="#kalkulator" class="hover:text-sky-600 transition-colors text-sky-600 font-semibold"><span class="lang-hu">Árkalkulátor</span><span class="lang-en lang-hidden">Price Calculator</span></a></li>
+                <li><a href="#mentor" class="hover:text-sky-600 transition-colors"><span class="lang-hu">A Mentorodról</span><span class="lang-en lang-hidden">About Mentor</span></a></li>
+                <li><a href="#corporate" class="hover:text-sky-600 transition-colors"><span class="lang-hu">Vállalati Tréningek</span><span class="lang-en lang-hidden">Corporate B2B</span></a></li>
+                <li><a href="#faq" class="hover:text-sky-600 transition-colors"><span class="lang-hu">Gyakori Kérdések</span><span class="lang-en lang-hidden">FAQ</span></a></li>
+              </ul>
+            </div>
+
+            <!-- Direct Contact -->
+            <div class="md:col-span-4 space-y-3 text-left">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900">
+                <span class="lang-hu">Közvetlen Kapcsolat</span>
+                <span class="lang-en lang-hidden">Direct Contact</span>
+              </h4>
+              <div class="space-y-2 text-xs text-slate-600">
+                <p class="flex items-center gap-2">
+                  <span class="text-sky-600 font-bold">✉</span>
+                  <a href="mailto:daniel.borbas@testacademy.hu" class="hover:text-sky-600 transition-colors font-medium">daniel.borbas@testacademy.hu</a>
+                </p>
+                <p class="flex items-center gap-2">
+                  <span class="text-sky-600 font-bold">📞</span>
+                  <a href="tel:+36303093302" class="hover:text-sky-600 transition-colors font-medium">+36 30 309 3302</a>
+                </p>
+                <div class="pt-1.5">
+                  <a
+                    href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
+                    target="_blank"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-50 text-sky-700 hover:bg-sky-100 transition-colors font-bold text-[11px]"
+                  >
+                    <span>📅</span>
+                    <span class="lang-hu">Ingyenes 15 perces konzultáció</span>
+                    <span class="lang-en lang-hidden">Book Free 15-min Call</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Legal Impressum (matching Borbas Webdesign) -->
+          <div class="pt-8 text-center space-y-3">
+            <p class="text-[11px] text-slate-400 leading-relaxed max-w-3xl mx-auto">
+              <strong><span class="lang-hu">Impresszum:</span><span class="lang-en lang-hidden">Impressum:</span></strong>
+              Szolgáltató: Borbás Dániel e.v. • Székhely: 6787 Zákányszék, Tanya 424. • Adószám: 52458655-1-26 • Nyilvántartási szám: 57851211 • Tárhely: Cloudflare, Inc.
+            </p>
+            <p class="text-xs text-slate-400 font-medium">
+              &copy; 2026 TestAcademy. <span class="lang-hu">Minden jog fenntartva.</span><span class="lang-en lang-hidden">All rights reserved.</span>
+            </p>
+          </div>
+        </div>
       </footer>
 
       <!-- CONTRACT MODAL -->
