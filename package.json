@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npx tailwindcss -i ./input.css -o ./output.css --minify && node -e \"const fs=require('fs');fs.mkdirSync('dist',{recursive:true});['index.html','output.css','thanks.html','_redirects','favicon.ico','og-image.png'].forEach(f=>{try{fs.copyFileSync(f,'dist/'+f)}catch(e){}})\"",
+    "build": "npx tailwindcss -i ./input.css -o ./output.css --minify && node -e \"const fs=require('fs');fs.mkdirSync('dist',{recursive:true});['index.html','output.css','thanks.html','tudastar.html','_redirects','favicon.ico','og-image.png','testacademy_logo.png','daniel-portrait.jpg','id.png','articles.js'].forEach(f=>{try{fs.copyFileSync(f,'dist/'+f)}catch(e){}})\"",
     "dev": "npx tailwindcss -i ./input.css -o ./output.css --watch",
+    "start": "npx -y live-server ./",
     "lint": "npm run lint:html",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
