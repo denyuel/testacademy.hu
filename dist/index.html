@@ -20,7 +20,7 @@
     <title>TestAcademy | Senior QA Mentoring & AI Automation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Outfit:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./output.css" />
     <style>
       .lang-hidden {
@@ -38,27 +38,27 @@
         max-height: 500px;
         opacity: 1;
       }
-      #modal-content code { background: #1e293b; padding: 2px 6px; border-radius: 4px; color: #60a5fa; font-family: monospace; }
-      #modal-content pre { background: #0f172a; padding: 1.25rem; border: 1px solid #1e293b; border-radius: 16px; overflow-x: auto; margin-bottom: 1.5rem; }
-      #modal-content pre code { background: transparent; padding: 0; color: #93c5fd; border-radius: 0; font-family: monospace; }
-      #modal-content h2 { font-style: italic; font-weight: 900; margin-top: 2rem; margin-bottom: 1rem; }
-      #modal-content p { margin-bottom: 1.5rem; }
+      #modal-content code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #2563eb; font-family: monospace; }
+      #modal-content pre { background: #f8fafc; padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 16px; overflow-x: auto; margin-bottom: 1.5rem; }
+      #modal-content pre code { background: transparent; padding: 0; color: #1e3a8a; border-radius: 0; font-family: monospace; }
+      #modal-content h2 { font-style: italic; font-weight: 900; margin-top: 2rem; margin-bottom: 1rem; color: #0f172a; }
+      #modal-content p { margin-bottom: 1.5rem; color: #334155; }
       #modal-content ul { margin-bottom: 1.5rem; list-style: none; padding-left: 0; }
-      #modal-content li { margin-bottom: 0.5rem; display: flex; gap: 10px; }
+      #modal-content li { margin-bottom: 0.5rem; display: flex; gap: 10px; color: #334155; }
     </style>
   </head>
   <body
-    class="bg-slate-900 text-slate-100 antialiased font-sans selection:bg-blue-500/30 text-balance overflow-x-hidden"
+    class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-blue-500/10 text-balance overflow-x-hidden"
   >
     <div class="min-h-screen">
-      <nav class="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+      <nav class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-md shadow-sm">
         <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4">
           <a href="#" class="flex items-center gap-3 group">
             <div
-              class="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20 group-hover:border-blue-500/40 transition-all"
+              class="p-2 rounded-xl bg-blue-500/5 border border-blue-500/10 group-hover:border-blue-500/30 transition-all"
             >
               <svg
-                class="w-8 h-8 text-blue-500"
+                class="w-8 h-8 text-blue-600"
                 viewBox="0 0 100 100"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,37 +88,49 @@
               </svg>
             </div>
             <div class="flex flex-col">
-              <span class="text-xl font-black tracking-tighter text-white leading-none"
+              <span class="text-xl font-black tracking-tighter text-slate-900 leading-none"
                 >TestAcademy</span
               >
-              <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-blue-400 italic"
-                >Senior Lead Mentoring</span
+              <span class="text-[9px] uppercase tracking-[0.2em] font-bold text-blue-600 italic"
+                >Senior QA Mentoring</span
               >
             </div>
           </a>
 
-          <div class="hidden md:flex items-center gap-8 text-xs">
+          <div class="hidden md:flex items-center gap-7 text-xs">
             <a
               href="#courses"
-              class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
+              class="hover:text-sky-600 transition-colors uppercase tracking-widest font-bold text-slate-600"
               ><span class="lang-hu">Programok</span
               ><span class="lang-en lang-hidden">Programs</span></a
             >
             <a
+              href="#kalkulator"
+              class="text-sky-600 hover:text-sky-700 transition-colors uppercase tracking-widest font-black flex items-center gap-1.5"
+              ><span class="inline-block w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span><span class="lang-hu">Kalkulátor</span
+              ><span class="lang-en lang-hidden">Calculator</span></a
+            >
+            <a
               href="#mentoring"
-              class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
+              class="hover:text-sky-600 transition-colors uppercase tracking-widest font-bold text-slate-600"
               ><span class="lang-hu">Mentoring</span
               ><span class="lang-en lang-hidden">Mentoring</span></a
             >
             <a
               href="#corporate"
-              class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
+              class="hover:text-sky-600 transition-colors uppercase tracking-widest font-bold text-slate-600"
               ><span class="lang-hu">B2B / Vállalati</span
               ><span class="lang-en lang-hidden">B2B / Corporate</span></a
             >
             <a
+              href="#mentor"
+              class="hover:text-sky-600 transition-colors uppercase tracking-widest font-bold text-slate-600"
+              ><span class="lang-hu">Rólam</span
+              ><span class="lang-en lang-hidden">About</span></a
+            >
+            <a
               href="#faq"
-              class="hover:text-blue-400 transition-colors uppercase tracking-widest italic font-bold text-white/70"
+              class="hover:text-sky-600 transition-colors uppercase tracking-widest font-bold text-slate-600"
               ><span class="lang-hu">GYIK</span
               ><span class="lang-en lang-hidden">FAQ</span></a
             >
@@ -127,23 +139,23 @@
           <div class="flex items-center gap-4">
             <a
               href="#join"
-              class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest italic transition-all shadow-md shadow-blue-500/10 hover:shadow-blue-500/20"
+              class="bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-sky-500/15"
             >
               <span class="lang-hu">Kapcsolat</span>
               <span class="lang-en lang-hidden">Contact</span>
             </a>
-            <div class="flex bg-slate-800 rounded-lg p-1 border border-slate-700">
+            <div class="flex bg-slate-100 rounded-full p-1 border border-slate-200">
               <button
-                onclick="setLanguage('hu')"
+                onclick="app.setLanguage('hu')"
                 id="btn-hu"
-                class="px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase"
+                class="px-3 py-1 rounded-full transition-all bg-sky-600 text-white font-bold text-xs uppercase shadow-sm"
               >
                 HU
               </button>
               <button
-                onclick="setLanguage('en')"
+                onclick="app.setLanguage('en')"
                 id="btn-en"
-                class="px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase"
+                class="px-3 py-1 rounded-full transition-all text-slate-500 hover:text-slate-800 font-bold text-xs uppercase"
               >
                 EN
               </button>
@@ -152,88 +164,241 @@
         </div>
       </nav>
 
-      <main class="mx-auto max-w-6xl px-6 pb-24 pt-20">
-        <section class="text-center mb-32">
+      <main class="mx-auto max-w-6xl px-6 pb-12 pt-10">
+        <!-- HERO SECTION -->
+        <section class="text-center mb-16 max-w-4xl mx-auto">
           <div
-            class="inline-block px-4 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400 text-xs font-bold uppercase tracking-widest mb-8 italic"
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-6 shadow-sm"
           >
-            <span class="lang-hu">12 év QA & Lead tapasztalat • AI-támogatott tananyag</span>
-            <span class="lang-en lang-hidden">12 Years of QA & Lead Experience • AI-Powered Syllabus</span>
+            <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+            <span class="lang-hu">12 év senior mérnöki tapasztalat • Gyakorlati AI képzések</span>
+            <span class="lang-en lang-hidden">12 Years Senior Engineering Exp • Hands-on AI Training</span>
           </div>
           <h1
             id="hero-title"
-            class="text-5xl font-black leading-tight text-white md:text-8xl tracking-tighter mb-10 italic"
+            class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-slate-900 tracking-tight mb-6"
           >
-            <span class="lang-hu"
-              >Valódi <span class="text-blue-500">funkcionális</span> tudás.</span
-            >
-            <span class="lang-en lang-hidden"
-              >Real <span class="text-blue-500">functional</span> skills.</span
-            >
+            <span class="lang-hu">
+              Valódi <span class="font-heading italic font-normal text-sky-600">funkcionális tudás</span>.
+            </span>
+            <span class="lang-en lang-hidden">
+              Real <span class="font-heading italic font-normal text-sky-600">functional skills</span>.
+            </span>
           </h1>
           <p
-            class="text-lg text-slate-400 md:text-2xl font-light max-w-3xl mx-auto leading-relaxed italic mb-12"
+            class="text-lg text-slate-600 md:text-xl font-normal max-w-2xl mx-auto leading-relaxed mb-8"
           >
-            <span class="lang-hu italic"
-              >Mentori támogatás és gyakorlati workshopok Java 17, Selenide és REST Assured alapokon. Fejlődj a szakma
-              sűrűjéből.</span
-            >
-            <span class="lang-en lang-hidden italic"
-              >Mentoring & practical workshops with Java 17 & Selenide. Scale your engineering skills.</span
-            >
+            <span class="lang-hu">
+              Elméleti diasorok helyett a szakma sűrűjéből: laikusoknak szóló gyakorlati AI produktivitási képzések és professzionális QA automatizációs mentoring Borbás Dánieltől.
+            </span>
+            <span class="lang-en lang-hidden">
+              Hands-on AI productivity courses for non-technical professionals and senior QA automation mentoring directly from Dániel Borbás.
+            </span>
           </p>
 
-          <a
-            href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
-            target="_blank"
-            class="inline-block bg-blue-600 text-white px-10 py-5 rounded-2xl font-black hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest text-sm italic"
-          >
-            <span class="lang-hu">Ingyenes Konzultáció Foglalása</span>
-            <span class="lang-en lang-hidden">Book Free Consultation</span>
-          </a>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#kalkulator"
+              class="inline-flex items-center gap-2 bg-sky-600 text-white px-8 py-4 rounded-full font-bold hover:bg-sky-700 transition-all shadow-lg shadow-sky-600/20 uppercase tracking-wider text-xs"
+            >
+              <span class="lang-hu">Árkalkulátor Megnyitása ↓</span>
+              <span class="lang-en lang-hidden">Open Price Calculator ↓</span>
+            </a>
+            <a
+              href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
+              target="_blank"
+              class="inline-flex items-center gap-2 bg-white text-slate-700 border border-slate-200/90 px-8 py-4 rounded-full font-bold hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm uppercase tracking-wider text-xs"
+            >
+              <span class="lang-hu">Ingyenes Konzultáció</span>
+              <span class="lang-en lang-hidden">Book Free Call</span>
+            </a>
+          </div>
         </section>
 
-        <div id="courses" class="grid gap-12 md:grid-cols-2">
+        <!-- MENTOR PROFILE SECTION -->
+        <section id="mentor" class="mt-12 mb-16 max-w-5xl mx-auto px-6">
+          <div class="bg-white border border-slate-200/60 rounded-[3rem] p-8 md:p-12 shadow-xl shadow-slate-100/80 relative overflow-hidden">
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+              <div class="md:col-span-4 flex justify-center">
+                <img src="./daniel-portrait.jpg" alt="Borbás Dániel" class="w-64 h-64 md:w-full md:h-auto rounded-[2rem] object-cover border border-slate-200/80 shadow-lg" />
+              </div>
+              <div class="md:col-span-8 space-y-4">
+                <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest italic">
+                  <span class="lang-hu">A Mentorod</span>
+                  <span class="lang-en lang-hidden">Your Mentor</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-slate-900 italic tracking-tight uppercase leading-none">
+                  Borbás Dániel
+                </h2>
+                <p class="text-sm font-bold text-blue-600 uppercase tracking-wider italic">
+                  Senior QA Engineer & Consultant
+                </p>
+                <p class="text-slate-600 text-sm md:text-base leading-relaxed italic">
+                  <span class="lang-hu">
+                    Több mint 12 év szoftvertesztelői és tesztautomatizálási tapasztalattal rendelkezem. Pályafutásom során olyan vállalatoknál dolgoztam, mint az EPAM és az Envision Pharma Group, jelenleg pedig a Carl Zeiss csapatát erősítem Senior QA mérnökként. A TestAcademy alapítójaként az a célom, hogy az elavult elméleti diasorok helyett a szakma sűrűjéből származó, azonnal használható és értékteremtő gyakorlati tudást adjak át neked.
+                  </span>
+                  <span class="lang-en lang-hidden">
+                    I have over 12 years of experience in software testing and test automation. Throughout my career, I have worked at companies like EPAM and Envision Pharma Group, and I currently work as a Senior QA Engineer at Carl Zeiss. As the founder of TestAcademy, my goal is to provide you with practical, ready-to-use, and value-generating knowledge directly from the industry, rather than outdated theoretical slide decks.
+                  </span>
+                </p>
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100 text-xs text-slate-500 font-semibold uppercase tracking-wider italic">
+                  <div>
+                    ✓ <span class="lang-hu">12+ Év QA Tapasztalat</span><span class="lang-en lang-hidden">12+ Years of QA Exp</span>
+                  </div>
+                  <div>
+                    ✓ <span class="lang-hu">1-on-1 Kód Felülvizsgálat</span><span class="lang-en lang-hidden">1-on-1 Code Reviews</span>
+                  </div>
+                  <div>
+                    ✓ ISTQB Certified
+                  </div>
+                  <div>
+                    ✓ <span class="lang-hu">Valódi Vállalati Projektek</span><span class="lang-en lang-hidden">Real-World Projects</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COURSES GRID -->
+        <div id="courses" class="space-y-8">
+          <div class="text-center max-w-2xl mx-auto mb-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+              <span class="lang-hu">Elérhető <span class="font-heading italic font-normal text-sky-600">Képzések</span> & Programok</span>
+              <span class="lang-en lang-hidden">Available <span class="font-heading italic font-normal text-sky-600">Courses</span> & Tracks</span>
+            </h2>
+            <p class="text-slate-500 text-sm">
+              <span class="lang-hu">A laikus AI alapozótól a senior tesztautomatizálási architektúráig: közvetlen, gyakorlati tudásadás.</span>
+              <span class="lang-en lang-hidden">From beginner-friendly AI foundations to senior test automation architecture: direct, practical knowledge.</span>
+            </p>
+          </div>
+
+          <!-- NEW AI COURSE: FEATURED COMMERCIAL ENTRY COURSE (59.000 FT) -->
+          <div
+            class="group bg-gradient-to-br from-sky-50/70 via-white to-teal-50/50 rounded-[2.5rem] border-2 border-sky-500/40 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:border-sky-500 hover:shadow-2xl hover:shadow-sky-500/10 transition-all shadow-xl shadow-slate-100/80 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-10 bg-gradient-to-r from-sky-600 to-teal-600 text-white px-5 py-1.5 rounded-b-xl text-[11px] font-black uppercase tracking-widest shadow-md"
+            >
+              <span class="lang-hu">Belépő AI Képzés • Kódolás Nélkül!</span>
+              <span class="lang-en lang-hidden">Entry AI Course • Zero Coding!</span>
+            </div>
+
+            <div class="space-y-4 max-w-2xl">
+              <div class="flex flex-wrap items-center gap-2 pt-2">
+                <span class="text-teal-700 font-bold text-xs uppercase tracking-wider bg-teal-100/70 px-3 py-1 rounded-full">
+                  <span class="lang-hu">2 Hétvége (Intenzív)</span><span class="lang-en lang-hidden">2 Weekends (Intense)</span>
+                </span>
+                <span class="text-sky-700 font-bold text-xs uppercase tracking-wider bg-sky-100/70 px-3 py-1 rounded-full">
+                  Online / Remote
+                </span>
+                <span class="text-amber-700 font-bold text-xs uppercase tracking-wider bg-amber-100/80 px-3 py-1 rounded-full">
+                  <span class="lang-hu">Kezdőbarát</span><span class="lang-en lang-hidden">Beginner Friendly</span>
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+                  <span class="lang-hu">Gyakorlati AI Alapok & Produktivitás</span>
+                  <span class="lang-en lang-hidden">Practical AI Foundations & Productivity</span>
+                </h3>
+                <p class="text-xs font-semibold uppercase tracking-wider text-sky-600 mt-1">
+                  <span class="lang-hu">ChatGPT, Claude & No-Code AI eszközök a mindennapi munkában és életben</span>
+                  <span class="lang-en lang-hidden">ChatGPT, Claude & No-Code AI tools in everyday work and life</span>
+                </p>
+              </div>
+
+              <p class="text-slate-600 text-sm leading-relaxed">
+                <span class="lang-hu">
+                  Nem kell programozónak lenned! Ez a kurzus azoknak szól, akik még sosem vagy csak alapszinten használtak AI-t, de szeretnének heti 5-10 órát megspórolni a mindennapi munkájukban, szövegírásban, e-mailekben, táblázatkezelésben és kreatív feladatokban.
+                </span>
+                <span class="lang-en lang-hidden">
+                  No coding skills required! Designed for beginners who want to leverage ChatGPT, Claude, and practical AI tools to save 5-10 hours weekly on writing, emails, spreadsheets, and repetitive tasks.
+                </span>
+              </p>
+
+              <div>
+                <button
+                  type="button"
+                  onclick="app.toggleElement('ai-course-curr')"
+                  class="text-sky-600 hover:text-sky-700 font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <span class="font-mono">▶</span>
+                  <span class="lang-hu">Mit tanulsz meg pontosan? (Tematika kibontása)</span>
+                  <span class="lang-en lang-hidden">What will you learn? (Expand Curriculum)</span>
+                </button>
+                <div
+                  id="ai-course-curr"
+                  class="curriculum-content mt-3 bg-white/90 rounded-2xl p-5 text-xs text-slate-700 space-y-2 border border-sky-100 shadow-sm"
+                >
+                  <p>• <b>1. Modul:</b> <span class="lang-hu">A hatékony kérdezés művészete (Promptolás laikusoknak, azonnal használható másolható sablonokkal)</span><span class="lang-en lang-hidden">The art of effective prompting with plug-and-play templates</span></p>
+                  <p>• <b>2. Modul:</b> <span class="lang-hu">Szövegírás & Üzleti kommunikáció (Hivatalos levelek, e-mailek, marketing posztok és összefoglalók 2 perc alatt)</span><span class="lang-en lang-hidden">Writing & Business communication (Emails, articles, executive summaries in 2 mins)</span></p>
+                  <p>• <b>3. Modul:</b> <span class="lang-hu">Dokumentumok és Excel egyszerűen (Több tízoldalas PDF-ek áttekintése, Excel formulák írása kódolás nélkül)</span><span class="lang-en lang-hidden">Documents & Spreadsheets made easy (Summarizing huge PDFs, formula generation)</span></p>
+                  <p>• <b>4. Modul:</b> <span class="lang-hu">Kreatív vizualitás & Prezentációk (AI képek, grafikai elemek és gyors prezentáció-vázlatok készítése)</span><span class="lang-en lang-hidden">Visuals & Presentations (Generating stunning images and slides fast)</span></p>
+                  <p>• <b>5. Modul:</b> <span class="lang-hu">Időspórolási szokások & Napi rutin (Hogyan építsd be az AI-t a telefonodba és a napi munkafolyamataidba)</span><span class="lang-en lang-hidden">Daily time-saving habits and integrating AI into your mobile/desktop routine</span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-shrink-0 w-full md:w-auto flex flex-col items-center md:items-end justify-center pt-4 md:pt-0 border-t md:border-t-0 border-slate-200/80">
+              <div class="text-center md:text-right mb-4">
+                <span class="text-xs text-slate-400 line-through font-semibold mr-2">79.000 Ft</span>
+                <div class="text-3xl lg:text-4xl font-black text-sky-600 tracking-tight">59.000 Ft</div>
+                <span class="text-[11px] text-slate-500 font-medium block">
+                  <span class="lang-hu">Egyszeri díj • Örökös tananyag-hozzáférés</span>
+                  <span class="lang-en lang-hidden">One-time payment • Lifetime access</span>
+                </span>
+              </div>
+              <a
+                href="#join"
+                onclick="app.selectCourseInForm('AI-Basics')"
+                class="w-full md:w-auto bg-sky-600 hover:bg-sky-700 text-white text-center px-8 py-4 rounded-full font-bold transition-all shadow-lg shadow-sky-600/20 uppercase text-xs tracking-wider cursor-pointer"
+              >
+                <span class="lang-hu">Jelentkezem az AI Kurzusra →</span>
+                <span class="lang-en lang-hidden">Enroll in AI Course →</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="grid gap-8 md:grid-cols-2">
           <!-- Junior Manual -->
           <div
-            class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full"
+            class="group bg-white rounded-[2.5rem] border border-slate-200/60 p-8 flex flex-col hover:border-blue-500/30 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50 h-full"
           >
-            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-10 mt-2">
+            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-6 mt-2">
               <div class="flex gap-2">
                 <span
-                  class="text-blue-500 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic whitespace-nowrap"
+                  class="text-blue-600 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-full italic whitespace-nowrap"
                   >4 Hétvége</span
                 >
                 <span
-                  class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic"
+                  class="text-indigo-600 font-black text-[10px] uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full italic"
                   >Remote</span
                 >
               </div>
-              <span class="text-2xl font-black text-white italic tracking-tighter whitespace-nowrap"
-                >149.000 Ft</span
+              <span class="text-2xl font-black text-slate-900 italic tracking-tighter whitespace-nowrap"
+                >249.000 Ft</span
               >
             </div>
-            <div style="min-height: 60px">
-              <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">
+            <div style="min-height: 50px">
+              <h2 class="text-3xl font-black text-slate-900 mb-4 italic tracking-tight">
                 Junior Manual
               </h2>
             </div>
-            <div style="min-height: 80px">
-              <p class="text-slate-400 mb-8 font-light leading-relaxed italic text-sm">
+            <div style="min-height: 70px">
+              <p class="text-slate-500 mb-6 font-light leading-relaxed italic text-sm">
                 <span class="lang-hu"
-                  >A tesztelés alapjai, Jira, SQL és valódi projektek. Nem csak elmélet: nálam
-                  rutint szerzel.</span
+                  >A tesztelés alapjai, Jira, SQL és valódi projektek. Nem csak elmélet: nálam rutint szerzel.</span
                 >
                 <span class="lang-en lang-hidden"
-                  >Testing fundamentals, Jira, SQL and real projects. Build professional
-                  routine.</span
+                  >Testing fundamentals, Jira, SQL and real projects. Build professional routine.</span
                 >
               </p>
             </div>
             <div style="min-height: 35px" class="mb-4">
               <button
-                onclick="toggleElement('manual-curr')"
-                class="text-blue-400 font-bold text-sm mb-8 flex items-center gap-2"
+                onclick="app.toggleElement('manual-curr')"
+                class="text-blue-600 font-bold text-sm mb-4 flex items-center gap-2"
               >
                 ▶ <span class="lang-hu">Részletes tematika</span
                 ><span class="lang-en lang-hidden">Detailed Curriculum</span>
@@ -241,7 +406,7 @@
             </div>
             <div
               id="manual-curr"
-              class="curriculum-content mb-8 bg-slate-900/50 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-slate-800"
+              class="curriculum-content mb-6 bg-slate-50 rounded-2xl p-6 text-sm italic text-slate-600 space-y-2 border border-slate-200/60"
             >
               <p>• <span class="lang-hu">Agilis módszertanok (Agile & SDLC) auditálása és folyamatai</span><span class="lang-en lang-hidden">Agile & SDLC methodologies auditing and engineering flows</span></p>
               <p>• <span class="lang-hu">Professzionális Test Design és hatékony hiba-életciklus menedzsment</span><span class="lang-en lang-hidden">Professional Test Design & highly effective defect lifecycle management</span></p>
@@ -251,7 +416,7 @@
             <a
               href="#join"
               data-testid="enroll-manual-btn"
-              class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest"
+              class="mt-auto bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white hover:shadow-md text-center py-4 rounded-2xl font-black transition-all uppercase text-xs tracking-widest"
             >
               <span class="lang-hu">Jelentkezem</span
               ><span class="lang-en lang-hidden">Enroll Now</span>
@@ -260,31 +425,31 @@
 
           <!-- Modern Playwright Automation -->
           <div
-            class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full"
+            class="group bg-white rounded-[2.5rem] border border-slate-200/60 p-8 flex flex-col hover:border-blue-500/30 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50 h-full"
           >
-            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-10 mt-2">
+            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-6 mt-2">
               <div class="flex gap-2">
                 <span
-                  class="text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic whitespace-nowrap"
+                  class="text-blue-600 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-full italic whitespace-nowrap"
                   >8 Hétvége</span
                 >
                 <span
-                  class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic"
+                  class="text-indigo-600 font-black text-[10px] uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full italic"
                   >Remote</span
                 >
               </div>
               <span
-                class="text-2xl font-black text-white italic tracking-tighter text-blue-400 whitespace-nowrap"
-                >299.000 Ft</span
+                class="text-2xl font-black text-slate-900 italic tracking-tighter whitespace-nowrap"
+                >449.000 Ft</span
               >
             </div>
-            <div style="min-height: 60px">
-              <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">
+            <div style="min-height: 50px">
+              <h2 class="text-3xl font-black text-slate-900 mb-4 italic tracking-tight">
                 Modern Playwright Automation
               </h2>
             </div>
-            <div style="min-height: 80px">
-              <p class="text-slate-400 mb-8 font-light leading-relaxed italic text-sm">
+            <div style="min-height: 70px">
+              <p class="text-slate-500 mb-6 font-light leading-relaxed italic text-sm">
                 <span class="lang-hu"
                   >Modern UI és API tesztautomatizálás TypeScript (vagy Python) alapon, a leggyorsabb és legstabilabb Playwright keretrendszerrel. CI/CD integráció és valódi projektek.</span
                 >
@@ -295,8 +460,8 @@
             </div>
             <div style="min-height: 35px" class="mb-4">
               <button
-                onclick="toggleElement('playwright-curr')"
-                class="text-blue-400 font-bold text-sm mb-8 flex items-center gap-2"
+                onclick="app.toggleElement('playwright-curr')"
+                class="text-blue-600 font-bold text-sm mb-4 flex items-center gap-2"
               >
                 ▶ <span class="lang-hu">Részletes tematika</span
                 ><span class="lang-en lang-hidden">Detailed Curriculum</span>
@@ -304,7 +469,7 @@
             </div>
             <div
               id="playwright-curr"
-              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20"
+              class="curriculum-content mb-6 bg-slate-50 rounded-2xl p-6 text-sm italic text-slate-600 space-y-2 border border-slate-200/60"
             >
               <p>• <span class="lang-hu">TypeScript / JS (vagy Python) QA-fókuszú programozási alapok & aszinkron működés</span><span class="lang-en lang-hidden">TypeScript / JS (or Python) QA-focused core & async operations</span></p>
               <p>• <span class="lang-hu">Playwright Test Runner, automatikus várakozás (auto-waiting) és lokátorok</span><span class="lang-en lang-hidden">Playwright Test Runner, auto-waiting & locator strategies</span></p>
@@ -314,7 +479,7 @@
             </div>
             <a
               href="#join"
-              class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest"
+              class="mt-auto bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white hover:shadow-md text-center py-4 rounded-2xl font-black transition-all uppercase text-xs tracking-widest"
             >
               <span class="lang-hu">Jelentkezem</span
               ><span class="lang-en lang-hidden">Enroll Now</span>
@@ -323,45 +488,43 @@
 
           <!-- Enterprise Java Automation -->
           <div
-            class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full"
+            class="group bg-white rounded-[2.5rem] border border-slate-200/60 p-8 flex flex-col hover:border-blue-500/30 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50 h-full"
           >
-            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-10 mt-2">
+            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-6 mt-2">
               <div class="flex gap-2">
                 <span
-                  class="text-blue-400 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500/10 px-3 py-1.5 rounded-full italic whitespace-nowrap"
+                  class="text-blue-600 font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-full italic whitespace-nowrap"
                   >8 Hétvége</span
                 >
                 <span
-                  class="text-indigo-400 font-black text-[10px] uppercase tracking-widest bg-indigo-500/10 px-3 py-1.5 rounded-full italic"
+                  class="text-indigo-600 font-black text-[10px] uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full italic"
                   >Remote</span
                 >
               </div>
               <span
-                class="text-2xl font-black text-white italic tracking-tighter text-blue-400 whitespace-nowrap"
-                >299.000 Ft</span
+                class="text-2xl font-black text-slate-900 italic tracking-tighter whitespace-nowrap"
+                >449.000 Ft</span
               >
             </div>
-            <div style="min-height: 60px">
-              <h2 class="text-4xl font-black text-white mb-6 italic tracking-tight">
+            <div style="min-height: 50px">
+              <h2 class="text-3xl font-black text-slate-900 mb-4 italic tracking-tight">
                 Enterprise Java Automation
               </h2>
             </div>
-            <div style="min-height: 80px">
-              <p class="text-slate-400 mb-8 font-light leading-relaxed italic text-sm">
+            <div style="min-height: 70px">
+              <p class="text-slate-500 mb-6 font-light leading-relaxed italic text-sm">
                 <span class="lang-hu"
-                  >Modern Enterprise automatizálás Java 17 + Selenide alapon. Komplex API & UI
-                  architektúra építés és CI/CD.</span
+                  >Modern Enterprise automatizálás Java 17 + Selenide alapon. Komplex API & UI architektúra építés és CI/CD.</span
                 >
                 <span class="lang-en lang-hidden"
-                  >Modern Enterprise automation with Java 17 + Selenide. Complex API & UI
-                  architecture and CI/CD.</span
+                  >Modern Enterprise automation with Java 17 + Selenide. Complex API & UI architecture and CI/CD.</span
                 >
               </p>
             </div>
             <div style="min-height: 35px" class="mb-4">
               <button
-                onclick="toggleElement('auto-curr')"
-                class="text-blue-400 font-bold text-sm mb-8 flex items-center gap-2"
+                onclick="app.toggleElement('auto-curr')"
+                class="text-blue-600 font-bold text-sm mb-4 flex items-center gap-2"
               >
                 ▶ <span class="lang-hu">Részletes tematika</span
                 ><span class="lang-en lang-hidden">Detailed Curriculum</span>
@@ -369,7 +532,7 @@
             </div>
             <div
               id="auto-curr"
-              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-2 border border-blue-500/20"
+              class="curriculum-content mb-6 bg-slate-50 rounded-2xl p-6 text-sm italic text-slate-600 space-y-2 border border-slate-200/60"
             >
               <p>• <span class="lang-hu">Java 17 OOP mélyalapozás és tiszta kód (Clean Code) elvek</span><span class="lang-en lang-hidden">Java 17 OOP core architecture & Clean Code principles</span></p>
               <p>• <span class="lang-hu">Page Object Model tervezési minták és Selenide UI tesztautomatizálás</span><span class="lang-en lang-hidden">Page Object Model patterns & Selenide UI automation framework</span></p>
@@ -379,7 +542,7 @@
             </div>
             <a
               href="#join"
-              class="mt-auto bg-slate-700 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-600 uppercase text-xs tracking-widest"
+              class="mt-auto bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white hover:shadow-md text-center py-4 rounded-2xl font-black transition-all uppercase text-xs tracking-widest"
             >
               <span class="lang-hu">Jelentkezem</span
               ><span class="lang-en lang-hidden">Enroll Now</span>
@@ -388,37 +551,36 @@
 
           <!-- Masterclass -->
           <div
-            class="group bg-slate-800/30 rounded-[2.5rem] border border-slate-800 p-8 flex flex-col hover:border-blue-500/30 transition-all shadow-xl shadow-slate-900/50 h-full relative"
+            class="group bg-white rounded-[2.5rem] border border-blue-500 p-8 flex flex-col hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50 h-full relative"
           >
             <div
-              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic shadow-lg shadow-blue-500/20 whitespace-nowrap"
+              class="absolute -top-3 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic shadow-lg shadow-blue-600/20 whitespace-nowrap"
             >
-              <span class="lang-hu">Legjobb Ajánlat</span
-              ><span class="lang-en lang-hidden">Best Value</span>
+              <span class="lang-hu">Legjobb Ajánlat</span><span class="lang-en lang-hidden">Best Value</span>
             </div>
-            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-10 mt-2">
+            <div class="flex flex-wrap justify-between items-center gap-y-3 mb-6 mt-2">
               <div class="flex gap-2">
                 <span
-                  class="text-white font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-500 px-3 py-1.5 rounded-full italic shadow-md shadow-blue-500/20 whitespace-nowrap"
+                  class="text-white font-black text-[10px] md:text-xs uppercase tracking-widest bg-blue-600 px-3 py-1.5 rounded-full italic whitespace-nowrap shadow-sm"
                   >12 Hétvége</span
                 >
                 <span
-                  class="text-indigo-200 font-black text-[10px] uppercase tracking-widest bg-indigo-500/30 px-3 py-1.5 rounded-full italic"
+                  class="text-indigo-600 font-black text-[10px] uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full italic"
                   >Remote</span
                 >
               </div>
               <span
-                class="text-2xl font-black text-blue-400 italic tracking-tighter whitespace-nowrap"
-                >399.000 Ft</span
+                class="text-2xl font-black text-blue-600 italic tracking-tighter whitespace-nowrap"
+                >649.000 Ft</span
               >
             </div>
-            <div style="min-height: 60px">
-              <h2 class="text-3xl lg:text-4xl font-black text-white italic tracking-tight">
+            <div style="min-height: 50px">
+              <h2 class="text-3xl lg:text-4xl font-black text-slate-900 italic tracking-tight">
                 Zero to Hero Masterclass
               </h2>
             </div>
-            <div style="min-height: 80px">
-              <p class="text-slate-300 font-light leading-relaxed italic text-sm">
+            <div style="min-height: 70px">
+              <p class="text-slate-500 mb-6 font-light leading-relaxed italic text-sm">
                 <span class="lang-hu"
                   >A teljes manuális és automatizációs módszertan egyben, választható Java+Selenide vagy modern Playwright (TypeScript/Python) technológiákkal. Karrier-transzformáció a senior szintű architektúra tervezésig.</span
                 >
@@ -429,8 +591,8 @@
             </div>
             <div style="min-height: 35px" class="mb-4">
               <button
-                onclick="toggleElement('hero-curr')"
-                class="text-blue-400 font-bold text-sm flex items-center gap-2"
+                onclick="app.toggleElement('hero-curr')"
+                class="text-blue-600 font-bold text-sm flex items-center gap-2"
               >
                 ▶ <span class="lang-hu">Részletes tematika</span
                 ><span class="lang-en lang-hidden">Detailed Curriculum</span>
@@ -438,75 +600,443 @@
             </div>
             <div
               id="hero-curr"
-              class="curriculum-content mb-8 bg-slate-900/80 rounded-2xl p-6 text-sm italic text-slate-300 space-y-3 border border-blue-500/20"
+              class="curriculum-content mb-6 bg-slate-50 rounded-2xl p-6 text-sm italic text-slate-600 space-y-3 border border-blue-500/20"
             >
               <div>
-                <p class="font-bold text-white mb-1"><span class="lang-hu">Módszertani alapok:</span><span class="lang-en lang-hidden">Methodology Core:</span></p>
-                <p class="text-slate-400 pl-4">• <span class="lang-hu">Manuális és funkcionális elemzés, SQL és Postman vizsgálatok</span><span class="lang-en lang-hidden">Manual and functional analysis, SQL & Postman audits</span></p>
+                <p class="font-bold text-slate-900 mb-1"><span class="lang-hu">Módszertani alapok:</span><span class="lang-en lang-hidden">Methodology Core:</span></p>
+                <p class="text-slate-500 pl-4">• <span class="lang-hu">Manuális és funkcionális elemzés, SQL és Postman vizsgálatok</span><span class="lang-en lang-hidden">Manual and functional analysis, SQL & Postman audits</span></p>
               </div>
               <div>
-                <p class="font-bold text-white mb-1"><span class="lang-hu">Választható automatizációs utak:</span><span class="lang-en lang-hidden">Automation Tracks (Optional):</span></p>
-                <p class="text-slate-400 pl-4">• <span class="lang-hu">Enterprise Java + Selenide + REST Assured keretrendszer</span><span class="lang-en lang-hidden">Enterprise Java + Selenide + REST Assured architecture</span></p>
-                <p class="text-slate-400 pl-4">• <span class="lang-hu">Modern Playwright (TypeScript / Python) + CI/CD integráció</span><span class="lang-en lang-hidden">Modern Playwright (TypeScript / Python) + CI/CD pipelines</span></p>
+                <p class="font-bold text-slate-900 mb-1"><span class="lang-hu">Választható automatizációs utak:</span><span class="lang-en lang-hidden">Automation Tracks (Optional):</span></p>
+                <p class="text-slate-500 pl-4">• <span class="lang-hu">Enterprise Java + Selenide + REST Assured keretrendszer</span><span class="lang-en lang-hidden">Enterprise Java + Selenide + REST Assured architecture</span></p>
+                <p class="text-slate-500 pl-4">• <span class="lang-hu">Modern Playwright (TypeScript / Python) + CI/CD integráció</span><span class="lang-en lang-hidden">Modern Playwright (TypeScript / Python) + CI/CD pipelines</span></p>
               </div>
               <div>
-                <p class="font-bold text-white mb-1"><span class="lang-hu">Karrier transzformáció:</span><span class="lang-en lang-hidden">Career Transformation:</span></p>
-                <p class="text-slate-400 pl-4">• <span class="lang-hu">1-on-1 karriertervezés és személyre szabott CV/LinkedIn optimalizálás</span><span class="lang-en lang-hidden">1-on-1 career mapping & custom CV/LinkedIn optimization</span></p>
-                <p class="text-slate-400 pl-4">• <span class="lang-hu">Szimulált szakmai interjúk és senior szintű technikai felkészítés</span><span class="lang-en lang-hidden">Simulated technical interviews and senior-level prep</span></p>
+                <p class="font-bold text-slate-900 mb-1"><span class="lang-hu">Karrier transzformáció:</span><span class="lang-en lang-hidden">Career Transformation:</span></p>
+                <p class="text-slate-500 pl-4">• <span class="lang-hu">1-on-1 karriertervezés és személyre szabott CV/LinkedIn optimalizálás</span><span class="lang-en lang-hidden">1-on-1 career mapping & custom CV/LinkedIn optimization</span></p>
+                <p class="text-slate-500 pl-4">• <span class="lang-hu">Szimulált szakmai interjúk és senior szintű technikai felkészítés</span><span class="lang-en lang-hidden">Simulated technical interviews and senior-level prep</span></p>
               </div>
             </div>
             <a
               href="#join"
-              class="mt-auto bg-blue-600 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-500 hover:shadow-lg hover:shadow-blue-500/20 uppercase text-xs tracking-widest"
+              class="mt-auto bg-blue-600 text-white text-center py-4 rounded-2xl font-black transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/10 uppercase text-xs tracking-widest"
             >
               <span class="lang-hu">Erre Jelentkezem</span
               ><span class="lang-en lang-hidden">Enroll to Masterclass</span>
             </a>
           </div>
-          <!-- END OF MASTERCLASS CARD -->
         </div>
-        <!-- END OF COURSES GRID -->
+      </div>
+
+        <!-- SPECIALIZATIONS SECTION -->
+        <section id="specializations" class="mt-20 space-y-6">
+          <div class="text-center">
+            <h2 class="text-2xl md:text-3xl font-black text-slate-900 italic tracking-tighter uppercase">
+              <span class="lang-hu">Választható Kiegészítő Modulok</span>
+              <span class="lang-en lang-hidden">Elective Add-on Modules</span>
+            </h2>
+            <p class="text-slate-500 mt-2 text-sm italic">
+              <span class="lang-hu">Fejleszd tovább a tudásodat speciális iparági irányokba</span>
+              <span class="lang-en lang-hidden">Specialize your skillset in high-demand technical areas</span>
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <!-- k6 -->
+            <div class="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-lg shadow-slate-100/50 flex flex-col hover:border-blue-500/30 transition-all hover:-translate-y-1 duration-300">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full italic">k6 Load</span>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest italic">2 Wekends</span>
+              </div>
+              <h3 class="text-lg font-black text-slate-900 italic mb-2">Grafana k6</h3>
+              <p class="text-slate-500 text-xs italic leading-relaxed">
+                <span class="lang-hu">Teljesítmény- és terheléses tesztelés JavaScript alapon, SLA/kérési küszöbértékek és stressz-teszt futtatások.</span>
+                <span class="lang-en lang-hidden">Performance and load testing using JavaScript, scripting thresholds, spikes, and performance SLAs.</span>
+              </p>
+            </div>
+
+            <!-- Appium -->
+            <div class="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-lg shadow-slate-100/50 flex flex-col hover:border-blue-500/30 transition-all hover:-translate-y-1 duration-300">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full italic">Appium</span>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest italic">4 Wekends</span>
+              </div>
+              <h3 class="text-lg font-black text-slate-900 italic mb-2">Mobile QA</h3>
+              <p class="text-slate-500 text-xs italic leading-relaxed">
+                <span class="lang-hu">Mobil tesztautomatizálás Android és iOS platformokra, emulátorok kezelése és native gesztus-lefedettség.</span>
+                <span class="lang-en lang-hidden">Native mobile app automation for Android & iOS, simulators, mobile gestural events, and locators.</span>
+              </p>
+            </div>
+
+            <!-- CI/CD QA -->
+            <div class="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-lg shadow-slate-100/50 flex flex-col hover:border-blue-500/30 transition-all hover:-translate-y-1 duration-300">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full italic">CI/CD DevOps</span>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest italic">2 Wekends</span>
+              </div>
+              <h3 class="text-lg font-black text-slate-900 italic mb-2">DevSecOps for QA</h3>
+              <p class="text-slate-500 text-xs italic leading-relaxed">
+                <span class="lang-hu">Tesztfutási folyamatok beépítése Git és GitHub Actions alá, Docker konténerizáció és Allure riportálások.</span>
+                <span class="lang-en lang-hidden">Integrating test pipelines with GitHub Actions, Dockerizing test runners, and deploying Allure dashboards.</span>
+              </p>
+            </div>
+
+            <!-- AI Prompt Engineering -->
+            <div class="bg-white border border-slate-200/60 rounded-3xl p-6 shadow-lg shadow-slate-100/50 flex flex-col hover:border-blue-500/30 transition-all hover:-translate-y-1 duration-300">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full italic">AI Prompting</span>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest italic">2 Wekends</span>
+              </div>
+              <h3 class="text-lg font-black text-slate-900 italic mb-2">AI-Assisted QA</h3>
+              <p class="text-slate-500 text-xs italic leading-relaxed">
+                <span class="lang-hu">AI promptok szoftverteszt-tervezésre, automatizált kódgenerálásra, review-ra és tesztadatok létrehozására.</span>
+                <span class="lang-en lang-hidden">Prompt engineering for test case generation, code refactoring, reviews, and test data generation.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CALCULATOR SECTION (BORBÁS WEBDESIGN VIBE) -->
+        <section id="kalkulator" class="mt-24 mb-16 relative">
+          <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+              <span class="lang-hu">Interaktív Árkalkulátor • Transzparens Árak</span>
+              <span class="lang-en lang-hidden">Interactive Price Calculator • Transparent Pricing</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
+              <span class="lang-hu">Tervezd meg a <span class="font-heading italic font-normal text-sky-600">saját képzésed</span>!</span>
+              <span class="lang-en lang-hidden">Configure your <span class="font-heading italic font-normal text-sky-600">custom training</span>!</span>
+            </h2>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+              <span class="lang-hu">Válaszd ki a céljaidnak megfelelő szintet és a kívánt kiegészítő modulokat. Nincsenek rejtett költségek: pontosan látod az árakat és kamatmentes részletfizetést is kérhetsz.</span>
+              <span class="lang-en lang-hidden">Select the training track matching your goals and add-on modules. Transparent pricing with optional interest-free installments.</span>
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Column: Configurator Steps -->
+            <div class="lg:col-span-7 space-y-8">
+              <!-- Step 1: Base Package Selection -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="w-8 h-8 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-bold font-mono">1</span>
+                  <h3 class="text-lg md:text-xl font-bold text-slate-900">
+                    <span class="lang-hu">Válassz Képzési Alapcsomagot</span>
+                    <span class="lang-en lang-hidden">Select Base Course Track</span>
+                  </h3>
+                </div>
+
+                <div class="grid gap-3.5" id="calc-course-options">
+                  <!-- Option: AI Basics (Featured) -->
+                  <div
+                    class="calc-card is-selected p-5 rounded-2xl border-2 border-slate-200 bg-white flex items-center justify-between gap-4"
+                    onclick="app.calcSelectCourse('ai-basics', 59000, 'Gyakorlati AI Alapok (Kódolás nélkül)', 'Practical AI Foundations (No-code)')"
+                    data-course-id="ai-basics"
+                  >
+                    <div class="flex items-center gap-3.5">
+                      <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h4 class="font-bold text-slate-900 text-sm md:text-base">Gyakorlati AI Alapok & Produktivitás</h4>
+                          <span class="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Új! Belépő</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-0.5">ChatGPT, Claude, táblázatok, szövegírás & napi rutin (2 Hétvége)</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                      <span class="text-xs text-slate-400 line-through block">79.000 Ft</span>
+                      <span class="text-base md:text-lg font-black text-sky-600">59.000 Ft</span>
+                    </div>
+                  </div>
+
+                  <!-- Option: Junior Manual -->
+                  <div
+                    class="calc-card p-5 rounded-2xl border-2 border-slate-200 bg-white flex items-center justify-between gap-4"
+                    onclick="app.calcSelectCourse('manual', 249000, 'Junior Manual QA Mentoring', 'Junior Manual QA Mentoring')"
+                    data-course-id="manual"
+                  >
+                    <div class="flex items-center gap-3.5">
+                      <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
+                      <div>
+                        <h4 class="font-bold text-slate-900 text-sm md:text-base">Junior Manual QA Mentoring</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Tesztelési alapok, Jira, SQL, Postman és valós projektek (4 Hétvége)</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                      <span class="text-base md:text-lg font-black text-slate-900">249.000 Ft</span>
+                    </div>
+                  </div>
+
+                  <!-- Option: Playwright -->
+                  <div
+                    class="calc-card p-5 rounded-2xl border-2 border-slate-200 bg-white flex items-center justify-between gap-4"
+                    onclick="app.calcSelectCourse('playwright', 449000, 'Modern Playwright Automation', 'Modern Playwright Automation')"
+                    data-course-id="playwright"
+                  >
+                    <div class="flex items-center gap-3.5">
+                      <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
+                      <div>
+                        <h4 class="font-bold text-slate-900 text-sm md:text-base">Modern Playwright Automation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">TypeScript/Python, Page Object Model, API mock, CI/CD (8 Hétvége)</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                      <span class="text-base md:text-lg font-black text-slate-900">449.000 Ft</span>
+                    </div>
+                  </div>
+
+                  <!-- Option: Java Automation -->
+                  <div
+                    class="calc-card p-5 rounded-2xl border-2 border-slate-200 bg-white flex items-center justify-between gap-4"
+                    onclick="app.calcSelectCourse('java', 449000, 'Enterprise Java Automation', 'Enterprise Java Automation')"
+                    data-course-id="java"
+                  >
+                    <div class="flex items-center gap-3.5">
+                      <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
+                      <div>
+                        <h4 class="font-bold text-slate-900 text-sm md:text-base">Enterprise Java Automation</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">Java 17, Selenide, REST Assured, Clean Code & CI/CD (8 Hétvége)</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                      <span class="text-base md:text-lg font-black text-slate-900">449.000 Ft</span>
+                    </div>
+                  </div>
+
+                  <!-- Option: Masterclass -->
+                  <div
+                    class="calc-card p-5 rounded-2xl border-2 border-slate-200 bg-white flex items-center justify-between gap-4"
+                    onclick="app.calcSelectCourse('masterclass', 649000, 'Zero to Hero Masterclass', 'Zero to Hero Masterclass')"
+                    data-course-id="masterclass"
+                  >
+                    <div class="flex items-center gap-3.5">
+                      <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
+                      <div>
+                        <div class="flex items-center gap-2">
+                          <h4 class="font-bold text-slate-900 text-sm md:text-base">Zero to Hero Masterclass</h4>
+                          <span class="bg-sky-100 text-sky-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Legjobb érték</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-0.5">Teljes manuális + automatizáció + 1-on-1 karriertámogatás (12 Hétvége)</p>
+                      </div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                      <span class="text-base md:text-lg font-black text-sky-600">649.000 Ft</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Add-on Modules -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm">
+                <div class="flex items-center gap-3 mb-6">
+                  <span class="w-8 h-8 rounded-full bg-sky-600 text-white flex items-center justify-center text-xs font-bold font-mono">2</span>
+                  <h3 class="text-lg md:text-xl font-bold text-slate-900">
+                    <span class="lang-hu">Választható Kiegészítő Modulok & Támogatás</span>
+                    <span class="lang-en lang-hidden">Add-on Modules & Personal Mentoring</span>
+                  </h3>
+                </div>
+
+                <div class="grid gap-3.5">
+                  <!-- Addon 1 -->
+                  <label class="calc-addon-row p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-4 select-none">
+                    <div class="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        class="w-5 h-5 rounded border-slate-300 text-sky-600 focus:ring-sky-500 accent-sky-600 cursor-pointer"
+                        onchange="app.calcToggleAddon('cv-audit', 35000, 'Személyes CV & LinkedIn Audit', this)"
+                      />
+                      <div>
+                        <span class="font-bold text-slate-900 text-sm block">1-on-1 Személyes Karrier & LinkedIn/CV Audit</span>
+                        <span class="text-xs text-slate-500">Mérnöki átvilágítás a legmagasabb interjú-megkeresési arányért</span>
+                      </div>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-slate-700 whitespace-nowrap">+35.000 Ft</span>
+                  </label>
+
+                  <!-- Addon 2 -->
+                  <label class="calc-addon-row p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-4 select-none">
+                    <div class="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        class="w-5 h-5 rounded border-slate-300 text-sky-600 focus:ring-sky-500 accent-sky-600 cursor-pointer"
+                        onchange="app.calcToggleAddon('mock-interview', 25000, 'Szimulált Technikai Próbainterjú', this)"
+                      />
+                      <div>
+                        <span class="font-bold text-slate-900 text-sm block">Szimulált Technikai Próbainterjú (HU / EN)</span>
+                        <span class="text-xs text-slate-500">Valódi senior kérdések, visszajelzés és éles interjúhelyzet-szimuláció</span>
+                      </div>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-slate-700 whitespace-nowrap">+25.000 Ft</span>
+                  </label>
+
+                  <!-- Addon 3 -->
+                  <label class="calc-addon-row p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-4 select-none">
+                    <div class="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        class="w-5 h-5 rounded border-slate-300 text-sky-600 focus:ring-sky-500 accent-sky-600 cursor-pointer"
+                        onchange="app.calcToggleAddon('devops-addon', 40000, 'DevSecOps & GitHub Actions Modul', this)"
+                      />
+                      <div>
+                        <span class="font-bold text-slate-900 text-sm block">DevSecOps & GitHub Actions Modul</span>
+                        <span class="text-xs text-slate-500">Docker futtatás, automatizált pipeline integráció és Allure riportok</span>
+                      </div>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-slate-700 whitespace-nowrap">+40.000 Ft</span>
+                  </label>
+
+                  <!-- Addon 4 -->
+                  <label class="calc-addon-row p-4 rounded-2xl border border-slate-200 flex items-center justify-between gap-4 select-none">
+                    <div class="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        class="w-5 h-5 rounded border-slate-300 text-sky-600 focus:ring-sky-500 accent-sky-600 cursor-pointer"
+                        onchange="app.calcToggleAddon('ai-prompting', 30000, 'Haladó AI Prompting Kiegészítő', this)"
+                      />
+                      <div>
+                        <span class="font-bold text-slate-900 text-sm block">Haladó AI Teszt- és Kódgenerálási Modul</span>
+                        <span class="text-xs text-slate-500">Speciális prompt engineering technikák mérnököknek és tesztelőknek</span>
+                      </div>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-slate-700 whitespace-nowrap">+30.000 Ft</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Step 3: Payment plan reassuring note -->
+              <div class="bg-sky-50/60 rounded-3xl border border-sky-200/70 p-6 flex items-start gap-4">
+                <span class="text-2xl">💳</span>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm mb-1">
+                    <span class="lang-hu">Kamatmentes Részletfizetési Lehetőség</span>
+                    <span class="lang-en lang-hidden">Interest-Free Installment Options</span>
+                  </h4>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    <span class="lang-hu">Minden képzésre kérhető 2 vagy 3 havi részletfizetés felár nélkül. Jelöld be a jelentkezési űrlapon vagy egyeztessünk az ingyenes konzultáción!</span>
+                    <span class="lang-en lang-hidden">Available in 2 or 3 interest-free monthly installments. Simply let us know upon registration or on the free call!</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Sticky Summary Box (Desktop) -->
+            <div class="lg:col-span-5 lg:sticky lg:top-24">
+              <div class="bg-white rounded-3xl border-2 border-sky-500/30 p-8 shadow-xl shadow-slate-200/50 space-y-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-sky-400/10 to-teal-400/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+
+                <div class="border-b border-slate-100 pb-5">
+                  <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                    <span class="lang-hu">Kalkulált Irányár:</span>
+                    <span class="lang-en lang-hidden">Calculated Estimate:</span>
+                  </span>
+                  <div class="flex items-baseline gap-2">
+                    <span id="calc-total-display" class="text-4xl md:text-5xl font-black text-sky-600 tracking-tight font-sans">
+                      59.000 Ft
+                    </span>
+                  </div>
+                  <span class="text-[11px] text-slate-400 font-medium block mt-1">
+                    <span class="lang-hu">0 Ft rejtett költség • Kamatmentes részletfizetéssel is</span>
+                    <span class="lang-en lang-hidden">0 hidden fees • Installment plans available</span>
+                  </span>
+                </div>
+
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">
+                    <span class="lang-hu">A csomagod tartalma:</span>
+                    <span class="lang-en lang-hidden">Package summary:</span>
+                  </h4>
+                  <ul id="calc-summary-items" class="text-xs text-slate-600 space-y-2 font-medium">
+                    <li class="flex items-center gap-2">
+                      <span class="text-teal-600 font-bold">✓</span>
+                      <span id="calc-summary-base">Gyakorlati AI Alapok (Kódolás nélkül) (59.000 Ft)</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="space-y-3 pt-2">
+                  <button
+                    type="button"
+                    onclick="app.calcProceedToEnroll()"
+                    class="w-full bg-sky-600 hover:bg-sky-700 text-white font-black py-4 px-6 rounded-2xl transition-all shadow-lg shadow-sky-600/25 uppercase tracking-wider text-xs flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span class="lang-hu">Jelentkezem erre a csomagra →</span>
+                    <span class="lang-en lang-hidden">Enroll in This Package →</span>
+                  </button>
+
+                  <a
+                    href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
+                    target="_blank"
+                    class="w-full block bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold py-3 px-4 rounded-xl text-center text-xs transition-colors border border-slate-200"
+                  >
+                    <span class="lang-hu">Kérdésed van? Beszéljünk ingyen!</span>
+                    <span class="lang-en lang-hidden">Have questions? Free Call</span>
+                  </a>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-around text-[11px] text-slate-400 font-medium">
+                  <span>✓ 100% Gyakorlat</span>
+                  <span>✓ Élő konzultációk</span>
+                  <span>✓ Kétnyelvű certifikát</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MOBILE STICKY BAR (BORBÁS WEBDESIGN STYLE) -->
+        <aside id="calc-sticky-bar" class="calc-sticky-bar" aria-label="Kalkuláció gyors összesítő és jelentkezés">
+          <div class="calc-sticky-bar__inner">
+            <div class="calc-sticky-bar__info">
+              <span class="calc-sticky-bar__label">Kalkulált ár:</span>
+              <span id="calc-sticky-price" class="calc-sticky-bar__price">59.000 Ft</span>
+            </div>
+            <button
+              type="button"
+              class="calc-sticky-bar__btn bg-sky-600 hover:bg-sky-700 text-white cursor-pointer"
+              onclick="app.calcProceedToEnroll()"
+            >
+              <span class="lang-hu">Jelentkezés →</span>
+              <span class="lang-en lang-hidden">Apply →</span>
+            </button>
+          </div>
+        </aside>
 
         <!-- MENTORING SECTION -->
-        <section id="mentoring" class="mt-32 space-y-8">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-black text-white italic tracking-tighter">
-              <span class="lang-hu">Egyéni Fejlődés</span
-              ><span class="lang-en lang-hidden">Personal Growth</span>
-              <span class="text-blue-500">/ Mentoring</span>
+        <section id="mentoring" class="mt-20 space-y-6">
+          <div class="text-center mb-6">
+            <h2 class="text-3xl font-black text-slate-900 italic tracking-tighter">
+              <span class="lang-hu">Egyéni Fejlődés</span><span class="lang-en lang-hidden">Personal Growth</span>
+              <span class="text-blue-600">/ Mentoring</span>
             </h2>
           </div>
 
           <div class="grid gap-8 md:grid-cols-2">
             <div
-              class="rounded-[2rem] border border-slate-800 bg-slate-800/20 p-8 flex flex-col justify-between hover:border-slate-700 transition-all"
+              class="rounded-[2rem] border border-slate-200/60 bg-white p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50"
             >
               <div>
-                <h3 class="text-xl font-black text-white italic mb-4">
-                  <span class="lang-hu">Tanácsadás & Coaching</span
-                  ><span class="lang-en lang-hidden">Consultancy & Coaching</span>
+                <h3 class="text-xl font-black text-slate-900 italic mb-4">
+                  <span class="lang-hu">Tanácsadás & Coaching</span><span class="lang-en lang-hidden">Consultancy & Coaching</span>
                 </h3>
-                <p class="text-slate-400 text-sm italic mb-8 leading-relaxed">
+                <p class="text-slate-500 text-sm italic mb-6 leading-relaxed">
                   <span class="lang-hu"
-                    >Specifikus technikai elakadások, karrierút-tervezés vagy technikai felkészülés.
-                    1-on-1 alkalmak.</span
+                    >Specifikus technikai elakadások, karrierút-tervezés vagy technikai felkészülés. 1-on-1 alkalmak.</span
                   >
                   <span class="lang-en lang-hidden"
-                    >Specific technical blockers, career path planning, or technical preparation.
-                    1-on-1 sessions.</span
+                    >Specific technical blockers, career path planning, or technical preparation. 1-on-1 sessions.</span
                   >
                 </p>
               </div>
-              <div class="flex items-center justify-between border-t border-slate-800 pt-6 mt-auto">
-                <span class="text-2xl font-black text-blue-500 whitespace-nowrap"
-                  >15.000 Ft <span class="text-xs text-slate-500 italic"><span class="lang-hu">/ óra</span><span class="lang-en lang-hidden">/ hr</span></span></span>
+              <div class="flex items-center justify-between border-t border-slate-100 pt-6 mt-auto">
+                <span class="text-2xl font-black text-blue-600 whitespace-nowrap"
+                  >22.000 Ft <span class="text-xs text-slate-500 italic"><span class="lang-hu">/ óra</span><span class="lang-en lang-hidden">/ hr</span></span></span>
                 <a
                   href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
                   target="_blank"
-                  class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-500 transition-all uppercase text-xs italic tracking-widest shadow-lg shadow-blue-500/20"
+                  class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all uppercase text-xs italic tracking-widest shadow-lg shadow-blue-500/10"
                 >
-                  <span class="lang-hu">Lefoglalom</span
-                  ><span class="lang-en lang-hidden">Book Now</span>
+                  <span class="lang-hu">Lefoglalom</span><span class="lang-en lang-hidden">Book Now</span>
                 </a>
               </div>
             </div>
@@ -515,34 +1045,31 @@
               class="rounded-[2rem] border-2 border-blue-500 bg-blue-500/5 p-8 flex flex-col justify-between shadow-2xl shadow-blue-500/10 relative"
             >
               <div
-                class="absolute top-0 right-0 bg-blue-500 text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest italic rounded-bl-xl"
+                class="absolute top-0 right-0 bg-blue-600 text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest italic rounded-bl-xl shadow-sm"
               >
-                <span class="lang-hu">Legnépszerűbb</span
-                ><span class="lang-en lang-hidden">Most Popular</span>
+                <span class="lang-hu">Legnépszerűbb</span><span class="lang-en lang-hidden">Most Popular</span>
               </div>
               <div>
-                <h3 class="text-xl font-black text-white italic mb-4"><span class="lang-hu">Interview Ready Csomag</span><span class="lang-en lang-hidden">Interview Ready Package</span></h3>
-                <ul class="text-slate-400 text-sm space-y-3 mb-8 italic">
+                <h3 class="text-xl font-black text-slate-900 italic mb-4"><span class="lang-hu">Interview Ready Csomag</span><span class="lang-en lang-hidden">Interview Ready Package</span></h3>
+                <ul class="text-slate-600 text-sm space-y-3 mb-6 italic">
                   <li>✅ <b>CV & LinkedIn Audit</b></li>
                   <li>✅ <b>Mock Interviews</b> (HU/EN)</li>
                   <li>✅ <b>Soft Skill Boost</b></li>
                   <li>
                     ✅
                     <b
-                      ><span class="lang-hu">Kérdezéstechnika</span
-                      ><span class="lang-en lang-hidden">Interviewing Techniques</span></b
+                      ><span class="lang-hu">Kérdezéstechnika</span><span class="lang-en lang-hidden">Interviewing Techniques</span></b
                     >
                   </li>
                 </ul>
               </div>
-              <div class="flex items-center justify-between border-t border-blue-500/20 pt-6">
-                <span class="text-2xl font-black text-white italic">99.000 Ft</span>
+              <div class="flex items-center justify-between border-t border-blue-500/10 pt-6">
+                <span class="text-2xl font-black text-slate-900 italic">149.000 Ft</span>
                 <a
                   href="#join"
-                  class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-blue-500 transition-all uppercase text-xs italic tracking-widest"
+                  class="bg-blue-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-blue-700 transition-all uppercase text-xs italic tracking-widest shadow-sm"
                 >
-                  <span class="lang-hu">Érdekel</span
-                  ><span class="lang-en lang-hidden">I'm Interested</span>
+                  <span class="lang-hu">Érdekel</span><span class="lang-en lang-hidden">I'm Interested</span>
                 </a>
               </div>
             </div>
@@ -550,42 +1077,36 @@
         </section>
 
         <!-- CORPORATE SECTION -->
-        <section id="corporate" class="mt-40 mb-32 space-y-16">
+        <section id="corporate" class="mt-20 space-y-8">
           <div class="text-center">
-            <h2 class="text-3xl font-black text-white italic tracking-tighter">
-              <span class="lang-hu">Vállalati Műhelymunka & Tanácsadás</span
-              ><span class="lang-en lang-hidden">Corporate Workshops & Consulting</span>
-              <span class="text-blue-500">/ B2B</span>
+            <h2 class="text-3xl font-black text-slate-900 italic tracking-tighter">
+              <span class="lang-hu">Vállalati Műhelymunka & Tanácsadás</span><span class="lang-en lang-hidden">Corporate Workshops & Consulting</span>
+              <span class="text-blue-600">/ B2B</span>
             </h2>
-            <p class="text-slate-400 mt-4 italic max-w-3xl mx-auto leading-relaxed">
+            <p class="text-slate-500 mt-4 italic max-w-3xl mx-auto leading-relaxed">
               <span class="lang-hu"
-                >Személyre szabott, intenzív QA műhelymunka és szakértői konzultáció mérnöki csapatoknak. 12 év szakmai
-                tapasztalat, modern tech stack.</span
+                >Személyre szabott, intenzív QA műhelymunka és szakértői konzultáció mérnöki csapatoknak. 12 év szakmai tapasztalat, modern tech stack.</span
               >
               <span class="lang-en lang-hidden"
-                >Customized, intensive QA workshops and consulting for engineering teams. 12 years of professional
-                experience, modern tech stack.</span
+                >Customized, intensive QA workshops and consulting for engineering teams. 12 years of professional experience, modern tech stack.</span
               >
             </p>
           </div>
 
           <div
-            class="bg-blue-500/5 border border-blue-500/20 rounded-3xl p-8 italic max-w-4xl mx-auto"
+            class="bg-blue-500/5 border border-blue-500/10 rounded-3xl p-8 italic max-w-4xl mx-auto"
           >
-            <h3 class="text-blue-400 font-black uppercase text-xs tracking-widest mb-4 italic">
-              <span class="lang-hu">Előfeltételek (Prerequisites)</span
-              ><span class="lang-en lang-hidden">Prerequisites</span>
+            <h3 class="text-blue-600 font-black uppercase text-xs tracking-widest mb-4 italic">
+              <span class="lang-hu">Előfeltételek (Prerequisites)</span><span class="lang-en lang-hidden">Prerequisites</span>
             </h3>
-            <div class="grid sm:grid-cols-2 gap-4 text-sm text-slate-400">
+            <div class="grid sm:grid-cols-2 gap-4 text-sm text-slate-600">
               <p>• VS Code & Node.js (LTS)</p>
               <p>• Postman (Desktop version)</p>
               <p>
-                • <span class="lang-hu">Aktív GitHub profil</span
-                ><span class="lang-en lang-hidden">Active GitHub profile</span>
+                • <span class="lang-hu">Aktív GitHub profil</span><span class="lang-en lang-hidden">Active GitHub profile</span>
               </p>
               <p>
-                • <span class="lang-hu">Stabil internetkapcsolat</span
-                ><span class="lang-en lang-hidden">Stable internet connection</span>
+                • <span class="lang-hu">Stabil internetkapcsolat</span><span class="lang-en lang-hidden">Stable internet connection</span>
               </p>
             </div>
           </div>
@@ -593,51 +1114,44 @@
           <div class="grid gap-8 lg:grid-cols-3">
             <!-- AI Expert -->
             <div
-              class="bg-slate-800/30 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col hover:border-blue-500/30 transition-all"
+              class="bg-white border border-slate-200/60 p-8 rounded-[2.5rem] flex flex-col hover:border-blue-500/30 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50"
             >
-              <div class="mb-6">
+              <div class="mb-4">
                 <span
-                  class="bg-slate-700 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
+                  class="bg-slate-100 text-slate-700 text-[10px] font-black px-3 py-1 rounded-full uppercase italic border border-slate-200"
                   ><span class="lang-hu">1 nap</span><span class="lang-en lang-hidden">1 Day</span></span
                 >
-                <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
+                <h3 class="text-2xl font-black text-slate-900 mt-4 italic tracking-tight">
                   AI Expert Deep Dive
                 </h3>
               </div>
-              <p class="text-slate-400 text-sm mb-6 italic">
+              <p class="text-slate-500 text-sm mb-4 italic">
                 <span class="lang-hu"
-                  >Tapasztalt csapatoknak. Az automatizálás és az AI legmagasabb szintű
-                  integrációja.</span
+                  >Tapasztalt csapatoknak. Az automatizálás és az AI legmagasabb szintű integrációja.</span
                 >
                 <span class="lang-en lang-hidden"
                   >For experienced teams. High-level integration of AI and automation.</span
                 >
               </p>
-              <ul class="text-xs text-slate-500 space-y-3 mb-8 italic">
+              <ul class="text-xs text-slate-500 space-y-3 mb-6 italic">
                 <li>
-                  • <span class="lang-hu">Advanced Prompt Engineering QA-seknek</span
-                  ><span class="lang-en lang-hidden">Advanced Prompt Engineering for QA</span>
+                  • <span class="lang-hu">Advanced Prompt Engineering QA-seknek</span><span class="lang-en lang-hidden">Advanced Prompt Engineering for QA</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">AI-alapú kód review & refaktorálás</span
-                  ><span class="lang-en lang-hidden">AI-powered code review & refactoring</span>
+                  • <span class="lang-hu">AI-alapú kód review & refaktorálás</span><span class="lang-en lang-hidden">AI-powered code review & refactoring</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">Custom AI Tooling integráció</span
-                  ><span class="lang-en lang-hidden">Custom AI Tooling integration</span>
+                  • <span class="lang-hu">Custom AI Tooling integráció</span><span class="lang-en lang-hidden">Custom AI Tooling integration</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">Automation Best Practices 2026</span
-                  ><span class="lang-en lang-hidden">Automation Best Practices 2026</span>
+                  • <span class="lang-hu">Automation Best Practices 2026</span><span class="lang-en lang-hidden">Automation Best Practices 2026</span>
                 </li>
               </ul>
-              <div class="mt-auto border-t border-slate-800 pt-6">
-                <span class="text-xl font-black text-white italic"
-                  >199.000 Ft
+              <div class="mt-auto border-t border-slate-100 pt-6">
+                <span class="text-xl font-black text-slate-900 italic"
+                  >249.000 Ft
                   <span class="text-[10px] text-slate-500 uppercase tracking-widest"
-                    >/ <span class="lang-hu">nap</span
-                    ><span class="lang-en lang-hidden">day</span></span
-                  ></span
+                    >/ <span class="lang-hu">nap</span><span class="lang-en lang-hidden">day</span></span></span
                 >
               </div>
             </div>
@@ -647,20 +1161,20 @@
               class="bg-blue-500/5 border-2 border-blue-500 p-8 rounded-[2.5rem] flex flex-col shadow-2xl shadow-blue-500/10 relative"
             >
               <div
-                class="absolute top-0 right-10 bg-blue-500 text-white px-4 py-1 text-[10px] font-black uppercase rounded-b-xl italic text-xs tracking-tighter"
+                class="absolute top-0 right-10 bg-blue-600 text-white px-4 py-1 text-[10px] font-black uppercase rounded-b-xl italic text-xs tracking-tighter"
               >
                 Bestseller
               </div>
-              <div class="mb-6">
+              <div class="mb-4">
                 <span
-                  class="bg-blue-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
+                  class="bg-blue-600 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic shadow-sm"
                   ><span class="lang-hu">2 nap</span><span class="lang-en lang-hidden">2 Days</span></span
                 >
-                <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
+                <h3 class="text-2xl font-black text-slate-900 mt-4 italic tracking-tight">
                   QA Bridge Workshop
                 </h3>
               </div>
-              <p class="text-slate-400 text-sm mb-6 italic">
+              <p class="text-slate-500 text-sm mb-4 italic">
                 <span class="lang-hu"
                   >Manuális tesztelők átvezetése az automatizálásba AI asszisztenciával.</span
                 >
@@ -668,49 +1182,43 @@
                   >Transitioning manual testers into automation with AI assistance.</span
                 >
               </p>
-              <ul class="text-xs text-slate-300 space-y-3 mb-8 italic">
+              <ul class="text-xs text-slate-600 space-y-3 mb-6 italic">
                 <li>
-                  • <span class="lang-hu">1. NAP: AI alapú teszttervezés & DevTools</span
-                  ><span class="lang-en lang-hidden">Day 1: AI-based test design & DevTools</span>
+                  • <span class="lang-hu">1. NAP: AI alapú teszttervezés & DevTools</span><span class="lang-en lang-hidden">Day 1: AI-based test design & DevTools</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">1. NAP: API alapok & Postman mastery</span
-                  ><span class="lang-en lang-hidden">Day 1: API basics & Postman mastery</span>
+                  • <span class="lang-hu">1. NAP: API alapok & Postman mastery</span><span class="lang-en lang-hidden">Day 1: API basics & Postman mastery</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">2. NAP: Java, Selenide & UI architektúra</span
-                  ><span class="lang-en lang-hidden">Day 2: Java, Selenide & UI architecture</span>
+                  • <span class="lang-hu">2. NAP: Java, Selenide & UI architektúra</span><span class="lang-en lang-hidden">Day 2: Java, Selenide & UI architecture</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">2. NAP: POM struktúra & REST Assured</span
-                  ><span class="lang-en lang-hidden">Day 2: POM structure & REST Assured</span>
+                  • <span class="lang-hu">2. NAP: POM struktúra & REST Assured</span><span class="lang-en lang-hidden">Day 2: POM structure & REST Assured</span>
                 </li>
               </ul>
-              <div class="mt-auto border-t border-blue-500/20 pt-6">
-                <span class="text-xl font-black text-white italic"
-                  >199.000 Ft
+              <div class="mt-auto border-t border-blue-500/10 pt-6">
+                <span class="text-xl font-black text-slate-900 italic"
+                  >249.000 Ft
                   <span class="text-[10px] text-slate-500 uppercase tracking-widest"
-                    >/ <span class="lang-hu">nap</span
-                    ><span class="lang-en lang-hidden">day</span></span
-                  ></span
+                    >/ <span class="lang-hu">nap</span><span class="lang-en lang-hidden">day</span></span></span
                 >
               </div>
             </div>
 
             <!-- Enterprise -->
             <div
-              class="bg-slate-800/30 border border-slate-800 p-8 rounded-[2.5rem] flex flex-col hover:border-blue-500/30 transition-all"
+              class="bg-white border border-slate-200/60 p-8 rounded-[2.5rem] flex flex-col hover:border-blue-500/30 hover:shadow-2xl hover:shadow-slate-200/60 transition-all shadow-xl shadow-slate-100/50"
             >
-              <div class="mb-6">
+              <div class="mb-4">
                 <span
-                  class="bg-slate-700 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase italic"
+                  class="bg-slate-100 text-slate-700 text-[10px] font-black px-3 py-1 rounded-full uppercase italic border border-slate-200"
                   ><span class="lang-hu">Egyedi</span><span class="lang-en lang-hidden">Custom</span></span
                 >
-                <h3 class="text-2xl font-black text-white mt-4 italic tracking-tight">
+                <h3 class="text-2xl font-black text-slate-900 mt-4 italic tracking-tight">
                   Enterprise / Custom
                 </h3>
               </div>
-              <p class="text-slate-400 text-sm mb-6 italic">
+              <p class="text-slate-500 text-sm mb-4 italic">
                 <span class="lang-hu"
                   >Egyedi igényekre szabott, több napos gyakorlati workshopok és tanácsadás.</span
                 >
@@ -718,50 +1226,44 @@
                   >Multi-day workshops and consultancy tailored to unique needs.</span
                 >
               </p>
-              <ul class="text-xs text-slate-500 space-y-3 mb-8 italic">
+              <ul class="text-xs text-slate-500 space-y-3 mb-6 italic">
                 <li>
-                  • <span class="lang-hu">Több napos bővített tematika</span
-                  ><span class="lang-en lang-hidden">Extended multi-day curriculum</span>
+                  • <span class="lang-hu">Több napos bővített tematika</span><span class="lang-en lang-hidden">Extended multi-day curriculum</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">Remote együttműködés és támogatás</span
-                  ><span class="lang-en lang-hidden">Fully remote support & delivery</span>
+                  • <span class="lang-hu">Remote együttműködés és támogatás</span><span class="lang-en lang-hidden">Fully remote support & delivery</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">CI/CD & Pipeline integráció</span
-                  ><span class="lang-en lang-hidden">CI/CD & Pipeline integration</span>
+                  • <span class="lang-hu">CI/CD & Pipeline integráció</span><span class="lang-en lang-hidden">CI/CD & Pipeline integration</span>
                 </li>
                 <li>
-                  • <span class="lang-hu">Szakmai audit & Roadmap készítés</span
-                  ><span class="lang-en lang-hidden">Technical audit & Roadmap creation</span>
+                  • <span class="lang-hu">Szakmai audit & Roadmap készítés</span><span class="lang-en lang-hidden">Technical audit & Roadmap creation</span>
                 </li>
               </ul>
-              <div class="mt-auto border-t border-slate-800 pt-6 text-center">
-                <span class="text-xs font-black text-blue-400 uppercase tracking-[0.2em] italic">
-                  <span class="lang-hu">Egyedi ajánlat</span
-                  ><span class="lang-en lang-hidden">Custom Quote</span>
+              <div class="mt-auto border-t border-slate-100 pt-6 text-center">
+                <span class="text-xs font-black text-blue-600 uppercase tracking-[0.2em] italic">
+                  <span class="lang-hu">Egyedi ajánlat</span><span class="lang-en lang-hidden">Custom Quote</span>
                 </span>
               </div>
             </div>
           </div>
 
-          <div class="text-center mt-12">
+          <div class="text-center mt-6">
             <a
               href="#join"
-              class="inline-block bg-blue-600 text-white px-10 py-5 rounded-2xl font-black hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 uppercase tracking-[0.2em] text-xs italic"
+              class="inline-block bg-blue-600 text-white px-10 py-5 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/10 uppercase tracking-[0.2em] text-xs italic"
             >
-              <span class="lang-hu">Vállalati Ajánlatkérés</span
-              ><span class="lang-en lang-hidden">Request Corporate Quote</span>
+              <span class="lang-hu">Vállalati Ajánlatkérés</span><span class="lang-en lang-hidden">Request Corporate Quote</span>
             </a>
           </div>
         </section>
 
         <!-- TESTIMONIAL CAROUSEL SECTION -->
-        <section id="testimonials" class="mt-40 mb-32 overflow-hidden relative max-w-6xl mx-auto px-6">
-          <div class="text-center mb-24">
-            <h2 class="text-3xl md:text-5xl font-black text-white italic tracking-tight leading-tight mb-6 uppercase">
-              <span class="lang-hu">Ezt mondták a <span class="text-blue-500">TestAcademy-ről</span></span>
-              <span class="lang-en lang-hidden">What they say <span class="text-blue-500">about TestAcademy</span></span>
+        <section id="testimonials" class="mt-20 mb-20 overflow-hidden relative max-w-6xl mx-auto px-6">
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 italic tracking-tight leading-tight mb-4 uppercase">
+              <span class="lang-hu">Ezt mondták a <span class="text-blue-600">TestAcademy-ről</span></span>
+              <span class="lang-en lang-hidden">What they say <span class="text-blue-600">about TestAcademy</span></span>
             </h2>
             <div class="h-1.5 w-24 bg-blue-600 rounded-full mx-auto"></div>
           </div>
@@ -769,34 +1271,34 @@
           <!-- Carousel Controls -->
           <div class="relative">
             <!-- Left Button -->
-            <button onclick="scrollTestimonials(-1)" aria-label="Előző / Previous" class="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-slate-800/60 backdrop-blur-md border border-slate-700/50 text-white hover:bg-blue-600 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)] transition-all cursor-pointer">
+            <button onclick="app.scrollTestimonials(-1)" aria-label="Előző / Previous" class="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-md border border-slate-200 text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all cursor-pointer">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
               </svg>
             </button>
             
             <!-- Right Button -->
-            <button onclick="scrollTestimonials(1)" aria-label="Következő / Next" class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-slate-800/60 backdrop-blur-md border border-slate-700/50 text-white hover:bg-blue-600 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(37,99,235,0.5)] transition-all cursor-pointer">
+            <button onclick="app.scrollTestimonials(1)" aria-label="Következő / Next" class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full flex items-center justify-center bg-white shadow-md border border-slate-200 text-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all cursor-pointer">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
               </svg>
             </button>
 
             <!-- Carousel Wrapper -->
-            <div id="testimonials-track" class="flex gap-8 overflow-x-auto pb-16 snap-x snap-mandatory no-scrollbar scroll-smooth">
+            <div id="testimonials-track" class="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar scroll-smooth">
               
               <!-- Card 1 -->
               <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-slate-800/30 backdrop-blur-md rounded-[48px] group transition-all duration-500 h-full flex flex-col items-start text-left border border-slate-800/50 hover:border-blue-500/30">
+                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
                   <div class="mb-8">
                     <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=200" 
-                         alt="Kovács Bence" 
-                         class="w-20 h-20 rounded-full object-cover border-2 border-slate-700 group-hover:border-blue-500 transition-all duration-500 shadow-2xl">
+                          alt="Kovács Bence" 
+                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
                   </div>
                   <div class="w-full">
-                    <h3 class="text-xl font-black text-white italic uppercase mb-1">Kovács Bence</h3>
-                    <p class="text-blue-500 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior QA Engineer @ EPAM</p>
-                    <p class="text-slate-400 italic leading-relaxed text-lg">
+                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Kovács Bence</h3>
+                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior QA Engineer @ EPAM</p>
+                    <p class="text-slate-600 italic leading-relaxed text-lg">
                       <span class="lang-hu">"A TestAcademy mentori programja nem csak technikai tudást adott, hanem egy teljesen új szemléletmódot a szoftverminőség biztosításában. A váltás után egy nemzetközi cégnél kaptam megálmodott pozíciót."</span>
                       <span class="lang-en lang-hidden">"The TestAcademy mentoring program provided not just technical knowledge, but a completely new perspective on software quality assurance. After the transition, I landed my dream position at a multinational company."</span>
                     </p>
@@ -806,17 +1308,17 @@
 
               <!-- Card 2 -->
               <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-slate-800/30 backdrop-blur-md rounded-[48px] group transition-all duration-500 h-full flex flex-col items-start text-left border border-slate-800/50 hover:border-blue-500/30">
+                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
                   <div class="mb-8">
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200" 
-                         alt="Tóth Alexandra" 
-                         class="w-20 h-20 rounded-full object-cover border-2 border-slate-700 group-hover:border-blue-500 transition-all duration-500 shadow-2xl">
+                          alt="Tóth Alexandra" 
+                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
                   </div>
                   <div class="w-full">
-                    <h3 class="text-xl font-black text-white italic uppercase mb-1">Tóth Alexandra</h3>
-                    <p class="text-blue-500 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Lead Automation Engineer @ Prezi</p>
-                    <p class="text-slate-400 italic leading-relaxed text-lg">
-                      <span class="lang-hu">"A gyakorlatias megközelítés és a kódminőségre való könyörtelen fókuszálás az, ami kiemelt a többi jelölt közül az interjúk során. A TestAcademy mentoraival való közös munka professzionális szintlépés volt."</span>
+                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Tóth Alexandra</h3>
+                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Lead Automation Engineer @ Prezi</p>
+                    <p class="text-slate-600 italic leading-relaxed text-lg">
+                      <span class="lang-hu">"A gyakorlatias megközelítés és a kódminőségre való könyörtelen fókuszálás az ami kiemelt a többi jelölt közül az interjúk során. A TestAcademy mentoraival való közös munka professzionális szintlépés volt."</span>
                       <span class="lang-en lang-hidden">"The practical approach and relentless focus on code quality is what stood out among other candidates during interviews. Collaborating with the TestAcademy mentors was a professional milestone."</span>
                     </p>
                   </div>
@@ -825,16 +1327,16 @@
 
               <!-- Card 3 -->
               <div class="w-[300px] md:w-[450px] flex-shrink-0 snap-center">
-                <div class="relative p-8 md:p-12 bg-slate-800/30 backdrop-blur-md rounded-[48px] group transition-all duration-500 h-full flex flex-col items-start text-left border border-slate-800/50 hover:border-blue-500/30">
+                <div class="relative p-8 md:p-12 bg-white rounded-[48px] border border-slate-200/60 shadow-xl shadow-slate-100 group transition-all duration-500 h-full flex flex-col items-start text-left hover:border-blue-500/30">
                   <div class="mb-8">
                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200" 
-                         alt="Molnár Dávid" 
-                         class="w-20 h-20 rounded-full object-cover border-2 border-slate-700 group-hover:border-blue-500 transition-all duration-500 shadow-2xl">
+                          alt="Molnár Dávid" 
+                          class="w-20 h-20 rounded-full object-cover border-2 border-slate-200 group-hover:border-blue-600 transition-all duration-500 shadow-lg">
                   </div>
                   <div class="w-full">
-                    <h3 class="text-xl font-black text-white italic uppercase mb-1">Molnár Dávid</h3>
-                    <p class="text-blue-500 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior SDET @ SAP</p>
-                    <p class="text-slate-400 italic leading-relaxed text-lg">
+                    <h3 class="text-xl font-black text-slate-900 italic uppercase mb-1">Molnár Dávid</h3>
+                    <p class="text-blue-600 text-[10px] font-bold uppercase tracking-[0.4em] italic mb-8">Senior SDET @ SAP</p>
+                    <p class="text-slate-600 italic leading-relaxed text-lg">
                       <span class="lang-hu">"Nem csak technikai tudást, hanem magabiztosságot is kaptam. A mentorommal való közös munka minden percét élveztem, és a projektjeim minősége ugrásszerűen javult."</span>
                       <span class="lang-en lang-hidden">"I received not only technical skills, but immense self-confidence. I thoroughly enjoyed every minute of working with my mentor, and the quality of my test suites improved dramatically."</span>
                     </p>
@@ -854,39 +1356,33 @@
         <!-- JOIN SECTION -->
         <section
           id="join"
-          class="mt-40 max-w-4xl mx-auto bg-slate-800 border border-slate-700 rounded-[3rem] p-8 md:p-16 text-slate-100 shadow-2xl relative overflow-hidden"
+          class="mt-20 max-w-4xl mx-auto bg-white border border-slate-200/60 rounded-[3rem] p-8 md:p-16 text-slate-800 shadow-2xl relative overflow-hidden"
         >
-          <div
-            class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 opacity-50"
-          ></div>
           <div class="relative z-10 grid md:grid-cols-2 gap-12">
             <div>
               <h2 class="text-4xl font-black italic tracking-tighter leading-none mb-6">
-                <span class="lang-hu text-blue-500 text-3xl">Jelentkezz</span>
-                <span class="lang-en lang-hidden text-blue-500 text-3xl">Apply</span><br />
-                <span class="lang-hu text-white">most!</span>
-                <span class="lang-en lang-hidden text-white uppercase">now!</span>
+                <span class="lang-hu text-blue-600 text-3xl">Jelentkezz</span>
+                <span class="lang-en lang-hidden text-blue-600 text-3xl">Apply</span><br />
+                <span class="lang-hu text-slate-900">most!</span>
+                <span class="lang-en lang-hidden text-slate-900 uppercase">now!</span>
               </h2>
               <div
-                class="space-y-4 text-xs font-bold italic text-slate-500 mt-8 uppercase tracking-widest"
+                class="space-y-4 text-xs font-bold italic text-slate-400 mt-8 uppercase tracking-widest"
               >
                 <p>
-                  ✓ <span class="lang-hu">Szintfelmérő</span
-                  ><span class="lang-en lang-hidden">Assessment</span>
+                  ✓ <span class="lang-hu">Szintfelmérő</span><span class="lang-en lang-hidden">Assessment</span>
                 </p>
                 <p>
-                  ✓ <span class="lang-hu">Karrier tanácsadás</span
-                  ><span class="lang-en lang-hidden">Coaching</span>
+                  ✓ <span class="lang-hu">Karrier tanácsadás</span><span class="lang-en lang-hidden">Coaching</span>
                 </p>
                 <p>
-                  ✓ <span class="lang-hu">Portfólió építés</span
-                  ><span class="lang-en lang-hidden">Portfolio</span>
+                  ✓ <span class="lang-hu">Portfólió építés</span><span class="lang-en lang-hidden">Portfolio</span>
                 </p>
               </div>
             </div>
 
             <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-              <!-- Web3Forms Access Key (Get yours free from web3forms.com) -->
+              <!-- Web3Forms Access Key -->
               <input type="hidden" name="access_key" value="87c4fa66-64b6-4431-9c4e-d20da0ff1cef" />
               <!-- Redirection to Thanks Page -->
               <input type="hidden" name="redirect" value="https://testacademy.hu/thanks.html" />
@@ -902,7 +1398,7 @@
                 placeholder="Név / Name"
                 required
                 style="padding-left: 1.5rem"
-                class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500"
+                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 placeholder-slate-400 focus:bg-white"
               />
               <label for="form-email" class="sr-only">E-mail</label>
               <input
@@ -913,7 +1409,7 @@
                 placeholder="E-mail"
                 required
                 style="padding-left: 1.5rem"
-                class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 placeholder-slate-500"
+                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 placeholder-slate-400 focus:bg-white"
               />
               <label for="form-course" class="sr-only">Jelentkezés típusa / Course Selection</label>
               <select
@@ -921,7 +1417,7 @@
                 name="course"
                 id="form-course"
                 style="padding-left: 1.5rem"
-                class="w-full bg-slate-900/50 border-2 border-slate-700 rounded-2xl py-3 md:py-4 focus:border-blue-500 outline-none italic font-medium text-slate-100 appearance-none text-sm md:text-base"
+                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 md:py-4 focus:border-blue-500 outline-none italic font-medium text-slate-800 appearance-none text-sm md:text-base focus:bg-white"
               >
               </select>
               <div class="flex items-start gap-3 mt-4 text-left">
@@ -930,14 +1426,14 @@
                   id="form-terms"
                   name="terms_agreement"
                   required
-                  class="mt-1 w-5 h-5 rounded border-slate-700 bg-slate-900/50 text-blue-500 focus:ring-blue-500 accent-blue-600 cursor-pointer"
+                  class="mt-1 w-5 h-5 rounded border-slate-300 bg-slate-50 text-blue-600 focus:ring-blue-500 accent-blue-600 cursor-pointer"
                 />
-                <label for="form-terms" class="text-xs text-slate-400 italic font-medium leading-relaxed select-none cursor-pointer">
+                <label for="form-terms" class="text-xs text-slate-500 italic font-medium leading-relaxed select-none cursor-pointer">
                   <span class="lang-hu">
-                    Megértettem és elfogadom az <span class="text-blue-400 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <a href="#" onclick="openContractModal(event)" class="text-blue-400 font-bold underline hover:text-blue-300 transition-colors">Mentori és Szakértői Konzultációs Szerződés</a> feltételeit.
+                    Megértettem és elfogadom az <span class="text-blue-600 font-bold">Adatkezelési Tájékoztatót</span>, valamint a <a href="#" onclick="app.openContractModal(event)" class="text-blue-600 font-bold underline hover:text-blue-700 transition-colors">Mentori és Szakértői Konzultációs Szerződés</a> feltételeit.
                   </span>
                   <span class="lang-en lang-hidden">
-                    I understand and accept the <span class="text-blue-400 font-bold">Privacy Policy</span> and the terms of the <a href="#" onclick="openContractModal(event)" class="text-blue-400 font-bold underline hover:text-blue-300 transition-colors">Mentoring & Consulting Agreement</a>.
+                    I understand and accept the <span class="text-blue-600 font-bold">Privacy Policy</span> and the terms of the <a href="#" onclick="app.openContractModal(event)" class="text-blue-600 font-bold underline hover:text-blue-700 transition-colors">Mentoring & Consulting Agreement</a>.
                   </span>
                 </label>
               </div>
@@ -945,7 +1441,7 @@
                 type="submit"
                 data-testid="submit-btn"
                 aria-label="Küldés / Send"
-                class="w-full max-w-xs mx-auto bg-blue-600 text-white font-black py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/20 uppercase tracking-widest mt-6 italic block text-center cursor-pointer hover:bg-blue-500"
+                class="w-full max-w-xs mx-auto bg-blue-600 text-white font-black py-4 rounded-2xl transition-all shadow-xl shadow-blue-600/10 uppercase tracking-widest mt-6 italic block text-center cursor-pointer hover:bg-blue-700"
               >
                 <span class="lang-hu">Küldés</span><span class="lang-en lang-hidden">Send</span>
               </button>
@@ -954,9 +1450,9 @@
         </section>
 
         <!-- FAQ SECTION -->
-        <section id="faq" class="mt-40 mb-10 max-w-4xl mx-auto space-y-6">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl font-black text-white italic tracking-tighter uppercase">
+        <section id="faq" class="mt-20 mb-10 max-w-4xl mx-auto space-y-4">
+          <div class="text-center mb-10">
+            <h2 class="text-3xl font-black text-slate-900 italic tracking-tighter uppercase">
               <span class="lang-hu">Gyakori Kérdések</span>
               <span class="lang-en lang-hidden">FAQ</span>
             </h2>
@@ -964,135 +1460,135 @@
           </div>
           
           <!-- FAQ 1 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-1')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-1')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Kezdők is részt vehetnek a Junior Manual mentori támogatásban?</span>
                 <span class="lang-en lang-hidden">Can absolute beginners join the Junior Manual mentoring support?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-1" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-1" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Igen, a Junior Manual együttműködés az alapoktól építkezik. Előzetes IT tapasztalat nélkül is elkezdhető, de az erős logikai érzék és az angol nyelv minimális olvasási szintű ismerete szükséges.</span>
               <span class="lang-en lang-hidden">Yes, the Junior Manual mentoring starts from the absolute basics. No prior IT knowledge is needed, although analytical thinking and basic English reading skills are required.</span>
             </div>
           </div>
 
           <!-- FAQ 2 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-2')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-2')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Mennyi időt kell rászánni heti szinten?</span>
                 <span class="lang-en lang-hidden">How much time do I need to invest weekly?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-2" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-2" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">A hétvégi közös műhelymunkán felül minimum heti 8-10 órát érdemes a feladatokra és önálló gyakorlásra szánni. A valódi rutin önálló gyakorlással épül fel.</span>
               <span class="lang-en lang-hidden">In addition to the weekend workshop sessions, you should expect to spend at least 8-10 hours per week on practical work and practice. Routine is built through hands-on practice.</span>
             </div>
           </div>
 
           <!-- FAQ 3 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-3')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-3')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Szükségem van saját laptopra?</span>
                 <span class="lang-en lang-hidden">Do I need to bring my own laptop?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-3" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-3" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Igen. A saját gépeden alakítjuk ki a fejlesztői környezetet. Egy átlagos Windows, Mac vagy Linux gép teljesen megfelelő, de legalább 8GB RAM ajánlott.</span>
               <span class="lang-en lang-hidden">Yes. We will set up your development environment on your own machine. A standard Windows, Mac, or Linux laptop is perfect, but minimum 8GB of RAM is highly advised.</span>
             </div>
           </div>
 
           <!-- FAQ 4 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-4')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-4')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Hogyan történik a szintfelmérés és a mentorálás?</span>
                 <span class="lang-en lang-hidden">How does the assessment and mentoring work?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-4" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-4" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">A jelentkezés után egy online beszélgetés keretében felmérjük a tudásszintedet és céljaidat. A mentoring heti rendszerességű élő konzultációkból, folyamatos kód-felülvizsgálatból (code review) és személyre szabott feladatokból áll.</span>
               <span class="lang-en lang-hidden">After applying, we assess your level and goals during an online call. Mentoring consists of weekly live sessions, continuous code reviews, and custom tasks tailored to your progress.</span>
             </div>
           </div>
 
           <!-- FAQ 5 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-5')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-5')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Van lehetőség részletfizetésre?</span>
                 <span class="lang-en lang-hidden">Is there an option for installment payments?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-5" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-5" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Igen, a mentori csomagokra kamatmentes részletfizetési lehetőséget biztosítok, hogy megkönnyítsem az együttműködést. Részletekért keress engem az ingyenes konzultáción!</span>
               <span class="lang-en lang-hidden">Yes, I offer interest-free installment options for my mentoring packages to make collaboration easier. Ask for details during your free consultation!</span>
             </div>
           </div>
 
           <!-- FAQ 6 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-6')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-6')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Mi történik, ha lemaradok egy élő alkalomról?</span>
                 <span class="lang-en lang-hidden">What happens if I miss a live session?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-6" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-6" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Minden élő előadást és konzultációt videóra rögzítek, amelyeket zárt csoportban, biztonságosan megosztott linken keresztül korlátlanul visszanézhetsz bármikor.</span>
               <span class="lang-en lang-hidden">All live lectures and consultations are recorded and shared securely via a private link, giving you unlimited lifetime access to review them at your own pace.</span>
             </div>
           </div>
 
           <!-- FAQ 7 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-7')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-7')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Kezdőként mennyi idő alatt válhatok automatizáló tesztelővé?</span>
                 <span class="lang-en lang-hidden">As a beginner, how long does it take to become an automation engineer?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-7" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-7" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Alapvetően 4-6 hónap intenzív tanulás és kitartó otthoni gyakorlás szükséges ahhoz, hogy magabiztos junior tesztautomatizáló pozícióra pályázhass.</span>
               <span class="lang-en lang-hidden">Generally, it takes 4 to 6 months of focused study and dedicated practice to prepare for junior test automation roles.</span>
             </div>
           </div>
 
           <!-- FAQ 8 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-8')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-8')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Miben különbözik a TestAcademy más bootcampektől?</span>
                 <span class="lang-en lang-hidden">How is TestAcademy different from other bootcamps?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-8" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
-              <span class="lang-hu">Nálam nincsenek elavult elméleti anyagok és unalmas diasorok. 10+ év lead tapasztalattal rendelkező mentorként közvetlenül éles projekteken keresztül adom át neked a legfrissebb technológiákat (Java 17, Selenide, REST Assured).</span>
-              <span class="lang-en lang-hidden">I don't do outdated slide decks or theoretical overhead. You gain skills in the absolute latest technologies (Java 17, Selenide, REST Assured) directly from a mentor with 10+ years of lead experience through live project work.</span>
+            <div id="faq-8" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
+              <span class="lang-hu">Nálam nincsenek elavult elméleti anyagok és unalmas diasorok. 10+ év senior tapasztalattal rendelkező mentorként közvetlenül éles projekteken keresztül adom át neked a legfrissebb technológiákat (Java 17, Selenide, REST Assured).</span>
+              <span class="lang-en lang-hidden">I don't do outdated slide decks or theoretical overhead. You gain skills in the absolute latest technologies (Java 17, Selenide, REST Assured) directly from a mentor with 10+ years of senior experience through live project work.</span>
             </div>
           </div>
 
           <!-- FAQ 9 -->
-          <div class="bg-slate-800/30 border border-slate-800 rounded-2xl overflow-hidden transition-all">
-            <button onclick="toggleElement('faq-9')" class="w-full text-left p-6 font-bold text-white italic flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+          <div class="bg-white border border-slate-200/60 rounded-2xl overflow-hidden shadow-sm transition-all">
+            <button onclick="app.toggleElement('faq-9')" class="w-full text-left p-6 font-bold text-slate-900 italic flex justify-between items-center hover:bg-slate-50 transition-colors">
               <span>
                 <span class="lang-hu">Kapok valamilyen igazolást az együttműködés végén?</span>
                 <span class="lang-en lang-hidden">Do I receive a certificate at the end of the collaboration?</span>
               </span>
-              <span class="text-blue-500 font-black">▼</span>
+              <span class="text-blue-600 font-black">▼</span>
             </button>
-            <div id="faq-9" class="faq-answer bg-slate-800/50 border-t border-slate-700 p-6 text-sm text-slate-400 italic">
+            <div id="faq-9" class="faq-answer bg-slate-50 border-t border-slate-100 p-6 text-sm text-slate-600 italic">
               <span class="lang-hu">Igen, a sikeres projektmunkák és a keretrendszer megépítése után egy kétnyelvű (magyar-angol) TestAcademy igazolást állítok ki, amely hitelesen tanúsítja a gyakorlati tudásodat.</span>
               <span class="lang-en lang-hidden">Yes, upon successfully completing the hands-on project and building your framework, I issue a bilingual (HU-EN) TestAcademy certificate verifying your hands-on engineering skills.</span>
             </div>
@@ -1100,10 +1596,10 @@
         </section>
       </main>
 
-      <footer class="border-t border-slate-800 py-20 text-center bg-slate-950">
-        <p class="text-xl font-black text-white mb-2 italic">daniel.borbas@testacademy.hu</p>
-        <p class="text-slate-400 mb-8 font-bold">+36 30 309 3302</p>
-        <p class="text-[8px] text-slate-700 uppercase tracking-[1.5em] font-bold">
+      <footer class="border-t border-slate-200 py-12 text-center bg-white">
+        <p class="text-xl font-black text-slate-900 mb-2 italic">daniel.borbas@testacademy.hu</p>
+        <p class="text-slate-600 mb-8 font-bold">+36 30 309 3302</p>
+        <p class="text-[8px] text-slate-400 uppercase tracking-[1.5em] font-bold">
           &copy; 2026 TestAcademy
         </p>
       </footer>
@@ -1131,21 +1627,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2, 6, 23, 0.95);
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(8px);
           "
-          onclick="closeContractModal()"
+          onclick="app.closeContractModal()"
         ></div>
         <div
           style="
             position: relative;
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             width: 100%;
             max-width: 800px;
             max-height: 80vh;
             border-radius: 40px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -1153,12 +1649,12 @@
           "
         >
           <button
-            onclick="closeContractModal()"
+            onclick="app.closeContractModal()"
             style="
               position: absolute;
               top: 20px;
               right: 25px;
-              color: #94a3b8;
+              color: #64748b;
               font-size: 30px;
               border: none;
               background: none;
@@ -1173,7 +1669,7 @@
             style="
               overflow-y: auto;
               padding: 40px;
-              color: #cbd5e1;
+              color: #334155;
               font-family: sans-serif;
               font-style: italic;
               line-height: 1.6;
@@ -1185,152 +1681,322 @@
     </div>
 
     <script>
-      const courseOptions = {
-        hu: [
-          { val: "Manual", text: "Junior Manual (149k Ft)" },
-          { val: "Playwright", text: "Modern Playwright Automation (299k Ft)" },
-          { val: "Automation", text: "Enterprise Java Automation (299k Ft)" },
-          { val: "Masterclass", text: "Zero to Hero Masterclass (399k Ft)" },
-          { val: "Mentoring", text: "Konzultáció (15k/óra)" },
-          { val: "Corporate", text: "Vállalati Műhelymunka" }
-        ],
-        en: [
-          { val: "Manual", text: "Junior Manual (149k Ft)" },
-          { val: "Playwright", text: "Modern Playwright Automation (299k Ft)" },
-          { val: "Automation", text: "Enterprise Java Automation (299k Ft)" },
-          { val: "Masterclass", text: "Zero to Hero Masterclass (399k Ft)" },
-          { val: "Mentoring", text: "Consultation (15k/hr)" },
-          { val: "Corporate", text: "Corporate Quote" }
-        ]
-      };
+      class TestAcademyApp {
+        constructor() {
+          this.courseOptions = {
+            hu: [
+              { val: "AI-Basics", text: "Gyakorlati AI Alapok (59k Ft)" },
+              { val: "Manual", text: "Junior Manual QA (249k Ft)" },
+              { val: "Playwright", text: "Modern Playwright Automation (449k Ft)" },
+              { val: "Automation", text: "Enterprise Java Automation (449k Ft)" },
+              { val: "Masterclass", text: "Zero to Hero Masterclass (649k Ft)" },
+              { val: "Mentoring", text: "Konzultáció (22k/óra)" },
+              { val: "Corporate", text: "Vállalati Műhelymunka" }
+            ],
+            en: [
+              { val: "AI-Basics", text: "Practical AI Foundations (59k Ft)" },
+              { val: "Manual", text: "Junior Manual QA (249k Ft)" },
+              { val: "Playwright", text: "Modern Playwright Automation (449k Ft)" },
+              { val: "Automation", text: "Enterprise Java Automation (449k Ft)" },
+              { val: "Masterclass", text: "Zero to Hero Masterclass (649k Ft)" },
+              { val: "Mentoring", text: "Consultation (22k/hr)" },
+              { val: "Corporate", text: "Corporate Quote" }
+            ]
+          };
 
-      function setLanguage(lang) {
-        const huElements = document.querySelectorAll(".lang-hu");
-        const enElements = document.querySelectorAll(".lang-en");
-        const btnHu = document.getElementById("btn-hu");
-        const btnEn = document.getElementById("btn-en");
-        const select = document.getElementById("form-course");
+          this.calcState = {
+            baseCourse: {
+              id: "ai-basics",
+              price: 59000,
+              nameHu: "Gyakorlati AI Alapok (Kódolás nélkül)",
+              nameEn: "Practical AI Foundations (No-code)",
+              formVal: "AI-Basics"
+            },
+            addons: []
+          };
 
-        if (lang === "hu") {
-          huElements.forEach((el) => el.classList.remove("lang-hidden"));
-          enElements.forEach((el) => el.classList.add("lang-hidden"));
-          btnHu.className =
-            "px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase";
-          btnEn.className =
-            "px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase";
-          
-          document.title = "TestAcademy | Senior QA Mentoring & AI Automatizáció";
-          const metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) {
-            metaDesc.setAttribute("content", "Senior QA Mentoring, Java 17, Selenide automatizációs tanácsadás és mentori támogatás. Valódi funkcionális tudás.");
-          }
-        } else {
-          huElements.forEach((el) => el.classList.add("lang-hidden"));
-          enElements.forEach((el) => el.classList.remove("lang-hidden"));
-          btnEn.className =
-            "px-3 py-1 rounded-md transition-all bg-blue-500 text-white font-bold text-xs uppercase";
-          btnHu.className =
-            "px-3 py-1 rounded-md transition-all text-slate-400 hover:text-white font-bold text-xs uppercase";
-          
-          document.title = "TestAcademy | Senior QA Mentoring & AI Automation";
-          const metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) {
-            metaDesc.setAttribute("content", "Senior QA Mentoring, Java 17, Selenide automation consulting and mentoring. Real functional knowledge.");
-          }
+          this.courseFormValMap = {
+            "ai-basics": "AI-Basics",
+            "manual": "Manual",
+            "playwright": "Playwright",
+            "java": "Automation",
+            "masterclass": "Masterclass"
+          };
+
+          this.init();
         }
-        
-        if (select) {
-          select.innerHTML = courseOptions[lang]
-            .map((opt) => `<option value="${opt.val}">${opt.text}</option>`)
-            .join("");
-        }
-        localStorage.setItem("preferredLang", lang);
-      }
 
-      function toggleElement(id) {
-        const el = document.getElementById(id);
-        if (el) {
-          el.classList.toggle("active");
+        init() {
+          const savedLang = localStorage.getItem("preferredLang") || "hu";
+          this.setLanguage(savedLang);
+          this.initStickyBar();
+          this.calcUpdate();
         }
-      }
 
-      function scrollTestimonials(direction) {
-        const track = document.getElementById("testimonials-track");
-        if (track) {
-          const cardWidth = track.firstElementChild.getBoundingClientRect().width;
-          const gap = 32; // gap-8 = 32px
-          const step = cardWidth + gap;
-          
-          const currentScroll = track.scrollLeft;
-          const maxScroll = track.scrollWidth - track.clientWidth;
-          
-          // Check for wrap-around conditions
-          if (direction === 1 && currentScroll >= maxScroll - 15) {
-            // At the end, wrap to start
-            track.scrollTo({ left: 0, behavior: "smooth" });
-          } else if (direction === -1 && currentScroll <= 15) {
-            // At the start, wrap to end
-            track.scrollTo({ left: maxScroll, behavior: "smooth" });
+        setLanguage(lang) {
+          const huElements = document.querySelectorAll(".lang-hu");
+          const enElements = document.querySelectorAll(".lang-en");
+          const btnHu = document.getElementById("btn-hu");
+          const btnEn = document.getElementById("btn-en");
+          const select = document.getElementById("form-course");
+
+          if (lang === "hu") {
+            huElements.forEach((el) => el.classList.remove("lang-hidden"));
+            enElements.forEach((el) => el.classList.add("lang-hidden"));
+            btnHu.className = "px-3 py-1 rounded-full transition-all bg-sky-600 text-white font-bold text-xs uppercase shadow-sm";
+            btnEn.className = "px-3 py-1 rounded-full transition-all text-slate-500 hover:text-slate-800 font-bold text-xs uppercase";
+            
+            document.title = "TestAcademy | Senior QA Mentoring & Gyakorlati AI Képzések";
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+              metaDesc.setAttribute("content", "Gyakorlati AI alapképzések kódolás nélkül és Senior QA Mentoring Borbás Dánieltől. Valódi funkcionális tudás.");
+            }
           } else {
-            // Scroll normally
-            track.scrollTo({ left: currentScroll + direction * step, behavior: "smooth" });
+            huElements.forEach((el) => el.classList.add("lang-hidden"));
+            enElements.forEach((el) => el.classList.remove("lang-hidden"));
+            btnEn.className = "px-3 py-1 rounded-full transition-all bg-sky-600 text-white font-bold text-xs uppercase shadow-sm";
+            btnHu.className = "px-3 py-1 rounded-full transition-all text-slate-500 hover:text-slate-800 font-bold text-xs uppercase";
+            
+            document.title = "TestAcademy | Senior QA Mentoring & Practical AI Training";
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+              metaDesc.setAttribute("content", "Practical no-code AI foundations and Senior QA Mentoring by Dániel Borbás. Real functional knowledge.");
+            }
+          }
+          
+          if (select) {
+            const currentVal = select.value || "AI-Basics";
+            select.innerHTML = this.courseOptions[lang]
+              .map((opt) => `<option value="${opt.val}">${opt.text}</option>`)
+              .join("");
+            select.value = currentVal;
+          }
+          localStorage.setItem("preferredLang", lang);
+          this.calcUpdate();
+        }
+
+        toggleElement(id) {
+          const el = document.getElementById(id);
+          if (el) {
+            el.classList.toggle("active");
           }
         }
-      }
 
+        /* Calculator Methods */
+        calcSelectCourse(id, price, nameHu, nameEn) {
+          this.calcState.baseCourse = {
+            id,
+            price,
+            nameHu,
+            nameEn,
+            formVal: this.courseFormValMap[id] || "AI-Basics"
+          };
 
+          const cards = document.querySelectorAll("#calc-course-options .calc-card");
+          cards.forEach((card) => {
+            if (card.getAttribute("data-course-id") === id) {
+              card.classList.add("is-selected");
+            } else {
+              card.classList.remove("is-selected");
+            }
+          });
 
-      function openContractModal(event) {
-        if (event) event.preventDefault();
-        const modal = document.getElementById("contract-modal");
-        const content = document.getElementById("contract-modal-content");
-        const lang = localStorage.getItem("preferredLang") || "hu";
-        
-        if (lang === "hu") {
-          content.innerHTML = `
-            <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: white; font-style: italic; text-transform: uppercase;">MENTORI ÉS SZAKÉRTŐI KONZULTÁCIÓS SZERZŐDÉS TERVEZET</h1>
-            <p style="margin-bottom: 15px; color: #94a3b8;">Ez a dokumentum a TestAcademy mentori támogatás és szakértői konzultáció általános szerződéses feltételeinek tervezete (Megbízási Szerződés a Ptk. 6:272. § alapján).</p>
-            <hr style="border: 0; border-top: 1px solid #1e293b; margin-bottom: 20px;" />
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">1. A Szerződés háttere és célja</h2>
-            <p style="margin-bottom: 15px;">A szolgáltatás egyéni megbízáson alapuló, rugalmas szakértői konzultáció, stratégiai egyeztetés és egyénre szabott szakmai műhelymunka (workshop). Nem minősül felnőttképzési törvény hatálya alá tartozó kötött oktatási tevékenységnek.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">2. A Szolgáltatás tartalma</h2>
-            <p style="margin-bottom: 15px;">Személyre szabott szakmai konzultáció, kód-felülvizsgálat (code review), gyakorlati műhelymunka és szoftvertesztelési/automatizálási projektek közös auditálása és optimalizálása.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">3. Szellemi Tulajdon és Titoktartás (IP-Védelem)</h2>
-            <p style="margin-bottom: 15px;">A konzultációk során átadott minden szakmai anyag, kódpélda és egyedi TestAcademy struktúra a Mentor kizárólagos szellemi tulajdonát képezi. Az Ügyfél ezt kizárólag saját belső céljaira használhatja fel. Szigorúan tilos az anyagokat harmadik fél számára továbbadni, közzétenni, oktatási vagy egyéb üzleti célból terjeszteni vagy értékesíteni.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">4. Adatkezelés és Titoktartás</h2>
-            <p style="margin-bottom: 15px;">A Felek a teljesítés során megismert minden projektadatot és üzleti információt bizalmasan kezelnek. Személyes adataidat kizárólag a szerződés teljesítése és számlázás céljából kezeljük, harmadik félnek nem adjuk át.</p>
-            <p style="margin-top: 25px; font-weight: bold; color: #60a5fa;">A teljes hivatalos szerződéstervezetet a jelentkezésed után, a személyes egyeztetés alkalmával küldjük el részedre.</p>
-          `;
-        } else {
-          content.innerHTML = `
-            <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: white; font-style: italic; text-transform: uppercase;">MENTORING & CONSULTING AGREEMENT DRAFT</h1>
-            <p style="margin-bottom: 15px; color: #94a3b8;">This document is a draft of the general terms for TestAcademy mentoring support and professional consulting (Service Agreement under Hungarian Civil Code Section 6:272).</p>
-            <hr style="border: 0; border-top: 1px solid #1e293b; margin-bottom: 20px;" />
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">1. Scope & Objective</h2>
-            <p style="margin-bottom: 15px;">The services are custom, flexible expert consultations, strategic alignment, and practical B2B/individual workshops. They do not constitute government-regulated curriculum training.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">2. Mentoring Contents</h2>
-            <p style="margin-bottom: 15px;">Custom engineering support, detailed code reviews, hands-on workshops, and collaborative testing framework auditing/optimization.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">3. Intellectual Property (IP Protection) & NDA</h2>
-            <p style="margin-bottom: 15px;">All technical guides, code snippets, and custom TestAcademy structures provided during mentoring are the exclusive intellectual property of the Mentor. The Client is authorized to use them for internal purposes only. Distribution, publication, copying, or reselling of these materials to any third party is strictly prohibited.</p>
-            <h2 style="font-size: 18px; font-weight: 700; color: white; margin-top: 15px; margin-bottom: 10px;">4. Privacy & Confidentiality</h2>
-            <p style="margin-bottom: 15px;">Both parties agree to treat all business information and project details disclosed during consultations as highly confidential. Personal data is processed strictly in accordance with GDPR for billing and contract execution only.</p>
-            <p style="margin-top: 25px; font-weight: bold; color: #60a5fa;">The full official agreement template will be provided to you during our initial introductory call after submission.</p>
-          `;
+          this.calcUpdate();
         }
-        
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-      }
 
-      function closeContractModal() {
-        const modal = document.getElementById("contract-modal");
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
+        calcToggleAddon(id, price, name, checkbox) {
+          if (checkbox.checked) {
+            if (!this.calcState.addons.some((a) => a.id === id)) {
+              this.calcState.addons.push({ id, price, name });
+            }
+            checkbox.closest(".calc-addon-row")?.classList.add("is-selected");
+          } else {
+            this.calcState.addons = this.calcState.addons.filter((a) => a.id !== id);
+            checkbox.closest(".calc-addon-row")?.classList.remove("is-selected");
+          }
+          this.calcUpdate();
+        }
+
+        calcUpdate() {
+          const lang = localStorage.getItem("preferredLang") || "hu";
+          const basePrice = this.calcState.baseCourse.price || 0;
+          const addonsPrice = this.calcState.addons.reduce((sum, item) => sum + item.price, 0);
+          const total = basePrice + addonsPrice;
+
+          const formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " Ft";
+
+          const totalDisplay = document.getElementById("calc-total-display");
+          const stickyPrice = document.getElementById("calc-sticky-price");
+          if (totalDisplay) totalDisplay.textContent = formattedTotal;
+          if (stickyPrice) stickyPrice.textContent = formattedTotal;
+
+          const summaryItemsEl = document.getElementById("calc-summary-items");
+          if (summaryItemsEl) {
+            const baseName = lang === "en" ? this.calcState.baseCourse.nameEn : this.calcState.baseCourse.nameHu;
+            let html = `
+              <li class="flex items-center gap-2">
+                <span class="text-teal-600 font-bold">✓</span>
+                <span class="font-semibold text-slate-800">${baseName}</span>
+                <span class="text-slate-400 font-normal">(${this.calcState.baseCourse.price.toLocaleString("hu-HU")} Ft)</span>
+              </li>
+            `;
+
+            this.calcState.addons.forEach((addon) => {
+              html += `
+                <li class="flex items-center gap-2 text-slate-700">
+                  <span class="text-sky-600 font-bold">+</span>
+                  <span>${addon.name}</span>
+                  <span class="text-slate-400">(${addon.price.toLocaleString("hu-HU")} Ft)</span>
+                </li>
+              `;
+            });
+
+            summaryItemsEl.innerHTML = html;
+          }
+        }
+
+        calcProceedToEnroll() {
+          const formCourseSelect = document.getElementById("form-course");
+          if (formCourseSelect && this.calcState.baseCourse.formVal) {
+            formCourseSelect.value = this.calcState.baseCourse.formVal;
+          }
+
+          const joinSection = document.getElementById("join");
+          if (joinSection) {
+            joinSection.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              const nameInput = document.getElementById("form-name");
+              if (nameInput) nameInput.focus();
+            }, 600);
+          }
+        }
+
+        selectCourseInForm(courseVal) {
+          const formCourseSelect = document.getElementById("form-course");
+          if (formCourseSelect) {
+            formCourseSelect.value = courseVal;
+          }
+          const joinSection = document.getElementById("join");
+          if (joinSection) {
+            joinSection.scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => {
+              const nameInput = document.getElementById("form-name");
+              if (nameInput) nameInput.focus();
+            }, 600);
+          }
+        }
+
+        initStickyBar() {
+          const calcSection = document.getElementById("kalkulator");
+          const stickyBar = document.getElementById("calc-sticky-bar");
+          const joinSection = document.getElementById("join");
+
+          if (!calcSection || !stickyBar || typeof IntersectionObserver === "undefined") return;
+
+          let calcInView = false;
+          let joinInView = false;
+
+          const updateVisibility = () => {
+            // Show sticky bar only when in calculator section, but hide once user reaches the form
+            if (calcInView && !joinInView) {
+              stickyBar.classList.add("is-visible");
+            } else {
+              stickyBar.classList.remove("is-visible");
+            }
+          };
+
+          const calcObserver = new IntersectionObserver(
+            ([entry]) => {
+              calcInView = entry.isIntersecting;
+              updateVisibility();
+            },
+            { threshold: 0.05 }
+          );
+          calcObserver.observe(calcSection);
+
+          if (joinSection) {
+            const joinObserver = new IntersectionObserver(
+              ([entry]) => {
+                joinInView = entry.isIntersecting;
+                updateVisibility();
+              },
+              { threshold: 0.1 }
+            );
+            joinObserver.observe(joinSection);
+          }
+        }
+
+        scrollTestimonials(direction) {
+          const track = document.getElementById("testimonials-track");
+          if (track) {
+            const cardWidth = track.firstElementChild.getBoundingClientRect().width;
+            const gap = 32; // gap-8 = 32px
+            const step = cardWidth + gap;
+            
+            const currentScroll = track.scrollLeft;
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            
+            if (direction === 1 && currentScroll >= maxScroll - 15) {
+              track.scrollTo({ left: 0, behavior: "smooth" });
+            } else if (direction === -1 && currentScroll <= 15) {
+              track.scrollTo({ left: maxScroll, behavior: "smooth" });
+            } else {
+              track.scrollTo({ left: currentScroll + direction * step, behavior: "smooth" });
+            }
+          }
+        }
+
+        openContractModal(event) {
+          if (event) event.preventDefault();
+          const modal = document.getElementById("contract-modal");
+          const content = document.getElementById("contract-modal-content");
+          const lang = localStorage.getItem("preferredLang") || "hu";
+          
+          if (lang === "hu") {
+            content.innerHTML = `
+              <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: #0f172a; font-style: italic; text-transform: uppercase;">MENTORI ÉS SZAKÉRTŐI KONZULTÁCIÓS SZERZŐDÉS TERVEZET</h1>
+              <p style="margin-bottom: 15px; color: #64748b;">Ez a dokumentum a TestAcademy mentori támogatás és szakértői konzultáció általános szerződéses feltételeinek tervezete (Megbízási Szerződés a Ptk. 6:272. § alapján).</p>
+              <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 20px;" />
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">1. A Szerződés háttere és célja</h2>
+              <p style="margin-bottom: 15px;">A szolgáltatás egyéni megbízáson alapuló, rugalmas szakértői konzultáció, stratégiai egyeztetés és egyénre szabott szakmai műhelymunka (workshop). Nem minősül felnőttképzési törvény hatálya alá tartozó kötött oktatási tevékenységnek.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">2. A Szolgáltatás tartalma</h2>
+              <p style="margin-bottom: 15px;">Személyre szabott szakmai konzultáció, kód-felülvizsgálat (code review), gyakorlati műhelymunka és szoftvertesztelési/automatizálási projektek közös auditálása és optimalizálása.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">3. Szellemi Tulajdon és Titoktartás (IP-Védelem)</h2>
+              <p style="margin-bottom: 15px;">A konzultációk során átadott minden szakmai anyag, kódpélda és egyedi TestAcademy struktúra a Mentor kizárólagos szellemi tulajdonát képezi. Az Ügyfél ezt kizárólag saját belső céljaira használhatja fel. Szigorúan tilos az anyagokat harmadik fél számára továbbadni, közzétenni, oktatási vagy egyéb üzleti célból terjeszteni vagy értékesíteni.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">4. Adatkezelés és Titoktartás</h2>
+              <p style="margin-bottom: 15px;">A Felek a teljesítés során megismert minden projektadatot és üzleti információt bizalmasan kezelnek. Személyes adataidat kizárólag a szerződés teljesítése és számlázás céljából kezeljük, harmadik félnek nem adjuk át.</p>
+              <p style="margin-top: 25px; font-weight: bold; color: #2563eb;">A teljes hivatalos szerződéstervezetet a jelentkezésed után, a személyes egyeztetés alkalmával küldjük el részedre.</p>
+            `;
+          } else {
+            content.innerHTML = `
+              <h1 style="font-size: 28px; font-weight: 900; margin-bottom: 20px; color: #0f172a; font-style: italic; text-transform: uppercase;">MENTORING & CONSULTING AGREEMENT DRAFT</h1>
+              <p style="margin-bottom: 15px; color: #64748b;">This document is a draft of the general terms for TestAcademy mentoring support and professional consulting (Service Agreement under Hungarian Civil Code Section 6:272).</p>
+              <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-bottom: 20px;" />
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">1. Scope & Objective</h2>
+              <p style="margin-bottom: 15px;">The services are custom, flexible expert consultations, strategic alignment, and practical B2B/individual workshops. They do not constitute government-regulated curriculum training.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">2. Mentoring Contents</h2>
+              <p style="margin-bottom: 15px;">Custom engineering support, detailed code reviews, hands-on workshops, and collaborative testing framework auditing/optimization.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">3. Intellectual Property (IP Protection) & NDA</h2>
+              <p style="margin-bottom: 15px;">All technical guides, code snippets, and custom TestAcademy structures provided during mentoring are the exclusive intellectual property of the Mentor. The Client is authorized to use them for internal purposes only. Distribution, publication, copying, or reselling of these materials to any third party is strictly prohibited.</p>
+              <h2 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 15px; margin-bottom: 10px;">4. Privacy & Confidentiality</h2>
+              <p style="margin-bottom: 15px;">Both parties agree to treat all business information and project details disclosed during consultations as highly confidential. Personal data is processed strictly in accordance with GDPR for billing and contract execution only.</p>
+              <p style="margin-top: 25px; font-weight: bold; color: #2563eb;">The full official agreement template will be provided to you during our initial introductory call after submission.</p>
+            `;
+          }
+          
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        }
+
+        closeContractModal() {
+          const modal = document.getElementById("contract-modal");
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
       }
 
       window.onload = () => {
-        const savedLang = localStorage.getItem("preferredLang") || "hu";
-        setLanguage(savedLang);
+        window.app = new TestAcademyApp();
       };
     </script>
   </body>
