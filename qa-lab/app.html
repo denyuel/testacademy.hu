@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestAcademy Workshop & Foglalási Rendszer</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --gold: #d4af37;
+      --danger: #ef4444;
+      --success: #10b981;
+      --radius: 12px;
+      --radius-pill: 50px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* GATE OVERLAY IF NOT AUTHENTICATED */
+    #gate-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999999;
+    }
+
+    .gate-card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* NAVBAR */
+    .app-navbar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      /* INTENTIONAL BUG: z-index is higher than modal (1000 vs 999) */
+      z-index: 1000;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #d4af37, #f59e0b);
+      color: #0f172a;
+      font-weight: 900;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .env-tag {
+      background: #1e293b;
+      color: #38bdf8;
+      border: 1px solid #334155;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1040px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 860px) {
+      .app-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* WORKSHOPS */
+    .workshop-select-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .workshop-option {
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
+    }
+
+    .workshop-option.selected {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .workshop-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .workshop-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .workshop-price {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #2563eb;
+    }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.15rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: #334155; margin-bottom: 0.4rem; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #2563eb; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+
+    /* SUMMARY */
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 0.65rem;
+      color: #475569;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-top: 1.25rem;
+      padding-top: 0.85rem;
+      border-top: 2px dashed #e2e8f0;
+    }
+
+    .coupon-box {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn-apply-coupon {
+      padding: 0.75rem 1rem;
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-apply-coupon:hover { background: #1e293b; }
+
+    /* INTENTIONAL BUG: 330px min-width overflow on 320/375px mobile screens */
+    .btn-checkout-container {
+      margin-top: 1.5rem;
+      min-width: 335px;
+    }
+
+    .btn-submit-booking {
+      width: 100%;
+      padding: 0.95rem;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+    }
+    .btn-submit-booking:hover { background: #1d4ed8; }
+
+    /* INTENTIONAL BUG: Ghost text hover bug */
+    .btn-secondary-cancel {
+      width: 100%;
+      margin-top: 0.65rem;
+      padding: 0.75rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary-cancel:hover {
+      background: #ffffff;
+      color: #ffffff; /* GHOST BUG */
+      border-color: #cbd5e1;
+    }
+
+    /* TABLE */
+    .data-table-wrapper { overflow-x: auto; }
+    .qa-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    .qa-table th {
+      background: #f8fafc; padding: 0.75rem 0.85rem; font-weight: 700; color: #334155; border-bottom: 2px solid #e2e8f0; cursor: pointer; user-select: none;
+    }
+    .qa-table th:hover { background: #f1f5f9; }
+    .qa-table td { padding: 0.75rem 0.85rem; border-bottom: 1px solid #f1f5f9; color: #475569; }
+    .qa-table tr:hover { background: #f8fafc; }
+
+    .btn-delete-row {
+      background: #fee2e2; color: #b91c1c; border: none; padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer;
+    }
+
+    /* MODAL */
+    #qa-modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      display: none; align-items: center; justify-content: center;
+      /* INTENTIONAL BUG: z-index is 999 while navbar is 1000 */
+      z-index: 999;
+    }
+
+    .qa-modal-box {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 480px;
+      padding: 2rem;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    /* INTENTIONAL BUG: Close X does not work */
+    .modal-close-x {
+      position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: none; font-size: 1.5rem; color: #94a3b8; cursor: pointer;
+    }
+
+    .modal-actions {
+      display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GATE IF SESSION NOT PRESENT -->
+  <div id="gate-overlay">
+    <div class="gate-card">
+      <h2 style="margin-bottom:0.75rem; color:#0f172a;">Zárt Tesztkörnyezet</h2>
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Kérjük add meg a belépési kódodat a folytatáshoz!</p>
+      <input type="password" id="app-gate-pass" class="form-input" style="text-align:center; font-size:1rem; margin-bottom:1rem;" placeholder="Belépési kód">
+      <button class="btn-submit-booking" onclick="unlockApp()">Belépés</button>
+      <div id="app-gate-err" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Helytelen belépési kód!</div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="app-navbar">
+    <div class="brand-wrap">
+      <span class="brand-badge">TA</span>
+      <div>
+        <div class="brand-title">TestAcademy Workshop Portál</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <span class="env-tag">B2B Sandbox v2.4.1</span>
+      <a href="index.html" style="color:#94a3b8; font-size:0.8rem; text-decoration:none;">&larr; Vissza a Feladatokhoz</a>
+    </div>
+  </nav>
+
+  <!-- MAIN APP -->
+  <main class="main-container">
+
+    <div class="app-grid">
+      
+      <!-- BAL OSZLOP: ŰRLAP -->
+      <div class="card">
+        <div class="card-title">
+          <span>1. Válassz Workshopot & Képzést</span>
+          <span style="font-size:0.8rem; color:#64748b; font-weight:normal;">Kötelező mezők *</span>
+        </div>
+
+        <div class="workshop-select-grid">
+          <div class="workshop-option selected" onclick="selectWorkshop(this, 'Manual QA Masterclass', 49000)">
+            <div>
+              <div class="workshop-name">Manual QA & Teszttervezés Masterclass</div>
+              <div class="workshop-meta">4 alkalom • Kezdő / Újrakezdő szint</div>
+            </div>
+            <div class="workshop-price">49 000 Ft</div>
+          </div>
+
+          <div class="workshop-option" onclick="selectWorkshop(this, 'API & Postman Alapok', 65000)">
+            <div>
+              <div class="workshop-name">API Tesztelés & Postman Gyakorlat</div>
+              <div class="workshop-meta">5 alkalom • Haladó manuális szint</div>
+            </div>
+            <div class="workshop-price">65 000 Ft</div>
+          </div>
+
+          <div class="workshop-option" onclick="selectWorkshop(this, 'SQL Adatbázis Tesztelés', 55000)">
+            <div>
+              <div class="workshop-name">SQL Lekérdezések QA Szemmel</div>
+              <div class="workshop-meta">3 alkalom • Adatbázis validáció</div>
+            </div>
+            <div class="workshop-price">55 000 Ft</div>
+          </div>
+        </div>
+
+        <div class="card-title" style="margin-top:1.75rem;">
+          <span>2. Résztvevő Adatai</span>
+        </div>
+
+        <form id="booking-form" onsubmit="handleBookingSubmit(event)">
+          <!-- Név (INTENTIONAL BUG: Whitespace-only elfogadva) -->
+          <div class="form-group">
+            <label class="form-label">Teljes Név *</label>
+            <input type="text" id="cust-name" class="form-input" placeholder="pl. Tesztelő Tamás" required>
+          </div>
+
+          <div class="form-row-2">
+            <!-- E-mail -->
+            <div class="form-group">
+              <label class="form-label">E-mail Cím *</label>
+              <input type="text" id="cust-email" class="form-input" placeholder="tamas@pelda.hu" required>
+            </div>
+            <!-- Telefonszám (INTENTIONAL BUG: Betűket enged, elküldéskor némán elakad) -->
+            <div class="form-group">
+              <label class="form-label">Telefonszám (Phone Number) *</label>
+              <input type="text" id="cust-phone" class="form-input" placeholder="+36 30 123 4567" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <!-- Dátum (INTENTIONAL BUG: Múltbéli dátumot enged!) -->
+            <div class="form-group">
+              <label class="form-label">Kezdés Időpontja *</label>
+              <input type="date" id="cust-date" class="form-input" required>
+            </div>
+
+            <!-- Résztvevők száma (INTENTIONAL BUG: nincs min="1", lemegy negatívba!) -->
+            <div class="form-group">
+              <label class="form-label">Résztvevők Száma</label>
+              <input type="number" id="cust-qty" class="form-input" value="1" oninput="recalcTotal()">
+            </div>
+          </div>
+
+          <!-- Megjegyzés (INTENTIONAL BUG: 250+ karakter triggers raw DB alert) -->
+          <div class="form-group">
+            <label class="form-label">Különleges kérések / Megjegyzés (max 250 karakter)</label>
+            <textarea id="cust-notes" class="form-textarea" rows="3" placeholder="Ide írd ha kérsz számlát vagy van speciális kérésed..."></textarea>
+          </div>
+
+          <button type="submit" style="display:none;" id="hidden-submit"></button>
+        </form>
+
+      </div>
+
+      <!-- JOBB OSZLOP: ÖSSZESÍTŐ -->
+      <div class="card">
+        <div class="card-title">
+          <span>Rendelés Összegzése</span>
+        </div>
+
+        <div class="summary-row">
+          <span id="sum-name">Manual QA Masterclass</span>
+          <span id="sum-base-price">49 000 Ft</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Résztvevők száma:</span>
+          <span id="sum-qty">1 fő</span>
+        </div>
+
+        <div class="summary-row" id="coupon-row" style="display:none; color:#10b981;">
+          <span>Kupon kedvezmény:</span>
+          <span id="sum-discount">-0 Ft</span>
+        </div>
+
+        <div class="summary-total">
+          <span>Végösszeg:</span>
+          <span id="sum-total" style="color:#2563eb;">49 000 Ft</span>
+        </div>
+
+        <!-- Kupon Mező (INTENTIONAL BUGS) -->
+        <div class="coupon-box">
+          <input type="text" id="coupon-input" class="form-input" placeholder="Kuponkód (pl. PROMO10)">
+          <button class="btn-apply-coupon" onclick="applyCoupon()">Érvényesítés</button>
+        </div>
+        <div id="coupon-msg" style="font-size:0.75rem; margin-top:0.4rem; display:none;"></div>
+
+        <!-- Fizetés Gomb Konténer (INTENTIONAL BUG: 335px overflow mobil nézetben) -->
+        <div class="btn-checkout-container">
+          <button class="btn-submit-booking" onclick="triggerBookingSubmit()">
+            Foglalás Leadása & Fizetés &rarr;
+          </button>
+          <!-- GHOST TEXT HOVER BUG -->
+          <button class="btn-secondary-cancel" onclick="resetBookingForm()">
+            Űrlap Törlése / Mégse
+          </button>
+        </div>
+
+        <div style="margin-top:1.5rem; font-size:0.75rem; color:#94a3b8; text-align:center;">
+          🔒 256-bit SSL titkosítás (B2B Sandbox Gateway)
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MEGLÉVŐ FOGLALÁSOK TÁBLÁZAT -->
+    <div class="card">
+      <div class="card-title">
+        <span>Rendszerben Rögzített Foglalások</span>
+        <button class="btn-apply-coupon" style="font-size:0.75rem; padding:0.35rem 0.85rem;" onclick="openTestModal()">
+          Felugró ablak teszt (Modal)
+        </button>
+      </div>
+
+      <div class="data-table-wrapper">
+        <table class="qa-table" id="bookings-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Név</th>
+              <th>Workshop</th>
+              <th>Dátum</th>
+              <!-- INTENTIONAL BUG: Fordított rendezési nyilak -->
+              <th onclick="toggleSortPrice()" title="Kattints a rendezéshez">
+                Ár (HUF) <span id="sort-icon">▲</span>
+              </th>
+              <th>Művelet</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-tbody">
+            <tr>
+              <td>#1001</td>
+              <td>Kovács Péter</td>
+              <td>Manual QA Masterclass</td>
+              <td>2026-10-15</td>
+              <td>49000</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(0)">Törlés</button></td>
+            </tr>
+            <tr>
+              <td>#1002</td>
+              <td>Nagy Ágnes</td>
+              <td>API & Postman Alapok</td>
+              <td>2026-10-18</td>
+              <td>65000</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(1)">Törlés</button></td>
+            </tr>
+            <tr>
+              <td>#1003</td>
+              <td>Tóth Béla</td>
+              <td>SQL Adatbázis Tesztelés</td>
+              <td>2026-10-22</td>
+              <td>55000</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(2)">Törlés</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL ABLAK (SZÁNDÉKOS HIBÁKKAL) -->
+  <div id="qa-modal-overlay">
+    <div class="qa-modal-box">
+      <!-- INTENTIONAL BUG: Az X nem zárja be az ablakot! -->
+      <button class="modal-close-x" onclick="modalXClicked()" title="Bezárás">×</button>
+      <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:0.5rem;">
+        Foglalás Megerősítése
+      </h3>
+      <p style="font-size:0.85rem; color:#64748b; line-height:1.4;">
+        Biztosan véglegesíteni szeretnéd a kiválasztott kurzus foglalását a megadott adatokkal?
+      </p>
+      <div id="modal-details" style="background:#f8fafc; padding:0.85rem; border-radius:8px; margin-top:1rem; font-size:0.85rem; border:1px solid #e2e8f0;">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary-cancel" style="width:auto; margin:0;" onclick="closeModal()">Mégse</button>
+        <button class="btn-apply-coupon" style="background:#2563eb;" onclick="confirmBookingSuccess()">Igen, Megerősítem</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // AUTH CHECK
+    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx'];
+    function checkAuth() {
+      if (sessionStorage.getItem('qa_lab_auth') === 'granted') {
+        document.getElementById('gate-overlay').style.display = 'none';
+      }
+    }
+    checkAuth();
+
+    function unlockApp() {
+      const val = document.getElementById('app-gate-pass').value.trim().toLowerCase();
+      if (VALID_PASSWORDS.includes(val)) {
+        sessionStorage.setItem('qa_lab_auth', 'granted');
+        document.getElementById('gate-overlay').style.display = 'none';
+      } else {
+        document.getElementById('app-gate-err').style.display = 'block';
+      }
+    }
+
+    // WORKSHOP SELECTION
+    let currentWorkshopName = "Manual QA Masterclass";
+    let currentWorkshopPrice = 49000;
+    let currentDiscountPercent = 0;
+
+    function selectWorkshop(element, name, price) {
+      document.querySelectorAll('.workshop-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      currentWorkshopName = name;
+      currentWorkshopPrice = price;
+      document.getElementById('sum-name').innerText = name;
+      document.getElementById('sum-base-price').innerText = formatHUF(price);
+      recalcTotal();
+    }
+
+    function recalcTotal() {
+      let qty = parseInt(document.getElementById('cust-qty').value, 10);
+      if (isNaN(qty)) qty = 0;
+
+      // INTENTIONAL BUG: Qty can be negative!
+      document.getElementById('sum-qty').innerText = `${qty} fő`;
+
+      let baseTotal = currentWorkshopPrice * qty;
+      let discountAmount = Math.round(baseTotal * (currentDiscountPercent / 100));
+
+      if (currentDiscountPercent > 0) {
+        document.getElementById('coupon-row').style.display = 'flex';
+        document.getElementById('sum-discount').innerText = `-${formatHUF(discountAmount)}`;
+      } else {
+        document.getElementById('coupon-row').style.display = 'none';
+      }
+
+      let grandTotal = baseTotal - discountAmount;
+      document.getElementById('sum-total').innerText = formatHUF(grandTotal);
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+      const msgEl = document.getElementById('coupon-msg');
+      msgEl.style.display = 'block';
+
+      if (code === 'PROMO10') {
+        currentDiscountPercent = 10;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 10% kedvezmény érvényesítve!';
+      } else if (code === 'DISCOUNT100') {
+        currentDiscountPercent = 100;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 100% ingyenes kupon érvényesítve!';
+      } else if (code === 'DISCOUNT150') {
+        // INTENTIONAL BUG: 150% discount produces negative price!
+        currentDiscountPercent = 150;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 150% Super VIP kupon érvényesítve! (Végösszeg negatívba fordul)';
+      } else {
+        currentDiscountPercent = 0;
+        msgEl.style.color = '#ef4444';
+        msgEl.innerText = '❌ Érvénytelen vagy lejárt kuponkód!';
+      }
+      recalcTotal();
+    }
+
+    function triggerBookingSubmit() {
+      document.getElementById('hidden-submit').click();
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const notes = document.getElementById('cust-notes').value;
+
+      // INTENTIONAL BUG: Whitespace-only name passes
+      if (name.trim() === '') {
+        console.warn("BUG: Whitespace-only name accepted by front-end validation!");
+      }
+
+      // INTENTIONAL BUG: Silent failure if phone contains letters
+      if (/[a-zA-Z]/.test(phone)) {
+        console.error("SILENT BUG: Phone contains letters, request silently dropped without user feedback.");
+        return;
+      }
+
+      // INTENTIONAL BUG: Notes > 250 characters triggers raw DB error alert
+      if (notes.length > 250) {
+        alert("CRITICAL DATABASE EXCEPTION: [Microsoft][ODBC Driver 17 for SQL Server] String or binary data would be truncated in table 'Workshop_Bookings', column 'CustomerNotes'. Statement aborted at 0x7FFF092.");
+        return;
+      }
+
+      openTestModal();
+    }
+
+    function resetBookingForm() {
+      document.getElementById('booking-form').reset();
+      currentDiscountPercent = 0;
+      document.getElementById('coupon-msg').style.display = 'none';
+      recalcTotal();
+    }
+
+    // MODAL
+    function openTestModal() {
+      const modal = document.getElementById('qa-modal-overlay');
+      const details = document.getElementById('modal-details');
+      const name = document.getElementById('cust-name').value || "Tesztelő Tamás";
+      const total = document.getElementById('sum-total').innerText;
+
+      details.innerHTML = `
+        <strong>Képzés:</strong> ${currentWorkshopName}<br>
+        <strong>Név:</strong> ${name}<br>
+        <strong>Fizetendő összeg:</strong> ${total}
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('qa-modal-overlay').style.display = 'none';
+    }
+
+    // INTENTIONAL BUG: X does not close modal
+    function modalXClicked() {
+      console.warn("BUG: Close 'X' button clicked but onClick handler is disconnected!");
+    }
+
+    function confirmBookingSuccess() {
+      closeModal();
+      alert("🎉 Foglalás sikeresen rögzítve a teszt adatbázisban!");
+    }
+
+    // TABLE SORTING & DELETE BUGS
+    let sortAscending = false;
+    function toggleSortPrice() {
+      const icon = document.getElementById('sort-icon');
+      const tbody = document.getElementById('bookings-tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+
+      sortAscending = !sortAscending;
+      icon.innerText = sortAscending ? '▲' : '▼';
+
+      rows.sort((a, b) => {
+        let priceA = parseInt(a.children[4].innerText, 10);
+        let priceB = parseInt(b.children[4].innerText, 10);
+        return sortAscending ? (priceB - priceA) : (priceA - priceB);
+      });
+
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    // INTENTIONAL BUG: Always deletes row 0
+    function deleteBookingRow(clickedIndex) {
+      const tbody = document.getElementById('bookings-tbody');
+      if (tbody.children.length > 0) {
+        tbody.removeChild(tbody.children[0]);
+        alert("⚠️ Figyelem: A törlés művelet lefutott! (Ellenőrizd, melyik sor törlődött!)");
+      }
+    }
+
+    function formatHUF(amount) {
+      return amount.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, " ") + " Ft";
+    }
+  </script>
+</body>
+</html>
