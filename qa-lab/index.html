@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestAcademy QA Practice Lab - Zárt Tréning Felület</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --gold: #d4af37;
+      --gold-dark: #b8972e;
+      --danger: #ef4444;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --radius: 12px;
+      --radius-pill: 50px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* GATE OVERLAY */
+    #gate-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+    }
+
+    .gate-card {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 440px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .gate-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .gate-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+
+    .gate-desc {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+    }
+
+    .gate-input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .gate-input:focus {
+      border-color: #2563eb;
+    }
+
+    .gate-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .gate-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .gate-error {
+      color: #ef4444;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    /* APP HEADER */
+    .lab-header {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .lab-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo-badge {
+      background: linear-gradient(135deg, #d4af37, #f59e0b);
+      color: #0f172a;
+      font-weight: 900;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .timer-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1e293b;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid #334155;
+    }
+
+    .timer-display {
+      font-family: monospace;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+
+    .timer-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: color 0.15s;
+    }
+    .timer-btn:hover { color: #ffffff; }
+
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .progress-bar-bg {
+      width: 120px;
+      height: 8px;
+      background: #334155;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      transition: width 0.3s;
+    }
+
+    .progress-text {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: #1e293b;
+      padding: 2px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .toggle-btn {
+      padding: 0.3rem 0.7rem;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .toggle-btn.active {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .btn-logout {
+      background: #334155;
+      border: none;
+      color: #cbd5e1;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-logout:hover { background: #475569; color: #ffffff; }
+
+    /* WORKSPACE MAIN LAYOUT */
+    .lab-workspace {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      height: calc(100vh - 61px);
+      overflow: hidden;
+    }
+
+    /* LEFT PANEL: GUIDE & CHECKLIST */
+    .panel-guide {
+      background: #ffffff;
+      border-right: 1px solid var(--border-color);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .guide-banner {
+      padding: 1.25rem;
+      background: linear-gradient(135deg, #eff6ff, #f8fafc);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .guide-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .guide-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .ai-warning-box {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      background: #fef2f2;
+      border-left: 3px solid #ef4444;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: #991b1b;
+      line-height: 1.4;
+    }
+
+    .modules-list {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .module-card {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .module-header {
+      background: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .module-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .module-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-left: 0.5rem;
+    }
+
+    .module-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .tasks-container {
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .task-item {
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 0.75rem;
+      transition: border-color 0.2s;
+    }
+
+    .task-item.completed {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .task-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .task-checkbox {
+      margin-top: 0.2rem;
+      width: 17px;
+      height: 17px;
+      accent-color: #10b981;
+      cursor: pointer;
+    }
+
+    .task-info {
+      flex: 1;
+    }
+
+    .task-title {
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 0.2rem;
+    }
+
+    .task-desc {
+      font-size: 0.75rem;
+      color: #57534e;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-tip {
+      font-size: 0.72rem;
+      background: #eff6ff;
+      color: #1e40af;
+      padding: 0.35rem 0.5rem;
+      border-radius: 5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .task-notes-area {
+      width: 100%;
+      height: 55px;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.725rem;
+      border: 1px solid #d6d3d1;
+      border-radius: 6px;
+      resize: vertical;
+      font-family: inherit;
+      outline: none;
+      background: #ffffff;
+    }
+    .task-notes-area:focus { border-color: #2563eb; }
+
+    .btn-save-note {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: #e2e8f0;
+      border: none;
+      border-radius: 4px;
+      color: #334155;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.25rem;
+    }
+    .btn-save-note:hover { background: #cbd5e1; }
+
+    /* RIGHT PANEL: TEST APPLICATION */
+    .panel-app {
+      background: #f1f5f9;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .app-card-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .app-header-box {
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .app-title-group h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .app-title-group p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .bug-counter-chip {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* APPLICATION GRID */
+    .app-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .app-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .app-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* FORM STYLES */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.35rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    /* WORKSHOP SELECTION LIST */
+    .workshop-select-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .workshop-option {
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
+    }
+
+    .workshop-option.selected {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    .workshop-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .workshop-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .workshop-price {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #2563eb;
+    }
+
+    /* SUMMARY SIDEBAR CARD */
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      color: #475569;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 2px dashed #e2e8f0;
+    }
+
+    .coupon-box {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .btn-apply-coupon {
+      padding: 0.65rem 0.85rem;
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-apply-coupon:hover { background: #1e293b; }
+
+    /* ACTION BUTTONS */
+    /* INTENTIONAL BUG 1: Overflow on small screens (width 320px without wrap) */
+    .btn-checkout-container {
+      margin-top: 1.25rem;
+      min-width: 330px; /* INTENTIONAL BUG: Forces overflow on 320px/375px devices */
+    }
+
+    .btn-submit-booking {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+      transition: transform 0.1s;
+    }
+
+    .btn-submit-booking:hover {
+      background: #1d4ed8;
+    }
+
+    /* INTENTIONAL BUG 2: Ghost text on hover */
+    .btn-secondary-cancel {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.65rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary-cancel:hover {
+      /* GHOST BUG: Color turns white on white background */
+      background: #ffffff;
+      color: #ffffff;
+      border-color: #cbd5e1;
+    }
+
+    /* DATA TABLE */
+    .table-card {
+      margin-top: 1rem;
+    }
+
+    .data-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .qa-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+
+    .qa-table th {
+      background: #f8fafc;
+      padding: 0.65rem 0.75rem;
+      font-weight: 700;
+      color: #334155;
+      border-bottom: 2px solid #e2e8f0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .qa-table th:hover {
+      background: #f1f5f9;
+    }
+
+    .qa-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #475569;
+    }
+
+    .qa-table tr:hover {
+      background: #f8fafc;
+    }
+
+    .btn-delete-row {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: none;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* MODAL WINDOW */
+    #qa-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      /* INTENTIONAL BUG 3: z-index is lower than sticky header (999 vs 1000) */
+      z-index: 999;
+    }
+
+    .qa-modal-box {
+      background: #ffffff;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 480px;
+      padding: 1.75rem;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    /* INTENTIONAL BUG 4: The X button doesn't close the modal! */
+    .modal-close-x {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.4rem;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    /* RESPONSIVE SPLIT VIEWS */
+    .view-guide-only .panel-guide { width: 100%; }
+    .view-guide-only .panel-app { display: none; }
+
+    .view-app-only .panel-guide { display: none; }
+    .view-app-only .lab-workspace { grid-template-columns: 1fr; }
+
+    /* BUG REPORT GENERATOR MODAL */
+    #report-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    }
+
+    .report-modal-box {
+      background: #ffffff;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. JELSZAVAS BELÉPŐ KAPU (GATE OVERLAY) -->
+  <!-- ========================================== -->
+  <div id="gate-overlay">
+    <div class="gate-card">
+      <span class="gate-badge">TestAcademy Hungary</span>
+      <h1 class="gate-title">QA Practice Lab</h1>
+      <p class="gate-desc">Zárt körű felület Tamás számára a funkcionális UI tesztelés és hibakeresés gyakorlásához.</p>
+      
+      <form id="gate-form" onsubmit="handleGateLogin(event)">
+        <input type="password" id="gate-pass" class="gate-input" placeholder="Add meg a belépési kódot" autocomplete="off" autofocus>
+        <button type="submit" class="gate-btn">Belépés a Teszt Laborba &rarr;</button>
+        <div id="gate-error" class="gate-error">Helytelen belépési kód! Kérd el Dánieltől a jelszót.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. FEJLÉC SÁV (HEADER & CONTROLS) -->
+  <!-- ========================================== -->
+  <header class="lab-header">
+    <div class="lab-brand">
+      <span class="brand-logo-badge">TA</span>
+      <div>
+        <div class="brand-title">TestAcademy QA Arena</div>
+        <div class="brand-subtitle">3 Órás Intenzív UI Tesztelői Küldetés</div>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- 3 Hour Timer -->
+      <div class="timer-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="timer-display" class="timer-display">03:00:00</span>
+        <button class="timer-btn" onclick="toggleTimer()" title="Indítás / Szünet">⏯</button>
+        <button class="timer-btn" onclick="resetTimer()" title="Visszaállítás">🔄</button>
+      </div>
+
+      <!-- Task Progress -->
+      <div class="progress-wrap">
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+        <span id="progress-text" class="progress-text">0/16 kész (0%)</span>
+      </div>
+
+      <!-- View Switcher -->
+      <div class="view-toggle">
+        <button class="toggle-btn active" onclick="switchView('split')">Osztott</button>
+        <button class="toggle-btn" onclick="switchView('guide')">Feladatok</button>
+        <button class="toggle-btn" onclick="switchView('app')">Alkalmazás</button>
+      </div>
+
+      <button class="btn-logout" onclick="logoutGate()">Kilépés</button>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 3. KÉTOSZTOTT MUNKATERÜLET -->
+  <!-- ========================================== -->
+  <main id="lab-workspace" class="lab-workspace">
+
+    <!-- BAL OLDAL: A 3 ÓRÁS LÉPÉSRŐL-LÉPÉSRE KÜLDETÉS -->
+    <section class="panel-guide">
+      <div class="guide-banner">
+        <div class="guide-title">
+          <span>📋</span> 3 Órás UI Tesztelési Küldetés
+        </div>
+        <p class="guide-desc">Kutasd fel a jobb oldali webalkalmazásban elrejtett 15+ hibát! Minden feladathoz írd le a képernyőn tapasztalt viselkedést.</p>
+        <div class="ai-warning-box">
+          ⚠️ <strong>FIGYELEM:</strong> Az AI (ChatGPT) nem látja a képernyődet és nem tudja helyetted végigkattintani a felületet. A feladatok sikeres teljesítéséhez ténylegesen ki kell próbálnod a mezőket és le kell jegyezned a tapasztaltakat!
+        </div>
+      </div>
+
+      <div class="modules-list">
+
+        <!-- ================= MODUL 1 ================= -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule('mod1-tasks')">
+            <div>
+              <span class="module-badge">MODUL 1</span>
+              <span class="module-name">Űrlap Határérték & Negatív Tesztek</span>
+            </div>
+            <span class="module-time">0:00 - 0:45 (45 perc)</span>
+          </div>
+
+          <div id="mod1-tasks" class="tasks-container">
+            <!-- Task 1.1 -->
+            <div class="task-item" id="task-card-1">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-1" class="task-checkbox" onchange="updateTaskStatus(1)">
+                <div class="task-info">
+                  <div class="task-title">1.1. Üres mezők és Space-Only (Szóköz) Csapda</div>
+                  <div class="task-desc">Írj be a „Teljes Név” mezőbe kizárólag 3 szóközt (space), majd tölts ki minden mást normálisan és próbáld meg leadni a foglalást.</div>
+                  <div class="task-tip">💡 <strong>Elvárt viselkedés:</strong> A rendszer hibát kell jelezzen: "A név nem állhat csak szóközökből!".<br>❓ <strong>Mit csinál valójában a felület?</strong></div>
+                  <textarea id="task-note-1" class="task-notes-area" placeholder="Írd le a tapasztalt eredményt..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(1)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 1.2 -->
+            <div class="task-item" id="task-card-2">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-2" class="task-checkbox" onchange="updateTaskStatus(2)">
+                <div class="task-info">
+                  <div class="task-title">1.2. Hosszhatárok (Max Length) a Megjegyzésnél</div>
+                  <div class="task-desc">Másolj be a „Különleges kérések / Megjegyzés” mezőbe egy hosszú, 250+ karakteres szöveget, és kattints a Foglalásra!</div>
+                  <div class="task-tip">💡 <strong>Figyeld meg:</strong> Milyen nyers hibaüzenetet dob fel az alkalmazás? Megfelel ez a felhasználóbarát UX elveknek?</div>
+                  <textarea id="task-note-2" class="task-notes-area" placeholder="Másold be ide a kapott alert szövegét..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(2)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 1.3 -->
+            <div class="task-item" id="task-card-3">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-3" class="task-checkbox" onchange="updateTaskStatus(3)">
+                <div class="task-info">
+                  <div class="task-title">1.3. Dátumválasztó: Múltbéli dátum elfogadása</div>
+                  <div class="task-desc">Válassz ki egy tegnapi vagy egy évvel ezelőtti dátumot a naptárban.</div>
+                  <div class="task-tip">💡 <strong>QA szabály:</strong> Jövőbeli képzésre nem engedhetünk tegnapi időpontot foglalni. Letiltja ezt a felület?</div>
+                  <textarea id="task-note-3" class="task-notes-area" placeholder="Mit tapasztaltál a dátum mezőnél?..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(3)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 1.4 -->
+            <div class="task-item" id="task-card-4">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-4" class="task-checkbox" onchange="updateTaskStatus(4)">
+                <div class="task-info">
+                  <div class="task-title">1.4. Telefonszám: Néma hiba (Silent Failure)</div>
+                  <div class="task-desc">Írj be betűket a telefonszám mezőbe (pl. „abcde”). Figyeld meg, mit tesz az űrlap elküldéskor!</div>
+                  <div class="task-tip">💡 <strong>Figyeld meg:</strong> Megjelenik piros hibaüzenet, vagy a felület némán nem csinál semmit és összezavarja a vásárlót?</div>
+                  <textarea id="task-note-4" class="task-notes-area" placeholder="Írd le a tapasztalt viselkedést..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(4)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 2 ================= -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule('mod2-tasks')">
+            <div>
+              <span class="module-badge">MODUL 2</span>
+              <span class="module-name">DevTools & Reszponzív Töréspont Audit</span>
+            </div>
+            <span class="module-time">0:45 - 1:30 (45 perc)</span>
+          </div>
+
+          <div id="mod2-tasks" class="tasks-container">
+            <!-- Task 2.1 -->
+            <div class="task-item" id="task-card-5">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-5" class="task-checkbox" onchange="updateTaskStatus(5)">
+                <div class="task-info">
+                  <div class="task-title">2.1. Mobil Nézet (375px) Gombcsúszás</div>
+                  <div class="task-desc">Nyomj F12-t a böngészőben, kapcsold be a Responsive Device módot és állíts be <strong>375px szélességet</strong> (iPhone méret)!</div>
+                  <div class="task-tip">💡 <strong>Hiba:</strong> Nézd meg az Összesítőben lévő kék fizetés gombot! Kilóg a kártyából vagy levágódik?</div>
+                  <textarea id="task-note-5" class="task-notes-area" placeholder="Írd le a mobil nézet hibáját pontos pixelszélességgel..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(5)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 2.2 -->
+            <div class="task-item" id="task-card-6">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-6" class="task-checkbox" onchange="updateTaskStatus(6)">
+                <div class="task-info">
+                  <div class="task-title">2.2. A „Szellem Felirat” (Hover State Bug)</div>
+                  <div class="task-desc">Vidd az egeret a jobb oldali kosár panel alján lévő „Űrlap törlése / Mégse” fehér gomb fölé!</div>
+                  <div class="task-tip">💡 <strong>Vizuális hiba:</strong> Mi történik a betűszínnel, amikor ráhúzod az egeret? Olvasható marad a szöveg?</div>
+                  <textarea id="task-note-6" class="task-notes-area" placeholder="Írd le mit tapasztaltál az egér ráhúzásakor..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(6)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 2.3 -->
+            <div class="task-item" id="task-card-7">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-7" class="task-checkbox" onchange="updateTaskStatus(7)">
+                <div class="task-info">
+                  <div class="task-title">2.3. Z-Index Rétegzési Hiba a Modalnál</div>
+                  <div class="task-desc">Kattints a táblázat fejlécében a „Felugró ablak teszt” gombra. Figyeld meg a fejléc sáv és a fekete háttér kapcsolatát!</div>
+                  <div class="task-tip">💡 <strong>Hiba:</strong> A sötét felső navigációs léc a felugró ablak elé csúszik be. Mi ennek a CSS neve?</div>
+                  <textarea id="task-note-7" class="task-notes-area" placeholder="Írd le a rétegzési (z-index) hibát..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(7)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 2.4 -->
+            <div class="task-item" id="task-card-8">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-8" class="task-checkbox" onchange="updateTaskStatus(8)">
+                <div class="task-info">
+                  <div class="task-title">2.4. Nyelvi és Stílus Konzisztencia</div>
+                  <div class="task-desc">Nézd át alaposan a feliratokat az oldalon! Találsz benne angolul maradt szavakat és elírásokat?</div>
+                  <div class="task-tip">💡 <strong>Példa:</strong> Keresd meg a gombokat és az űrlap súgószövegeit. Gyűjts ki legalább 2 inkonzisztenciát!</div>
+                  <textarea id="task-note-8" class="task-notes-area" placeholder="Kigyűjtött nyelvi/elírási hibák..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(8)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 3 ================= -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule('mod3-tasks')">
+            <div>
+              <span class="module-badge">MODUL 3</span>
+              <span class="module-name">Logika, Kosármatematika & Állapotok</span>
+            </div>
+            <span class="module-time">1:30 - 2:15 (45 perc)</span>
+          </div>
+
+          <div id="mod3-tasks" class="tasks-container">
+            <!-- Task 3.1 -->
+            <div class="task-item" id="task-card-9">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-9" class="task-checkbox" onchange="updateTaskStatus(9)">
+                <div class="task-info">
+                  <div class="task-title">3.1. Negatív Darabszám (Kosár Matematika)</div>
+                  <div class="task-desc">A „Résztvevők száma” mezőben a lefelé mutató kis nyíllal próbálj meg lemegy 0 vagy negatív (-1, -2) számra!</div>
+                  <div class="task-tip">💡 <strong>Kritikus hiba:</strong> Mi történik a végösszeggel, ha negatív darabszámot adsz meg?</div>
+                  <textarea id="task-note-9" class="task-notes-area" placeholder="Írd le a negatív számítás tapasztalatát..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(9)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 3.2 -->
+            <div class="task-item" id="task-card-10">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-10" class="task-checkbox" onchange="updateTaskStatus(10)">
+                <div class="task-info">
+                  <div class="task-title">3.2. Kuponkód Határérték: DISCOUNT150</div>
+                  <div class="task-desc">Próbáld ki a következő kuponokat a kupon mezőben: <code>PROMO10</code>, <code>DISCOUNT100</code>, <code>DISCOUNT150</code>!</div>
+                  <div class="task-tip">💡 <strong>Pénzügyi kockázat:</strong> Mennyi lesz a végösszeg a 150-es kuponnál? Lehet egy vásárlás negatív végösszegű?</div>
+                  <textarea id="task-note-10" class="task-notes-area" placeholder="A kuponkód teszt eredményei..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(10)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 3.3 -->
+            <div class="task-item" id="task-card-11">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-11" class="task-checkbox" onchange="updateTaskStatus(11)">
+                <div class="task-info">
+                  <div class="task-title">3.3. Fordítva működő Táblázat Rendezés</div>
+                  <div class="task-desc">Kattints a lenti táblázatban az „Ár (HUF)” oszlop fejlécére a rendezéshez!</div>
+                  <div class="task-tip">💡 <strong>UI logika:</strong> Amikor a felfelé nyíl (▲ - növekvő) van kint, tényleg a legolcsóbb van legfelül? Vagy pont fordítva?</div>
+                  <textarea id="task-note-11" class="task-notes-area" placeholder="Milyen irányban rendez a nyilakhoz képest?..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(11)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 3.4 -->
+            <div class="task-item" id="task-card-12">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-12" class="task-checkbox" onchange="updateTaskStatus(12)">
+                <div class="task-info">
+                  <div class="task-title">3.4. Modal „X” Bezáró Gomb Nem Reagál</div>
+                  <div class="task-desc">Nyisd meg a megerősítő felugró ablakot, majd próbáld meg a jobb felső sarokban lévő piros [×] gombbal bezárni!</div>
+                  <div class="task-tip">💡 <strong>Interakció:</strong> Bezáródik az ablak az X-re? Mivel lehet bezárni helyette?</div>
+                  <textarea id="task-note-12" class="task-notes-area" placeholder="Modal bezárás tesztelése..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(12)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 3.5 -->
+            <div class="task-item" id="task-card-13">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-13" class="task-checkbox" onchange="updateTaskStatus(13)">
+                <div class="task-info">
+                  <div class="task-title">3.5. Táblázat Törlés Gomb: Rossz Elem Törlése!</div>
+                  <div class="task-desc">A meglévő foglalások listájában kattints a 3. sorban lévő „Törlés” gombra!</div>
+                  <div class="task-tip">💡 <strong>Veszélyes adathiba:</strong> Melyik sor törlődött ki valójában? A 3. sor vagy mindig a legelső?</div>
+                  <textarea id="task-note-13" class="task-notes-area" placeholder="Mit törölt a törlés gomb?..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(13)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= MODUL 4 ================= -->
+        <div class="module-card">
+          <div class="module-header" onclick="toggleModule('mod4-tasks')">
+            <div>
+              <span class="module-badge">MODUL 4</span>
+              <span class="module-name">Profi Bug Report & Trello Dokumentálás</span>
+            </div>
+            <span class="module-time">2:15 - 3:00 (45 perc)</span>
+          </div>
+
+          <div id="mod4-tasks" class="tasks-container">
+            <!-- Task 4.1 -->
+            <div class="task-item" id="task-card-14">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-14" class="task-checkbox" onchange="updateTaskStatus(14)">
+                <div class="task-info">
+                  <div class="task-title">4.1. A 6 legfontosabb hiba kiválasztása</div>
+                  <div class="task-desc">Válassz ki a fenti 13 feladatból 3 darab Magas prioritású (High/Critical) és 3 darab Közepes/Alacsony (Medium/Low) vizuális hibát!</div>
+                  <div class="task-tip">💡 <strong>Szempont:</strong> Mi az, ami pénzügyi veszteséget vagy adatvesztést okoz a cégnek?</div>
+                  <textarea id="task-note-14" class="task-notes-area" placeholder="A 6 kiválasztott hiba címe..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(14)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 4.2 -->
+            <div class="task-item" id="task-card-15">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-15" class="task-checkbox" onchange="updateTaskStatus(15)">
+                <div class="task-info">
+                  <div class="task-title">4.2. Bug Report Sablon Generálása</div>
+                  <div class="task-desc">Használd a beépített Bug Report készítőt az oldal alján! Töltsd ki a lépéseket és az Expected vs Actual mezőket.</div>
+                  <button class="btn-apply-coupon" style="margin-top:0.4rem; padding:0.4rem 0.75rem;" onclick="openReportModal()">Bug Report Készítő Megnyitása &rarr;</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task 4.3 -->
+            <div class="task-item" id="task-card-16">
+              <div class="task-top">
+                <input type="checkbox" id="task-check-16" class="task-checkbox" onchange="updateTaskStatus(16)">
+                <div class="task-info">
+                  <div class="task-title">4.3. Kártyák létrehozása a Trello Tábládon</div>
+                  <div class="task-desc">Nyisd meg a SauceDemo / QA Execution Trello tábládat, hozz létre 6 új kártyát, csatold hozzá a képernyőképeket és a pontos lépéseket!</div>
+                  <div class="task-tip">💡 <strong>Kész a küldetés!</strong> Ha mind a 6 kártya kint van a Trellón a helyes címkékkel, pipáld ki ezt a feladatot!</div>
+                  <textarea id="task-note-16" class="task-notes-area" placeholder="Trello kártyák linkjei vagy címei..."></textarea>
+                  <button class="btn-save-note" onclick="saveNote(16)">Jegyzet mentése</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- JOBB OLDAL: A TESZTELENDŐ ÉLES ALKALMAZÁS -->
+    <section class="panel-app">
+      <div class="app-card-wrapper">
+
+        <!-- Banner -->
+        <div class="app-header-box">
+          <div class="app-title-group">
+            <h2>TestAcademy B2B Workshop & Foglalási Rendszer</h2>
+            <p>Verzió: 2.4.1-rc (Staging környezet QA tesztelésre)</p>
+          </div>
+          <div class="bug-counter-chip">
+            🎯 15+ Rejtett Hiba Kódolva
+          </div>
+        </div>
+
+        <!-- Foglalási Felület Grid -->
+        <div class="app-grid">
+          
+          <!-- Bal Oszlop: Űrlap -->
+          <div class="app-card">
+            <div class="card-title">
+              <span>1. Válassz Workshopot & Képzést</span>
+              <span style="font-size:0.75rem; color:#64748b; font-weight:normal;">Kötelező mezők *</span>
+            </div>
+
+            <div class="workshop-select-grid">
+              <div class="workshop-option selected" onclick="selectWorkshop(this, 'Manual QA Masterclass', 49000)">
+                <div>
+                  <div class="workshop-name">Manual QA & Teszttervezés Masterclass</div>
+                  <div class="workshop-meta">4 alkalom • Kezdő / Újrakezdő szint</div>
+                </div>
+                <div class="workshop-price">49 000 Ft</div>
+              </div>
+
+              <div class="workshop-option" onclick="selectWorkshop(this, 'API & Postman Alapok', 65000)">
+                <div>
+                  <div class="workshop-name">API Tesztelés & Postman Gyakorlat</div>
+                  <div class="workshop-meta">5 alkalom • Haladó manuális szint</div>
+                </div>
+                <div class="workshop-price">65 000 Ft</div>
+              </div>
+
+              <div class="workshop-option" onclick="selectWorkshop(this, 'SQL Adatbázis Tesztelés', 55000)">
+                <div>
+                  <div class="workshop-name">SQL Lekérdezések QA Szemmel</div>
+                  <div class="workshop-meta">3 alkalom • Adatbázis validáció</div>
+                </div>
+                <div class="workshop-price">55 000 Ft</div>
+              </div>
+            </div>
+
+            <div class="card-title" style="margin-top:1.5rem;">
+              <span>2. Résztvevő Adatai</span>
+            </div>
+
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)">
+              <!-- Név (INTENTIONAL BUG: Whitespace-only elfogadva) -->
+              <div class="form-group">
+                <label class="form-label">Teljes Név *</label>
+                <input type="text" id="cust-name" class="form-input" placeholder="pl. Tesztelő Tamás" required>
+              </div>
+
+              <div class="form-row-2">
+                <!-- E-mail -->
+                <div class="form-group">
+                  <label class="form-label">E-mail Cím *</label>
+                  <input type="text" id="cust-email" class="form-input" placeholder="tamas@pelda.hu" required>
+                </div>
+                <!-- Telefonszám (INTENTIONAL BUG: Betűket enged, de elküldéskor némán elakad) -->
+                <div class="form-group">
+                  <label class="form-label">Telefonszám (Phone Number) *</label>
+                  <input type="text" id="cust-phone" class="form-input" placeholder="+36 30 123 4567" required>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <!-- Dátum (INTENTIONAL BUG: Múltbéli dátumot enged!) -->
+                <div class="form-group">
+                  <label class="form-label">Kezdés Időpontja *</label>
+                  <input type="date" id="cust-date" class="form-input" required>
+                </div>
+
+                <!-- Résztvevők száma (INTENTIONAL BUG: nincs min="1", lemegy negatívba!) -->
+                <div class="form-group">
+                  <label class="form-label">Résztvevők Száma</label>
+                  <input type="number" id="cust-qty" class="form-input" value="1" oninput="recalcTotal()">
+                </div>
+              </div>
+
+              <!-- Megjegyzés (INTENTIONAL BUG: 250+ char triggers ugly alert) -->
+              <div class="form-group">
+                <label class="form-label">Különleges kérések / Megjegyzés (max 250 karakter)</label>
+                <textarea id="cust-notes" class="form-textarea" rows="3" placeholder="Ide írd ha kérsz számlát..."></textarea>
+              </div>
+
+              <!-- Rejtett gomb teszteléshez -->
+              <button type="submit" style="display:none;" id="hidden-submit"></button>
+            </form>
+
+          </div>
+
+          <!-- Jobb Oszlop: Összesítő Kártya -->
+          <div class="app-card">
+            <div class="card-title">
+              <span>Rendelés Összegzése</span>
+            </div>
+
+            <div class="summary-row">
+              <span id="sum-name">Manual QA Masterclass</span>
+              <span id="sum-base-price">49 000 Ft</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Résztvevők száma:</span>
+              <span id="sum-qty">1 fő</span>
+            </div>
+
+            <div class="summary-row" id="coupon-row" style="display:none; color:#10b981;">
+              <span>Kupon kedvezmény:</span>
+              <span id="sum-discount">-0 Ft</span>
+            </div>
+
+            <div class="summary-total">
+              <span>Végösszeg:</span>
+              <span id="sum-total" style="color:#2563eb;">49 000 Ft</span>
+            </div>
+
+            <!-- Kupon Mező (INTENTIONAL BUGS) -->
+            <div class="coupon-box">
+              <input type="text" id="coupon-input" class="form-input" placeholder="Kuponkód (pl. PROMO10)">
+              <button class="btn-apply-coupon" onclick="applyCoupon()">Érvényesítés</button>
+            </div>
+            <div id="coupon-msg" style="font-size:0.75rem; margin-top:0.35rem; display:none;"></div>
+
+            <!-- Fizetés Gomb Konténer (INTENTIONAL BUG: 330px min-width overflow mobil nézetben) -->
+            <div class="btn-checkout-container">
+              <button class="btn-submit-booking" onclick="triggerBookingSubmit()">
+                Foglalás Leadása & Fizetés &rarr;
+              </button>
+              <!-- GHOST TEXT HOVER BUG -->
+              <button class="btn-secondary-cancel" onclick="resetBookingForm()">
+                Űrlap Törlése / Mégse
+              </button>
+            </div>
+
+            <div style="margin-top:1.25rem; font-size:0.75rem; color:#94a3b8; text-align:center;">
+              🔒 256-bit titkosított kapcsolat (Test Sandbox)
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Meglévő Foglalások Táblázat -->
+        <div class="app-card table-card">
+          <div class="card-title">
+            <span>Rendszerben Rögzített Foglalások (Adatbázis Nézet)</span>
+            <button class="btn-apply-coupon" style="font-size:0.75rem; padding:0.35rem 0.75rem;" onclick="openTestModal()">
+              Felugró ablak teszt (Modal)
+            </button>
+          </div>
+
+          <div class="data-table-wrapper">
+            <table class="qa-table" id="bookings-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Név</th>
+                  <th>Workshop</th>
+                  <th>Dátum</th>
+                  <!-- INTENTIONAL BUG: Fordított rendezési nyilak -->
+                  <th onclick="toggleSortPrice()" title="Kattints a rendezéshez">
+                    Ár (HUF) <span id="sort-icon">▲</span>
+                  </th>
+                  <th>Művelet</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-tbody">
+                <tr>
+                  <td>#1001</td>
+                  <td>Kovács Péter</td>
+                  <td>Manual QA Masterclass</td>
+                  <td>2026-10-15</td>
+                  <td>49000</td>
+                  <td><button class="btn-delete-row" onclick="deleteBookingRow(0)">Törlés</button></td>
+                </tr>
+                <tr>
+                  <td>#1002</td>
+                  <td>Nagy Ágnes</td>
+                  <td>API & Postman Alapok</td>
+                  <td>2026-10-18</td>
+                  <td>65000</td>
+                  <td><button class="btn-delete-row" onclick="deleteBookingRow(1)">Törlés</button></td>
+                </tr>
+                <tr>
+                  <td>#1003</td>
+                  <td>Tóth Béla</td>
+                  <td>SQL Adatbázis Tesztelés</td>
+                  <td>2026-10-22</td>
+                  <td>55000</td>
+                  <td><button class="btn-delete-row" onclick="deleteBookingRow(2)">Törlés</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- 4. MODAL ABLAK (SZÁNDÉKOS HIBÁKKAL) -->
+  <!-- ========================================== -->
+  <div id="qa-modal-overlay">
+    <div class="qa-modal-box">
+      <!-- INTENTIONAL BUG: Az X nem zárja be az ablakot! -->
+      <button class="modal-close-x" onclick="modalXClicked()" title="Bezárás">×</button>
+      <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:0.5rem;">
+        Foglalás Megerősítése
+      </h3>
+      <p style="font-size:0.85rem; color:#64748b; line-height:1.4;">
+        Biztosan véglegesíteni szeretnéd a kiválasztott kurzus foglalását a megadott adatokkal?
+      </p>
+      <div id="modal-details" style="background:#f8fafc; padding:0.75rem; border-radius:8px; margin-top:1rem; font-size:0.8rem; border:1px solid #e2e8f0;">
+        <!-- Dynamic content -->
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary-cancel" style="width:auto; margin:0;" onclick="closeModal()">Mégse</button>
+        <button class="btn-apply-coupon" style="background:#2563eb;" onclick="confirmBookingSuccess()">Igen, Megerősítem</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 5. BUG REPORT GENERÁTOR MODAL -->
+  <!-- ========================================== -->
+  <div id="report-modal-overlay">
+    <div class="report-modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a;">
+          📝 Trello / ClickUp Bug Report Generátor
+        </h3>
+        <button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="closeReportModal()">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Hiba Címe (Summary / Issue Title)</label>
+        <input type="text" id="bug-title" class="form-input" placeholder="pl. [UI][Checkout] A 'Fizetés' gomb kilóg a képernyőről 375px szélességnél">
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="form-label">Súlyosság (Severity)</label>
+          <select id="bug-sev" class="form-select">
+            <option value="Critical (Blokkoló)">Critical (Blokkoló hiba)</option>
+            <option value="High (Magas)">High (Magas prioritás)</option>
+            <option value="Medium (Közepes)" selected>Medium (Közepes funkcionális)</option>
+            <option value="Low / Trivial">Low (Vizuális / Kozmetikai)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Környezet (Environment / Képernyőméret)</label>
+          <input type="text" id="bug-env" class="form-input" value="Chrome v128, Windows 11, Responsive: 375px">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Reprodukálási Lépések (Steps to Reproduce)</label>
+        <textarea id="bug-steps" class="form-textarea" rows="4">1. Nyisd meg a foglalási felületet.
+2. Válassz ki egy workshopot.
+3. Állítsd be a képernyőt 375px szélességre az F12 DevTools-ban.
+4. Figyeld meg a kék fizetés gomb elhelyezkedését.</textarea>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label class="form-label">Elvárt Eredmény (Expected Result)</label>
+          <textarea id="bug-exp" class="form-textarea" rows="2">A gomb alkalmazkodik a képernyő szélességéhez és teljes egészében kattintható marad.</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tényleges Eredmény (Actual Result)</label>
+          <textarea id="bug-act" class="form-textarea" rows="2">A gomb szélessége rögzített, kilóg a jobb szélen és a szöveg egy része levágódik.</textarea>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem; display:flex; justify-content:flex-end; gap:0.75rem;">
+        <button class="btn-secondary-cancel" style="width:auto; margin:0;" onclick="closeReportModal()">Mégse</button>
+        <button class="btn-apply-coupon" style="background:#10b981;" onclick="copyReportToClipboard()">
+          📋 Másolás Vágólapra Trellohoz
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 6. JAVASCRIPT LOGIKA & SZÁNDÉKOS HIBÁK -->
+  <!-- ========================================== -->
+  <script>
+    // --- 1. JELSZÓVÉDELEM (GATE LOGIC) ---
+    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx'];
+    
+    function checkGateSession() {
+      if (sessionStorage.getItem('qa_lab_auth') === 'granted') {
+        document.getElementById('gate-overlay').style.display = 'none';
+      }
+    }
+    checkGateSession();
+
+    function handleGateLogin(e) {
+      e.preventDefault();
+      const entered = document.getElementById('gate-pass').value.trim().toLowerCase();
+      if (VALID_PASSWORDS.includes(entered)) {
+        sessionStorage.setItem('qa_lab_auth', 'granted');
+        document.getElementById('gate-overlay').style.display = 'none';
+      } else {
+        document.getElementById('gate-error').style.display = 'block';
+      }
+    }
+
+    function logoutGate() {
+      sessionStorage.removeItem('qa_lab_auth');
+      window.location.reload();
+    }
+
+    // --- 2. 3 ÓRÁS IDŐMÉRŐ (TIMER) ---
+    let totalSeconds = 3 * 60 * 60; // 3 hours = 10800s
+    let timerRunning = false;
+    let timerInterval = null;
+
+    function updateTimerDisplay() {
+      const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+      const s = String(totalSeconds % 60).padStart(2, '0');
+      document.getElementById('timer-display').innerText = `${h}:${m}:${s}`;
+    }
+
+    function toggleTimer() {
+      if (!timerRunning) {
+        timerRunning = true;
+        timerInterval = setInterval(() => {
+          if (totalSeconds > 0) {
+            totalSeconds--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            alert("⏰ Letelt a 3 órás időkeret! Ideje összegezni a talált hibákat a Trellón!");
+          }
+        }, 1000);
+      } else {
+        timerRunning = false;
+        clearInterval(timerInterval);
+      }
+    }
+
+    function resetTimer() {
+      timerRunning = false;
+      clearInterval(timerInterval);
+      totalSeconds = 3 * 60 * 60;
+      updateTimerDisplay();
+    }
+
+    // --- 3. VIEW TOGGLE ---
+    function switchView(view) {
+      const ws = document.getElementById('lab-workspace');
+      ws.classList.remove('view-guide-only', 'view-app-only');
+      document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+
+      if (view === 'guide') {
+        ws.classList.add('view-guide-only');
+        event.target.classList.add('active');
+      } else if (view === 'app') {
+        ws.classList.add('view-app-only');
+        event.target.classList.add('active');
+      } else {
+        event.target.classList.add('active');
+      }
+    }
+
+    function toggleModule(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'none') ? 'flex' : 'none';
+    }
+
+    // --- 4. CHECKLIST & NOTES PERSISTENCE ---
+    const TOTAL_TASKS = 16;
+
+    function initTaskStorage() {
+      let completed = 0;
+      for (let i = 1; i <= TOTAL_TASKS; i++) {
+        // Load checkbox state
+        const savedCheck = localStorage.getItem(`qa_task_check_${i}`);
+        const chkEl = document.getElementById(`task-check-${i}`);
+        const cardEl = document.getElementById(`task-card-${i}`);
+        if (chkEl && savedCheck === 'true') {
+          chkEl.checked = true;
+          if (cardEl) cardEl.classList.add('completed');
+          completed++;
+        }
+
+        // Load notes
+        const savedNote = localStorage.getItem(`qa_task_note_${i}`);
+        const noteEl = document.getElementById(`task-note-${i}`);
+        if (noteEl && savedNote) {
+          noteEl.value = savedNote;
+        }
+      }
+      updateProgressBar(completed);
+    }
+    initTaskStorage();
+
+    function updateTaskStatus(id) {
+      const chk = document.getElementById(`task-check-${id}`);
+      const card = document.getElementById(`task-card-${id}`);
+      if (chk.checked) {
+        localStorage.setItem(`qa_task_check_${id}`, 'true');
+        card.classList.add('completed');
+      } else {
+        localStorage.setItem(`qa_task_check_${id}`, 'false');
+        card.classList.remove('completed');
+      }
+      recalcProgress();
+    }
+
+    function saveNote(id) {
+      const note = document.getElementById(`task-note-${id}`).value;
+      localStorage.setItem(`qa_task_note_${id}`, note);
+      alert(`✅ A(z) ${id}. feladathoz tartozó jegyzeted elmentve a böngészőbe!`);
+    }
+
+    function recalcProgress() {
+      let completed = 0;
+      for (let i = 1; i <= TOTAL_TASKS; i++) {
+        const chk = document.getElementById(`task-check-${i}`);
+        if (chk && chk.checked) completed++;
+      }
+      updateProgressBar(completed);
+    }
+
+    function updateProgressBar(count) {
+      const percent = Math.round((count / TOTAL_TASKS) * 100);
+      document.getElementById('progress-bar-fill').style.width = percent + '%';
+      document.getElementById('progress-text').innerText = `${count}/${TOTAL_TASKS} kész (${percent}%)`;
+    }
+
+    // --- 5. WORKSHOP APP LOGIC & INTENTIONAL BUGS ---
+    let currentWorkshopName = "Manual QA Masterclass";
+    let currentWorkshopPrice = 49000;
+    let currentDiscountPercent = 0;
+
+    function selectWorkshop(element, name, price) {
+      document.querySelectorAll('.workshop-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      currentWorkshopName = name;
+      currentWorkshopPrice = price;
+      document.getElementById('sum-name').innerText = name;
+      document.getElementById('sum-base-price').innerText = formatHUF(price);
+      recalcTotal();
+    }
+
+    function recalcTotal() {
+      let qty = parseInt(document.getElementById('cust-qty').value, 10);
+      if (isNaN(qty)) qty = 0;
+
+      // INTENTIONAL BUG: Qty can be negative!
+      document.getElementById('sum-qty').innerText = `${qty} fő`;
+
+      let baseTotal = currentWorkshopPrice * qty;
+      let discountAmount = Math.round(baseTotal * (currentDiscountPercent / 100));
+
+      if (currentDiscountPercent > 0) {
+        document.getElementById('coupon-row').style.display = 'flex';
+        document.getElementById('sum-discount').innerText = `-${formatHUF(discountAmount)}`;
+      } else {
+        document.getElementById('coupon-row').style.display = 'none';
+      }
+
+      let grandTotal = baseTotal - discountAmount;
+      document.getElementById('sum-total').innerText = formatHUF(grandTotal);
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+      const msgEl = document.getElementById('coupon-msg');
+      msgEl.style.display = 'block';
+
+      if (code === 'PROMO10') {
+        currentDiscountPercent = 10;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 10% kedvezmény érvényesítve!';
+      } else if (code === 'DISCOUNT100') {
+        // 100% discount
+        currentDiscountPercent = 100;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 100% ingyenes kupon érvényesítve!';
+      } else if (code === 'DISCOUNT150') {
+        // INTENTIONAL BUG: 150% discount produces negative price!
+        currentDiscountPercent = 150;
+        msgEl.style.color = '#10b981';
+        msgEl.innerText = '✅ 150% Super VIP kupon érvényesítve! (Végösszeg negatívba fordul)';
+      } else {
+        currentDiscountPercent = 0;
+        msgEl.style.color = '#ef4444';
+        msgEl.innerText = '❌ Érvénytelen vagy lejárt kuponkód!';
+      }
+      recalcTotal();
+    }
+
+    function triggerBookingSubmit() {
+      document.getElementById('hidden-submit').click();
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const notes = document.getElementById('cust-notes').value;
+
+      // INTENTIONAL BUG 1.1: Whitespace-only name passes
+      if (name.trim() === '') {
+        // Silently permits whitespace names or accepts without trim!
+        console.warn("BUG: Whitespace-only name accepted by front-end validation!");
+      }
+
+      // INTENTIONAL BUG 1.4: Silent failure if phone contains letters
+      if (/[a-zA-Z]/.test(phone)) {
+        console.error("SILENT BUG: Phone contains letters, request silently dropped without user feedback.");
+        return; // DOES NOTHING, silent failure!
+      }
+
+      // INTENTIONAL BUG 1.2: Notes > 250 characters triggers raw DB error alert
+      if (notes.length > 250) {
+        alert("CRITICAL DATABASE EXCEPTION: [Microsoft][ODBC Driver 17 for SQL Server] String or binary data would be truncated in table 'Workshop_Bookings', column 'CustomerNotes'. Statement aborted at 0x7FFF092.");
+        return;
+      }
+
+      // Open Confirmation Modal
+      openTestModal();
+    }
+
+    function resetBookingForm() {
+      document.getElementById('booking-form').reset();
+      currentDiscountPercent = 0;
+      document.getElementById('coupon-msg').style.display = 'none';
+      recalcTotal();
+    }
+
+    // --- MODAL CONTROLS & BUGS ---
+    function openTestModal() {
+      const modal = document.getElementById('qa-modal-overlay');
+      const details = document.getElementById('modal-details');
+      const name = document.getElementById('cust-name').value || "Tesztelő Tamás";
+      const total = document.getElementById('sum-total').innerText;
+
+      details.innerHTML = `
+        <strong>Képzés:</strong> ${currentWorkshopName}<br>
+        <strong>Név:</strong> ${name}<br>
+        <strong>Fizetendő összeg:</strong> ${total}
+      `;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('qa-modal-overlay').style.display = 'none';
+    }
+
+    // INTENTIONAL BUG 3.4: X button does NOT close the modal!
+    function modalXClicked() {
+      console.warn("BUG: Close 'X' button clicked but onClick handler is disconnected!");
+      // Intentionally does nothing!
+    }
+
+    function confirmBookingSuccess() {
+      closeModal();
+      alert("🎉 Foglalás sikeresen rögzítve a teszt adatbázisban!");
+    }
+
+    // --- TABLE SORTING & DELETE BUGS ---
+    let sortAscending = false; // INTENTIONAL BUG: Starts in reverse logic
+    function toggleSortPrice() {
+      const icon = document.getElementById('sort-icon');
+      const tbody = document.getElementById('bookings-tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+
+      // REVERSED LOGIC BUG:
+      // When icon says ▲ (Ascending), we actually sort DESCENDING!
+      sortAscending = !sortAscending;
+      icon.innerText = sortAscending ? '▲' : '▼';
+
+      rows.sort((a, b) => {
+        let priceA = parseInt(a.children[4].innerText, 10);
+        let priceB = parseInt(b.children[4].innerText, 10);
+        return sortAscending ? (priceB - priceA) : (priceA - priceB);
+      });
+
+      rows.forEach(r => tbody.appendChild(r));
+    }
+
+    // INTENTIONAL BUG 3.5: Always deletes the FIRST row regardless of index clicked!
+    function deleteBookingRow(clickedIndex) {
+      const tbody = document.getElementById('bookings-tbody');
+      if (tbody.children.length > 0) {
+        // ALWAYS DELETES ROW 0!
+        tbody.removeChild(tbody.children[0]);
+        alert("⚠️ Figyelem: A törlés művelet lefutott! (Ellenőrizd, melyik sor törlődött!)");
+      }
+    }
+
+    // --- REPORT GENERATOR MODAL ---
+    function openReportModal() {
+      document.getElementById('report-modal-overlay').style.display = 'flex';
+    }
+
+    function closeReportModal() {
+      document.getElementById('report-modal-overlay').style.display = 'none';
+    }
+
+    function copyReportToClipboard() {
+      const title = document.getElementById('bug-title').value;
+      const sev = document.getElementById('bug-sev').value;
+      const env = document.getElementById('bug-env').value;
+      const steps = document.getElementById('bug-steps').value;
+      const exp = document.getElementById('bug-exp').value;
+      const act = document.getElementById('bug-act').value;
+
+      const fullReport = `**Title / Summary:** ${title}
+**Severity:** ${sev}
+**Environment:** ${env}
+
+**Steps to Reproduce:**
+${steps}
+
+**Expected Result:**
+${exp}
+
+**Actual Result:**
+${act}
+
+---
+*Created via TestAcademy QA Practice Arena*`;
+
+      navigator.clipboard.writeText(fullReport).then(() => {
+        alert("📋 A teljes Bug Report kimásolva a vágólapra! Illeszd be a Trello kártya leírásába!");
+        closeReportModal();
+      });
+    }
+
+    function formatHUF(amount) {
+      return amount.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, " ") + " Ft";
+    }
+  </script>
+</body>
+</html>
