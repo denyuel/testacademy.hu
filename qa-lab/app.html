@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TestAcademy Workshop & Foglalási Rendszer</title>
+  <title>TestAcademy Workshop & Booking Portal</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -63,7 +63,7 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
-      /* INTENTIONAL BUG: z-index is higher than modal (1000 vs 999) */
+      /* INTENTIONAL BUG: z-index is higher than modal overlay (1000 vs 999) */
       z-index: 1000;
       border-bottom: 1px solid #1e293b;
     }
@@ -234,7 +234,7 @@
     }
     .btn-apply-coupon:hover { background: #1e293b; }
 
-    /* INTENTIONAL BUG: 330px min-width overflow on 320/375px mobile screens */
+    /* INTENTIONAL BUG: 335px min-width overflow on 320/375px mobile viewports */
     .btn-checkout-container {
       margin-top: 1.5rem;
       min-width: 335px;
@@ -307,7 +307,7 @@
       position: relative;
     }
 
-    /* INTENTIONAL BUG: Close X does not work */
+    /* INTENTIONAL BUG: Close X button does not work */
     .modal-close-x {
       position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: none; font-size: 1.5rem; color: #94a3b8; cursor: pointer;
     }
@@ -322,11 +322,11 @@
   <!-- GATE IF SESSION NOT PRESENT -->
   <div id="gate-overlay">
     <div class="gate-card">
-      <h2 style="margin-bottom:0.75rem; color:#0f172a;">Zárt Tesztkörnyezet</h2>
-      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Kérjük add meg a belépési kódodat a folytatáshoz!</p>
-      <input type="password" id="app-gate-pass" class="form-input" style="text-align:center; font-size:1rem; margin-bottom:1rem;" placeholder="Belépési kód">
-      <button class="btn-submit-booking" onclick="unlockApp()">Belépés</button>
-      <div id="app-gate-err" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Helytelen belépési kód!</div>
+      <h2 style="margin-bottom:0.75rem; color:#0f172a;">Secured Sandbox Environment</h2>
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Please enter your passcode to access the test platform:</p>
+      <input type="password" id="app-gate-pass" class="form-input" style="text-align:center; font-size:1rem; margin-bottom:1rem;" placeholder="Passcode">
+      <button class="btn-submit-booking" onclick="unlockApp()">Unlock System</button>
+      <div id="app-gate-err" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Invalid passcode!</div>
     </div>
   </div>
 
@@ -335,12 +335,12 @@
     <div class="brand-wrap">
       <span class="brand-badge">TA</span>
       <div>
-        <div class="brand-title">TestAcademy Workshop Portál</div>
+        <div class="brand-title">TestAcademy Workshop Portal</div>
       </div>
     </div>
     <div style="display:flex; align-items:center; gap:1rem;">
       <span class="env-tag">B2B Sandbox v2.4.1</span>
-      <a href="index.html" style="color:#94a3b8; font-size:0.8rem; text-decoration:none;">&larr; Vissza a Feladatokhoz</a>
+      <a href="index.html" style="color:#94a3b8; font-size:0.8rem; text-decoration:none;">&larr; Back to Mission Guide</a>
     </div>
   </nav>
 
@@ -349,81 +349,81 @@
 
     <div class="app-grid">
       
-      <!-- BAL OSZLOP: ŰRLAP -->
+      <!-- LEFT COLUMN: FORM -->
       <div class="card">
         <div class="card-title">
-          <span>1. Válassz Workshopot & Képzést</span>
-          <span style="font-size:0.8rem; color:#64748b; font-weight:normal;">Kötelező mezők *</span>
+          <span>1. Select Workshop & Track</span>
+          <span style="font-size:0.8rem; color:#64748b; font-weight:normal;">Required fields *</span>
         </div>
 
         <div class="workshop-select-grid">
-          <div class="workshop-option selected" onclick="selectWorkshop(this, 'Manual QA Masterclass', 49000)">
+          <div class="workshop-option selected" onclick="selectWorkshop(this, 'Manual QA & Test Design Masterclass', 490)">
             <div>
-              <div class="workshop-name">Manual QA & Teszttervezés Masterclass</div>
-              <div class="workshop-meta">4 alkalom • Kezdő / Újrakezdő szint</div>
+              <div class="workshop-name">Manual QA & Test Design Masterclass</div>
+              <div class="workshop-meta">4 Sessions • Beginner to Intermediate Level</div>
             </div>
-            <div class="workshop-price">49 000 Ft</div>
+            <div class="workshop-price">$490</div>
           </div>
 
-          <div class="workshop-option" onclick="selectWorkshop(this, 'API & Postman Alapok', 65000)">
+          <div class="workshop-option" onclick="selectWorkshop(this, 'API Testing & Postman in Practice', 650)">
             <div>
-              <div class="workshop-name">API Tesztelés & Postman Gyakorlat</div>
-              <div class="workshop-meta">5 alkalom • Haladó manuális szint</div>
+              <div class="workshop-name">API Testing & Postman in Practice</div>
+              <div class="workshop-meta">5 Sessions • Advanced Technical QA</div>
             </div>
-            <div class="workshop-price">65 000 Ft</div>
+            <div class="workshop-price">$650</div>
           </div>
 
-          <div class="workshop-option" onclick="selectWorkshop(this, 'SQL Adatbázis Tesztelés', 55000)">
+          <div class="workshop-option" onclick="selectWorkshop(this, 'SQL Database Validation for QA', 550)">
             <div>
-              <div class="workshop-name">SQL Lekérdezések QA Szemmel</div>
-              <div class="workshop-meta">3 alkalom • Adatbázis validáció</div>
+              <div class="workshop-name">SQL Database Validation for QA</div>
+              <div class="workshop-meta">3 Sessions • Database & JDBC Verification</div>
             </div>
-            <div class="workshop-price">55 000 Ft</div>
+            <div class="workshop-price">$550</div>
           </div>
         </div>
 
         <div class="card-title" style="margin-top:1.75rem;">
-          <span>2. Résztvevő Adatai</span>
+          <span>2. Attendee Information</span>
         </div>
 
         <form id="booking-form" onsubmit="handleBookingSubmit(event)">
-          <!-- Név (INTENTIONAL BUG: Whitespace-only elfogadva) -->
+          <!-- Name (INTENTIONAL BUG: Whitespace-only passes) -->
           <div class="form-group">
-            <label class="form-label">Teljes Név *</label>
-            <input type="text" id="cust-name" class="form-input" placeholder="pl. Tesztelő Tamás" required>
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="cust-name" class="form-input" placeholder="e.g. Peter Smith" required>
           </div>
 
           <div class="form-row-2">
-            <!-- E-mail -->
+            <!-- Email -->
             <div class="form-group">
-              <label class="form-label">E-mail Cím *</label>
-              <input type="text" id="cust-email" class="form-input" placeholder="tamas@pelda.hu" required>
+              <label class="form-label">Email Address *</label>
+              <input type="text" id="cust-email" class="form-input" placeholder="peter@example.com" required>
             </div>
-            <!-- Telefonszám (INTENTIONAL BUG: Betűket enged, elküldéskor némán elakad) -->
+            <!-- Phone (INTENTIONAL BUG: Letters accepted, but submission silently halts) -->
             <div class="form-group">
-              <label class="form-label">Telefonszám (Phone Number) *</label>
-              <input type="text" id="cust-phone" class="form-input" placeholder="+36 30 123 4567" required>
+              <label class="form-label">Phone Number *</label>
+              <input type="text" id="cust-phone" class="form-input" placeholder="+1 (555) 234-5678" required>
             </div>
           </div>
 
           <div class="form-row-2">
-            <!-- Dátum (INTENTIONAL BUG: Múltbéli dátumot enged!) -->
+            <!-- Date (INTENTIONAL BUG: Past dates allowed!) -->
             <div class="form-group">
-              <label class="form-label">Kezdés Időpontja *</label>
+              <label class="form-label">Starting Date *</label>
               <input type="date" id="cust-date" class="form-input" required>
             </div>
 
-            <!-- Résztvevők száma (INTENTIONAL BUG: nincs min="1", lemegy negatívba!) -->
+            <!-- Quantity (INTENTIONAL BUG: No min='1', can drop into negative numbers!) -->
             <div class="form-group">
-              <label class="form-label">Résztvevők Száma</label>
+              <label class="form-label">Number of Attendees</label>
               <input type="number" id="cust-qty" class="form-input" value="1" oninput="recalcTotal()">
             </div>
           </div>
 
-          <!-- Megjegyzés (INTENTIONAL BUG: 250+ karakter triggers raw DB alert) -->
+          <!-- Notes (INTENTIONAL BUG: 250+ characters triggers raw database exception alert) -->
           <div class="form-group">
-            <label class="form-label">Különleges kérések / Megjegyzés (max 250 karakter)</label>
-            <textarea id="cust-notes" class="form-textarea" rows="3" placeholder="Ide írd ha kérsz számlát vagy van speciális kérésed..."></textarea>
+            <label class="form-label">Special Requests / Notes (max 250 characters)</label>
+            <textarea id="cust-notes" class="form-textarea" rows="3" placeholder="Enter special billing requirements, invoice address, or team size details..."></textarea>
           </div>
 
           <button type="submit" style="display:none;" id="hidden-submit"></button>
@@ -431,64 +431,64 @@
 
       </div>
 
-      <!-- JOBB OSZLOP: ÖSSZESÍTŐ -->
+      <!-- RIGHT COLUMN: ORDER SUMMARY -->
       <div class="card">
         <div class="card-title">
-          <span>Rendelés Összegzése</span>
+          <span>Order Summary</span>
         </div>
 
         <div class="summary-row">
-          <span id="sum-name">Manual QA Masterclass</span>
-          <span id="sum-base-price">49 000 Ft</span>
+          <span id="sum-name">Manual QA & Test Design Masterclass</span>
+          <span id="sum-base-price">$490</span>
         </div>
 
         <div class="summary-row">
-          <span>Résztvevők száma:</span>
-          <span id="sum-qty">1 fő</span>
+          <span>Number of attendees:</span>
+          <span id="sum-qty">1 seat</span>
         </div>
 
         <div class="summary-row" id="coupon-row" style="display:none; color:#10b981;">
-          <span>Kupon kedvezmény:</span>
-          <span id="sum-discount">-0 Ft</span>
+          <span>Coupon discount:</span>
+          <span id="sum-discount">-$0</span>
         </div>
 
         <div class="summary-total">
-          <span>Végösszeg:</span>
-          <span id="sum-total" style="color:#2563eb;">49 000 Ft</span>
+          <span>Grand Total:</span>
+          <span id="sum-total" style="color:#2563eb;">$490</span>
         </div>
 
-        <!-- Kupon Mező (INTENTIONAL BUGS) -->
+        <!-- Coupon Field (INTENTIONAL BUGS) -->
         <div class="coupon-box">
-          <input type="text" id="coupon-input" class="form-input" placeholder="Kuponkód (pl. PROMO10)">
-          <button class="btn-apply-coupon" onclick="applyCoupon()">Érvényesítés</button>
+          <input type="text" id="coupon-input" class="form-input" placeholder="Coupon code (e.g. PROMO10)">
+          <button class="btn-apply-coupon" onclick="applyCoupon()">Apply</button>
         </div>
         <div id="coupon-msg" style="font-size:0.75rem; margin-top:0.4rem; display:none;"></div>
 
-        <!-- Fizetés Gomb Konténer (INTENTIONAL BUG: 335px overflow mobil nézetben) -->
+        <!-- Submit Container (INTENTIONAL BUG: 335px overflow on 320/375px mobile viewports) -->
         <div class="btn-checkout-container">
           <button class="btn-submit-booking" onclick="triggerBookingSubmit()">
-            Foglalás Leadása & Fizetés &rarr;
+            Proceed to Booking & Payment &rarr;
           </button>
           <!-- GHOST TEXT HOVER BUG -->
           <button class="btn-secondary-cancel" onclick="resetBookingForm()">
-            Űrlap Törlése / Mégse
+            Clear Form / Cancel
           </button>
         </div>
 
         <div style="margin-top:1.5rem; font-size:0.75rem; color:#94a3b8; text-align:center;">
-          🔒 256-bit SSL titkosítás (B2B Sandbox Gateway)
+          🔒 256-bit SSL Encrypted (B2B Sandbox Gateway)
         </div>
 
       </div>
 
     </div>
 
-    <!-- MEGLÉVŐ FOGLALÁSOK TÁBLÁZAT -->
+    <!-- REGISTERED BOOKINGS TABLE -->
     <div class="card">
       <div class="card-title">
-        <span>Rendszerben Rögzített Foglalások</span>
+        <span>Registered Bookings (Enterprise Sandbox DB)</span>
         <button class="btn-apply-coupon" style="font-size:0.75rem; padding:0.35rem 0.85rem;" onclick="openTestModal()">
-          Felugró ablak teszt (Modal)
+          Test Modal Popup
         </button>
       </div>
 
@@ -497,40 +497,40 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Név</th>
+              <th>Full Name</th>
               <th>Workshop</th>
-              <th>Dátum</th>
-              <!-- INTENTIONAL BUG: Fordított rendezési nyilak -->
-              <th onclick="toggleSortPrice()" title="Kattints a rendezéshez">
-                Ár (HUF) <span id="sort-icon">▲</span>
+              <th>Date</th>
+              <!-- INTENTIONAL BUG: Reversed sorting logic -->
+              <th onclick="toggleSortPrice()" title="Click to sort by price">
+                Price ($) <span id="sort-icon">▲</span>
               </th>
-              <th>Művelet</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody id="bookings-tbody">
             <tr>
               <td>#1001</td>
-              <td>Kovács Péter</td>
-              <td>Manual QA Masterclass</td>
+              <td>Peter Smith</td>
+              <td>Manual QA & Test Design Masterclass</td>
               <td>2026-10-15</td>
-              <td>49000</td>
-              <td><button class="btn-delete-row" onclick="deleteBookingRow(0)">Törlés</button></td>
+              <td>490</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(0)">Delete</button></td>
             </tr>
             <tr>
               <td>#1002</td>
-              <td>Nagy Ágnes</td>
-              <td>API & Postman Alapok</td>
+              <td>Agnes Miller</td>
+              <td>API Testing & Postman in Practice</td>
               <td>2026-10-18</td>
-              <td>65000</td>
-              <td><button class="btn-delete-row" onclick="deleteBookingRow(1)">Törlés</button></td>
+              <td>650</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(1)">Delete</button></td>
             </tr>
             <tr>
               <td>#1003</td>
-              <td>Tóth Béla</td>
-              <td>SQL Adatbázis Tesztelés</td>
+              <td>Robert Davis</td>
+              <td>SQL Database Validation for QA</td>
               <td>2026-10-22</td>
-              <td>55000</td>
-              <td><button class="btn-delete-row" onclick="deleteBookingRow(2)">Törlés</button></td>
+              <td>550</td>
+              <td><button class="btn-delete-row" onclick="deleteBookingRow(2)">Delete</button></td>
             </tr>
           </tbody>
         </table>
@@ -539,22 +539,22 @@
 
   </main>
 
-  <!-- MODAL ABLAK (SZÁNDÉKOS HIBÁKKAL) -->
+  <!-- CONFIRMATION MODAL (SZÁNDÉKOS HIBÁKKAL) -->
   <div id="qa-modal-overlay">
     <div class="qa-modal-box">
-      <!-- INTENTIONAL BUG: Az X nem zárja be az ablakot! -->
-      <button class="modal-close-x" onclick="modalXClicked()" title="Bezárás">×</button>
+      <!-- INTENTIONAL BUG: Close X does not dismiss modal! -->
+      <button class="modal-close-x" onclick="modalXClicked()" title="Close">×</button>
       <h3 style="font-size:1.25rem; font-weight:800; color:#0f172a; margin-bottom:0.5rem;">
-        Foglalás Megerősítése
+        Confirm Your Booking
       </h3>
       <p style="font-size:0.85rem; color:#64748b; line-height:1.4;">
-        Biztosan véglegesíteni szeretnéd a kiválasztott kurzus foglalását a megadott adatokkal?
+        Are you sure you want to finalize your registration for the selected workshop with the provided information?
       </p>
       <div id="modal-details" style="background:#f8fafc; padding:0.85rem; border-radius:8px; margin-top:1rem; font-size:0.85rem; border:1px solid #e2e8f0;">
       </div>
       <div class="modal-actions">
-        <button class="btn-secondary-cancel" style="width:auto; margin:0;" onclick="closeModal()">Mégse</button>
-        <button class="btn-apply-coupon" style="background:#2563eb;" onclick="confirmBookingSuccess()">Igen, Megerősítem</button>
+        <button class="btn-secondary-cancel" style="width:auto; margin:0;" onclick="closeModal()">Cancel</button>
+        <button class="btn-apply-coupon" style="background:#2563eb;" onclick="confirmBookingSuccess()">Confirm Booking</button>
       </div>
     </div>
   </div>
@@ -580,8 +580,8 @@
     }
 
     // WORKSHOP SELECTION
-    let currentWorkshopName = "Manual QA Masterclass";
-    let currentWorkshopPrice = 49000;
+    let currentWorkshopName = "Manual QA & Test Design Masterclass";
+    let currentWorkshopPrice = 490;
     let currentDiscountPercent = 0;
 
     function selectWorkshop(element, name, price) {
@@ -590,7 +590,7 @@
       currentWorkshopName = name;
       currentWorkshopPrice = price;
       document.getElementById('sum-name').innerText = name;
-      document.getElementById('sum-base-price').innerText = formatHUF(price);
+      document.getElementById('sum-base-price').innerText = formatUSD(price);
       recalcTotal();
     }
 
@@ -599,20 +599,20 @@
       if (isNaN(qty)) qty = 0;
 
       // INTENTIONAL BUG: Qty can be negative!
-      document.getElementById('sum-qty').innerText = `${qty} fő`;
+      document.getElementById('sum-qty').innerText = `${qty} ${qty === 1 ? 'seat' : 'seats'}`;
 
       let baseTotal = currentWorkshopPrice * qty;
       let discountAmount = Math.round(baseTotal * (currentDiscountPercent / 100));
 
       if (currentDiscountPercent > 0) {
         document.getElementById('coupon-row').style.display = 'flex';
-        document.getElementById('sum-discount').innerText = `-${formatHUF(discountAmount)}`;
+        document.getElementById('sum-discount').innerText = `-${formatUSD(discountAmount)}`;
       } else {
         document.getElementById('coupon-row').style.display = 'none';
       }
 
       let grandTotal = baseTotal - discountAmount;
-      document.getElementById('sum-total').innerText = formatHUF(grandTotal);
+      document.getElementById('sum-total').innerText = formatUSD(grandTotal);
     }
 
     function applyCoupon() {
@@ -623,20 +623,20 @@
       if (code === 'PROMO10') {
         currentDiscountPercent = 10;
         msgEl.style.color = '#10b981';
-        msgEl.innerText = '✅ 10% kedvezmény érvényesítve!';
+        msgEl.innerText = '✅ 10% promotional discount applied!';
       } else if (code === 'DISCOUNT100') {
         currentDiscountPercent = 100;
         msgEl.style.color = '#10b981';
-        msgEl.innerText = '✅ 100% ingyenes kupon érvényesítve!';
+        msgEl.innerText = '✅ 100% full scholarship coupon applied!';
       } else if (code === 'DISCOUNT150') {
         // INTENTIONAL BUG: 150% discount produces negative price!
         currentDiscountPercent = 150;
         msgEl.style.color = '#10b981';
-        msgEl.innerText = '✅ 150% Super VIP kupon érvényesítve! (Végösszeg negatívba fordul)';
+        msgEl.innerText = '✅ 150% Super VIP promo applied! (Total drops into negative balance)';
       } else {
         currentDiscountPercent = 0;
         msgEl.style.color = '#ef4444';
-        msgEl.innerText = '❌ Érvénytelen vagy lejárt kuponkód!';
+        msgEl.innerText = '❌ Invalid or expired coupon code!';
       }
       recalcTotal();
     }
@@ -683,13 +683,13 @@
     function openTestModal() {
       const modal = document.getElementById('qa-modal-overlay');
       const details = document.getElementById('modal-details');
-      const name = document.getElementById('cust-name').value || "Tesztelő Tamás";
+      const name = document.getElementById('cust-name').value || "Peter Smith";
       const total = document.getElementById('sum-total').innerText;
 
       details.innerHTML = `
-        <strong>Képzés:</strong> ${currentWorkshopName}<br>
-        <strong>Név:</strong> ${name}<br>
-        <strong>Fizetendő összeg:</strong> ${total}
+        <strong>Course:</strong> ${currentWorkshopName}<br>
+        <strong>Attendee:</strong> ${name}<br>
+        <strong>Total Payable:</strong> ${total}
       `;
       modal.style.display = 'flex';
     }
@@ -705,7 +705,7 @@
 
     function confirmBookingSuccess() {
       closeModal();
-      alert("🎉 Foglalás sikeresen rögzítve a teszt adatbázisban!");
+      alert("🎉 Booking successfully persisted in test database!");
     }
 
     // TABLE SORTING & DELETE BUGS
@@ -732,12 +732,15 @@
       const tbody = document.getElementById('bookings-tbody');
       if (tbody.children.length > 0) {
         tbody.removeChild(tbody.children[0]);
-        alert("⚠️ Figyelem: A törlés művelet lefutott! (Ellenőrizd, melyik sor törlődött!)");
+        alert("⚠️ Alert: Deletion statement executed! (Check which row was actually deleted!)");
       }
     }
 
-    function formatHUF(amount) {
-      return amount.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, " ") + " Ft";
+    function formatUSD(amount) {
+      if (amount < 0) {
+        return "-$" + Math.abs(amount).toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ",");
+      }
+      return "$" + amount.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ",");
     }
   </script>
 </body>

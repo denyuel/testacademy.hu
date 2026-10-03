@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TestAcademy QA Lab - Részletes Feladatvezérlő</title>
+  <title>TestAcademy QA Lab - Step-by-Step UI Testing Mission</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -138,13 +138,13 @@
   <!-- GATE -->
   <div id="gate-overlay">
     <div class="gate-card">
-      <span style="font-size:0.75rem; font-weight:800; color:#2563eb; text-transform:uppercase;">TestAcademy Hungary</span>
-      <h2 style="font-size:1.5rem; font-weight:900; margin:0.5rem 0 1rem; color:#0f172a;">QA Gyakorló Portál</h2>
-      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Add meg a belépési kódot a feladatok megnyitásához:</p>
+      <span style="font-size:0.75rem; font-weight:800; color:#2563eb; text-transform:uppercase;">TestAcademy Portal</span>
+      <h2 style="font-size:1.5rem; font-weight:900; margin:0.5rem 0 1rem; color:#0f172a;">QA Practice Lab</h2>
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Enter your passcode to unlock the testing dashboard:</p>
       <form onsubmit="handleGateLogin(event)">
-        <input type="password" id="gate-pass" class="gate-input" placeholder="Belépési kód" autocomplete="off" autofocus>
-        <button type="submit" class="gate-btn">Belépés a Feladatokhoz &rarr;</button>
-        <div id="gate-error" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Helytelen belépési kód!</div>
+        <input type="password" id="gate-pass" class="gate-input" placeholder="Enter Passcode" autocomplete="off" autofocus>
+        <button type="submit" class="gate-btn">Unlock Practice Hub &rarr;</button>
+        <div id="gate-error" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Invalid passcode! Please ask your mentor.</div>
       </form>
     </div>
   </div>
@@ -155,13 +155,13 @@
       <span class="brand-logo-badge">TA</span>
       <div>
         <div style="font-size:1.1rem; font-weight:800;">TestAcademy QA Arena</div>
-        <div style="font-size:0.75rem; color:#94a3b8;">Manuális UI & Részletes Határérték Küldetés</div>
+        <div style="font-size:0.75rem; color:#94a3b8;">Manual UI Testing & Boundary Value Mission</div>
       </div>
     </div>
 
     <div style="display:flex; align-items:center; gap:1.5rem;">
       <a href="app.html" target="_blank" class="btn-open-app">
-        <span>🚀 Tesztalkalmazás Megnyitása Új Lapra</span>
+        <span>🚀 Open Test App in New Tab</span>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
       </a>
 
@@ -169,10 +169,10 @@
         <div class="progress-bar-bg">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
         </div>
-        <span id="progress-text" style="font-size:0.8rem; font-weight:800; color:#10b981;">0/28 kész</span>
+        <span id="progress-text" style="font-size:0.8rem; font-weight:800; color:#10b981;">0/28 done</span>
       </div>
 
-      <button style="background:#334155; border:none; color:#cbd5e1; padding:0.35rem 0.75rem; border-radius:50px; font-size:0.75rem; cursor:pointer;" onclick="logoutGate()">Kilépés</button>
+      <button style="background:#334155; border:none; color:#cbd5e1; padding:0.35rem 0.75rem; border-radius:50px; font-size:0.75rem; cursor:pointer;" onclick="logoutGate()">Logout</button>
     </div>
   </header>
 
@@ -181,35 +181,35 @@
 
     <div class="hero-banner">
       <div class="hero-text">
-        <h1>Lépésről Lépésre UI Tesztelői Küldetés</h1>
-        <p>Minden egyes feladat egy <strong>konkrét, kézzel elvégzendő tesztlépést</strong> ír le a jobb felső sarokban megnyitható Tesztalkalmazáson. Ne siess: próbáld ki az értékeket, figyeld meg az eredményt, és írd be a jegyzetedet!</p>
+        <h1>Hands-On UI Testing Mission</h1>
+        <p>Your objective is to systematically explore, uncover, and document <strong>15+ planted production bugs</strong> hidden inside the standalone Test Application. Follow each task step-by-step, observe the actual system response, and log your findings.</p>
       </div>
       <div>
         <a href="app.html" target="_blank" class="btn-open-app" style="padding:0.85rem 1.5rem; font-size:0.95rem;">
-          Alkalmazás Indítása ↗
+          Launch Test App ↗
         </a>
       </div>
     </div>
 
     <div class="instructions-box">
-      <strong>📌 Hogyan csináld végig a feladatokat?</strong><br>
-      1. Nyisd meg az alkalmazást egy <strong>külön böngészőlapon</strong> a fenti kék gombbal.<br>
-      2. Haladj szépen sorban az 1.1-es feladattól a végéig.<br>
-      3. Minden feladatnál végezd el a megadott <strong>pontos lépéseket</strong> a felületen.<br>
-      4. A sárga kérdésre válaszolva írd be a jegyzetmezőbe, hogy <strong>mit láttál a képernyőn</strong> (a böngésződ automatikusan menti).<br>
-      5. Az utolsó modulban készítsd el a 6 db profi hibajegyet a saját Trello tábládra képernyőképekkel!
+      <strong>📌 How to complete this testing mission:</strong><br>
+      1. Open the target application in a <strong>separate browser tab</strong> using the blue button above.<br>
+      2. Work through the tasks in order from 1.1 onwards.<br>
+      3. Execute the exact test steps specified in each task card.<br>
+      4. Answer the highlighted question in the yellow box and type your empirical observation into the notes field (your browser saves it automatically).<br>
+      5. In Part 5, document the 6 verified bugs directly onto your Trello board with annotated screenshots!
     </div>
 
     <!-- ======================================================== -->
-    <!-- RÉSZ 1: ŰRLAP MEZŐK & HATÁRÉRTÉK MIKRO-TESZTELÉS (10 FELADAT) -->
+    <!-- PART 1: FORM FIELDS & BOUNDARY TESTING (7 TASKS) -->
     <!-- ======================================================== -->
     <div class="module-card">
       <div class="module-header">
         <div>
-          <span class="module-tag">1. RÉSZ</span>
-          <span class="module-title">Űrlap Mezők & Határérték Mikro-tesztelés</span>
+          <span class="module-tag">PART 1</span>
+          <span class="module-title">Form Fields & Input Boundary Testing</span>
         </div>
-        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">10 Lépés</span>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">7 Tasks</span>
       </div>
 
       <div class="tasks-list">
@@ -219,18 +219,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-1" class="task-checkbox" onchange="updateTaskStatus(1)">
             <div class="task-body">
-              <div class="task-title">1.1. Teljes Név – Pozitív alapteszt</div>
-              <div class="task-desc">Ellenőrizd a Név mező normál, érvényes működését.</div>
+              <div class="task-title">1.1. Full Name – Positive Baseline Test</div>
+              <div class="task-desc">Verify standard, valid text input handling in the Full Name field.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Írd be a „Teljes Név” mezőbe: <code>Kovács Péter</code></li>
-                  <li>Kattints a mezőn kívülre (Tab billentyűvel vagy kattintással).</li>
+                  <li>Type into the "Full Name" input: <code>Peter Smith</code></li>
+                  <li>Click outside the field or press Tab to trigger the blur event.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Kapsz bármilyen hibaüzenetet? Milyen színű marad a mező kerete?</div>
-              <textarea id="task-note-1" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(1)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Does any unexpected error appear? Does the border highlight normally?</div>
+              <textarea id="task-note-1" class="task-notes-area" placeholder="Describe what you observed..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(1)">Save Note</button>
             </div>
           </div>
         </div>
@@ -240,18 +240,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-2" class="task-checkbox" onchange="updateTaskStatus(2)">
             <div class="task-body">
-              <div class="task-title">1.2. Teljes Név – Alsó határérték (1 karakter)</div>
-              <div class="task-desc">Egy valódi név ritkán áll egyetlen betűből. Hogyan kezeli a felület?</div>
+              <div class="task-title">1.2. Full Name – Lower Boundary Value (1 Character)</div>
+              <div class="task-desc">A single character is rarely a valid person name. How does the system handle it?</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Töröld ki a nevet, és írj be csak egyetlen betűt: <code>A</code></li>
-                  <li>Töltsd ki az e-mailt (<code>teszt@teszt.hu</code>), telefont (<code>06301234567</code>), dátumot (holnapi nap), és kattints a Foglalás gombra!</li>
+                  <li>Clear the name field, and type only a single letter: <code>A</code></li>
+                  <li>Fill out valid email (<code>test@example.com</code>), phone (<code>+36301234567</code>), date (tomorrow), and click the blue Submit button!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Elfogadta a rendszer az 1 betűs nevet, vagy kért legalább 2-3 karaktert?</div>
-              <textarea id="task-note-2" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(2)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the validation accept the 1-character name or enforce a minimum length of 2-3 characters?</div>
+              <textarea id="task-note-2" class="task-notes-area" placeholder="Describe your observation..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(2)">Save Note</button>
             </div>
           </div>
         </div>
@@ -261,19 +261,19 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-3" class="task-checkbox" onchange="updateTaskStatus(3)">
             <div class="task-body">
-              <div class="task-title">1.3. Teljes Név – Csak szóközök (Space-Only Csapda)</div>
-              <div class="task-desc">A klasszikus form validációs hiba: a mező kitöltöttnek tűnik, de valójában üres.</div>
+              <div class="task-title">1.3. Full Name – Whitespace-Only (Space Bar Trap)</div>
+              <div class="task-desc">A classic form validation vulnerability: the field appears filled, but contains no characters.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Töröld ki a nevet teljesen.</li>
-                  <li>Üss le pontosan 4 darab szóközt a Space billentyűvel (<code>    </code>).</li>
-                  <li>Kattints a kék „Foglalás Leadása & Fizetés” gombra!</li>
+                  <li>Clear the name field completely.</li>
+                  <li>Press the Spacebar exactly 4 times (<code>    </code>).</li>
+                  <li>Click the blue "Proceed to Booking & Payment &rarr;" button!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Megjelent a modal ablak? Miért kritikus minőségi hiba, ha egy űrlap elfogad csak szóközökből álló nevet?</div>
-              <textarea id="task-note-3" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(3)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the confirmation modal open? Why is it a critical QA bug when a form accepts whitespace-only names?</div>
+              <textarea id="task-note-3" class="task-notes-area" placeholder="Describe what occurred..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(3)">Save Note</button>
             </div>
           </div>
         </div>
@@ -283,19 +283,19 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-4" class="task-checkbox" onchange="updateTaskStatus(4)">
             <div class="task-body">
-              <div class="task-title">1.4. E-mail Cím – Formátum validáció ellenőrzése</div>
-              <div class="task-desc">Hogyan viselkedik az e-mail mező hibás bemenetek esetén?</div>
+              <div class="task-title">1.4. Email Address – Format Validation Test</div>
+              <div class="task-desc">Verify how the email field responds to missing characters and malformed domains.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Írd be: <code>tesztelo.tamas.hu</code> (kihagyva a <code>@</code> jelet).</li>
-                  <li>Kattints a Foglalás gombra. Figyeld meg a böngésző reakcióját!</li>
-                  <li>Most írd be: <code>tesztelo@hu</code> (kihagyva a pontot és a tartományt). Kattints újra a Foglalásra!</li>
+                  <li>Type into Email: <code>petersmith.example.com</code> (missing the <code>@</code> symbol).</li>
+                  <li>Click Submit. Observe the browser's native tooltip validation.</li>
+                  <li>Now type: <code>petersmith@com</code> (missing the period/domain dot). Click Submit again!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Milyen hibaüzenetet adott a böngésző a @ hiányánál? Elfogadta-e a pont nélküli formátumot?</div>
-              <textarea id="task-note-4" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(4)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What exact error message did the browser show when @ was missing? Did it accept the dotless format?</div>
+              <textarea id="task-note-4" class="task-notes-area" placeholder="Describe the validation responses..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(4)">Save Note</button>
             </div>
           </div>
         </div>
@@ -305,19 +305,19 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-5" class="task-checkbox" onchange="updateTaskStatus(5)">
             <div class="task-body">
-              <div class="task-title">1.5. Telefonszám – Betűk bevitele & Néma hiba (Silent Failure)</div>
-              <div class="task-desc">Ez az egyik legveszélyesebb tesztelői hiba: a felület látszólag engedi az adatot, de nem történik semmi.</div>
+              <div class="task-title">1.5. Phone Number – Alphabetical Characters & Silent Failure</div>
+              <div class="task-desc">One of the most insidious software bugs: the user clicks Submit, but nothing happens.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>A „Telefonszám” mezőbe írj be betűket: <code>nemadommeg</code></li>
-                  <li>Minden más mező legyen érvényesen kitöltve (érvényes név, e-mail, holnapi dátum).</li>
-                  <li>Kattints a kék „Foglalás Leadása & Fizetés” gombra!</li>
+                  <li>In the "Phone Number" field, enter alphabetic letters: <code>callmenow</code></li>
+                  <li>Ensure all other fields are valid (valid name, email, future date).</li>
+                  <li>Click the blue "Proceed to Booking & Payment &rarr;" button!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Megjelent piros hibaüzenet? Megnyílt a megerősítő ablak? Vagy némán semmi nem történt?</div>
-              <textarea id="task-note-5" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(5)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did any error message appear? Did the confirmation modal open? Or did the UI silently freeze without feedback?</div>
+              <textarea id="task-note-5" class="task-notes-area" placeholder="Describe the silent failure behavior..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(5)">Save Note</button>
             </div>
           </div>
         </div>
@@ -327,19 +327,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-6" class="task-checkbox" onchange="updateTaskStatus(6)">
             <div class="task-body">
-              <div class="task-title">1.6. Dátumválasztó – Múltbéli dátum elfogadása</div>
-              <div class="task-desc">Lehet-e egy jövőbeli képzésre a múltba időpontot foglalni?</div>
+              <div class="task-title">1.6. Date Picker – Booking in the Past</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Kattints a „Kezdés Időpontja” naptár ikonjára.</li>
-                  <li>Válassz ki egy <strong>egy évvel ezelőtti dátumot</strong> (pl. 2025-01-15).</li>
-                  <li>Töltsd ki az űrlapot normális adatokkal és kattints a Foglalásra!</li>
+                  <li>Click the "Starting Date" calendar picker.</li>
+                  <li>Select a date from last year (e.g. <code>2025-01-15</code>).</li>
+                  <li>Fill out the form and submit.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Letiltotta a naptár a múltbéli napokat? Engedte a rendszer a foglalást a múltba?</div>
-              <textarea id="task-note-6" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(6)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the datepicker disable past dates? Did the system allow you to book an event in the past?</div>
+              <textarea id="task-note-6" class="task-notes-area" placeholder="Describe what happened..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(6)">Save Note</button>
             </div>
           </div>
         </div>
@@ -349,21 +348,21 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-7" class="task-checkbox" onchange="updateTaskStatus(7)">
             <div class="task-body">
-              <div class="task-title">1.7. Megjegyzés mező – 250 karakteres határ & SQL hiba</div>
-              <div class="task-desc">Mi történik, ha a felhasználó túllépi az adatbázis megengedett karakterméretét?</div>
+              <div class="task-title">1.7. Notes Field – 250 Character Limit & Raw Database Alert</div>
+              <div class="task-desc">Test database buffer overflow and unhandled server exception feedback.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Másold ki pontosan ezt a hosszú tesztszöveget (265 karakter):<br>
-                    <code>TesztAcademy B2B elvárások tesztelése céljából szeretnénk megrendelni ezt a tanfolyamot a teljes mérnökcsapatunk számára. Kérjük a számlát az alábbi adatokkal kiállítani: Test Company Kft., Adószám: 12345678-2-42, Cím: 1111 Budapest, Teszt utca 1., kapcsolattartó: Kovács Péter.</code>
+                  <li>Copy this exact 265-character sample string:<br>
+                    <code>We would like to book this corporate workshop for our entire manual testing team across Central Europe. Please invoice our enterprise billing department at Test Academy International Ltd., Tax ID: 12345678-2-42, Registered Office: 1011 London, Fleet Street 42.</code>
                   </li>
-                  <li>Illeszd be a „Különleges kérések / Megjegyzés” mezőbe.</li>
-                  <li>Kattints a kék „Foglalás Leadása & Fizetés” gombra!</li>
+                  <li>Paste it into the "Special Requests / Notes" textarea.</li>
+                  <li>Click the blue "Proceed to Booking & Payment &rarr;" button!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Milyen nyers hibaüzenetet (alert ablakot) dobott fel az oldal? Másold be a pontos szövegét! Megfelel ez egy igényes webshop elvárásainak?</div>
-              <textarea id="task-note-7" class="task-notes-area" placeholder="Másold be ide a nyers alert szövegét..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(7)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What raw database error alert was displayed on screen? Copy the exact error alert text into your notes!</div>
+              <textarea id="task-note-7" class="task-notes-area" placeholder="Paste the exact alert text here..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(7)">Save Note</button>
             </div>
           </div>
         </div>
@@ -372,15 +371,15 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- RÉSZ 2: KOSÁR, MENNYISÉG & KUPONMATEMATIKA AUDIT (6 FELADAT) -->
+    <!-- PART 2: CART CALCULATION & COUPON AUDIT (6 TASKS) -->
     <!-- ======================================================== -->
     <div class="module-card">
       <div class="module-header">
         <div>
-          <span class="module-tag">2. RÉSZ</span>
-          <span class="module-title">Kosármatematika, Mennyiség & Kupon Audit</span>
+          <span class="module-tag">PART 2</span>
+          <span class="module-title">Cart Calculation, Quantity & Coupon Audit</span>
         </div>
-        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Lépés</span>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Tasks</span>
       </div>
 
       <div class="tasks-list">
@@ -390,19 +389,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-8" class="task-checkbox" onchange="updateTaskStatus(8)">
             <div class="task-body">
-              <div class="task-title">2.1. Kurzusváltás és Alapár Szinkronizáció</div>
-              <div class="task-desc">Kattints át a különböző workshop opciókra és ellenőrizd az összegző kártyát.</div>
+              <div class="task-title">2.1. Workshop Selection & Real-Time Price Sync</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Kattints az „API Tesztelés & Postman Gyakorlat” kártyára (65 000 Ft).</li>
-                  <li>Nézd meg a jobb oldali „Rendelés Összegzése” kártyát: megváltozott a cím és az alapár?</li>
-                  <li>Kattints az „SQL Lekérdezések QA Szemmel” kártyára (55 000 Ft). Ellenőrizd újra!</li>
+                  <li>Click the second workshop option: "API Testing & Postman in Practice" ($650).</li>
+                  <li>Inspect the right-hand "Order Summary" card: did the title and base price update?</li>
+                  <li>Click the third option: "SQL Database Validation for QA" ($550). Check again!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Azonnal és helyesen frissült az ár a jobb oldali összegzőben?</div>
-              <textarea id="task-note-8" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(8)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the Order Summary immediately and accurately synchronize the price?</div>
+              <textarea id="task-note-8" class="task-notes-area" placeholder="Describe the price sync behavior..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(8)">Save Note</button>
             </div>
           </div>
         </div>
@@ -412,18 +410,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-9" class="task-checkbox" onchange="updateTaskStatus(9)">
             <div class="task-body">
-              <div class="task-title">2.2. Résztvevők száma – 0 darab tesztelése</div>
-              <div class="task-desc">Vásárolhat-e a vevő 0 darab jegyet?</div>
+              <div class="task-title">2.2. Number of Attendees – Zero Quantity Test</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>A „Résztvevők Száma” mezőbe írj be: <code>0</code></li>
-                  <li>Nézd meg a jobb oldali „Végösszeg” mezőt!</li>
+                  <li>In the "Number of Attendees" field, enter: <code>0</code></li>
+                  <li>Check the Grand Total in the right-hand sidebar.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Mennyi lett a végösszeg? Engedi-e a felület a 0 forintos megrendelést leadni?</div>
-              <textarea id="task-note-9" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(9)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What does the Grand Total display? Does the form block a zero-quantity order?</div>
+              <textarea id="task-note-9" class="task-notes-area" placeholder="Describe the result..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(9)">Save Note</button>
             </div>
           </div>
         </div>
@@ -433,19 +430,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-10" class="task-checkbox" onchange="updateTaskStatus(10)">
             <div class="task-body">
-              <div class="task-title">2.3. Résztvevők száma – Negatív érték csapda (-2 fő)</div>
-              <div class="task-desc">A legveszélyesebb e-commerce bug: ha a rendszer nem korlátozza az alsó határt.</div>
+              <div class="task-title">2.3. Number of Attendees – Negative Value Trap (-2 seats)</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Válaszd ki a Manual QA képzést (49 000 Ft).</li>
-                  <li>A „Résztvevők Száma” mező jobb szélén lévő kis lefelé nyíllal kattints lefelé, amíg <code>-2</code> nem lesz az érték!</li>
-                  <li>Nézd meg a jobb oldali „Végösszeg” mezőt!</li>
+                  <li>Select the Manual QA Masterclass ($490).</li>
+                  <li>Use the spinner down arrow on "Number of Attendees" until the value reaches <code>-2</code>!</li>
+                  <li>Inspect the "Grand Total" line.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Milyen összeg jelent meg a Végösszegnél? Levonódott a pénz a kosárból? Írd le a pontos számot!</div>
-              <textarea id="task-note-10" class="task-notes-area" placeholder="Írd le a pontos összeget..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(10)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What exact amount does Grand Total show? Did the system subtract money from the cart?</div>
+              <textarea id="task-note-10" class="task-notes-area" placeholder="Note the exact negative total..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(10)">Save Note</button>
             </div>
           </div>
         </div>
@@ -455,18 +451,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-11" class="task-checkbox" onchange="updateTaskStatus(11)">
             <div class="task-body">
-              <div class="task-title">2.4. Kuponkód – Érvényes 10%-os kupon (PROMO10)</div>
+              <div class="task-title">2.4. Coupon Code – Valid 10% Discount (PROMO10)</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Állítsd a résztvevők számát vissza <code>1</code>-re (49 000 Ft).</li>
-                  <li>A „Kuponkód” mezőbe írd be: <code>PROMO10</code></li>
-                  <li>Kattints az „Érvényesítés” gombra!</li>
+                  <li>Reset attendees count back to <code>1</code> ($490).</li>
+                  <li>In the coupon field, enter: <code>PROMO10</code></li>
+                  <li>Click the "Apply" button.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Megjelent a zöld kedvezmény sor? Pontosan 4 900 Ft lett a kedvezmény? Mennyi a végösszeg?</div>
-              <textarea id="task-note-11" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(11)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the green discount line appear? Was exactly 10% ($49) deducted? What is the final total?</div>
+              <textarea id="task-note-11" class="task-notes-area" placeholder="Record the discount calculation..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(11)">Save Note</button>
             </div>
           </div>
         </div>
@@ -476,18 +472,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-12" class="task-checkbox" onchange="updateTaskStatus(12)">
             <div class="task-body">
-              <div class="task-title">2.5. Kuponkód – Kisbetűs tesztelés (promo10)</div>
-              <div class="task-desc">A felhasználók gyakran kisbetűvel gépelik be a kuponokat. Elfogadja a rendszer?</div>
+              <div class="task-title">2.5. Coupon Code – Lowercase Handling (promo10)</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Írd be kisbetűvel: <code>promo10</code></li>
-                  <li>Kattints az „Érvényesítés” gombra!</li>
+                  <li>Type in lowercase: <code>promo10</code></li>
+                  <li>Click "Apply".</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Működött a kupon kisbetűvel is, vagy hibaüzenetet adott?</div>
-              <textarea id="task-note-12" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(12)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did it accept lowercase or reject it as an invalid code?</div>
+              <textarea id="task-note-12" class="task-notes-area" placeholder="Describe lowercase behavior..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(12)">Save Note</button>
             </div>
           </div>
         </div>
@@ -497,19 +492,19 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-13" class="task-checkbox" onchange="updateTaskStatus(13)">
             <div class="task-body">
-              <div class="task-title">2.6. Kuponkód – Pénzügyi túlcsordulás (DISCOUNT150)</div>
-              <div class="task-desc">Mi történik, ha egy kupon értéke meghaladja a 100%-ot?</div>
+              <div class="task-title">2.6. Coupon Code – Financial Logic Flaw (DISCOUNT150)</div>
+              <div class="task-desc">What happens when a promotional code exceeds 100% discount?</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Írd be a kupon mezőbe: <code>DISCOUNT150</code></li>
-                  <li>Kattints az „Érvényesítés” gombra!</li>
-                  <li>Nézd meg a „Végösszeg” mezőt!</li>
+                  <li>Enter the coupon: <code>DISCOUNT150</code></li>
+                  <li>Click "Apply".</li>
+                  <li>Inspect Grand Total.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Mennyi lett a végösszeg? Lehetséges, hogy a cég fizetne a vásárlónak? Írd le a pontos számot!</div>
-              <textarea id="task-note-13" class="task-notes-area" placeholder="Írd le a tapasztalt végösszeget..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(13)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What is the calculated Grand Total? Would the company owe money to the customer? Log the number!</div>
+              <textarea id="task-note-13" class="task-notes-area" placeholder="Note the resulting financial balance..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(13)">Save Note</button>
             </div>
           </div>
         </div>
@@ -518,15 +513,15 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- RÉSZ 3: DEVTOOLS, RESZPONZIVITÁS & VIZUÁLIS GLITCH-EK (6 FELADAT) -->
+    <!-- PART 3: DEVTOOLS & RESPONSIVE AUDIT (5 TASKS) -->
     <!-- ======================================================== -->
     <div class="module-card">
       <div class="module-header">
         <div>
-          <span class="module-tag">3. RÉSZ</span>
-          <span class="module-title">DevTools, Reszponzivitás & Vizuális Audit</span>
+          <span class="module-tag">PART 3</span>
+          <span class="module-title">DevTools, Responsive Layout & Visual Audit</span>
         </div>
-        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Lépés</span>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">5 Tasks</span>
       </div>
 
       <div class="tasks-list">
@@ -536,18 +531,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-14" class="task-checkbox" onchange="updateTaskStatus(14)">
             <div class="task-body">
-              <div class="task-title">3.1. DevTools megnyitása és Mobil Eszköztár bekapcsolása</div>
+              <div class="task-title">3.1. Open Chrome DevTools & Toggle Device Toolbar</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Az app ablakában nyomd meg az <code>F12</code> billentyűt.</li>
-                  <li>Kattints a bal felső <strong>Toggle Device Toolbar</strong> ikonra (egy kis telefon és tablet ikon a kurzor mellett, vagy <code>Ctrl + Shift + M</code>).</li>
-                  <li>A felső méretválasztóban válassz: <strong>Responsive</strong>.</li>
+                  <li>On the app tab, press <code>F12</code> (or right click &rarr; Inspect).</li>
+                  <li>Press <code>Ctrl + Shift + M</code> to activate the Device Toolbar.</li>
+                  <li>Select "Responsive" in the top bar.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Sikerült átváltani reszponzív nézetre? Látod a felbontás állító mezőket fent?</div>
-              <textarea id="task-note-14" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(14)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the responsive viewport appear? Can you adjust screen dimensions?</div>
+              <textarea id="task-note-14" class="task-notes-area" placeholder="Describe the DevTools setup..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(14)">Save Note</button>
             </div>
           </div>
         </div>
@@ -557,18 +552,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-15" class="task-checkbox" onchange="updateTaskStatus(15)">
             <div class="task-body">
-              <div class="task-title">3.2. iPhone SE Nézet (375 px) – A Kilógó Gomb Bug</div>
-              <div class="task-desc">Teszteld az oldalt a legelterjedtebb kis mobilos szélességen!</div>
+              <div class="task-title">3.2. iPhone SE Viewport (375px) – Button Overflow Glitch</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Állítsd a szélességet pontosan <code>375</code> pixelre a DevTools tetején!</li>
-                  <li>Görgess le a jobb oldali összegző kártyához a kék „Foglalás Leadása” gombhoz!</li>
+                  <li>Set the width in DevTools to exactly <code>375</code> pixels.</li>
+                  <li>Scroll down to the blue "Proceed to Booking" button inside the Order Summary card.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Kilóg a kék gomb a fehér kártya széléről? Hány pixellel szélesebb a gomb konténere, mint a kártya?</div>
-              <textarea id="task-note-15" class="task-notes-area" placeholder="Írd le a kilógó gomb megfigyelését..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(15)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Does the blue button spill over the right edge of the card? Is part of the text clipped?</div>
+              <textarea id="task-note-15" class="task-notes-area" placeholder="Describe the visual overflow..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(15)">Save Note</button>
             </div>
           </div>
         </div>
@@ -578,19 +572,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-16" class="task-checkbox" onchange="updateTaskStatus(16)">
             <div class="task-body">
-              <div class="task-title">3.3. CSS Inspect – Mi okozza a gomb kilógását?</div>
-              <div class="task-desc">Egy valódi tesztelő megkeresi a hiba CSS okát is a fejlesztőknek!</div>
+              <div class="task-title">3.3. CSS Inspection – Root Cause of Overflow</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Kattints a DevTools bal felső nyilacskájára (Inspect Element ikon, vagy <code>Ctrl + Shift + C</code>).</li>
-                  <li>Kattints a kilógó kék gomb konténerére (<code>.btn-checkout-container</code>).</li>
-                  <li>Nézd meg a jobb oldali <strong>Styles</strong> panelt!</li>
+                  <li>Activate the element inspect arrow (<code>Ctrl + Shift + C</code>).</li>
+                  <li>Click on the button container (<code>.btn-checkout-container</code>).</li>
+                  <li>Inspect the <strong>Styles</strong> panel on the right.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Milyen fix <code>min-width</code> érték van beállítva a konténerre a CSS-ben, ami megakadályozza az összehúzódást?</div>
-              <textarea id="task-note-16" class="task-notes-area" placeholder="Másold be ide a CSS min-width értéket..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(16)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What hardcoded <code>min-width</code> CSS rule is causing the button to break out of 375px screens?</div>
+              <textarea id="task-note-16" class="task-notes-area" placeholder="Copy the exact CSS rule here..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(16)">Save Note</button>
             </div>
           </div>
         </div>
@@ -600,19 +593,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-17" class="task-checkbox" onchange="updateTaskStatus(17)">
             <div class="task-body">
-              <div class="task-title">3.4. A „Szellem Felirat” (Hover State Bug)</div>
-              <div class="task-desc">Vizuális stílushiba az egyik másodlagos akciógombon.</div>
+              <div class="task-title">3.4. The "Ghost Text" Hover State Bug</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Kapcsold ki a Device Toolbart (vissza normál asztali méretre).</li>
-                  <li>Vidd az egeret a jobb oldali összegzőben lévő fehér „Űrlap Törlése / Mégse” gomb fölé!</li>
-                  <li>Figyeld meg a gomb feliratát, amikor az egérmutató rajta áll!</li>
+                  <li>Turn off Device Mode (back to desktop view).</li>
+                  <li>Hover your mouse pointer over the secondary button: "Clear Form / Cancel".</li>
+                  <li>Observe what happens to the button text while hovered!</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Hová tűnt a felirat? Milyen színű lett a betűszín a fehér háttéren?</div>
-              <textarea id="task-note-17" class="task-notes-area" placeholder="Írd le a hover bug megfigyelését..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(17)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: What color does the text become against the white background? Is it readable?</div>
+              <textarea id="task-note-17" class="task-notes-area" placeholder="Describe the hover state bug..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(17)">Save Note</button>
             </div>
           </div>
         </div>
@@ -622,17 +614,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-18" class="task-checkbox" onchange="updateTaskStatus(18)">
             <div class="task-body">
-              <div class="task-title">3.5. Nyelvi inkonzisztenciák felkutatása</div>
+              <div class="task-title">3.5. UI Consistency & Localization Audit</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Nézd végig az űrlap címkéit és a súgószövegeket (placeholder).</li>
-                  <li>Keresd meg a telefonszám mezőt, a fejlécet és a láblécet.</li>
+                  <li>Review the full page UI copy, placeholders, badge labels, and footer.</li>
+                  <li>Identify any awkward grammar, inconsistent terminology, or untranslated snippets.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Milyen angol szavakat találtál a magyar szövegben? Gyűjts ki legalább 2 darabot!</div>
-              <textarea id="task-note-18" class="task-notes-area" placeholder="Írd le a talált nyelvi hibákat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(18)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: List at least 2 UI text inconsistencies you discovered!</div>
+              <textarea id="task-note-18" class="task-notes-area" placeholder="List discovered copy inconsistencies..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(18)">Save Note</button>
             </div>
           </div>
         </div>
@@ -641,15 +633,15 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- RÉSZ 4: MODAL & TÁBLÁZAT INTERAKCIÓK (4 FELADAT) -->
+    <!-- PART 4: MODAL & DATA TABLE AUDIT (4 TASKS) -->
     <!-- ======================================================== -->
     <div class="module-card">
       <div class="module-header">
         <div>
-          <span class="module-tag">4. RÉSZ</span>
-          <span class="module-title">Modal Felugró Ablak & Adattáblázat Tesztelés</span>
+          <span class="module-tag">PART 4</span>
+          <span class="module-title">Modal Popup & Data Table Interactions</span>
         </div>
-        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">4 Lépés</span>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">4 Tasks</span>
       </div>
 
       <div class="tasks-list">
@@ -659,19 +651,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-19" class="task-checkbox" onchange="updateTaskStatus(19)">
             <div class="task-body">
-              <div class="task-title">4.1. Modal Z-Index Rétegzési Hiba</div>
-              <div class="task-desc">A felugró ablakoknak mindig a legfelső rétegen kell lenniük.</div>
+              <div class="task-title">4.1. Modal Z-Index Stacking Glitch</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Kattints a táblázat fejlécében a „Felugró ablak teszt (Modal)” gombra!</li>
-                  <li>Megnyílik a sötét hátterű felugró ablak.</li>
-                  <li>Nézd meg a képernyő legtetején lévő sötétkék fejléc sávot (Navbar)!</li>
+                  <li>Click the "Test Modal Popup" button in the table header.</li>
+                  <li>When the dark overlay appears, look at the dark top navigation bar.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: A sötét fejléc a felugró ablak ELŐTT vagy MÖGÖTT látszik? Mi a hiba CSS rétegzési oka?</div>
-              <textarea id="task-note-19" class="task-notes-area" placeholder="Írd le a rétegzési hibát..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(19)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Does the top navbar float ABOVE or BEHIND the modal overlay? What is the CSS z-index conflict?</div>
+              <textarea id="task-note-19" class="task-notes-area" placeholder="Describe the z-index stacking bug..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(19)">Save Note</button>
             </div>
           </div>
         </div>
@@ -681,18 +671,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-20" class="task-checkbox" onchange="updateTaskStatus(20)">
             <div class="task-body">
-              <div class="task-title">4.2. Modal [×] Bezáró Gomb Hibája</div>
+              <div class="task-title">4.2. Modal Close Button [×] Disconnected</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>A megnyitott felugró ablak jobb felső sarkában kattints a szürke <code>×</code> bezáró gombra!</li>
-                  <li>Kattints rá többször is!</li>
-                  <li>Ezután kattints a „Mégse” gombra!</li>
+                  <li>In the open modal, click the top-right <code>×</code> close button.</li>
+                  <li>Click it multiple times.</li>
+                  <li>Then try closing it using the "Cancel" button.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Bezáródott az ablak az X gombra? Melyik gombbal lehetett valójában bezárni?</div>
-              <textarea id="task-note-20" class="task-notes-area" placeholder="Írd le a tapasztalatodat..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(20)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did the X button trigger modal dismissal? Which button actually closed it?</div>
+              <textarea id="task-note-20" class="task-notes-area" placeholder="Record the button behavior..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(20)">Save Note</button>
             </div>
           </div>
         </div>
@@ -702,19 +692,18 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-21" class="task-checkbox" onchange="updateTaskStatus(21)">
             <div class="task-body">
-              <div class="task-title">4.3. Táblázat Fordított Rendezés Bug</div>
-              <div class="task-desc">A fel- és lefelé mutató nyilak logikája a táblázat fejlécében.</div>
+              <div class="task-title">4.3. Data Table – Reversed Sorting Logic</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Görgess le a „Rendszerben Rögzített Foglalások” táblázathoz.</li>
-                  <li>Kattints az <strong>Ár (HUF)</strong> oszlop fejlécére! A nyíl átvált felfelé mutatóra: <code>▲</code> (növekvő).</li>
-                  <li>Nézd meg a sorok árait fentről lefelé: (65 000, 55 000, 49 000).</li>
+                  <li>Scroll to the "Registered Bookings" table.</li>
+                  <li>Click the <strong>Price ($)</strong> column header. The arrow changes to <code>▲</code> (Ascending).</li>
+                  <li>Read the prices in order from top to bottom.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Amikor a nyíl növekvőt (▲) mutat, a legkisebb vagy a legnagyobb ár került felülre? Hogyan kellene helyesen működnie?</div>
-              <textarea id="task-note-21" class="task-notes-area" placeholder="Írd le a rendezési hiba leírását..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(21)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: When arrow indicates ascending (▲), is the lowest price at the top, or is it sorted in reverse descending order?</div>
+              <textarea id="task-note-21" class="task-notes-area" placeholder="Describe the sorting logic flaw..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(21)">Save Note</button>
             </div>
           </div>
         </div>
@@ -724,19 +713,19 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-22" class="task-checkbox" onchange="updateTaskStatus(22)">
             <div class="task-body">
-              <div class="task-title">4.4. Táblázat Törlés Gomb – Rossz Elem Törlése!</div>
-              <div class="task-desc">Kritikus adatintegritási hiba: nem az a sor törlődik, amire rákattintottál.</div>
+              <div class="task-title">4.4. Table Row Deletion – Wrong Record Deleted!</div>
+              <div class="task-desc">A severe data integrity flaw: deleting a row targets the incorrect item.</div>
               <div class="step-box">
-                <strong>Lépések:</strong>
+                <strong>Steps:</strong>
                 <ol>
-                  <li>Nézd meg a táblázat 3 sorát: 1. Kovács Péter, 2. Nagy Ágnes, 3. Tóth Béla.</li>
-                  <li>Kattints kifejezetten a <strong>3. sorban</strong> (Tóth Béla mellett) lévő piros „Törlés” gombra!</li>
-                  <li>Nézd meg, hogy ki tűnt el a táblázatból!</li>
+                  <li>Look at the 3 rows: 1. Peter Smith, 2. Agnes Miller, 3. Robert Davis.</li>
+                  <li>Click specifically on the red "Delete" button on <strong>Row 3 (Robert Davis)</strong>!</li>
+                  <li>Observe which person was actually deleted from the table.</li>
                 </ol>
               </div>
-              <div class="prompt-box">❓ Kérdés: Tóth Béla törlődött ki, vagy a legelső sor (Kovács Péter)? Miért okoz ez hatalmas problémát éles üzemben?</div>
-              <textarea id="task-note-22" class="task-notes-area" placeholder="Írd le az adathiba tapasztalatát..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(22)">Jegyzet mentése</button>
+              <div class="prompt-box">❓ Question: Did Robert Davis get deleted, or did Row 1 (Peter Smith) vanish? Why is this catastrophic in production?</div>
+              <textarea id="task-note-22" class="task-notes-area" placeholder="Describe the deletion bug..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(22)">Save Note</button>
             </div>
           </div>
         </div>
@@ -745,15 +734,15 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- RÉSZ 5: ÉLES DOKUMENTÁCIÓ TRELLÓRA (6 KONKRÉT KÁRTYA) -->
+    <!-- PART 5: PRODUCTION BUG TICKETING ON TRELLO (6 CARDS) -->
     <!-- ======================================================== -->
     <div class="module-card">
       <div class="module-header">
         <div>
-          <span class="module-tag" style="background:#10b981;">5. RÉSZ</span>
-          <span class="module-title">Éles Hibajegygyártás a Trello Tábládra (6 Kártya)</span>
+          <span class="module-tag" style="background:#10b981;">PART 5</span>
+          <span class="module-title">Production-Grade Bug Ticketing on Trello (6 Cards)</span>
         </div>
-        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Hibajegy</span>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Defect Cards</span>
       </div>
 
       <div class="tasks-list">
@@ -763,17 +752,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-23" class="task-checkbox" onchange="updateTaskStatus(23)">
             <div class="task-body">
-              <div class="task-title">5.1. Trello Kártya 1: [Critical] Negatív darabszám és végösszeg a kosárban</div>
+              <div class="task-title">5.1. Trello Card 1: [Critical] Negative quantity yields negative grand total</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Készíts képernyőképet a <code>-2 fő</code> és <code>-98 000 Ft</code> végösszegről (<code>Win + Shift + S</code>), és karikázd be pirossal!</li>
-                  <li>Nyiss új kártyát a Trellón a Bugs / Hibák oszlopban ezzel a címmel: <code>[B2B-Portal][Cart] A résztvevők száma negatívba állítható, negatív végösszeget eredményezve</code></li>
-                  <li>Másold be a leírást: Steps to reproduce, Expected vs Actual result, csatold a képet!</li>
+                  <li>Capture a screenshot of <code>-2 attendees</code> and <code>-$980</code> Grand Total (<code>Win + Shift + S</code>), box it in red.</li>
+                  <li>Create a new card on Trello: <code>[B2B-Portal][Cart] Negative attendee quantity allowed, causing negative checkout balance</code></li>
+                  <li>Include: Steps to Reproduce, Expected vs Actual, Environment, attach image!</li>
                 </ol>
               </div>
-              <textarea id="task-note-23" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(23)">Jegyzet mentése</button>
+              <textarea id="task-note-23" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(23)">Save Note</button>
             </div>
           </div>
         </div>
@@ -783,17 +772,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-24" class="task-checkbox" onchange="updateTaskStatus(24)">
             <div class="task-body">
-              <div class="task-title">5.2. Trello Kártya 2: [Critical] DISCOUNT150 kupon negatív fizetendő összeget ad</div>
+              <div class="task-title">5.2. Trello Card 2: [Critical] DISCOUNT150 coupon results in negative invoice</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Készíts képernyőképet a kupon érvényesítéséről és a negatív végösszegről!</li>
-                  <li>Cím: <code>[B2B-Portal][Coupon] DISCOUNT150 kupon 150%-os kedvezményt von le, a végösszeg negatívba fordul</code></li>
-                  <li>Csatold a képet a Trellóra!</li>
+                  <li>Take screenshot of the 150% coupon application.</li>
+                  <li>Title: <code>[B2B-Portal][Coupon] DISCOUNT150 applies 150% discount resulting in negative payable balance</code></li>
+                  <li>Attach to Trello!</li>
                 </ol>
               </div>
-              <textarea id="task-note-24" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(24)">Jegyzet mentése</button>
+              <textarea id="task-note-24" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(24)">Save Note</button>
             </div>
           </div>
         </div>
@@ -803,16 +792,16 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-25" class="task-checkbox" onchange="updateTaskStatus(25)">
             <div class="task-body">
-              <div class="task-title">5.3. Trello Kártya 3: [High] Néma hiba és elakadás betűs telefonszámnál</div>
+              <div class="task-title">5.3. Trello Card 3: [High] Silent submission freeze on alphabetical phone input</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Cím: <code>[B2B-Portal][Validation] Telefonszám mező betűk esetén némán elakad visszajelzés nélkül</code></li>
-                  <li>Írd le a pontos reprodukálási lépéseket és a hiányzó validációs üzenetet!</li>
+                  <li>Title: <code>[B2B-Portal][Validation] Form submission silently halts without user feedback when phone contains letters</code></li>
+                  <li>Document missing inline validation and failure to notify user.</li>
                 </ol>
               </div>
-              <textarea id="task-note-25" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(25)">Jegyzet mentése</button>
+              <textarea id="task-note-25" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(25)">Save Note</button>
             </div>
           </div>
         </div>
@@ -822,16 +811,16 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-26" class="task-checkbox" onchange="updateTaskStatus(26)">
             <div class="task-body">
-              <div class="task-title">5.4. Trello Kártya 4: [High] Táblázat törlés gombja mindig a legelső sort törli</div>
+              <div class="task-title">5.4. Trello Card 4: [High] Table Delete action always removes the first record</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Cím: <code>[B2B-Portal][Table] A foglalási táblázat bármelyik 'Törlés' gombjára kattintva mindig a legelső rekord törlődik</code></li>
-                  <li>Csatolj előtte-utána képet a Trellóra!</li>
+                  <li>Title: <code>[B2B-Portal][Table] Deleting any table row consistently deletes the top row index (0) instead of target record</code></li>
+                  <li>Attach before-and-after screenshots to Trello.</li>
                 </ol>
               </div>
-              <textarea id="task-note-26" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(26)">Jegyzet mentése</button>
+              <textarea id="task-note-26" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(26)">Save Note</button>
             </div>
           </div>
         </div>
@@ -841,17 +830,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-27" class="task-checkbox" onchange="updateTaskStatus(27)">
             <div class="task-body">
-              <div class="task-title">5.5. Trello Kártya 5: [Medium] 375px mobil nézetben a fizetés gomb kilóg</div>
+              <div class="task-title">5.5. Trello Card 5: [Medium] Checkout button horizontally overflows 375px viewport</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Készíts képernyőképet a DevTools 375px-es mobil nézetéről, ahol látszik a kilógó gomb!</li>
-                  <li>Cím: <code>[B2B-Portal][Responsive] A 'Foglalás Leadása' gomb konténere túlnyúlik a kártyán 375px szélességnél</code></li>
-                  <li>Írd bele a DevTools-ban megtalált <code>min-width: 335px</code> CSS okot!</li>
+                  <li>Screenshot the DevTools 375px view highlighting the protruding button.</li>
+                  <li>Title: <code>[B2B-Portal][Responsive] Submit button container spills horizontally outside card on 375px mobile screens</code></li>
+                  <li>Include the <code>min-width: 335px</code> root cause discovered in DevTools!</li>
                 </ol>
               </div>
-              <textarea id="task-note-27" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(27)">Jegyzet mentése</button>
+              <textarea id="task-note-27" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(27)">Save Note</button>
             </div>
           </div>
         </div>
@@ -861,17 +850,17 @@
           <div class="task-header">
             <input type="checkbox" id="task-check-28" class="task-checkbox" onchange="updateTaskStatus(28)">
             <div class="task-body">
-              <div class="task-title">5.6. Trello Kártya 6: [Low/Visual] Hover állapotban a 'Mégse' gomb szövege fehérre vált</div>
+              <div class="task-title">5.6. Trello Card 6: [Low/Visual] Cancel button text turns invisible white on hover</div>
               <div class="step-box">
-                <strong>Teendő:</strong>
+                <strong>Action:</strong>
                 <ol>
-                  <li>Készíts képet a gombra húzott egér állapotáról (ahol eltűnik a felirat)!</li>
-                  <li>Cím: <code>[B2B-Portal][UI] Az 'Űrlap Törlése' gomb hover állapotban fehér szövegszínt kap a fehér háttéren</code></li>
-                  <li>Hozd létre a kártyát és állítsd be a Low / Cosmetic címkét!</li>
+                  <li>Capture a screenshot of the hovered button with vanished text.</li>
+                  <li>Title: <code>[B2B-Portal][UI] 'Clear Form / Cancel' button text color shifts to white on white background in :hover state</code></li>
+                  <li>Attach image and label as Low/Visual.</li>
                 </ol>
               </div>
-              <textarea id="task-note-28" class="task-notes-area" placeholder="Trello kártya linkje vagy állapota..."></textarea>
-              <button class="btn-save-note" onclick="saveNote(28)">Jegyzet mentése</button>
+              <textarea id="task-note-28" class="task-notes-area" placeholder="Paste your Trello card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(28)">Save Note</button>
             </div>
           </div>
         </div>
@@ -947,7 +936,7 @@
     function saveNote(id) {
       const note = document.getElementById(`task-note-${id}`).value;
       localStorage.setItem(`qa_task_note_${id}`, note);
-      alert(`✅ A(z) ${id}. feladathoz tartozó jegyzeted elmentve!`);
+      alert(`✅ Note for task ${id} saved to your local browser!`);
     }
 
     function recalcProgress() {
@@ -962,7 +951,7 @@
     function updateProgressBar(count) {
       const percent = Math.round((count / TOTAL_TASKS) * 100);
       document.getElementById('progress-bar-fill').style.width = percent + '%';
-      document.getElementById('progress-text').innerText = `${count}/${TOTAL_TASKS} kész (${percent}%)`;
+      document.getElementById('progress-text').innerText = `${count}/${TOTAL_TASKS} completed (${percent}%)`;
     }
   </script>
 </body>
