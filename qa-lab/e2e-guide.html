@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestAcademy QA Lab - Day 2: Full-Stack E2E Testing Mission</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --gold: #d4af37;
+      --danger: #ef4444;
+      --success: #10b981;
+      --radius: 12px;
+      --radius-pill: 50px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-dark);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* GATE */
+    #gate-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; z-index: 999999;
+    }
+    .gate-card {
+      background: #ffffff; padding: 2.5rem; border-radius: 16px; width: 90%; max-width: 440px; text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    .gate-input {
+      width: 100%; padding: 0.85rem 1rem; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; text-align: center; margin-bottom: 1rem; outline: none;
+    }
+    .gate-input:focus { border-color: #2563eb; }
+    .gate-btn {
+      width: 100%; padding: 0.85rem; background: #2563eb; color: #fff; border: none; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 700; cursor: pointer;
+    }
+
+    /* HEADER */
+    .lab-header {
+      background: #0f172a; color: #ffffff; padding: 0.85rem 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1e293b;
+    }
+    .lab-brand { display: flex; align-items: center; gap: 0.85rem; }
+    .brand-logo-badge {
+      background: linear-gradient(135deg, #38bdf8, #818cf8); color: #0f172a; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 8px; font-size: 0.9rem;
+    }
+    .btn-open-app {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #0284c7, #2563eb); color: #ffffff; text-decoration: none; padding: 0.55rem 1.2rem; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.3); transition: transform 0.15s;
+    }
+    .btn-open-app:hover { transform: translateY(-1px); }
+
+    .progress-bar-bg { width: 140px; height: 8px; background: #334155; border-radius: 10px; overflow: hidden; }
+    .progress-bar-fill { width: 0%; height: 100%; background: #10b981; transition: width 0.3s; }
+
+    /* LAYOUT */
+    .lab-content { max-width: 1120px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    .hero-banner {
+      background: #ffffff; border-radius: 16px; border: 1px solid var(--border-color); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+    }
+    .hero-text h1 { font-size: 1.7rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    .hero-text p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+    .instructions-box {
+      background: #f0fdf4; border-left: 4px solid #10b981; padding: 1.25rem 1.5rem; border-radius: 8px; margin-bottom: 2rem; font-size: 0.875rem; color: #065f46; line-height: 1.6;
+    }
+
+    /* MODULES */
+    .module-card {
+      background: #ffffff; border-radius: 14px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); overflow: hidden; margin-bottom: 2rem;
+    }
+    .module-header {
+      background: #f8fafc; padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;
+    }
+    .module-tag {
+      font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.75rem; border-radius: 6px; background: #0f172a; color: #ffffff; letter-spacing: 0.05em;
+    }
+    .module-title { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-left: 0.75rem; }
+
+    .tasks-list { padding: 1.25rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .task-item {
+      background: #fafaf9; border: 1px solid #e7e5e4; border-radius: 10px; padding: 1.15rem; transition: all 0.2s;
+    }
+    .task-item.completed { background: #f0fdf4; border-color: #86efac; }
+
+    .task-header { display: flex; align-items: flex-start; gap: 0.85rem; }
+    .task-checkbox { margin-top: 0.25rem; width: 22px; height: 22px; accent-color: #10b981; cursor: pointer; }
+    .task-body { flex: 1; }
+    .task-title { font-size: 1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.4rem; }
+    .task-desc { font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.75rem; }
+
+    .step-box {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.85rem 1rem; margin-bottom: 0.75rem; font-size: 0.825rem;
+    }
+    .step-box ol { margin-left: 1.25rem; margin-top: 0.35rem; color: #334155; }
+    .step-box li { margin-bottom: 0.35rem; }
+
+    .prompt-box {
+      background: #fefce8; border: 1px solid #fef08a; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.825rem; color: #854d0e; margin-bottom: 0.75rem; font-weight: 600;
+    }
+
+    .task-notes-area {
+      width: 100%; height: 60px; padding: 0.6rem 0.75rem; font-size: 0.825rem; border: 1px solid #cbd5e1; border-radius: 8px; resize: vertical; font-family: inherit; outline: none; background: #ffffff;
+    }
+    .task-notes-area:focus { border-color: #2563eb; }
+
+    .btn-save-note {
+      font-size: 0.75rem; padding: 0.35rem 0.85rem; background: #e2e8f0; border: none; border-radius: 6px; color: #334155; font-weight: 700; cursor: pointer; margin-top: 0.4rem;
+    }
+    .btn-save-note:hover { background: #cbd5e1; }
+
+    code {
+      background: #f1f5f9; color: #0f172a; padding: 0.15rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.85em; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GATE -->
+  <div id="gate-overlay">
+    <div class="gate-card">
+      <span style="font-size:0.75rem; font-weight:800; color:#2563eb; text-transform:uppercase;">TestAcademy Hungary</span>
+      <h2 style="font-size:1.5rem; font-weight:900; margin:0.5rem 0 1rem; color:#0f172a;">Day 2: Full-Stack E2E QA</h2>
+      <p style="font-size:0.85rem; color:#64748b; margin-bottom:1.5rem;">Enter your passcode to unlock the Day 2 mission guide:</p>
+      <form onsubmit="handleGateLogin(event)">
+        <input type="password" id="gate-pass" class="gate-input" placeholder="Passcode" autocomplete="off" autofocus>
+        <button type="submit" class="gate-btn">Unlock Day 2 Mission &rarr;</button>
+        <div id="gate-error" style="color:#ef4444; font-size:0.8rem; margin-top:0.75rem; display:none;">Invalid passcode!</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="lab-header">
+    <div class="lab-brand">
+      <span class="brand-logo-badge">DAY 2</span>
+      <div>
+        <div style="font-size:1.1rem; font-weight:800;">TestAcademy QA Arena</div>
+        <div style="font-size:0.75rem; color:#94a3b8;">Full-Stack Integration (UI ➡️ API Swagger ➡️ Live SQL)</div>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:0.5rem; background:#1e293b; padding:3px; border-radius:8px; border:1px solid #334155;">
+      <a href="index.html" style="color:#94a3b8; padding:0.35rem 0.75rem; border-radius:6px; font-size:0.75rem; font-weight:700; text-decoration:none;">Day 1: UI & Forms</a>
+      <a href="e2e-guide.html" style="background:#0284c7; color:#fff; padding:0.35rem 0.75rem; border-radius:6px; font-size:0.75rem; font-weight:700; text-decoration:none;">Day 2: Full-Stack E2E ⚡</a>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:1.5rem;">
+      <a href="e2e-app.html" target="_blank" class="btn-open-app">
+        <span>🚀 Open Full-Stack Sandbox</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:0.6rem;">
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+        <span id="progress-text" style="font-size:0.8rem; font-weight:800; color:#10b981;">0/30 done</span>
+      </div>
+
+      <button style="background:#334155; border:none; color:#cbd5e1; padding:0.35rem 0.75rem; border-radius:50px; font-size:0.75rem; cursor:pointer;" onclick="logoutGate()">Logout</button>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="lab-content">
+
+    <div class="hero-banner">
+      <div class="hero-text">
+        <h1>Day 2: Full-Stack Integration Testing Mission</h1>
+        <p>Today, you step beyond isolated testing. You will master the <strong>E2E Triangle</strong>: triggering transactions on the <strong>Frontend UI</strong>, inspecting and manipulating endpoints via the <strong>Interactive API Swagger Console</strong>, and directly querying and validating data persistence in the <strong>Live SQL Database</strong>.</p>
+      </div>
+      <div>
+        <a href="e2e-app.html" target="_blank" class="btn-open-app" style="padding:0.85rem 1.5rem; font-size:0.95rem;">
+          Launch Full-Stack App ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="instructions-box">
+      <strong>🎯 Architecture Overview for Today:</strong><br>
+      The <strong>Full-Stack Sandbox</strong> contains 3 interactive tabs running on a single shared reactive backend:<br>
+      • <strong>Tab 1 (Storefront UI):</strong> Real-time checkout form & live order tracking table.<br>
+      • <strong>Tab 2 (API Swagger Console):</strong> Execute REST endpoints (`GET`, `POST`, `PATCH`, `DELETE`) with role-based auth and status codes.<br>
+      • <strong>Tab 3 (Live SQL Database):</strong> Run actual SQL queries (`SELECT`, `JOIN`, `UPDATE`, `GROUP BY`) against the shared database engine!
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PART 1: THE UI-TO-DATABASE TRACE (6 TASKS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-tag">PART 1</span>
+          <span class="module-title">The UI-to-Database Trace (Frontend ➡️ SQL)</span>
+        </div>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Tasks</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 1.1 -->
+        <div class="task-item" id="task-card-1">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-1" class="task-checkbox" onchange="updateTaskStatus(1)">
+            <div class="task-body">
+              <div class="task-title">1.1. Baseline Seed State Audit</div>
+              <div class="task-desc">Verify initial database seed values across both UI and SQL before executing tests.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Launch the Sandbox. On <strong>Tab 1 (Storefront)</strong>, inspect the "Live Database Orders" table (IDs: #101, #102, #103).</li>
+                  <li>Switch to <strong>Tab 3 (Live SQL Database)</strong>, click the <code>All Orders</code> chip (<code>SELECT * FROM orders;</code>), and click <strong>▶ Run Query</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: How many initial orders exist in the database table? Do the IDs (#101, #102, #103) match the UI?</div>
+              <textarea id="task-note-1" class="task-notes-area" placeholder="Confirm row count and matching IDs..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(1)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 -->
+        <div class="task-item" id="task-card-2">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-2" class="task-checkbox" onchange="updateTaskStatus(2)">
+            <div class="task-body">
+              <div class="task-title">1.2. Submit a New Order via Frontend UI</div>
+              <div class="task-desc">Execute a standard subscription order transaction from the storefront.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>On Tab 1 (Storefront), select: <strong>QA Automation Runner License</strong> ($250).</li>
+                  <li>Enter Email: <code>alice.smith@fintech.com</code></li>
+                  <li>Set Quantity: <code>2</code> units ($500 total).</li>
+                  <li>Click <strong>Place Subscription Order &rarr;</strong>!</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What new Order ID was generated by the system? Does it appear at the top of the UI orders table?</div>
+              <textarea id="task-note-2" class="task-notes-area" placeholder="Note the new Order ID and displayed status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(2)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 -->
+        <div class="task-item" id="task-card-3">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-3" class="task-checkbox" onchange="updateTaskStatus(3)">
+            <div class="task-body">
+              <div class="task-title">1.3. Query & Validate Order Persistence in SQL</div>
+              <div class="task-desc">Verify that the frontend action successfully wrote the record into the database table.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch to <strong>Tab 3 (Live SQL Database)</strong>.</li>
+                  <li>Run: <code>SELECT * FROM orders;</code></li>
+                  <li>Locate Alice's new order record.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What are the exact values of `quantity`, `total`, and `status` in the SQL results table?</div>
+              <textarea id="task-note-3" class="task-notes-area" placeholder="Log the persisted values..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(3)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.4 -->
+        <div class="task-item" id="task-card-4">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-4" class="task-checkbox" onchange="updateTaskStatus(4)">
+            <div class="task-body">
+              <div class="task-title">1.4. Automatic User Creation Verification</div>
+              <div class="task-desc">Verify whether the checkout engine created a new customer record for Alice in the `users` table.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 3 (SQL Console), run: <code>SELECT * FROM users;</code></li>
+                  <li>Find <code>alice.smith@fintech.com</code> in the results.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What `id` and `role` was automatically assigned to Alice in the database?</div>
+              <textarea id="task-note-4" class="task-notes-area" placeholder="Log Alice's user id and role..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(4)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.5 -->
+        <div class="task-item" id="task-card-5">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-5" class="task-checkbox" onchange="updateTaskStatus(5)">
+            <div class="task-body">
+              <div class="task-title">1.5. Relational Verification via INNER JOIN</div>
+              <div class="task-desc">Join `orders`, `users`, and `products` to assert foreign key integrity.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 3, execute the default master query:<br>
+                    <code>SELECT orders.id, users.email, products.name, orders.total, orders.status FROM orders INNER JOIN users ON orders.user_id = users.id INNER JOIN products ON orders.product_id = products.id;</code>
+                  </li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Does Alice's order row correctly display both her email and the correct product title?</div>
+              <textarea id="task-note-5" class="task-notes-area" placeholder="Confirm relational mapping..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(5)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.6 -->
+        <div class="task-item" id="task-card-6">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-6" class="task-checkbox" onchange="updateTaskStatus(6)">
+            <div class="task-body">
+              <div class="task-title">1.6. Planted Defect: Inventory Stock Deduct Leak</div>
+              <div class="task-desc">Check if the checkout process correctly decremented warehouse product stock.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Initial stock for Product 1 (QA Runner) was <code>15</code>. Alice ordered <code>2</code> units.</li>
+                  <li>In Tab 3, run: <code>SELECT * FROM products WHERE id = 1;</code></li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What is the current `stock` value in the database? Did it drop to 13, or did the developer forget to decrement inventory?</div>
+              <textarea id="task-note-6" class="task-notes-area" placeholder="Log the discovered inventory leak defect..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(6)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PART 2: INTERACTIVE SWAGGER API TESTING (8 TASKS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-tag">PART 2</span>
+          <span class="module-title">Interactive Swagger API Testing & Status Codes</span>
+        </div>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">8 Tasks</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 2.1 -->
+        <div class="task-item" id="task-card-7">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-7" class="task-checkbox" onchange="updateTaskStatus(7)">
+            <div class="task-body">
+              <div class="task-title">2.1. API GET /orders Baseline Test (200 OK)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch to <strong>Tab 2 (API Swagger Console)</strong>.</li>
+                  <li>Ensure "Active Role" is set to: <code>User Token (Standard Customer)</code>.</li>
+                  <li>Click on <code>GET /api/v1/orders</code> and click <strong>Execute &rarr;</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did you receive Status 200 OK? What is the `total_records` count in the JSON response?</div>
+              <textarea id="task-note-7" class="task-notes-area" placeholder="Log status code and total_records..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(7)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.2 -->
+        <div class="task-item" id="task-card-8">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-8" class="task-checkbox" onchange="updateTaskStatus(8)">
+            <div class="task-body">
+              <div class="task-title">2.2. Authentication Barrier: Missing Token (401 Unauthorized)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In the top-right role selector, choose: <code>No Token (Unauthorized)</code>.</li>
+                  <li>Click <strong>Execute</strong> on <code>GET /api/v1/orders</code> again.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What HTTP status code was returned? What error message is inside the response JSON?</div>
+              <textarea id="task-note-8" class="task-notes-area" placeholder="Log 401 response and error message..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(8)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.3 -->
+        <div class="task-item" id="task-card-9">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-9" class="task-checkbox" onchange="updateTaskStatus(9)">
+            <div class="task-body">
+              <div class="task-title">2.3. Negative Testing: Malformed JSON Syntax (400 Bad Request)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch Active Role back to: <code>User Token</code>.</li>
+                  <li>Click on <code>POST /api/v1/orders</code>.</li>
+                  <li>In the JSON body textarea, intentionally delete the closing brace <code>}</code>!</li>
+                  <li>Click <strong>Execute</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the server return 400 Bad Request? What does `details` say?</div>
+              <textarea id="task-note-9" class="task-notes-area" placeholder="Record the 400 Bad Request response..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(9)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.4 -->
+        <div class="task-item" id="task-card-10">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-10" class="task-checkbox" onchange="updateTaskStatus(10)">
+            <div class="task-body">
+              <div class="task-title">2.4. Negative Testing: Missing Mandatory Payload Fields (400)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Fix the syntax, but delete the <code>"quantity": 2,</code> line from the JSON body.</li>
+                  <li>Click <strong>Execute</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What array of `required_fields` does the API complain about in the response?</div>
+              <textarea id="task-note-10" class="task-notes-area" placeholder="Record the required fields validation..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(10)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.5 -->
+        <div class="task-item" id="task-card-11">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-11" class="task-checkbox" onchange="updateTaskStatus(11)">
+            <div class="task-body">
+              <div class="task-title">2.5. Programmatic Order Creation via API (201 Created)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Enter valid JSON into <code>POST /api/v1/orders</code>:<br>
+                    <code>{"email": "bob.builder@construction.io", "product_id": 2, "quantity": 1, "price": 490}</code>
+                  </li>
+                  <li>Click <strong>Execute</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What HTTP status code did you receive? What is the generated order `id`?</div>
+              <textarea id="task-note-11" class="task-notes-area" placeholder="Log 201 Created and new order ID..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(11)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.6 -->
+        <div class="task-item" id="task-card-12">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-12" class="task-checkbox" onchange="updateTaskStatus(12)">
+            <div class="task-body">
+              <div class="task-title">2.6. Resource Not Found (404 Not Found)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Open <code>PATCH /api/v1/orders/{id}/status</code>.</li>
+                  <li>Set Order ID to: <code>999</code> (non-existent).</li>
+                  <li>Click <strong>Execute</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What status code was returned? What exact error message did the server give?</div>
+              <textarea id="task-note-12" class="task-notes-area" placeholder="Log the 404 response..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(12)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.7 -->
+        <div class="task-item" id="task-card-13">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-13" class="task-checkbox" onchange="updateTaskStatus(13)">
+            <div class="task-body">
+              <div class="task-title">2.7. Role-Based Access Control / RBAC Test (403 Forbidden)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Ensure Active Role is set to <code>User Token (Standard Customer)</code>.</li>
+                  <li>Open <code>DELETE /api/v1/orders/{id}</code> and target Order ID: <code>102</code>.</li>
+                  <li>Click the red <strong>Execute</strong> button!</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the server block standard customers with 403 Forbidden? Copy the message!</div>
+              <textarea id="task-note-13" class="task-notes-area" placeholder="Log the 403 Forbidden access denied test..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(13)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.8 -->
+        <div class="task-item" id="task-card-14">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-14" class="task-checkbox" onchange="updateTaskStatus(14)">
+            <div class="task-body">
+              <div class="task-title">2.8. Privileged Action with Admin Token (200 OK Delete)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch Active Role dropdown to: <code>Admin Token (Superuser)</code>.</li>
+                  <li>Click <strong>Execute</strong> on <code>DELETE /api/v1/orders/{id}</code> again for Order 102.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the admin privilege allow the deletion (Status 200 OK)?</div>
+              <textarea id="task-note-14" class="task-notes-area" placeholder="Log the successful admin deletion..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(14)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PART 3: IDEMPOTENCY & DUPLICATE ORDER AUDIT (4 TASKS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-tag">PART 3</span>
+          <span class="module-title">Idempotency & Race Condition Auditing</span>
+        </div>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">4 Tasks</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 3.1 -->
+        <div class="task-item" id="task-card-15">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-15" class="task-checkbox" onchange="updateTaskStatus(15)">
+            <div class="task-body">
+              <div class="task-title">3.1. What is Idempotency in E-Commerce & Financial QA?</div>
+              <div class="task-desc">Understand why repeated API calls must not duplicate real-world bank transactions.</div>
+              <div class="prompt-box">❓ QA Concept Question: If a mobile customer with slow 3G taps "Pay Now" twice, what happens if the backend lacks idempotency validation?</div>
+              <textarea id="task-note-15" class="task-notes-area" placeholder="Explain the risk of double-charging in your own words..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(15)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 -->
+        <div class="task-item" id="task-card-16">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-16" class="task-checkbox" onchange="updateTaskStatus(16)">
+            <div class="task-body">
+              <div class="task-title">3.2. First Request with Idempotency Key (201 Created)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 2 (Swagger), go to <code>POST /api/v1/orders</code>.</li>
+                  <li>In the "Idempotency-Key" input, type: <code>TXN-UNIQUE-777</code></li>
+                  <li>Click <strong>Execute</strong> &rarr; receives 201 Created.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Was the transaction processed successfully with key TXN-UNIQUE-777?</div>
+              <textarea id="task-note-16" class="task-notes-area" placeholder="Confirm initial order creation..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(16)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.3 -->
+        <div class="task-item" id="task-card-17">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-17" class="task-checkbox" onchange="updateTaskStatus(17)">
+            <div class="task-body">
+              <div class="task-title">3.3. Simulated Duplicate Click: Conflict (409 Conflict)</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Without changing anything or altering the Idempotency-Key, click <strong>Execute</strong> a SECOND time!</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the server reject the duplicate with Status 409 Conflict? Read the error message!</div>
+              <textarea id="task-note-17" class="task-notes-area" placeholder="Log the 409 Conflict response..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(17)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.4 -->
+        <div class="task-item" id="task-card-18">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-18" class="task-checkbox" onchange="updateTaskStatus(18)">
+            <div class="task-body">
+              <div class="task-title">3.4. SQL Assertion: Duplicate Record Audit</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch to Tab 3 (SQL Console). Click the <strong>Check Duplicates</strong> chip:<br>
+                    <code>SELECT email, COUNT(id) FROM users GROUP BY email HAVING COUNT(id) > 1;</code>
+                  </li>
+                  <li>Click <strong>▶ Run Query</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What was returned? Is it "Empty set (0 rows returned)", confirming zero duplicates?</div>
+              <textarea id="task-note-18" class="task-notes-area" placeholder="Log the SQL duplicate check assertion..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(18)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PART 4: DATABASE MUTATION & FRONTEND RESILIENCE (6 TASKS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-tag">PART 4</span>
+          <span class="module-title">Database Mutation & Frontend Resilience</span>
+        </div>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Tasks</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 4.1 -->
+        <div class="task-item" id="task-card-19">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-19" class="task-checkbox" onchange="updateTaskStatus(19)">
+            <div class="task-body">
+              <div class="task-title">4.1. Direct Backend State Mutation via SQL UPDATE</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 3 (SQL Console), click the <strong>Force Refund (ID 101)</strong> chip:<br>
+                    <code>UPDATE orders SET status = 'REFUNDED' WHERE id = 101;</code>
+                  </li>
+                  <li>Click <strong>▶ Run Query</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What did the SQL terminal return? ("Query OK, 1 row affected")?</div>
+              <textarea id="task-note-19" class="task-notes-area" placeholder="Confirm UPDATE execution..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(19)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.2 -->
+        <div class="task-item" id="task-card-20">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-20" class="task-checkbox" onchange="updateTaskStatus(20)">
+            <div class="task-body">
+              <div class="task-title">4.2. Verify Frontend UI Reactive Reflection</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch back to <strong>Tab 1 (Storefront UI)</strong>.</li>
+                  <li>Inspect the "Live Database Orders" table for Order #101.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the UI badge for Order #101 update from PAID to purple REFUNDED?</div>
+              <textarea id="task-note-20" class="task-notes-area" placeholder="Confirm reactive UI update..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(20)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.3 -->
+        <div class="task-item" id="task-card-21">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-21" class="task-checkbox" onchange="updateTaskStatus(21)">
+            <div class="task-body">
+              <div class="task-title">4.3. Update Status via API PATCH Endpoint</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Switch to Tab 2 (API Swagger). Open <code>PATCH /api/v1/orders/{id}/status</code>.</li>
+                  <li>Set Order ID to: <code>101</code>. Set Target Status to: <code>PAID</code>.</li>
+                  <li>Click <strong>Execute</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What does the response JSON display for `previous_status` and `new_status`?</div>
+              <textarea id="task-note-21" class="task-notes-area" placeholder="Log the status transition..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(21)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.4 -->
+        <div class="task-item" id="task-card-22">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-22" class="task-checkbox" onchange="updateTaskStatus(22)">
+            <div class="task-body">
+              <div class="task-title">4.4. Cross-System Consistency Check</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>Check Tab 1 (UI): is #101 showing green PAID?</li>
+                  <li>Check Tab 3 (SQL): run <code>SELECT status FROM orders WHERE id = 101;</code>. Is it 'PAID'?</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Are all three layers (UI, Swagger, SQL) in 100% synchronization?</div>
+              <textarea id="task-note-22" class="task-notes-area" placeholder="Confirm 3-layer sync..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(22)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.5 -->
+        <div class="task-item" id="task-card-23">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-23" class="task-checkbox" onchange="updateTaskStatus(23)">
+            <div class="task-body">
+              <div class="task-title">4.5. Planted Defect: Arbitrary Price Override via API</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 2 (Swagger), go to <code>POST /api/v1/orders</code>.</li>
+                  <li>Product 1 normally costs <strong>$250</strong>. Alter the JSON body to:<br>
+                    <code>{"email": "hacker@exploit.com", "product_id": 1, "quantity": 1, "price": 1}</code>
+                  </li>
+                  <li>Click <strong>Execute</strong>!</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the API accept $1 total instead of the $250 catalog price? Why is this a severe security vulnerability?</div>
+              <textarea id="task-note-23" class="task-notes-area" placeholder="Log the price tampering vulnerability..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(23)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.6 -->
+        <div class="task-item" id="task-card-24">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-24" class="task-checkbox" onchange="updateTaskStatus(24)">
+            <div class="task-body">
+              <div class="task-title">4.6. SQL Verification of Price Tampering</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In Tab 3 (SQL), run: <code>SELECT * FROM orders WHERE total = 1;</code></li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Did the tampered $1 order write straight into the production database?</div>
+              <textarea id="task-note-24" class="task-notes-area" placeholder="Log SQL proof of price vulnerability..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(24)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- PART 5: PRODUCTION BUG TICKETING ON TRELLO (6 CARDS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header">
+        <div>
+          <span class="module-tag" style="background:#10b981;">PART 5</span>
+          <span class="module-title">Multi-Layer Defect Cards on Trello (6 Cards)</span>
+        </div>
+        <span style="font-size:0.8rem; color:#64748b; font-weight:700;">6 Defect Cards</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 5.1 -->
+        <div class="task-item" id="task-card-25">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-25" class="task-checkbox" onchange="updateTaskStatus(25)">
+            <div class="task-body">
+              <div class="task-title">5.1. Card 1: [Critical][Security] Price tampering accepted via POST /api/v1/orders</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[API][Security] POST /api/v1/orders accepts client-supplied price parameter, allowing arbitrary pricing override</code></li>
+                  <li>Include: Steps to reproduce via Swagger, screenshot of JSON response with $1 total, SQL query proof (<code>SELECT * FROM orders WHERE total = 1;</code>).</li>
+                </ol>
+              </div>
+              <textarea id="task-note-25" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(25)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.2 -->
+        <div class="task-item" id="task-card-26">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-26" class="task-checkbox" onchange="updateTaskStatus(26)">
+            <div class="task-body">
+              <div class="task-title">5.2. Card 2: [High][Inventory] Inventory stock is not decremented upon order placement</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[E2E][Inventory] Placing an order via UI or API fails to decrement product inventory in products table</code></li>
+                  <li>Include: SQL proof showing stock remaining 15 after ordering 2 units.</li>
+                </ol>
+              </div>
+              <textarea id="task-note-26" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(26)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.3 -->
+        <div class="task-item" id="task-card-27">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-27" class="task-checkbox" onchange="updateTaskStatus(27)">
+            <div class="task-body">
+              <div class="task-title">5.3. Card 3: [Medium][API] Malformed JSON returns raw parser exception details</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[API][Validation] Malformed JSON syntax in POST request leaks raw internal parsing exception in 400 response</code></li>
+                  <li>Attach Swagger screenshot showing the unhandled error details.</li>
+                </ol>
+              </div>
+              <textarea id="task-note-27" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(27)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.4 -->
+        <div class="task-item" id="task-card-28">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-28" class="task-checkbox" onchange="updateTaskStatus(28)">
+            <div class="task-body">
+              <div class="task-title">5.4. Card 4: [Security][RBAC] Verify DELETE /orders access control (403 vs 200)</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[API][RBAC] DELETE /api/v1/orders correctly restricts standard users with 403 Forbidden while allowing admin</code></li>
+                  <li>Label as Security / Verification Test Case.</li>
+                </ol>
+              </div>
+              <textarea id="task-note-28" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(28)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.5 -->
+        <div class="task-item" id="task-card-29">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-29" class="task-checkbox" onchange="updateTaskStatus(29)">
+            <div class="task-body">
+              <div class="task-title">5.5. Card 5: [Integration] Idempotency validation prevents duplicate order creation</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[API][Idempotency] Submitting duplicate request with identical Idempotency-Key returns 409 Conflict</code></li>
+                  <li>Include Swagger 409 response and SQL duplicate check showing 0 duplicates.</li>
+                </ol>
+              </div>
+              <textarea id="task-note-29" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(29)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5.6 -->
+        <div class="task-item" id="task-card-30">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-30" class="task-checkbox" onchange="updateTaskStatus(30)">
+            <div class="task-body">
+              <div class="task-title">5.6. Card 6: [E2E][Sync] Database status mutation is reactively rendered in UI</div>
+              <div class="step-box">
+                <strong>Requirements for Trello Card:</strong>
+                <ol>
+                  <li>Title: <code>[E2E][Data-Sync] Direct SQL or PATCH status updates dynamically re-render status badges in Storefront</code></li>
+                  <li>Attach side-by-side screenshot of SQL terminal and UI orders table.</li>
+                </ol>
+              </div>
+              <textarea id="task-note-30" class="task-notes-area" placeholder="Paste card link or status..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(30)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx'];
+    function checkGate() {
+      if (sessionStorage.getItem('qa_lab_auth') === 'granted') {
+        document.getElementById('gate-overlay').style.display = 'none';
+      }
+    }
+    checkGate();
+
+    function handleGateLogin(e) {
+      e.preventDefault();
+      const val = document.getElementById('gate-pass').value.trim().toLowerCase();
+      if (VALID_PASSWORDS.includes(val)) {
+        sessionStorage.setItem('qa_lab_auth', 'granted');
+        document.getElementById('gate-overlay').style.display = 'none';
+      } else {
+        document.getElementById('gate-error').style.display = 'block';
+      }
+    }
+
+    function logoutGate() {
+      sessionStorage.removeItem('qa_lab_auth');
+      window.location.reload();
+    }
+
+    const TOTAL_TASKS = 30;
+
+    function initTaskStorage() {
+      let completed = 0;
+      for (let i = 1; i <= TOTAL_TASKS; i++) {
+        const savedCheck = localStorage.getItem(`qa_day2_check_${i}`);
+        const chkEl = document.getElementById(`task-check-${i}`);
+        const cardEl = document.getElementById(`task-card-${i}`);
+        if (chkEl && savedCheck === 'true') {
+          chkEl.checked = true;
+          if (cardEl) cardEl.classList.add('completed');
+          completed++;
+        }
+
+        const savedNote = localStorage.getItem(`qa_day2_note_${i}`);
+        const noteEl = document.getElementById(`task-note-${i}`);
+        if (noteEl && savedNote) {
+          noteEl.value = savedNote;
+        }
+      }
+      updateProgressBar(completed);
+    }
+    initTaskStorage();
+
+    function updateTaskStatus(id) {
+      const chk = document.getElementById(`task-check-${id}`);
+      const card = document.getElementById(`task-card-${id}`);
+      if (chk.checked) {
+        localStorage.setItem(`qa_day2_check_${id}`, 'true');
+        card.classList.add('completed');
+      } else {
+        localStorage.setItem(`qa_day2_check_${id}`, 'false');
+        card.classList.remove('completed');
+      }
+      recalcProgress();
+    }
+
+    function saveNote(id) {
+      const note = document.getElementById(`task-note-${id}`).value;
+      localStorage.setItem(`qa_day2_note_${id}`, note);
+      alert(`✅ Note for Day 2 task ${id} saved to your local browser!`);
+    }
+
+    function recalcProgress() {
+      let completed = 0;
+      for (let i = 1; i <= TOTAL_TASKS; i++) {
+        const chk = document.getElementById(`task-check-${i}`);
+        if (chk && chk.checked) completed++;
+      }
+      updateProgressBar(completed);
+    }
+
+    function updateProgressBar(count) {
+      const percent = Math.round((count / TOTAL_TASKS) * 100);
+      document.getElementById('progress-bar-fill').style.width = percent + '%';
+      document.getElementById('progress-text').innerText = `${count}/${TOTAL_TASKS} completed (${percent}%)`;
+    }
+  </script>
+</body>
+</html>

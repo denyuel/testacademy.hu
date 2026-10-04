@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TestAcademy Full-Stack Sandbox (UI + API Swagger + SQL Console)</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg-main: #0b1120;
+      --bg-panel: #1e293b;
+      --bg-card: #0f172a;
+      --border: #334155;
+      --border-light: #475569;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-red: #ef4444;
+      --accent-purple: #a855f7;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* GATE */
+    #gate-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(11, 17, 32, 0.96); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; z-index: 999999;
+    }
+    .gate-card {
+      background: #1e293b; border: 1px solid var(--border); border-radius: 16px;
+      padding: 2.5rem; width: 90%; max-width: 440px; text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    .gate-input {
+      width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--border); border-radius: 10px;
+      font-size: 1rem; text-align: center; margin-bottom: 1rem; outline: none; background: #0f172a; color: #fff;
+    }
+    .gate-input:focus { border-color: var(--primary); }
+    .gate-btn {
+      width: 100%; padding: 0.85rem; background: var(--primary); color: #0f172a; border: none;
+      border-radius: 50px; font-size: 0.95rem; font-weight: 800; cursor: pointer;
+    }
+
+    /* TOP NAVBAR */
+    .sandbox-nav {
+      background: #0f172a;
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      color: #0f172a;
+      font-weight: 900;
+      padding: 0.3rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 0.5rem;
+      background: #1e293b;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      padding: 0.45rem 1rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.825rem;
+      font-weight: 700;
+      border-radius: 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s;
+    }
+
+    .tab-btn:hover { color: #fff; }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-reset-db {
+      background: #334155;
+      color: #f1f5f9;
+      border: 1px solid #475569;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-reset-db:hover { background: #475569; }
+
+    /* CONTENT WRAPPER */
+    .sandbox-content {
+      flex: 1;
+      padding: 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .view-pane {
+      display: none;
+    }
+    .view-pane.active {
+      display: block;
+    }
+
+    /* ============================================================== */
+    /* TAB 1: FRONTEND UI STOREFRONT */
+    /* ============================================================== */
+    .storefront-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .storefront-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .panel-header {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    .product-select-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-card-option {
+      background: #0f172a;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.15s;
+    }
+    .product-card-option:hover { border-color: var(--border-light); }
+    .product-card-option.selected {
+      border-color: var(--primary);
+      background: #172554;
+    }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-input {
+      width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--border); border-radius: 8px;
+      background: #0f172a; color: #fff; font-size: 0.875rem; outline: none;
+    }
+    .form-input:focus { border-color: var(--primary); }
+
+    .btn-checkout {
+      width: 100%; padding: 0.85rem; background: var(--primary); color: #0f172a; font-weight: 800;
+      border: none; border-radius: 50px; font-size: 0.95rem; cursor: pointer; margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+    }
+    .btn-checkout:hover { background: var(--primary-hover); }
+
+    .order-summary-row {
+      display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;
+    }
+    .order-grand-total {
+      display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 900; color: #fff;
+      margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--border);
+    }
+
+    /* RECENT ORDERS TABLE */
+    .table-responsive { overflow-x: auto; margin-top: 1rem; }
+    .e2e-table { width: 100%; border-collapse: collapse; font-size: 0.825rem; text-align: left; }
+    .e2e-table th { background: #0f172a; padding: 0.75rem 1rem; color: var(--text-muted); font-weight: 700; border-bottom: 2px solid var(--border); }
+    .e2e-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: #e2e8f0; }
+    .e2e-table tr:hover { background: #1e293b; }
+
+    .badge-status {
+      display: inline-block; padding: 0.2rem 0.55rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+    }
+    .badge-PENDING { background: #78350f; color: #fde68a; }
+    .badge-PAID { background: #064e3b; color: #a7f3d0; }
+    .badge-CANCELLED { background: #7f1d1d; color: #fecaca; }
+    .badge-REFUNDED { background: #581c87; color: #e9d5ff; }
+
+    /* ============================================================== */
+    /* TAB 2: INTERACTIVE SWAGGER / API EXPLORER */
+    /* ============================================================== */
+    .swagger-container {
+      display: flex; flex-direction: column; gap: 1.25rem;
+    }
+
+    .swagger-banner {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swagger-endpoint {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .endpoint-header {
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .endpoint-header:hover { background: #334155; }
+
+    .method-badge {
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      min-width: 65px;
+      text-align: center;
+    }
+    .method-GET { background: #0284c7; color: #fff; }
+    .method-POST { background: #16a34a; color: #fff; }
+    .method-PATCH { background: #d97706; color: #fff; }
+    .method-DELETE { background: #dc2626; color: #fff; }
+
+    .endpoint-path {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      flex: 1;
+    }
+
+    .endpoint-summary {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .endpoint-body {
+      padding: 1.25rem;
+      background: #0f172a;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+    .endpoint-body.open { display: block; }
+
+    .swagger-params-title {
+      font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+
+    .swagger-input-box {
+      width: 100%; height: 95px; background: #020617; border: 1px solid var(--border); border-radius: 8px;
+      color: #38bdf8; font-family: var(--font-mono); font-size: 0.825rem; padding: 0.75rem; outline: none;
+    }
+
+    .btn-try-execute {
+      padding: 0.5rem 1.25rem; background: var(--primary); color: #0f172a; font-weight: 800; border: none;
+      border-radius: 6px; font-size: 0.8rem; cursor: pointer; margin-top: 0.75rem;
+    }
+    .btn-try-execute:hover { background: var(--primary-hover); }
+
+    .swagger-response-box {
+      margin-top: 1rem;
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      display: none;
+    }
+    .response-status-line {
+      display: flex; gap: 1rem; margin-bottom: 0.5rem; font-weight: 800;
+    }
+    .status-pill { padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+    .status-200, .status-201 { background: #065f46; color: #6ee7b7; }
+    .status-400, .status-401, .status-403, .status-404, .status-409 { background: #991b1b; color: #fca5a5; }
+
+    /* ============================================================== */
+    /* TAB 3: LIVE SQL CONSOLE */
+    /* ============================================================== */
+    .sql-workbench {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+
+    .sql-editor-card {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
+    }
+
+    .sql-textarea {
+      width: 100%; height: 110px; background: #020617; border: 1px solid var(--border); border-radius: 8px;
+      color: #f8fafc; font-family: var(--font-mono); font-size: 0.95rem; padding: 0.85rem; outline: none; resize: vertical;
+    }
+    .sql-textarea:focus { border-color: var(--primary); }
+
+    .sql-action-bar {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem;
+    }
+
+    .btn-run-sql {
+      padding: 0.65rem 1.5rem; background: #10b981; color: #0f172a; font-weight: 900; border: none;
+      border-radius: 8px; font-size: 0.875rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-run-sql:hover { background: #059669; }
+
+    .quick-queries-chips {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .chip-query {
+      background: #0f172a; border: 1px solid var(--border); color: #cbd5e1; font-size: 0.75rem; padding: 0.3rem 0.65rem;
+      border-radius: 50px; cursor: pointer; font-family: var(--font-mono);
+    }
+    .chip-query:hover { border-color: var(--primary); color: var(--primary); }
+
+    .sql-results-box {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
+      min-height: 220px; overflow-x: auto;
+    }
+
+    .schema-help-box {
+      background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-top: 1rem;
+      font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GATE OVERLAY -->
+  <div id="gate-overlay">
+    <div class="gate-card">
+      <span style="font-size:0.75rem; font-weight:800; color:var(--primary); text-transform:uppercase;">TestAcademy Enterprise</span>
+      <h2 style="font-size:1.5rem; font-weight:900; margin:0.5rem 0 1rem; color:#fff;">Full-Stack QA Sandbox</h2>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Enter your passcode to unlock UI, API Swagger, and SQL engine:</p>
+      <input type="password" id="gate-pass" class="gate-input" placeholder="Passcode" autofocus>
+      <button class="gate-btn" onclick="unlockSandbox()">Unlock Environment &rarr;</button>
+      <div id="gate-err" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.75rem; display:none;">Invalid passcode!</div>
+    </div>
+  </div>
+
+  <!-- TOP NAVBAR -->
+  <header class="sandbox-nav">
+    <div class="brand">
+      <span class="brand-badge">E2E</span>
+      <div>
+        <div class="brand-title">Enterprise Order & Payment Gateway</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('ui')">
+        <span>🖥️ Storefront (UI)</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('api')">
+        <span>⚡ API Swagger Console</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('sql')">
+        <span>🗄️ Live SQL Database</span>
+      </button>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="btn-reset-db" onclick="resetDatabaseState()" title="Reset database to initial baseline state">
+        🔄 Reset DB Seed
+      </button>
+      <a href="e2e-guide.html" target="_blank" style="color:var(--primary); font-size:0.825rem; font-weight:700; text-decoration:none;">
+        📋 Mission Guide ↗
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main class="sandbox-content">
+
+    <!-- ============================================================== -->
+    <!-- VIEW 1: STOREFRONT (FRONTEND UI) -->
+    <!-- ============================================================== -->
+    <section id="view-ui" class="view-pane active">
+      <div class="storefront-grid">
+        
+        <!-- LEFT: SELECTION & CHECKOUT FORM -->
+        <div class="panel-box">
+          <div class="panel-header">
+            <span>1. Enterprise Cloud Subscriptions</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Reactive Frontend State</span>
+          </div>
+
+          <div class="product-select-list">
+            <div class="product-card-option selected" onclick="selectProduct(this, 1, 'QA Automation Runner License', 250)">
+              <div>
+                <div style="font-weight:800; font-size:0.95rem;">QA Automation Runner License</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Concurrent Playwright Worker Nodes</div>
+              </div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$250</div>
+            </div>
+
+            <div class="product-card-option" onclick="selectProduct(this, 2, 'Enterprise Load Testing Engine', 490)">
+              <div>
+                <div style="font-weight:800; font-size:0.95rem;">Enterprise Load Testing Engine</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Distributed k6 / JMeter Virtual Users</div>
+              </div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$490</div>
+            </div>
+
+            <div class="product-card-option" onclick="selectProduct(this, 3, 'Security SAST/DAST Scanner', 380)">
+              <div>
+                <div style="font-weight:800; font-size:0.95rem;">Security SAST/DAST Scanner</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Automated OWASP Top 10 Pipeline Audits</div>
+              </div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$380</div>
+            </div>
+          </div>
+
+          <div class="panel-header" style="margin-top:1.5rem;">
+            <span>2. Customer & Billing Details</span>
+          </div>
+
+          <form id="ui-order-form" onsubmit="handleUiCheckout(event)">
+            <div class="form-group">
+              <label class="form-label">Customer Email Address *</label>
+              <input type="email" id="ui-email" class="form-input" value="dan.tester@enterprise.io" required>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div class="form-group">
+                <label class="form-label">Subscription Quantity</label>
+                <input type="number" id="ui-qty" class="form-input" value="1" min="1" oninput="recalcUiTotal()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Billing Country</label>
+                <select id="ui-country" class="form-input">
+                  <option value="US">United States (USD)</option>
+                  <option value="DE">Germany (EUR)</option>
+                  <option value="HU">Hungary (HUF)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-checkout" id="btn-ui-submit">
+              Place Subscription Order &rarr;
+            </button>
+          </form>
+
+        </div>
+
+        <!-- RIGHT: LIVE CART & RECENT ORDERS -->
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          
+          <div class="panel-box">
+            <div class="panel-header">Order Summary</div>
+            <div class="order-summary-row">
+              <span id="ui-sum-product">QA Automation Runner License</span>
+              <span id="ui-sum-base">$250</span>
+            </div>
+            <div class="order-summary-row">
+              <span>Quantity:</span>
+              <span id="ui-sum-qty">1 unit</span>
+            </div>
+            <div class="order-summary-row">
+              <span>Tax / VAT (0% Enterprise):</span>
+              <span>$0</span>
+            </div>
+            <div class="order-grand-total">
+              <span>Grand Total:</span>
+              <span id="ui-sum-total" style="color:var(--primary);">$250</span>
+            </div>
+          </div>
+
+          <div class="panel-box">
+            <div class="panel-header">
+              <span>Live Database Orders</span>
+              <span style="font-size:0.75rem; color:var(--accent-green);">Connected to SQL</span>
+            </div>
+            <div class="table-responsive">
+              <table class="e2e-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="ui-recent-orders-tbody">
+                  <!-- Rendered dynamically from live DB -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- VIEW 2: INTERACTIVE SWAGGER / API CONSOLE -->
+    <!-- ============================================================== -->
+    <section id="view-api" class="view-pane">
+      <div class="swagger-container">
+        
+        <div class="swagger-banner">
+          <div>
+            <h2 style="font-size:1.3rem; font-weight:800; color:#fff;">OpenAPI 3.0 / Swagger Interactive Console</h2>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
+              Base URL: <code>/api/v1</code> • Auth: <code>Bearer token (admin / user)</code>
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Active Role:</span>
+            <select id="api-active-role" class="form-input" style="width:auto; padding:0.35rem 0.75rem; font-size:0.75rem;">
+              <option value="user">User Token (Standard Customer)</option>
+              <option value="admin">Admin Token (Superuser)</option>
+              <option value="none">No Token (Unauthorized)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 1: GET /api/orders -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep1')">
+            <span class="method-badge method-GET">GET</span>
+            <span class="endpoint-path">/api/v1/orders</span>
+            <span class="endpoint-summary">Retrieve all orders from backend database</span>
+          </div>
+          <div id="ep1" class="endpoint-body">
+            <button class="btn-try-execute" onclick="executeApiGetOrders()">Execute &rarr;</button>
+            <div id="res-ep1" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 2: POST /api/orders -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep2')">
+            <span class="method-badge method-POST">POST</span>
+            <span class="endpoint-path">/api/v1/orders</span>
+            <span class="endpoint-summary">Create a new subscription order (With Idempotency Key validation)</span>
+          </div>
+          <div id="ep2" class="endpoint-body">
+            <div class="swagger-params-title">Request Headers & Body (JSON)</div>
+            <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
+              <input type="text" id="api-idem-key" class="form-input" placeholder="Idempotency-Key (e.g. IDEM-9921)" style="font-size:0.8rem;">
+            </div>
+            <textarea id="api-post-body" class="swagger-input-box">{
+  "email": "dan.tester@enterprise.io",
+  "product_id": 1,
+  "quantity": 2,
+  "price": 250
+}</textarea>
+            <button class="btn-try-execute" onclick="executeApiPostOrder()">Execute &rarr;</button>
+            <div id="res-ep2" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 3: PATCH /api/orders/{id}/status -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep3')">
+            <span class="method-badge method-PATCH">PATCH</span>
+            <span class="endpoint-path">/api/v1/orders/{id}/status</span>
+            <span class="endpoint-summary">Transition order status (PENDING &rarr; PAID &rarr; CANCELLED)</span>
+          </div>
+          <div id="ep3" class="endpoint-body">
+            <div style="display:grid; grid-template-columns:120px 1fr; gap:0.75rem; margin-bottom:0.75rem;">
+              <div>
+                <label class="form-label">Order ID</label>
+                <input type="number" id="api-patch-id" class="form-input" value="101">
+              </div>
+              <div>
+                <label class="form-label">Target Status</label>
+                <select id="api-patch-status" class="form-input">
+                  <option value="PAID">PAID</option>
+                  <option value="CANCELLED">CANCELLED</option>
+                  <option value="REFUNDED">REFUNDED</option>
+                  <option value="PENDING">PENDING</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-try-execute" onclick="executeApiPatchStatus()">Execute &rarr;</button>
+            <div id="res-ep3" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 4: DELETE /api/orders/{id} -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep4')">
+            <span class="method-badge method-DELETE">DELETE</span>
+            <span class="endpoint-path">/api/v1/orders/{id}</span>
+            <span class="endpoint-summary">Hard delete order (Admin Role Required - 403 Test)</span>
+          </div>
+          <div id="ep4" class="endpoint-body">
+            <div style="max-width:200px; margin-bottom:0.75rem;">
+              <label class="form-label">Target Order ID</label>
+              <input type="number" id="api-delete-id" class="form-input" value="102">
+            </div>
+            <button class="btn-try-execute" style="background:var(--accent-red); color:#fff;" onclick="executeApiDeleteOrder()">Execute &rarr;</button>
+            <div id="res-ep4" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- VIEW 3: LIVE SQL CONSOLE -->
+    <!-- ============================================================== -->
+    <section id="view-sql" class="view-pane">
+      <div class="sql-workbench">
+
+        <div class="sql-editor-card">
+          <div class="panel-header">
+            <span>SQL Query Terminal</span>
+            <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">Engine: In-Memory Relational DB</span>
+          </div>
+
+          <textarea id="sql-input" class="sql-textarea" spellcheck="false">SELECT orders.id, users.email, products.name, orders.total, orders.status 
+FROM orders 
+INNER JOIN users ON orders.user_id = users.id 
+INNER JOIN products ON orders.product_id = products.id;</textarea>
+
+          <div class="sql-action-bar">
+            <div class="quick-queries-chips">
+              <button class="chip-query" onclick="setQuery('SELECT * FROM orders;')">All Orders</button>
+              <button class="chip-query" onclick="setQuery('SELECT * FROM users;')">All Users</button>
+              <button class="chip-query" onclick="setQuery('SELECT * FROM products;')">Inventory</button>
+              <button class="chip-query" onclick="setQuery(`SELECT email, COUNT(id) FROM users GROUP BY email HAVING COUNT(id) > 1;`)">Check Duplicates</button>
+              <button class="chip-query" onclick="setQuery(`UPDATE orders SET status = 'REFUNDED' WHERE id = 101;`)">Force Refund (ID 101)</button>
+            </div>
+
+            <button class="btn-run-sql" onclick="executeSqlQuery()">
+              <span>▶ Run Query</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SQL RESULTS -->
+        <div class="sql-results-box" id="sql-results-container">
+          <div style="color:var(--text-muted); font-size:0.85rem; text-align:center; padding-top:4rem;">
+            Click <strong>"Run Query"</strong> to execute SQL against the live database tables.
+          </div>
+        </div>
+
+        <!-- SCHEMA CARD -->
+        <div class="schema-help-box">
+          <strong>Database Schema Reference:</strong><br>
+          • <code>users</code> (id INTEGER PRIMARY KEY, email TEXT, role TEXT, status TEXT)<br>
+          • <code>products</code> (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER)<br>
+          • <code>orders</code> (id INTEGER PRIMARY KEY, user_id INTEGER, product_id INTEGER, quantity INTEGER, total INTEGER, status TEXT, idempotency_key TEXT)
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- JAVASCRIPT: SHARED REACTIVE IN-MEMORY RELATIONAL DATABASE -->
+  <!-- ============================================================== -->
+  <script>
+    // --- 1. GATE AUTHENTICATION ---
+    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx'];
+    function checkGate() {
+      if (sessionStorage.getItem('qa_lab_auth') === 'granted') {
+        document.getElementById('gate-overlay').style.display = 'none';
+      }
+    }
+    checkGate();
+
+    function unlockSandbox() {
+      const val = document.getElementById('gate-pass').value.trim().toLowerCase();
+      if (VALID_PASSWORDS.includes(val)) {
+        sessionStorage.setItem('qa_lab_auth', 'granted');
+        document.getElementById('gate-overlay').style.display = 'none';
+      } else {
+        document.getElementById('gate-err').style.display = 'block';
+      }
+    }
+
+    // --- 2. TAB SWITCHING ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
+
+      if (tabId === 'ui') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('view-ui').classList.add('active');
+        renderUiOrders();
+      } else if (tabId === 'api') {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('view-api').classList.add('active');
+      } else if (tabId === 'sql') {
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        document.getElementById('view-sql').classList.add('active');
+      }
+    }
+
+    // --- 3. IN-MEMORY DATABASE STATE ---
+    const INITIAL_DB = {
+      users: [
+        { id: 1, email: "dan.tester@enterprise.io", role: "user", status: "active" },
+        { id: 2, email: "tamas.qa@testacademy.hu", role: "admin", status: "active" },
+        { id: 3, email: "guest.buyer@external.com", role: "user", status: "inactive" }
+      ],
+      products: [
+        { id: 1, name: "QA Automation Runner License", price: 250, stock: 15 },
+        { id: 2, name: "Enterprise Load Testing Engine", price: 490, stock: 8 },
+        { id: 3, name: "Security SAST/DAST Scanner", price: 380, stock: 20 }
+      ],
+      orders: [
+        { id: 101, user_id: 1, product_id: 1, quantity: 1, total: 250, status: "PAID", idempotency_key: "INIT-101" },
+        { id: 102, user_id: 2, product_id: 2, quantity: 1, total: 490, status: "PENDING", idempotency_key: "INIT-102" },
+        { id: 103, user_id: 1, product_id: 3, quantity: 2, total: 760, status: "CANCELLED", idempotency_key: "INIT-103" }
+      ]
+    };
+
+    let DB = JSON.parse(JSON.stringify(INITIAL_DB));
+
+    function resetDatabaseState() {
+      DB = JSON.parse(JSON.stringify(INITIAL_DB));
+      renderUiOrders();
+      alert("✅ Database reset to baseline seed state (3 users, 3 products, 3 orders).");
+    }
+
+    // --- 4. STOREFRONT (UI) LOGIC ---
+    let selectedProductId = 1;
+    let selectedProductName = "QA Automation Runner License";
+    let selectedProductPrice = 250;
+
+    function selectProduct(el, id, name, price) {
+      document.querySelectorAll('.product-card-option').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedProductId = id;
+      selectedProductName = name;
+      selectedProductPrice = price;
+      document.getElementById('ui-sum-product').innerText = name;
+      document.getElementById('ui-sum-base').innerText = `$${price}`;
+      recalcUiTotal();
+    }
+
+    function recalcUiTotal() {
+      const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
+      const total = selectedProductPrice * qty;
+      document.getElementById('ui-sum-qty').innerText = `${qty} unit${qty > 1 ? 's' : ''}`;
+      document.getElementById('ui-sum-total').innerText = `$${total}`;
+    }
+
+    function handleUiCheckout(e) {
+      e.preventDefault();
+      const email = document.getElementById('ui-email').value.trim();
+      const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
+
+      // 1. Find or create user
+      let user = DB.users.find(u => u.email === email);
+      if (!user) {
+        user = { id: DB.users.length + 1, email: email, role: "user", status: "active" };
+        DB.users.push(user);
+      }
+
+      // 2. Insert order
+      const newOrderId = DB.orders.length ? Math.max(...DB.orders.map(o => o.id)) + 1 : 101;
+      const newOrder = {
+        id: newOrderId,
+        user_id: user.id,
+        product_id: selectedProductId,
+        quantity: qty,
+        total: selectedProductPrice * qty,
+        status: "PENDING",
+        idempotency_key: `UI-${Date.now()}`
+      };
+
+      DB.orders.unshift(newOrder); // Add to top
+      renderUiOrders();
+      alert(`🎉 Order #${newOrderId} placed successfully! Status: PENDING. Switch to SQL or API tab to verify the state.`);
+    }
+
+    function renderUiOrders() {
+      const tbody = document.getElementById('ui-recent-orders-tbody');
+      tbody.innerHTML = '';
+
+      DB.orders.slice(0, 5).forEach(o => {
+        const user = DB.users.find(u => u.id === o.user_id) || { email: "Unknown" };
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>#${o.id}</strong></td>
+          <td>${user.email}</td>
+          <td>$${o.total}</td>
+          <td><span class="badge-status badge-${o.status}">${o.status}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    renderUiOrders();
+
+    // --- 5. SWAGGER / API CONSOLE LOGIC ---
+    function toggleEndpoint(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+    }
+
+    function renderApiResponse(containerId, status, statusText, data) {
+      const el = document.getElementById(containerId);
+      el.style.display = 'block';
+      const isSuccess = status >= 200 && status < 300;
+      el.innerHTML = `
+        <div class="response-status-line">
+          <span>Response Status:</span>
+          <span class="status-pill status-${status}">${status} ${statusText}</span>
+        </div>
+        <pre style="color:${isSuccess ? '#38bdf8' : '#f87171'}; overflow-x:auto;">${JSON.stringify(data, null, 2)}</pre>
+      `;
+    }
+
+    function executeApiGetOrders() {
+      const role = document.getElementById('api-active-role').value;
+      if (role === 'none') {
+        renderApiResponse('res-ep1', 401, 'Unauthorized', {
+          error: "Unauthorized",
+          message: "Missing or invalid Bearer authentication token."
+        });
+        return;
+      }
+
+      // Enrich orders with user and product
+      const enriched = DB.orders.map(o => {
+        const user = DB.users.find(u => u.id === o.user_id);
+        const prod = DB.products.find(p => p.id === o.product_id);
+        return {
+          id: o.id,
+          user_email: user ? user.email : null,
+          product_name: prod ? prod.name : null,
+          quantity: o.quantity,
+          total: o.total,
+          status: o.status,
+          idempotency_key: o.idempotency_key
+        };
+      });
+
+      renderApiResponse('res-ep1', 200, 'OK', {
+        data: enriched,
+        total_records: enriched.length,
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    function executeApiPostOrder() {
+      const role = document.getElementById('api-active-role').value;
+      if (role === 'none') {
+        renderApiResponse('res-ep2', 401, 'Unauthorized', { error: "Missing Bearer token" });
+        return;
+      }
+
+      let body;
+      try {
+        body = JSON.parse(document.getElementById('api-post-body').value);
+      } catch (err) {
+        renderApiResponse('res-ep2', 400, 'Bad Request', {
+          error: "Malformed JSON Syntax",
+          details: err.message
+        });
+        return;
+      }
+
+      // Input Validation Traps
+      if (!body.email || !body.product_id || !body.quantity) {
+        renderApiResponse('res-ep2', 400, 'Bad Request', {
+          error: "Validation Failed",
+          required_fields: ["email", "product_id", "quantity"]
+        });
+        return;
+      }
+
+      // Idempotency Trap
+      const idemKey = document.getElementById('api-idem-key').value.trim();
+      if (idemKey && DB.orders.some(o => o.idempotency_key === idemKey)) {
+        renderApiResponse('res-ep2', 409, 'Conflict', {
+          error: "Idempotency Conflict",
+          message: `An order with Idempotency-Key '${idemKey}' has already been processed.`
+        });
+        return;
+      }
+
+      let user = DB.users.find(u => u.email === body.email);
+      if (!user) {
+        user = { id: DB.users.length + 1, email: body.email, role: "user", status: "active" };
+        DB.users.push(user);
+      }
+
+      const prod = DB.products.find(p => p.id === body.product_id) || { price: 100 };
+      const newId = DB.orders.length ? Math.max(...DB.orders.map(o => o.id)) + 1 : 101;
+      const newOrder = {
+        id: newId,
+        user_id: user.id,
+        product_id: body.product_id,
+        quantity: body.quantity,
+        total: (body.price || prod.price) * body.quantity,
+        status: "PENDING",
+        idempotency_key: idemKey || `API-${Date.now()}`
+      };
+
+      DB.orders.unshift(newOrder);
+      renderUiOrders();
+
+      renderApiResponse('res-ep2', 201, 'Created', {
+        message: "Order successfully created and queued for processing.",
+        order: newOrder
+      });
+    }
+
+    function executeApiPatchStatus() {
+      const orderId = parseInt(document.getElementById('api-patch-id').value, 10);
+      const targetStatus = document.getElementById('api-patch-status').value;
+
+      const order = DB.orders.find(o => o.id === orderId);
+      if (!order) {
+        renderApiResponse('res-ep3', 404, 'Not Found', {
+          error: "Resource Not Found",
+          message: `Order #${orderId} does not exist in the database.`
+        });
+        return;
+      }
+
+      const oldStatus = order.status;
+      order.status = targetStatus;
+      renderUiOrders();
+
+      renderApiResponse('res-ep3', 200, 'OK', {
+        order_id: orderId,
+        previous_status: oldStatus,
+        new_status: targetStatus,
+        updated_at: new Date().toISOString()
+      });
+    }
+
+    function executeApiDeleteOrder() {
+      const role = document.getElementById('api-active-role').value;
+      const orderId = parseInt(document.getElementById('api-delete-id').value, 10);
+
+      // RBAC CHECK
+      if (role !== 'admin') {
+        renderApiResponse('res-ep4', 403, 'Forbidden', {
+          error: "Access Denied",
+          message: "Hard deleting an order requires 'admin' role privileges. Current role: " + role
+        });
+        return;
+      }
+
+      const idx = DB.orders.findIndex(o => o.id === orderId);
+      if (idx === -1) {
+        renderApiResponse('res-ep4', 404, 'Not Found', {
+          error: "Not Found",
+          message: `Order #${orderId} not found.`
+        });
+        return;
+      }
+
+      DB.orders.splice(idx, 1);
+      renderUiOrders();
+
+      renderApiResponse('res-ep4', 200, 'OK', {
+        message: `Order #${orderId} was permanently deleted from database.`,
+        deleted_order_id: orderId
+      });
+    }
+
+    // --- 6. SQL CONSOLE ENGINE LOGIC ---
+    function setQuery(sql) {
+      document.getElementById('sql-input').value = sql;
+      executeSqlQuery();
+    }
+
+    function executeSqlQuery() {
+      const rawSql = document.getElementById('sql-input').value.trim();
+      const container = document.getElementById('sql-results-container');
+
+      if (!rawSql) {
+        container.innerHTML = '<div style="color:var(--accent-red);">Please enter an SQL query.</div>';
+        return;
+      }
+
+      const clean = rawSql.replace(/;$/, '').trim();
+
+      try {
+        // Simple SQL parser for simulated execution
+        if (/^UPDATE\s+orders/i.test(clean)) {
+          // UPDATE orders SET status = 'REFUNDED' WHERE id = 101
+          const statusMatch = clean.match(/status\s*=\s*'([^']+)'/i);
+          const idMatch = clean.match(/id\s*=\s*(\d+)/i);
+
+          if (statusMatch && idMatch) {
+            const status = statusMatch[1];
+            const id = parseInt(idMatch[1], 10);
+            const target = DB.orders.find(o => o.id === id);
+            if (target) {
+              target.status = status;
+              renderUiOrders();
+              container.innerHTML = `<div style="color:var(--accent-green); font-family:var(--font-mono);">Query OK, 1 row affected. Order #${id} status updated to '${status}'.</div>`;
+            } else {
+              container.innerHTML = `<div style="color:var(--accent-orange); font-family:var(--font-mono);">Query OK, 0 rows affected. Order #${id} not found.</div>`;
+            }
+          } else {
+            container.innerHTML = `<div style="color:var(--accent-red);">Syntax error in UPDATE statement.</div>`;
+          }
+          return;
+        }
+
+        if (/^SELECT\s+/i.test(clean)) {
+          let rows = [];
+
+          if (/FROM\s+users/i.test(clean)) {
+            // Check for GROUP BY email HAVING COUNT(id) > 1
+            if (/GROUP\s+BY\s+email/i.test(clean) && /HAVING/i.test(clean)) {
+              const emailCounts = {};
+              DB.users.forEach(u => emailCounts[u.email] = (emailCounts[u.email] || 0) + 1);
+              rows = Object.keys(emailCounts)
+                .filter(email => emailCounts[email] > 1)
+                .map(email => ({ email: email, duplicate_count: emailCounts[email] }));
+            } else {
+              rows = DB.users;
+            }
+          } else if (/FROM\s+products/i.test(clean)) {
+            rows = DB.products;
+          } else if (/FROM\s+orders/i.test(clean)) {
+            // Check for JOIN
+            if (/INNER\s+JOIN\s+users/i.test(clean) || /JOIN\s+users/i.test(clean)) {
+              rows = DB.orders.map(o => {
+                const u = DB.users.find(usr => usr.id === o.user_id) || {};
+                const p = DB.products.find(prd => prd.id === o.product_id) || {};
+                return {
+                  order_id: o.id,
+                  user_email: u.email || 'NULL',
+                  product_name: p.name || 'NULL',
+                  total: o.total,
+                  status: o.status
+                };
+              });
+            } else {
+              rows = DB.orders;
+            }
+          }
+
+          if (rows.length === 0) {
+            container.innerHTML = `<div style="color:var(--text-muted); font-family:var(--font-mono);">Empty set (0 rows returned).</div>`;
+            return;
+          }
+
+          // Render Table
+          const cols = Object.keys(rows[0]);
+          let html = `<div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); margin-bottom:0.5rem;">${rows.length} row${rows.length > 1 ? 's' : ''} in set.</div>`;
+          html += '<table class="e2e-table"><thead><tr>';
+          cols.forEach(c => html += `<th>${c}</th>`);
+          html += '</tr></thead><tbody>';
+
+          rows.forEach(r => {
+            html += '<tr>';
+            cols.forEach(c => html += `<td>${r[c]}</td>`);
+            html += '</tr>';
+          });
+          html += '</tbody></table>';
+
+          container.innerHTML = html;
+          return;
+        }
+
+        container.innerHTML = `<div style="color:var(--accent-red);">Unsupported query syntax. Supported: SELECT, UPDATE on tables 'users', 'products', 'orders'.</div>`;
+      } catch (err) {
+        container.innerHTML = `<div style="color:var(--accent-red);">SQL Error: ${err.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
