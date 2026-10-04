@@ -1075,10 +1075,40 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
           return;
         }
 
+        // DELETE Support
+        if (/^DELETE\s+FROM\s+users/i.test(clean)) {
+          const idMatch = clean.match(/id\s*=\s*(\d+)/i);
+          if (idMatch) {
+            const id = parseInt(idMatch[1], 10);
+            const idx = DB.users.findIndex(u => u.id === id);
+            if (idx !== -1) {
+              DB.users.splice(idx, 1);
+              container.innerHTML = `<div style="color:var(--accent-green); font-family:var(--font-mono);">Query OK, 1 row affected. User #${id} deleted from 'users' table. Notice: orphaned rows may remain in 'orders'!</div>`;
+            } else {
+              container.innerHTML = `<div style="color:var(--accent-orange); font-family:var(--font-mono);">Query OK, 0 rows affected. User #${id} not found.</div>`;
+            }
+          } else {
+            container.innerHTML = `<div style="color:var(--accent-red);">Syntax error in DELETE statement.</div>`;
+          }
+          return;
+        }
+
         if (/^SELECT\s+/i.test(clean)) {
           let rows = [];
 
-          if (/FROM\s+users/i.test(clean)) {
+          // SUM(total) aggregation
+          if (/SUM\(total\)/i.test(clean)) {
+            let filteredOrders = DB.orders;
+            if (/WHERE\s+status\s*=\s*'PAID'/i.test(clean)) {
+              filteredOrders = DB.orders.filter(o => o.status === 'PAID');
+            }
+            const sum = filteredOrders.reduce((acc, curr) => acc + curr.total, 0);
+            rows = [{ "SUM(total)": sum, "paid_order_count": filteredOrders.length }];
+          } else if (/LEFT\s+JOIN\s+orders/i.test(clean) || /WHERE\s+orders\.id\s+IS\s+NULL/i.test(clean)) {
+            // Find users with 0 orders
+            const inactive = DB.users.filter(u => !DB.orders.some(o => o.user_id === u.id));
+            rows = inactive.map(u => ({ user_id: u.id, email: u.email, role: u.role, order_id: "NULL", total: "NULL" }));
+          } else if (/FROM\s+users/i.test(clean)) {
             // Check for GROUP BY email HAVING COUNT(id) > 1
             if (/GROUP\s+BY\s+email/i.test(clean) && /HAVING/i.test(clean)) {
               const emailCounts = {};
@@ -1086,25 +1116,38 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
               rows = Object.keys(emailCounts)
                 .filter(email => emailCounts[email] > 1)
                 .map(email => ({ email: email, duplicate_count: emailCounts[email] }));
+            } else if (/WHERE\s+email\s*=\s*'([^']+)'/i.test(clean)) {
+              const em = clean.match(/WHERE\s+email\s*=\s*'([^']+)'/i)[1];
+              rows = DB.users.filter(u => u.email === em);
             } else {
               rows = DB.users;
             }
           } else if (/FROM\s+products/i.test(clean)) {
-            rows = DB.products;
+            if (/WHERE\s+id\s*=\s*(\d+)/i.test(clean)) {
+              const pid = parseInt(clean.match(/WHERE\s+id\s*=\s*(\d+)/i)[1], 10);
+              rows = DB.products.filter(p => p.id === pid);
+            } else {
+              rows = DB.products;
+            }
           } else if (/FROM\s+orders/i.test(clean)) {
-            // Check for JOIN
             if (/INNER\s+JOIN\s+users/i.test(clean) || /JOIN\s+users/i.test(clean)) {
               rows = DB.orders.map(o => {
                 const u = DB.users.find(usr => usr.id === o.user_id) || {};
                 const p = DB.products.find(prd => prd.id === o.product_id) || {};
                 return {
                   order_id: o.id,
-                  user_email: u.email || 'NULL',
+                  user_email: u.email || 'ORPHAN (User Deleted)',
                   product_name: p.name || 'NULL',
                   total: o.total,
                   status: o.status
                 };
               });
+            } else if (/WHERE\s+total\s*=\s*(\d+)/i.test(clean)) {
+              const tot = parseInt(clean.match(/WHERE\s+total\s*=\s*(\d+)/i)[1], 10);
+              rows = DB.orders.filter(o => o.total === tot);
+            } else if (/WHERE\s+id\s*=\s*(\d+)/i.test(clean)) {
+              const oid = parseInt(clean.match(/WHERE\s+id\s*=\s*(\d+)/i)[1], 10);
+              rows = DB.orders.filter(o => o.id === oid);
             } else {
               rows = DB.orders;
             }
@@ -1133,7 +1176,7 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
           return;
         }
 
-        container.innerHTML = `<div style="color:var(--accent-red);">Unsupported query syntax. Supported: SELECT, UPDATE on tables 'users', 'products', 'orders'.</div>`;
+        container.innerHTML = `<div style="color:var(--accent-red);">Unsupported query syntax. Supported: SELECT, UPDATE, DELETE on tables 'users', 'products', 'orders'.</div>`;
       } catch (err) {
         container.innerHTML = `<div style="color:var(--accent-red);">SQL Error: ${err.message}</div>`;
       }

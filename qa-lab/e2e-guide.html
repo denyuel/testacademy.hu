@@ -170,7 +170,7 @@
         <div class="progress-bar-bg">
           <div id="progress-bar-fill" class="progress-bar-fill"></div>
         </div>
-        <span id="progress-text" style="font-size:0.8rem; font-weight:800; color:#10b981;">0/30 done</span>
+        <span id="progress-text" style="font-size:0.8rem; font-weight:800; color:#10b981;">0/37 done</span>
       </div>
 
       <button style="background:#334155; border:none; color:#cbd5e1; padding:0.35rem 0.75rem; border-radius:50px; font-size:0.75rem; cursor:pointer;" onclick="logoutGate()">Logout</button>
@@ -198,6 +198,14 @@
       • <strong>Tab 1 (Storefront UI):</strong> Real-time checkout form & live order tracking table.<br>
       • <strong>Tab 2 (API Swagger Console):</strong> Execute REST endpoints (`GET`, `POST`, `PATCH`, `DELETE`) with role-based auth and status codes.<br>
       • <strong>Tab 3 (Live SQL Database):</strong> Run actual SQL queries (`SELECT`, `JOIN`, `UPDATE`, `GROUP BY`) against the shared database engine!
+    </div>
+
+    <div style="background:#fef2f2; border-left:4px solid #ef4444; padding:1.25rem 1.5rem; border-radius:8px; margin-bottom:2rem; font-size:0.875rem; color:#991b1b; line-height:1.6;">
+      <strong>🆘 If You Get Stuck – The 4-Step Professional QA Protocol:</strong><br>
+      1. <strong>Use Built-in Sandbox Clues:</strong> On the SQL tab, check the <em>Database Schema Reference</em> card and <em>Quick Query Chips</em>. In Swagger, review the pre-filled sample JSON payloads.<br>
+      2. <strong>Check Your Repo Notes:</strong> Open <code>05_sql_queries_for_qa.md</code> in your local Git repository for exact query syntax examples (Joins, Duplicate Checks, Aggregations).<br>
+      3. <strong>Use AI as a Technical Dictionary / Encyclopedia (Not for cheating!):</strong> Ask conceptual questions like: <em>"What is the SQL syntax for a LEFT JOIN when checking for NULLs?"</em> or <em>"What triggers HTTP 409 Conflict in a REST API?"</em>.<br>
+      4. <strong>Ask Mentor Daniel like a Pro:</strong> If stuck for more than 5 minutes, ask Daniel with context: (a) which task you're on, (b) what you tried, and (c) what error you received!
     </div>
 
     <!-- ======================================================== -->
@@ -897,6 +905,187 @@
       </div>
     </div>
 
+    <!-- ======================================================== -->
+    <!-- PART 6: SENIOR BONUS CHALLENGES / BUG BOUNTY (7 TASKS) -->
+    <!-- ======================================================== -->
+    <div class="module-card">
+      <div class="module-header" style="background:#fffbeb; border-bottom:1px solid #fde68a;">
+        <div>
+          <span class="module-tag" style="background:#d97706; color:#ffffff;">PART 6</span>
+          <span class="module-title" style="color:#92400e;">Senior Bonus Challenges / Bug Bounty Hunter 🏆</span>
+        </div>
+        <span style="font-size:0.8rem; color:#b45309; font-weight:700;">7 Advanced Tasks</span>
+      </div>
+
+      <div class="tasks-list">
+
+        <!-- 6.1 -->
+        <div class="task-item" id="task-card-31">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-31" class="task-checkbox" onchange="updateTaskStatus(31)">
+            <div class="task-body">
+              <div class="task-title">6.1. SQL Injection (SQLi) Probe in Input Fields</div>
+              <div class="task-desc">Test whether user input fields in Storefront and API sanitize malicious SQL payloads.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In <strong>Tab 1 (Storefront)</strong>, enter the classic SQL injection string into the Email field:<br>
+                    <code>' OR '1'='1</code> or <code>test' OR 1=1; --</code></li>
+                  <li>Click <strong>Place Subscription Order</strong>. Notice client-side HTML5 email validation blocks invalid email strings.</li>
+                  <li>Now bypass UI validation using <strong>Tab 2 (Swagger)</strong>: in <code>POST /api/v1/orders</code>, send payload with:<br>
+                    <code>{"email": "admin' OR '1'='1", "product_id": 1, "quantity": 1, "price": 99}</code></li>
+                  <li>Check if the backend crashes, escapes the string safely, or executes unexpected logic.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: How did the UI vs Swagger API handle the SQL injection attempt? Did the backend crash or safely escape/reject it?</div>
+              <textarea id="task-note-31" class="task-notes-area" placeholder="Log your SQL injection findings and security posture..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(31)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.2 -->
+        <div class="task-item" id="task-card-32">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-32" class="task-checkbox" onchange="updateTaskStatus(32)">
+            <div class="task-body">
+              <div class="task-title">6.2. Orphaned Data & Referential Integrity Audit</div>
+              <div class="task-desc">Investigate what happens to child records in relational tables when parent records are deleted without cascading foreign key constraints.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In <strong>Tab 3 (Live SQL)</strong>, delete user #1 directly:<br>
+                    <code>DELETE FROM users WHERE id = 1;</code></li>
+                  <li>Now run a JOIN between orders and users:<br>
+                    <code>SELECT orders.id, orders.user_id, users.email FROM orders INNER JOIN users ON orders.user_id = users.id;</code></li>
+                  <li>Notice what happened to Order #101! It now references a deleted user (orphaned child record).</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: In enterprise relational databases (PostgreSQL/MySQL), what database constraints or architecture prevent orphaned orders (e.g. ON DELETE CASCADE, foreign key constraints, or soft deletes)?</div>
+              <textarea id="task-note-32" class="task-notes-area" placeholder="Explain orphaned records and soft-delete/foreign-key solutions..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(32)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.3 -->
+        <div class="task-item" id="task-card-33">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-33" class="task-checkbox" onchange="updateTaskStatus(33)">
+            <div class="task-body">
+              <div class="task-title">6.3. Integer Boundary & Negative Quantity Exploit</div>
+              <div class="task-desc">Attempt to submit negative, zero, or extreme integer boundary quantities to uncover business logic bugs.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In <strong>Tab 2 (Swagger)</strong>, in <code>POST /api/v1/orders</code>, set quantity to <code>-5</code> and click <strong>Execute</strong>.</li>
+                  <li>Then try setting quantity to <code>0</code>, and finally to <code>9999999999</code>.</li>
+                  <li>Check status codes and the resulting total calculation.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Does the backend allow negative orders (e.g. paying negative money or artificially increasing inventory)? What validation rule should be added?</div>
+              <textarea id="task-note-33" class="task-notes-area" placeholder="Log negative and extreme integer boundary test results..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(33)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.4 -->
+        <div class="task-item" id="task-card-34">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-34" class="task-checkbox" onchange="updateTaskStatus(34)">
+            <div class="task-body">
+              <div class="task-title">6.4. Custom SQL: Inactive Users with Zero Orders</div>
+              <div class="task-desc">Write a SQL query to identify registered accounts that have never made a purchase.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In <strong>Tab 3 (Live SQL)</strong>, write a query using <code>LEFT JOIN</code> to find users with no corresponding orders:</li>
+                  <li><code>SELECT users.id, users.email FROM users LEFT JOIN orders ON users.id = orders.user_id WHERE orders.id IS NULL;</code></li>
+                  <li>Click <strong>▶ Run Query</strong>.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Which user(s) returned with zero orders? Why is LEFT JOIN ... WHERE ... IS NULL standard practice for churn and marketing audits?</div>
+              <textarea id="task-note-34" class="task-notes-area" placeholder="Record inactive user IDs and query explanation..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(34)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.5 -->
+        <div class="task-item" id="task-card-35">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-35" class="task-checkbox" onchange="updateTaskStatus(35)">
+            <div class="task-body">
+              <div class="task-title">6.5. Custom SQL: Revenue & Financial Aggregation</div>
+              <div class="task-desc">Calculate total verified revenue from paid orders in the database.</div>
+              <div class="step-box">
+                <strong>Steps:</strong>
+                <ol>
+                  <li>In <strong>Tab 3 (Live SQL)</strong>, run:</li>
+                  <li><code>SELECT SUM(total) FROM orders WHERE status = 'PAID';</code></li>
+                  <li>Compare this sum with the UI Storefront total of completed orders.</li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: What is the exact total revenue from PAID orders? Why must QA reconcile database aggregates against UI analytics dashboards?</div>
+              <textarea id="task-note-35" class="task-notes-area" placeholder="Log aggregate revenue and reconciliation insight..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(35)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.6 -->
+        <div class="task-item" id="task-card-36">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-36" class="task-checkbox" onchange="updateTaskStatus(36)">
+            <div class="task-body">
+              <div class="task-title">6.6. Comprehensive 10-Card Trello Board Verification</div>
+              <div class="task-desc">Confirm that your QA defect & test matrix is fully populated with senior-grade documentation.</div>
+              <div class="step-box">
+                <strong>Requirements:</strong>
+                <ol>
+                  <li>Your board must have all 6 cards from Part 5 (Price Tampering, Inventory Bug, Malformed JSON, RBAC, Idempotency, Reactive Sync).</li>
+                  <li>Add 4 bonus cards covering Part 6 findings:
+                    <br>• Card 7: <code>[Security] SQL Injection and input sanitization audit</code>
+                    <br>• Card 8: <code>[Database] Missing Foreign Key constraint / Orphaned orders risk</code>
+                    <br>• Card 9: <code>[API] Boundary validation for negative/zero quantity parameters</code>
+                    <br>• Card 10: <code>[Analytics] Revenue reconciliation query verification</code>
+                  </li>
+                </ol>
+              </div>
+              <div class="prompt-box">❓ Question: Are all 10 cards complete with steps to reproduce, expected vs actual behavior, and SQL/Swagger proof? Paste your Trello board link below!</div>
+              <textarea id="task-note-36" class="task-notes-area" placeholder="Paste your 10-card Trello board URL and completion summary..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(36)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6.7 -->
+        <div class="task-item" id="task-card-37">
+          <div class="task-header">
+            <input type="checkbox" id="task-check-37" class="task-checkbox" onchange="updateTaskStatus(37)">
+            <div class="task-body">
+              <div class="task-title">6.7. Live Technical Defense & Mentor Architecture Grill 🎤</div>
+              <div class="task-desc">Prepare concise technical answers to defend your architectural findings in front of Mentor Daniel.</div>
+              <div class="step-box">
+                <strong>Be ready to answer these 4 questions out loud:</strong>
+                <ol>
+                  <li>1. <em>"Why is trusting client-supplied price parameters one of the most critical security vulnerabilities in e-commerce?"</em></li>
+                  <li>2. <em>"How did you use SQL to prove the inventory stock bug when the UI appeared to place the order without any visible error?"</em></li>
+                  <li>3. <em>"What is the fundamental architectural difference between HTTP 401 Unauthorized and HTTP 403 Forbidden in REST APIs?"</em></li>
+                  <li>4. <em>"What happens when a database record is hard-deleted without referential integrity, and how do senior engineers solve it?"</em></li>
+                </ol>
+              </div>
+              <div class="prompt-box">🎯 Final Mission Step: Draft your key talking points in the notes below, then notify Daniel that you are ready for your live technical review!</div>
+              <textarea id="task-note-37" class="task-notes-area" style="height:90px;" placeholder="Write your bullet points for the 4 defense questions..."></textarea>
+              <button class="btn-save-note" onclick="saveNote(37)">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 
   <script>
@@ -924,7 +1113,7 @@
       window.location.reload();
     }
 
-    const TOTAL_TASKS = 30;
+    const TOTAL_TASKS = 37;
 
     function initTaskStorage() {
       let completed = 0;
