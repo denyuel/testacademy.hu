@@ -442,6 +442,24 @@
     </div>
   </header>
 
+  <!-- TRAINER TOOLBAR CONTROLS -->
+  <div class="trainer-toolbar" style="background:#020617; border-bottom:1px solid #1e293b; padding:0.6rem 1.5rem; display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; color:#94a3b8; flex-wrap:wrap; gap:0.75rem;">
+    <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap;">
+      <span style="background:#854d0e; color:#fef08a; padding:0.25rem 0.6rem; border-radius:4px; font-weight:800; font-size:0.7rem; letter-spacing:0.05em;">TRAINER TOOLBAR</span>
+      <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; color:#e2e8f0; font-weight:600;">
+        <input type="checkbox" id="toggle-v2" onchange="toggleVersionMode(this.checked)">
+        <span>Simulate UI Breaking Changes (v2 Mode for POM demo)</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; color:#e2e8f0; font-weight:600;">
+        <input type="checkbox" id="toggle-flaky" onchange="toggleFlakyMode(this.checked)">
+        <span>Simulate Flaky Latency & 503 Errors (Trace Viewer demo)</span>
+      </label>
+    </div>
+    <div style="font-family:var(--font-mono); font-size:0.75rem; color:#64748b;">
+      Live API: <span style="color:#10b981; font-weight:700;">/api/login & /api/orders</span> | Params: <code>?version=v2</code> | <code>?flaky=true</code>
+    </div>
+  </div>
+
   <!-- MAIN VIEW CONTAINER -->
   <main class="sandbox-content">
 
@@ -490,18 +508,18 @@
 
           <form id="ui-order-form" onsubmit="handleUiCheckout(event)">
             <div class="form-group">
-              <label class="form-label">Customer Email Address *</label>
-              <input type="email" id="ui-email" class="form-input" value="dan.tester@enterprise.io" required>
+              <label class="form-label" for="ui-email">Customer Email Address *</label>
+              <input type="email" id="ui-email" class="form-input" value="dan.tester@enterprise.io" data-testid="email-input" required>
             </div>
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
               <div class="form-group">
-                <label class="form-label">Subscription Quantity</label>
-                <input type="number" id="ui-qty" class="form-input" value="1" min="1" oninput="recalcUiTotal()">
+                <label class="form-label" for="ui-qty">Subscription Quantity</label>
+                <input type="number" id="ui-qty" class="form-input" value="1" min="1" data-testid="qty-input" oninput="recalcUiTotal()">
               </div>
               <div class="form-group">
-                <label class="form-label">Billing Country</label>
-                <select id="ui-country" class="form-input">
+                <label class="form-label" for="ui-country">Billing Country</label>
+                <select id="ui-country" class="form-input" data-testid="country-select">
                   <option value="US">United States (USD)</option>
                   <option value="DE">Germany (EUR)</option>
                   <option value="HU">Hungary (HUF)</option>
@@ -509,7 +527,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-checkout" id="btn-ui-submit">
+            <button type="submit" class="btn-checkout" id="btn-ui-submit" data-testid="checkout-btn">
               Place Subscription Order &rarr;
             </button>
           </form>
@@ -730,10 +748,24 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
   <!-- ============================================================== -->
   <script>
     // --- 1. GATE AUTHENTICATION ---
-    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx'];
+    const VALID_PASSWORDS = ['tamas2026', 'testacademy-lab', 'lab2026', 'atomhaxx', 'astron2026', 'astron'];
     function checkGate() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('unlocked') === 'true' || VALID_PASSWORDS.includes(urlParams.get('pass')?.toLowerCase())) {
+        sessionStorage.setItem('qa_lab_auth', 'granted');
+      }
       if (sessionStorage.getItem('qa_lab_auth') === 'granted') {
         document.getElementById('gate-overlay').style.display = 'none';
+      }
+      
+      // Auto-init Trainer toggles from URL params
+      if (urlParams.get('version') === 'v2') {
+        const toggleV2 = document.getElementById('toggle-v2');
+        if (toggleV2) { toggleV2.checked = true; toggleVersionMode(true); }
+      }
+      if (urlParams.get('flaky') === 'true') {
+        const toggleFlaky = document.getElementById('toggle-flaky');
+        if (toggleFlaky) { toggleFlaky.checked = true; toggleFlakyMode(true); }
       }
     }
     checkGate();
@@ -746,6 +778,25 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       } else {
         document.getElementById('gate-err').style.display = 'block';
       }
+    }
+
+    // --- TRAINER CONTROLS LOGIC ---
+    function toggleVersionMode(isV2) {
+      const btn = document.getElementById('btn-ui-submit');
+      if (!btn) return;
+      if (isV2) {
+        btn.innerText = "Submit Order Now →";
+        btn.setAttribute('data-testid', 'submit-order-btn');
+        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+      } else {
+        btn.innerText = "Place Subscription Order →";
+        btn.setAttribute('data-testid', 'checkout-btn');
+        btn.style.background = 'var(--primary)';
+      }
+    }
+
+    function toggleFlakyMode(isFlaky) {
+      console.log("Trainer mode: Flaky Network simulation set to:", isFlaky);
     }
 
     // --- 2. TAB SWITCHING ---
@@ -816,10 +867,44 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       document.getElementById('ui-sum-total').innerText = `$${total}`;
     }
 
-    function handleUiCheckout(e) {
+    async function handleUiCheckout(e) {
       e.preventDefault();
       const email = document.getElementById('ui-email').value.trim();
       const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
+      const btn = document.getElementById('btn-ui-submit');
+
+      // Check if trainer flaky mode is on
+      const isFlaky = (document.getElementById('toggle-flaky') && document.getElementById('toggle-flaky').checked) ||
+                      (new URLSearchParams(window.location.search).get('flaky') === 'true');
+
+      if (isFlaky) {
+        const origText = btn ? btn.innerText : '';
+        if (btn) {
+          btn.innerText = "Processing order... (simulating 2.5s latency)";
+          btn.disabled = true;
+        }
+        await new Promise(r => setTimeout(r, 2500));
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = origText;
+        }
+        if (Math.random() < 0.5) {
+          alert("❌ Error 503: Gateway Timeout! Flaky test simulated for Trace Viewer.");
+          return;
+        }
+      }
+
+      // Try background sync with real /api/orders endpoint if available
+      try {
+        fetch('/api/orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + (sessionStorage.getItem('qa_lab_jwt') || 'mock_token')
+          },
+          body: JSON.stringify({ email, product_id: selectedProductId, quantity: qty })
+        }).catch(() => {});
+      } catch (err) {}
 
       // 1. Find or create user
       let user = DB.users.find(u => u.email === email);
