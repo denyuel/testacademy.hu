@@ -424,6 +424,9 @@
       <button class="tab-btn active" onclick="switchTab('ui')">
         <span>🖥️ Storefront (UI)</span>
       </button>
+      <button class="tab-btn" onclick="switchTab('selectors')">
+        <span>🎯 Selector & DOM Lab</span>
+      </button>
       <button class="tab-btn" onclick="switchTab('api')">
         <span>⚡ API Swagger Console</span>
       </button>
@@ -741,6 +744,130 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       </div>
     </section>
 
+    <!-- ============================================================== -->
+    <!-- VIEW 4: SELECTOR & DOM LAB (ANTIPATTERNS VS CLEAN DOM) -->
+    <!-- ============================================================== -->
+    <section id="view-selectors" class="view-pane">
+      <div style="background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size:1.25rem; font-weight:900; color:#fff; display:flex; align-items:center; gap:0.5rem;">
+              <span>🎯 Selector & DOM Laboratory</span>
+              <span style="font-size:0.75rem; background:#4338ca; color:#e0e7ff; padding:2px 8px; border-radius:4px; font-weight:800;">PLAYWRIGHT TRAINING</span>
+            </h2>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
+              Gyakorló felület: Hasonlítsd össze a való életbeli törékeny (Fragile / Spagetti) kódokat a modern, golyóálló (Web-First) szelektorokkal!
+            </p>
+          </div>
+          <div>
+            <button onclick="regenerateFragileClasses()" style="background:#dc2626; color:#fff; font-weight:900; font-size:0.8rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; cursor:pointer; display:flex; align-items:center; gap:0.4rem; box-shadow:0 4px 12px rgba(220,38,38,0.3);">
+              <span>💥 DOM Újragenerálás (Class átírás)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.5rem;">
+
+        <!-- BAL OLDAL: A TÖRÉKENY SPAGETTI DOM -->
+        <div style="background:var(--bg-panel); border:1px solid #7f1d1d; border-radius:14px; padding:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #371b1b; padding-bottom:0.75rem;">
+            <div style="font-weight:900; font-size:1rem; color:#f87171; display:flex; align-items:center; gap:0.5rem;">
+              <span>❌ Törékeny DOM (Anti-pattern Playground)</span>
+            </div>
+            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#450a0a; color:#fca5a5; padding:2px 6px; border-radius:4px;">Lusta Fejlesztői Kód</span>
+          </div>
+
+          <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.25rem;">
+            Nincsenek szabványos címkék, dinamikus CSS osztályok vannak, és azonos gombok egymás mellett. A Codegen itt törékeny XPath-ot vagy indexeket generál!
+          </p>
+
+          <!-- Mező 1: Címke nélküli div input -->
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">1. Felhasználói Email (nincs &lt;label&gt; tag):</div>
+            <input type="text" id="legacy_inp_8392" class="inp_dynamic_build_x12" placeholder="Csak egy placeholder szöveg van..." style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:2px;">⚠️ page.getByLabel() ITT ELHASAL (nincs összekötve for attribútummal)!</div>
+          </div>
+
+          <!-- Mező 2: Három azonos gomb egy dobozban -->
+          <div style="margin-bottom:1.25rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">2. Három azonos gomb egy dobozban (Index-csapda):</div>
+            <div class="legacy-btn-row" style="display:flex; gap:0.5rem;">
+              <button class="btn_action_v48" onclick="clickLegacyAction(1)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
+              <button class="btn_action_v48" onclick="clickLegacyAction(2)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
+              <button class="btn_action_v48" onclick="clickLegacyAction(3)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
+            </div>
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:4px;">⚠️ Codegen: page.locator('button').filter({ hasText: 'Módosítás' }).nth(1) vagy raw XPath!</div>
+          </div>
+
+          <!-- Mező 3: Dinamikus osztályú submit gomb -->
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">3. Megrendelés Gomb (Build során változó osztállyal):</div>
+            <button id="fragile-dynamic-btn" class="btn_v49_sub_2x" onclick="clickFragileSubmit()" style="width:100%; padding:0.75rem; background:#dc2626; color:#fff; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem; transition:all 0.2s;">
+              Rendelés Beküldése (Törékeny Class)
+            </button>
+            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
+              <span id="fragile-class-badge" style="font-family:var(--font-mono); font-size:0.75rem; color:#f87171;">Class: .btn_v49_sub_2x</span>
+              <span style="font-size:0.7rem; color:#94a3b8;">Kattints a fenti 'DOM Újragenerálás'-ra a töréshez!</span>
+            </div>
+          </div>
+
+          <div id="fragile-feedback" style="display:none; padding:0.65rem; background:#450a0a; border:1px solid #991b1b; border-radius:6px; font-size:0.8rem; color:#fecaca;"></div>
+        </div>
+
+        <!-- JOBB OLDAL: A CLEAN WEB-FIRST DOM -->
+        <div style="background:var(--bg-panel); border:1px solid #065f46; border-radius:14px; padding:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #133a2a; padding-bottom:0.75rem;">
+            <div style="font-weight:900; font-size:1rem; color:#34d399; display:flex; align-items:center; gap:0.5rem;">
+              <span>✅ Modern Web-First DOM (Playwright Standard)</span>
+            </div>
+            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#064e3b; color:#a7f3d0; padding:2px 6px; border-radius:4px;">Golyóálló Kód</span>
+          </div>
+
+          <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.25rem;">
+            Szabványos ARIA címkék, akadálymentes szerepkörök és sérthetetlen data-testid attribútumok. Ezek a lokátorok soha nem törnek el dizájnváltáskor!
+          </p>
+
+          <!-- Mező 1: Szabványos Label & Input -->
+          <div style="margin-bottom:1rem;">
+            <label for="clean-email-input" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
+              Kapcsolattartó E-mail Cím (Szabványos &lt;label&gt;):
+            </label>
+            <input type="email" id="clean-email-input" data-testid="clean-email" placeholder="pelda@astron.hu" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:2px;">✅ page.getByLabel('Kapcsolattartó E-mail Cím') vagy getByTestId('clean-email')</div>
+          </div>
+
+          <!-- Mező 2: Szabványos Select lista -->
+          <div style="margin-bottom:1.25rem;">
+            <label for="clean-role-select" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
+              Kiválasztott Modul (Szabványos Select):
+            </label>
+            <select id="clean-role-select" data-testid="clean-role" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+              <option value="pom">Page Object Model Architektúra</option>
+              <option value="api">REST API Auth Bypass</option>
+              <option value="trace">Trace Viewer Hibanyomozás</option>
+            </select>
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:4px;">✅ page.getByLabel('Kiválasztott Modul').selectOption('pom')</div>
+          </div>
+
+          <!-- Mező 3: Szerepkör alapú gomb data-testid-val -->
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">Rendelés Jóváhagyása (Web-First Szerepkör):</div>
+            <button role="button" aria-label="Rendelés Jóváhagyása" data-testid="clean-submit-btn" onclick="clickCleanSubmit()" style="width:100%; padding:0.75rem; background:#10b981; color:#0f172a; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem;">
+              Rendelés Jóváhagyása (Golyóálló) →
+            </button>
+            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">data-testid="clean-submit-btn"</span>
+              <span style="font-size:0.7rem; color:#34d399;">Dizájnváltáskor is 100% stabil</span>
+            </div>
+          </div>
+
+          <div id="clean-feedback" style="display:none; padding:0.65rem; background:#064e3b; border:1px solid #059669; border-radius:6px; font-size:0.8rem; color:#a7f3d0;"></div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- ============================================================== -->
@@ -808,13 +935,49 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
         document.querySelectorAll('.tab-btn')[0].classList.add('active');
         document.getElementById('view-ui').classList.add('active');
         renderUiOrders();
-      } else if (tabId === 'api') {
+      } else if (tabId === 'selectors') {
         document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('view-selectors').classList.add('active');
+      } else if (tabId === 'api') {
+        document.querySelectorAll('.tab-btn')[2].classList.add('active');
         document.getElementById('view-api').classList.add('active');
       } else if (tabId === 'sql') {
-        document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        document.querySelectorAll('.tab-btn')[3].classList.add('active');
         document.getElementById('view-sql').classList.add('active');
       }
+    }
+
+    // --- 2.1 SELECTOR LAB INTERACTIONS ---
+    let fragileBuildIndex = 1;
+    function regenerateFragileClasses() {
+      fragileBuildIndex++;
+      const btn = document.getElementById('fragile-dynamic-btn');
+      const badge = document.getElementById('fragile-class-badge');
+      const newClass = `btn_v${49 + fragileBuildIndex}_sub_${fragileBuildIndex}x`;
+      btn.className = newClass;
+      badge.innerText = `Class: .${newClass}`;
+      alert(`💥 BUMM! A frontend build lefutott: az osztály átváltozott erre: .${newClass}!\nHa a teszted a régi osztályra épült, azonnal elhasal!`);
+    }
+
+    function clickLegacyAction(idx) {
+      const fb = document.getElementById('fragile-feedback');
+      fb.style.display = 'block';
+      fb.innerHTML = `⚠️ Kattintva: <strong>Módosítás (${idx}. gomb)</strong>. Codegen lokátor: <code>page.locator('button').filter({ hasText: 'Módosítás' }).nth(${idx - 1})</code> (Törékeny index!).`;
+    }
+
+    function clickFragileSubmit() {
+      const fb = document.getElementById('fragile-feedback');
+      const btn = document.getElementById('fragile-dynamic-btn');
+      fb.style.display = 'block';
+      fb.innerHTML = `⚠️ Beküldve a törékeny gombbal! Aktuális osztály: <code>.${btn.className}</code>.`;
+    }
+
+    function clickCleanSubmit() {
+      const fb = document.getElementById('clean-feedback');
+      const email = document.getElementById('clean-email-input').value || 'nem-megadott@astron.hu';
+      const role = document.getElementById('clean-role-select').value;
+      fb.style.display = 'block';
+      fb.innerHTML = `✅ <strong>Sikeres Web-First beküldés!</strong> Email: <code>${email}</code> | Modul: <code>${role}</code>. Golyóálló lokátor: <code>getByTestId('clean-submit-btn')</code> vagy <code>getByRole('button', { name: 'Rendelés Jóváhagyása' })</code>!`;
     }
 
     // --- 3. IN-MEMORY DATABASE STATE ---
