@@ -1673,14 +1673,13 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
 
       // Card Validation check
       if (payMethod === 'card') {
-        const cardNum = document.getElementById('ui-card-num').value.replace(/s+/g, '');
+        const cardNum = document.getElementById('ui-card-num').value.replace(/\s+/g, '');
         if (cardNum === '4000000000000002') {
           alert("❌ Payment Gateway Declined (402): Insufficient funds on test card.");
           return;
         }
         if (cardNum === '4000000000000003') {
-          const otp = prompt("🔐 3D Secure Challenge Verification:
-Enter OTP code sent to your phone (Use '123456'):");
+          const otp = prompt("🔐 3D Secure Challenge Verification:\\nEnter OTP code sent to your phone (Use '123456'):");
           if (otp !== '123456') {
             alert("❌ 3D Secure authentication failed.");
             return;
