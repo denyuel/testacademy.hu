@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TestAcademy Full-Stack Sandbox (UI + API Swagger + SQL Console)</title>
+  <title>TestAcademy Enterprise QA Sandbox (E2E UI + RBAC + API + SQL)</title>
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root {
@@ -20,6 +20,7 @@
       --accent-orange: #f59e0b;
       --accent-red: #ef4444;
       --accent-purple: #a855f7;
+      --accent-indigo: #6366f1;
       --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
@@ -67,6 +68,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .brand {
@@ -92,15 +95,16 @@
 
     .tabs-nav {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: #1e293b;
       padding: 4px;
       border-radius: 10px;
       border: 1px solid var(--border);
+      flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 0.45rem 1rem;
+      padding: 0.45rem 0.85rem;
       background: transparent;
       border: none;
       color: var(--text-muted);
@@ -123,8 +127,36 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
+
+    /* RBAC USER BADGE IN NAV */
+    .user-session-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1e293b;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .role-pill {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+    .role-admin { background: #7c3aed; color: #fff; }
+    .role-senior_qa { background: #0284c7; color: #fff; }
+    .role-junior_qa { background: #059669; color: #fff; }
+    .role-user { background: #0d9488; color: #fff; }
+    .role-guest { background: #64748b; color: #fff; }
+    .role-blocked { background: #dc2626; color: #fff; }
 
     .btn-reset-db {
       background: #334155;
@@ -138,11 +170,25 @@
     }
     .btn-reset-db:hover { background: #475569; }
 
+    /* TRAINER TOOLBAR */
+    .trainer-toolbar {
+      background: #020617;
+      border-bottom: 1px solid #1e293b;
+      padding: 0.55rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
     /* CONTENT WRAPPER */
     .sandbox-content {
       flex: 1;
       padding: 1.5rem;
-      max-width: 1300px;
+      max-width: 1350px;
       margin: 0 auto;
       width: 100%;
     }
@@ -154,37 +200,36 @@
       display: block;
     }
 
-    /* ============================================================== */
-    /* TAB 1: FRONTEND UI STOREFRONT */
-    /* ============================================================== */
+    /* STOREFRONT STYLES */
     .storefront-grid {
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 1.25fr 1fr;
       gap: 1.5rem;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .storefront-grid { grid-template-columns: 1fr; }
     }
 
     .panel-box {
       background: var(--bg-panel);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 1.5rem;
     }
 
     .panel-header {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 800;
+      color: #fff;
       margin-bottom: 1.25rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.75rem;
     }
 
-    .product-select-list {
+    .products-list {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -192,67 +237,122 @@
     }
 
     .product-card-option {
-      background: #0f172a;
+      background: var(--bg-card);
       border: 2px solid var(--border);
       border-radius: 10px;
-      padding: 1rem;
+      padding: 1rem 1.25rem;
       cursor: pointer;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      transition: border-color 0.15s;
+      justify-content: space-between;
+      transition: all 0.15s;
     }
     .product-card-option:hover { border-color: var(--border-light); }
     .product-card-option.selected {
       border-color: var(--primary);
-      background: #172554;
+      background: rgba(56, 189, 248, 0.06);
     }
 
-    .form-group { margin-bottom: 1rem; }
-    .form-label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
     .form-input {
-      width: 100%; padding: 0.7rem 0.85rem; border: 1px solid var(--border); border-radius: 8px;
-      background: #0f172a; color: #fff; font-size: 0.875rem; outline: none;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s;
     }
     .form-input:focus { border-color: var(--primary); }
 
     .btn-checkout {
-      width: 100%; padding: 0.85rem; background: var(--primary); color: #0f172a; font-weight: 800;
-      border: none; border-radius: 50px; font-size: 0.95rem; cursor: pointer; margin-top: 1rem;
-      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--primary);
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 1rem;
     }
     .btn-checkout:hover { background: var(--primary-hover); }
 
     .order-summary-row {
-      display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding: 0.4rem 0;
     }
     .order-grand-total {
-      display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 900; color: #fff;
-      margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #fff;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
     }
 
-    /* RECENT ORDERS TABLE */
-    .table-responsive { overflow-x: auto; margin-top: 1rem; }
-    .e2e-table { width: 100%; border-collapse: collapse; font-size: 0.825rem; text-align: left; }
-    .e2e-table th { background: #0f172a; padding: 0.75rem 1rem; color: var(--text-muted); font-weight: 700; border-bottom: 2px solid var(--border); }
-    .e2e-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: #e2e8f0; }
-    .e2e-table tr:hover { background: #1e293b; }
+    /* TABLE */
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .e2e-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.825rem;
+      text-align: left;
+    }
+    .e2e-table th {
+      background: #0f172a;
+      padding: 0.65rem 0.85rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .e2e-table td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #1e293b;
+      white-space: nowrap;
+    }
+    .e2e-table tr:hover { background: rgba(255,255,255,0.02); }
 
     .badge-status {
-      display: inline-block; padding: 0.2rem 0.55rem; border-radius: 50px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+      font-weight: 800;
+      font-size: 0.7rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
     }
-    .badge-PENDING { background: #78350f; color: #fde68a; }
-    .badge-PAID { background: #064e3b; color: #a7f3d0; }
-    .badge-CANCELLED { background: #7f1d1d; color: #fecaca; }
-    .badge-REFUNDED { background: #581c87; color: #e9d5ff; }
+    .badge-PENDING { background: #854d0e; color: #fef08a; }
+    .badge-PAID { background: #065f46; color: #6ee7b7; }
+    .badge-PROVISIONING { background: #1e3a8a; color: #93c5fd; }
+    .badge-COMPLETED { background: #064e3b; color: #34d399; }
+    .badge-CANCELLED { background: #7f1d1d; color: #fca5a5; }
+    .badge-REFUNDED { background: #581c87; color: #d8b4fe; }
 
-    /* ============================================================== */
-    /* TAB 2: INTERACTIVE SWAGGER / API EXPLORER */
-    /* ============================================================== */
-    .swagger-container {
-      display: flex; flex-direction: column; gap: 1.25rem;
-    }
-
+    /* SWAGGER STYLES */
+    .swagger-container { display: flex; flex-direction: column; gap: 1rem; }
     .swagger-banner {
       background: linear-gradient(135deg, #1e293b, #0f172a);
       border: 1px solid var(--border);
@@ -261,16 +361,16 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
-
     .swagger-endpoint {
       background: var(--bg-panel);
       border: 1px solid var(--border);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
-
     .endpoint-header {
       padding: 0.85rem 1.25rem;
       display: flex;
@@ -281,7 +381,6 @@
       transition: background 0.15s;
     }
     .endpoint-header:hover { background: #334155; }
-
     .method-badge {
       font-weight: 900;
       font-size: 0.75rem;
@@ -298,17 +397,15 @@
 
     .endpoint-path {
       font-family: var(--font-mono);
-      font-size: 0.95rem;
+      font-size: 0.925rem;
       font-weight: 700;
       color: #f1f5f9;
       flex: 1;
     }
-
     .endpoint-summary {
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-
     .endpoint-body {
       padding: 1.25rem;
       background: #0f172a;
@@ -316,22 +413,18 @@
       display: none;
     }
     .endpoint-body.open { display: block; }
-
     .swagger-params-title {
-      font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;
+      font-size: 0.78rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;
     }
-
     .swagger-input-box {
       width: 100%; height: 95px; background: #020617; border: 1px solid var(--border); border-radius: 8px;
       color: #38bdf8; font-family: var(--font-mono); font-size: 0.825rem; padding: 0.75rem; outline: none;
     }
-
     .btn-try-execute {
       padding: 0.5rem 1.25rem; background: var(--primary); color: #0f172a; font-weight: 800; border: none;
       border-radius: 6px; font-size: 0.8rem; cursor: pointer; margin-top: 0.75rem;
     }
     .btn-try-execute:hover { background: var(--primary-hover); }
-
     .swagger-response-box {
       margin-top: 1rem;
       background: #020617;
@@ -347,82 +440,129 @@
     }
     .status-pill { padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
     .status-200, .status-201 { background: #065f46; color: #6ee7b7; }
-    .status-400, .status-401, .status-403, .status-404, .status-409 { background: #991b1b; color: #fca5a5; }
+    .status-400, .status-401, .status-402, .status-403, .status-404, .status-409, .status-410, .status-422, .status-429 { background: #991b1b; color: #fca5a5; }
 
-    /* ============================================================== */
-    /* TAB 3: LIVE SQL CONSOLE */
-    /* ============================================================== */
-    .sql-workbench {
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-
-    .sql-editor-card {
-      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
-    }
-
+    /* SQL WORKBENCH */
+    .sql-workbench { display: flex; flex-direction: column; gap: 1.25rem; }
+    .sql-editor-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
     .sql-textarea {
       width: 100%; height: 110px; background: #020617; border: 1px solid var(--border); border-radius: 8px;
-      color: #f8fafc; font-family: var(--font-mono); font-size: 0.95rem; padding: 0.85rem; outline: none; resize: vertical;
+      color: #38bdf8; font-family: var(--font-mono); font-size: 0.875rem; padding: 0.85rem; outline: none;
     }
-    .sql-textarea:focus { border-color: var(--primary); }
-
     .sql-action-bar {
-      display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem;
+      display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem; flex-wrap: wrap; gap: 0.5rem;
     }
-
-    .btn-run-sql {
-      padding: 0.65rem 1.5rem; background: #10b981; color: #0f172a; font-weight: 900; border: none;
-      border-radius: 8px; font-size: 0.875rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-run-sql:hover { background: #059669; }
-
-    .quick-queries-chips {
-      display: flex; gap: 0.5rem; flex-wrap: wrap;
-    }
+    .quick-queries-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .chip-query {
-      background: #0f172a; border: 1px solid var(--border); color: #cbd5e1; font-size: 0.75rem; padding: 0.3rem 0.65rem;
-      border-radius: 50px; cursor: pointer; font-family: var(--font-mono);
+      background: #0f172a; border: 1px solid var(--border); color: #cbd5e1; font-size: 0.75rem; font-family: var(--font-mono);
+      padding: 0.35rem 0.65rem; border-radius: 6px; cursor: pointer;
     }
-    .chip-query:hover { border-color: var(--primary); color: var(--primary); }
-
+    .chip-query:hover { border-color: var(--primary); color: #fff; }
+    .btn-run-sql {
+      background: var(--accent-green); color: #0f172a; font-weight: 800; padding: 0.5rem 1.25rem;
+      border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem;
+    }
     .sql-results-box {
-      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
-      min-height: 220px; overflow-x: auto;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; min-height: 180px; overflow-x: auto;
+    }
+    .schema-help-box {
+      background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.6;
     }
 
-    .schema-help-box {
-      background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-top: 1rem;
-      font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; z-index: 10000;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-dialog {
+      background: var(--bg-panel); border: 1px solid var(--border); border-radius: 14px;
+      padding: 2rem; width: 90%; max-width: 480px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    /* TOAST */
+    #toast-container {
+      position: fixed; bottom: 20px; right: 20px; z-index: 99999;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .toast-msg {
+      background: #1e293b; border-left: 4px solid var(--primary); border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      color: #fff; padding: 0.85rem 1.2rem; border-radius: 8px; font-size: 0.85rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; animation: slideIn 0.25s ease-out; min-width: 280px;
+    }
+    .toast-success { border-left-color: var(--accent-green); }
+    .toast-error { border-left-color: var(--accent-red); }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    /* ACTION BUTTONS IN TABLE */
+    .btn-table-action {
+      font-size: 0.72rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; border: 1px solid transparent; cursor: pointer;
+    }
+    .btn-pay { background: #065f46; color: #6ee7b7; border-color: #047857; }
+    .btn-cancel { background: #7f1d1d; color: #fca5a5; border-color: #991b1b; }
+    .btn-refund { background: #581c87; color: #d8b4fe; border-color: #7e22ce; }
+    .btn-delete { background: #334155; color: #f87171; border-color: #475569; }
+
+    /* KANBAN BOARD */
+    .kanban-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;
+    }
+    .kanban-col {
+      background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 1rem;
+      min-height: 220px; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .kanban-card {
+      background: #1e293b; border: 1px solid #475569; border-radius: 6px; padding: 0.75rem; font-size: 0.8rem;
+      cursor: grab; display: flex; justify-content: space-between; align-items: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- GATE OVERLAY -->
+  <!-- ============================================================== -->
+  <!-- 0. GATE OVERLAY (ENTERPRISE LAB PROTECTION) -->
+  <!-- ============================================================== -->
   <div id="gate-overlay">
     <div class="gate-card">
-      <span style="font-size:0.75rem; font-weight:800; color:var(--primary); text-transform:uppercase;">TestAcademy Enterprise</span>
-      <h2 style="font-size:1.5rem; font-weight:900; margin:0.5rem 0 1rem; color:#fff;">Full-Stack QA Sandbox</h2>
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Enter your passcode to unlock UI, API Swagger, and SQL engine:</p>
-      <input type="password" id="gate-pass" class="gate-input" placeholder="Passcode" autofocus>
-      <button class="gate-btn" onclick="unlockSandbox()">Unlock Environment &rarr;</button>
-      <div id="gate-err" style="color:var(--accent-red); font-size:0.8rem; margin-top:0.75rem; display:none;">Invalid passcode!</div>
+      <div style="font-size:2.2rem; margin-bottom:0.75rem;">🛡️</div>
+      <h1 style="font-size:1.35rem; font-weight:900; margin-bottom:0.5rem; letter-spacing:-0.02em;">
+        TestAcademy Enterprise QA Sandbox
+      </h1>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">
+        Enterprise multi-tier testbed for Playwright automation, state machine validation and security testing.
+      </p>
+      <input type="password" id="gate-pass" class="gate-input" placeholder="Enter Access Password..." autofocus>
+      <button class="gate-btn" id="gate-btn" onclick="unlockSandbox()">Unlock Lab &rarr;</button>
+      <div id="gate-err" style="display:none; color:var(--accent-red); font-size:0.8rem; margin-top:0.75rem;">
+        ❌ Invalid password. Use standard lab access key.
+      </div>
     </div>
   </div>
 
-  <!-- TOP NAVBAR -->
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- ============================================================== -->
+  <!-- TOP NAVIGATION BAR -->
+  <!-- ============================================================== -->
   <header class="sandbox-nav">
     <div class="brand">
-      <span class="brand-badge">E2E</span>
+      <span class="brand-badge">ENTERPRISE</span>
       <div>
-        <div class="brand-title">Enterprise Order & Payment Gateway</div>
+        <div class="brand-title">Full-Stack QA Gateway & Order Engine</div>
       </div>
     </div>
 
     <!-- TABS -->
     <nav class="tabs-nav">
       <button class="tab-btn active" onclick="switchTab('ui')">
-        <span>🖥️ Storefront (UI)</span>
+        <span>🖥️ Storefront & Checkout</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('orders')">
+        <span>📦 Order Management</span>
       </button>
       <button class="tab-btn" onclick="switchTab('selectors')">
         <span>🎯 Selector & DOM Lab</span>
@@ -431,22 +571,31 @@
         <span>⚡ API Swagger Console</span>
       </button>
       <button class="tab-btn" onclick="switchTab('sql')">
-        <span>🗄️ Live SQL Database</span>
+        <span>🗄️ SQL Workbench</span>
       </button>
     </nav>
 
+    <!-- RIGHT: USER SESSION & ACTIONS -->
     <div class="nav-actions">
-      <button class="btn-reset-db" onclick="resetDatabaseState()" title="Reset database to initial baseline state">
+      <!-- CURRENT USER RBAC BADGE -->
+      <div class="user-session-badge" id="nav-user-badge">
+        <span style="color:var(--text-muted);">Actor:</span>
+        <strong id="current-user-display" data-testid="current-user-name">dan.tester</strong>
+        <span id="current-role-badge" class="role-pill role-user" data-testid="current-role-badge">USER</span>
+        <button onclick="openAuthModal()" style="background:transparent; border:none; color:var(--primary); font-size:0.75rem; cursor:pointer; font-weight:700; margin-left:4px;" data-testid="switch-user-btn">[Switch Role]</button>
+      </div>
+
+      <button class="btn-reset-db" onclick="resetDatabaseState()" title="Reset database to initial baseline state" data-testid="btn-reset-db">
         🔄 Reset DB Seed
       </button>
       <a href="e2e-guide.html" target="_blank" style="color:var(--primary); font-size:0.825rem; font-weight:700; text-decoration:none;">
-        📋 Mission Guide ↗
+        📋 Guide ↗
       </a>
     </div>
   </header>
 
   <!-- TRAINER TOOLBAR CONTROLS -->
-  <div class="trainer-toolbar" style="background:#020617; border-bottom:1px solid #1e293b; padding:0.6rem 1.5rem; display:flex; align-items:center; justify-content:space-between; font-size:0.8rem; color:#94a3b8; flex-wrap:wrap; gap:0.75rem;">
+  <div class="trainer-toolbar">
     <div style="display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap;">
       <span style="background:#854d0e; color:#fef08a; padding:0.25rem 0.6rem; border-radius:4px; font-weight:800; font-size:0.7rem; letter-spacing:0.05em;">TRAINER TOOLBAR</span>
       <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; color:#e2e8f0; font-weight:600;">
@@ -457,17 +606,23 @@
         <input type="checkbox" id="toggle-flaky" onchange="toggleFlakyMode(this.checked)">
         <span>Simulate Flaky Latency & 503 Errors (Trace Viewer demo)</span>
       </label>
+      <label style="display:flex; align-items:center; gap:0.4rem; cursor:pointer; color:#e2e8f0; font-weight:600;">
+        <input type="checkbox" id="toggle-lockout" onchange="toggleBruteForceSimulation(this.checked)">
+        <span>Simulate Rate Limit / 429 Lockout</span>
+      </label>
     </div>
     <div style="font-family:var(--font-mono); font-size:0.75rem; color:#64748b;">
-      Live API: <span style="color:#10b981; font-weight:700;">/api/login & /api/orders</span> | Params: <code>?version=v2</code> | <code>?flaky=true</code>
+      Active API: <span style="color:#10b981; font-weight:700;">/api/v1/*</span> | Params: <code>?version=v2</code> | <code>?flaky=true</code> | <code>?role=admin</code>
     </div>
   </div>
 
+  <!-- ============================================================== -->
   <!-- MAIN VIEW CONTAINER -->
+  <!-- ============================================================== -->
   <main class="sandbox-content">
 
     <!-- ============================================================== -->
-    <!-- VIEW 1: STOREFRONT (FRONTEND UI) -->
+    <!-- VIEW 1: STOREFRONT & CHECKOUT (UI) -->
     <!-- ============================================================== -->
     <section id="view-ui" class="view-pane active">
       <div class="storefront-grid">
@@ -476,32 +631,49 @@
         <div class="panel-box">
           <div class="panel-header">
             <span>1. Enterprise Cloud Subscriptions</span>
-            <span style="font-size:0.75rem; color:var(--text-muted);">Reactive Frontend State</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Reactive Multi-Tier Pricing</span>
           </div>
 
-          <div class="product-select-list">
-            <div class="product-card-option selected" onclick="selectProduct(this, 1, 'QA Automation Runner License', 250)">
+          <!-- CURRENCY SELECTOR -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; background:var(--bg-card); padding:0.65rem 1rem; border-radius:8px; border:1px solid var(--border);">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Select Billing Currency:</span>
+            <select id="ui-currency-select" class="form-input" style="width:auto; padding:0.35rem 0.85rem;" onchange="handleCurrencyChange(this.value)" data-testid="currency-select">
+              <option value="USD">USD ($ - Base)</option>
+              <option value="EUR">EUR (€ - 0.92x)</option>
+              <option value="HUF">HUF (Ft - 395x)</option>
+            </select>
+          </div>
+
+          <!-- PRODUCTS LIST -->
+          <div class="products-list">
+            <!-- Product 1 -->
+            <div class="product-card-option selected" onclick="selectProduct(this, 1, 'QA Automation Runner License', 250)" data-testid="product-1">
               <div>
                 <div style="font-weight:800; font-size:0.95rem;">QA Automation Runner License</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">Concurrent Playwright Worker Nodes</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">Parallel CI/CD Playwright & Selenium Workers</div>
+                <div style="font-size:0.75rem; color:var(--accent-green); margin-top:2px;" id="prod-stock-1">In Stock: 15 units</div>
               </div>
-              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$250</div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;" id="prod-price-1">$250</div>
             </div>
 
-            <div class="product-card-option" onclick="selectProduct(this, 2, 'Enterprise Load Testing Engine', 490)">
+            <!-- Product 2 -->
+            <div class="product-card-option" onclick="selectProduct(this, 2, 'Enterprise Load Testing Engine', 490)" data-testid="product-2">
               <div>
                 <div style="font-weight:800; font-size:0.95rem;">Enterprise Load Testing Engine</div>
-                <div style="font-size:0.8rem; color:var(--text-muted);">Distributed k6 / JMeter Virtual Users</div>
+                <div style="font-size:0.8rem; color:var(--text-muted);">50k Virtual Users Distributed Cluster</div>
+                <div style="font-size:0.75rem; color:var(--accent-green); margin-top:2px;" id="prod-stock-2">In Stock: 8 units</div>
               </div>
-              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$490</div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;" id="prod-price-2">$490</div>
             </div>
 
-            <div class="product-card-option" onclick="selectProduct(this, 3, 'Security SAST/DAST Scanner', 380)">
+            <!-- Product 3 -->
+            <div class="product-card-option" onclick="selectProduct(this, 3, 'Security SAST/DAST Scanner', 380)" data-testid="product-3">
               <div>
                 <div style="font-weight:800; font-size:0.95rem;">Security SAST/DAST Scanner</div>
                 <div style="font-size:0.8rem; color:var(--text-muted);">Automated OWASP Top 10 Pipeline Audits</div>
+                <div style="font-size:0.75rem; color:var(--accent-green); margin-top:2px;" id="prod-stock-3">In Stock: 20 units</div>
               </div>
-              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">$380</div>
+              <div style="font-weight:900; color:var(--primary); font-size:1.1rem;" id="prod-price-3">$380</div>
             </div>
           </div>
 
@@ -518,18 +690,85 @@
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
               <div class="form-group">
                 <label class="form-label" for="ui-qty">Subscription Quantity</label>
-                <input type="number" id="ui-qty" class="form-input" value="1" min="1" data-testid="qty-input" oninput="recalcUiTotal()">
+                <input type="number" id="ui-qty" class="form-input" value="1" min="1" max="100" data-testid="qty-input" oninput="recalcUiTotal()">
               </div>
               <div class="form-group">
                 <label class="form-label" for="ui-country">Billing Country</label>
-                <select id="ui-country" class="form-input" data-testid="country-select">
-                  <option value="US">United States (USD)</option>
-                  <option value="DE">Germany (EUR)</option>
-                  <option value="HU">Hungary (HUF)</option>
+                <select id="ui-country" class="form-input" data-testid="country-select" onchange="recalcUiTotal()">
+                  <option value="US">United States (0% Tax)</option>
+                  <option value="DE">Germany (19% VAT)</option>
+                  <option value="HU">Hungary (27% ÁFA)</option>
                 </select>
               </div>
             </div>
 
+            <!-- EU VAT REVERSE CHARGE -->
+            <div class="form-group" id="group-vat-number">
+              <label class="form-label" for="ui-vat-number">EU VAT ID (Optional B2B Reverse Charge)</label>
+              <div style="display:flex; gap:0.5rem;">
+                <input type="text" id="ui-vat-number" class="form-input" placeholder="e.g. HU12345678 or DE987654321" data-testid="vat-input" oninput="handleVatInput()">
+                <button type="button" class="btn-reset-db" onclick="validateVatNumber()" data-testid="btn-validate-vat">Verify VAT</button>
+              </div>
+              <div id="vat-feedback" style="font-size:0.75rem; margin-top:3px; display:none;"></div>
+            </div>
+
+            <!-- COUPON CODE ENGINE -->
+            <div class="form-group">
+              <label class="form-label" for="ui-coupon-code">Enterprise Discount / Coupon Code</label>
+              <div style="display:flex; gap:0.5rem;">
+                <input type="text" id="ui-coupon-code" class="form-input" placeholder="Try: AIWS25 or SAVE50" data-testid="coupon-input" style="text-transform:uppercase;">
+                <button type="button" id="btn-apply-coupon" class="btn-reset-db" style="background:var(--primary); color:#0f172a; font-weight:800;" onclick="applyCouponCode()" data-testid="coupon-btn">
+                  Apply
+                </button>
+              </div>
+              <div id="coupon-feedback" style="font-size:0.75rem; margin-top:4px; font-weight:700; display:none;" data-testid="coupon-feedback"></div>
+            </div>
+
+            <!-- PAYMENT METHOD -->
+            <div class="form-group">
+              <label class="form-label">Payment Gateway Method</label>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-card); padding:0.65rem; border-radius:6px; border:1px solid var(--border); cursor:pointer;">
+                  <input type="radio" name="pay-method" id="pay-method-card" value="card" checked onchange="togglePaymentSection('card')">
+                  <span style="font-size:0.85rem; font-weight:700;">💳 Credit Card</span>
+                </label>
+                <label style="display:flex; align-items:center; gap:0.5rem; background:var(--bg-card); padding:0.65rem; border-radius:6px; border:1px solid var(--border); cursor:pointer;">
+                  <input type="radio" name="pay-method" id="pay-method-invoice" value="invoice" onchange="togglePaymentSection('invoice')">
+                  <span style="font-size:0.85rem; font-weight:700;">📄 Corporate Invoice</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- CREDIT CARD DETAILS -->
+            <div id="payment-card-section" style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border); margin-bottom:1rem;">
+              <div class="form-group" style="margin-bottom:0.75rem;">
+                <label class="form-label" for="ui-card-num">Card Number (Mock)</label>
+                <input type="text" id="ui-card-num" class="form-input" value="4000 0000 0000 0001" placeholder="4000 0000 0000 0001" data-testid="card-number-input">
+                <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">
+                  Test declined card: <code>4000 0000 0000 0002</code> | 3DS Challenge: <code>4000 0000 0000 0003</code>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+                <div>
+                  <label class="form-label" for="ui-card-exp">Expiry (MM/YY)</label>
+                  <input type="text" id="ui-card-exp" class="form-input" value="12/28" placeholder="MM/YY" data-testid="card-expiry-input">
+                </div>
+                <div>
+                  <label class="form-label" for="ui-card-cvc">CVC</label>
+                  <input type="text" id="ui-card-cvc" class="form-input" value="123" placeholder="123" maxlength="4" data-testid="card-cvc-input">
+                </div>
+              </div>
+            </div>
+
+            <!-- INVOICE PO DETAILS -->
+            <div id="payment-invoice-section" style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border); margin-bottom:1rem; display:none;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="ui-po-number">Purchase Order (PO) Reference *</label>
+                <input type="text" id="ui-po-number" class="form-input" placeholder="PO-AST-2026-99" data-testid="po-number-input">
+              </div>
+            </div>
+
+            <!-- CHECKOUT BUTTON -->
             <button type="submit" class="btn-checkout" id="btn-ui-submit" data-testid="checkout-btn">
               Place Subscription Order &rarr;
             </button>
@@ -551,8 +790,12 @@
               <span id="ui-sum-qty">1 unit</span>
             </div>
             <div class="order-summary-row">
-              <span>Tax / VAT (0% Enterprise):</span>
-              <span>$0</span>
+              <span>Discount:</span>
+              <span id="ui-sum-discount" style="color:var(--accent-green);">-$0</span>
+            </div>
+            <div class="order-summary-row">
+              <span>Tax / VAT (<span id="ui-vat-percent">0</span>%):</span>
+              <span id="ui-sum-vat">$0</span>
             </div>
             <div class="order-grand-total">
               <span>Grand Total:</span>
@@ -563,7 +806,7 @@
           <div class="panel-box">
             <div class="panel-header">
               <span>Live Database Orders</span>
-              <span style="font-size:0.75rem; color:var(--accent-green);">Connected to SQL</span>
+              <span style="font-size:0.75rem; color:var(--accent-green);">Connected to SQL Engine</span>
             </div>
             <div class="table-responsive">
               <table class="e2e-table">
@@ -576,7 +819,7 @@
                   </tr>
                 </thead>
                 <tbody id="ui-recent-orders-tbody">
-                  <!-- Rendered dynamically from live DB -->
+                  <!-- Rendered dynamically -->
                 </tbody>
               </table>
             </div>
@@ -588,7 +831,232 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- VIEW 2: INTERACTIVE SWAGGER / API CONSOLE -->
+    <!-- VIEW 2: ORDER MANAGEMENT & STATE MACHINE (ERP DASHBOARD) -->
+    <!-- ============================================================== -->
+    <section id="view-orders" class="view-pane">
+      <div class="panel-box">
+        <div class="panel-header">
+          <span>Enterprise Order Pipeline & State Machine</span>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button class="btn-reset-db" onclick="exportOrdersCsv()" data-testid="export-orders-btn">📥 Export CSV</button>
+          </div>
+        </div>
+
+        <!-- SEARCH AND FILTER BAR -->
+        <div style="display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:1rem; margin-bottom:1.25rem;">
+          <div>
+            <label class="form-label" for="mgmt-search">Search Orders</label>
+            <input type="text" id="mgmt-search" class="form-input" placeholder="Search by ID, User Email or Product..." oninput="handleMgmtFilter()" data-testid="order-search-input">
+          </div>
+          <div>
+            <label class="form-label" for="mgmt-status-filter">Filter by Status</label>
+            <select id="mgmt-status-filter" class="form-input" onchange="handleMgmtFilter()" data-testid="order-status-filter">
+              <option value="ALL">ALL Statuses</option>
+              <option value="PENDING">PENDING</option>
+              <option value="PAID">PAID</option>
+              <option value="PROVISIONING">PROVISIONING</option>
+              <option value="COMPLETED">COMPLETED</option>
+              <option value="CANCELLED">CANCELLED</option>
+              <option value="REFUNDED">REFUNDED</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="mgmt-sort">Sort Order</label>
+            <select id="mgmt-sort" class="form-input" onchange="handleMgmtFilter()" data-testid="order-sort-select">
+              <option value="id-desc">ID (Newest first)</option>
+              <option value="id-asc">ID (Oldest first)</option>
+              <option value="total-desc">Total Amount (Highest)</option>
+              <option value="total-asc">Total Amount (Lowest)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- FULL ORDERS TABLE -->
+        <div class="table-responsive">
+          <table class="e2e-table" data-testid="mgmt-orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User Email</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Actions (State Machine)</th>
+              </tr>
+            </thead>
+            <tbody id="mgmt-orders-tbody">
+              <!-- Rendered dynamically with Action buttons -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PAGINATION CONTROLS -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:1rem; font-size:0.825rem; color:var(--text-muted);">
+          <span id="mgmt-pagination-info">Showing 1 to 5 of 5 orders</span>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn-reset-db" id="mgmt-prev-btn" onclick="mgmtChangePage(-1)" data-testid="pagination-prev">Prev</button>
+            <button class="btn-reset-db" id="mgmt-next-btn" onclick="mgmtChangePage(1)" data-testid="pagination-next">Next</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- VIEW 3: SELECTOR & DOM LABORATORY (WEB-FIRST VS FRAGILE) -->
+    <!-- ============================================================== -->
+    <section id="view-selectors" class="view-pane">
+      <div style="background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size:1.25rem; font-weight:900; color:#fff; display:flex; align-items:center; gap:0.5rem;">
+              <span>🎯 Selector & DOM Laboratory</span>
+              <span style="font-size:0.75rem; background:#4338ca; color:#e0e7ff; padding:2px 8px; border-radius:4px; font-weight:800;">PLAYWRIGHT TRAINING</span>
+            </h2>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
+              Compare brittle anti-patterns with resilient accessibility-first locators and asynchronous UI widgets.
+            </p>
+          </div>
+          <div>
+            <button onclick="regenerateFragileClasses()" style="background:#dc2626; color:#fff; font-weight:900; font-size:0.8rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; cursor:pointer; display:flex; align-items:center; gap:0.4rem;">
+              <span>💥 Trigger DOM Rebuild (Mutate Classes)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.5rem; margin-bottom:1.5rem;">
+
+        <!-- LEFT: BRITTLE ANTI-PATTERNS -->
+        <div style="background:var(--bg-panel); border:1px solid #7f1d1d; border-radius:14px; padding:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #371b1b; padding-bottom:0.75rem;">
+            <div style="font-weight:900; font-size:1rem; color:#f87171;">❌ Fragile DOM (Anti-pattern Playground)</div>
+            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#450a0a; color:#fca5a5; padding:2px 6px; border-radius:4px;">Brittle CSS/XPath</span>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">1. Unlabelled Input (Div wrapper):</div>
+            <input type="text" id="legacy_inp_8392" class="inp_dynamic_build_x12" placeholder="Unlabelled placeholder text..." style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:2px;">⚠️ page.getByLabel() fails here (no associated label tag)!</div>
+          </div>
+
+          <div style="margin-bottom:1.25rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">2. Identical Action Buttons in Box (Index Trap):</div>
+            <div class="legacy-btn-row" style="display:flex; gap:0.5rem;">
+              <button class="btn_action_v48" onclick="clickLegacyAction(1)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Modify</button>
+              <button class="btn_action_v48" onclick="clickLegacyAction(2)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Modify</button>
+              <button class="btn_action_v48" onclick="clickLegacyAction(3)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Modify</button>
+            </div>
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:4px;">⚠️ Codegen traps you into nth(1) or raw fragile XPath!</div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">3. Mutating Class Submit Button:</div>
+            <button id="fragile-dynamic-btn" class="btn_v49_sub_2x" onclick="clickFragileSubmit()" style="width:100%; padding:0.75rem; background:#dc2626; color:#fff; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem;">
+              Submit Order (Brittle Class)
+            </button>
+            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
+              <span id="fragile-class-badge" style="font-family:var(--font-mono); font-size:0.75rem; color:#f87171;">Class: .btn_v49_sub_2x</span>
+              <span style="font-size:0.7rem; color:#94a3b8;">Click 'Mutate Classes' above to break!</span>
+            </div>
+          </div>
+
+          <div id="fragile-feedback" style="display:none; padding:0.65rem; background:#450a0a; border:1px solid #991b1b; border-radius:6px; font-size:0.8rem; color:#fecaca;"></div>
+        </div>
+
+        <!-- RIGHT: RESILIENT WEB-FIRST DOM -->
+        <div style="background:var(--bg-panel); border:1px solid #065f46; border-radius:14px; padding:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #133a2a; padding-bottom:0.75rem;">
+            <div style="font-weight:900; font-size:1rem; color:#34d399;">✅ Resilient Web-First DOM (Playwright Standard)</div>
+            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#064e3b; color:#a7f3d0; padding:2px 6px; border-radius:4px;">Bulletproof</span>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label for="clean-email-input" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
+              Contact Email (Semantic &lt;label&gt;):
+            </label>
+            <input type="email" id="clean-email-input" data-testid="clean-email" placeholder="tester@astron.hu" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:2px;">✅ page.getByLabel('Contact Email') or getByTestId('clean-email')</div>
+          </div>
+
+          <div style="margin-bottom:1.25rem;">
+            <label for="clean-role-select" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
+              Selected Module (Semantic Select):
+            </label>
+            <select id="clean-role-select" data-testid="clean-role" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
+              <option value="pom">Page Object Model Architecture</option>
+              <option value="api">REST API Auth Bypass</option>
+              <option value="trace">Trace Viewer Investigation</option>
+            </select>
+            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:4px;">✅ page.getByLabel('Selected Module').selectOption('pom')</div>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">Authorize Order (Role + TestId):</div>
+            <button role="button" aria-label="Authorize Order" data-testid="clean-submit-btn" onclick="clickCleanSubmit()" style="width:100%; padding:0.75rem; background:#10b981; color:#0f172a; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem;">
+              Authorize Order (Bulletproof) &rarr;
+            </button>
+            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">data-testid="clean-submit-btn"</span>
+              <span style="font-size:0.7rem; color:#34d399;">100% resilient to design rewrites</span>
+            </div>
+          </div>
+
+          <div id="clean-feedback" style="display:none; padding:0.65rem; background:#064e3b; border:1px solid #059669; border-radius:6px; font-size:0.8rem; color:#a7f3d0;"></div>
+        </div>
+
+      </div>
+
+      <!-- ADVANCED ASYNC & INTERACTIVE WIDGETS (PLAYWRIGHT ADVANCED CHALLENGES) -->
+      <div style="background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; padding:1.5rem;">
+        <h3 style="font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:1rem;">
+          ⚡ Asynchronous & Interactive Edge-Case Sandbox
+        </h3>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem;">
+          
+          <!-- WIDGET 1: DEBOUNCED SEARCH -->
+          <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border);">
+            <div style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">1. Debounced Autocomplete (300ms)</div>
+            <input type="text" id="async-search-input" class="form-input" placeholder="Type 'qa' or 'load'..." oninput="handleAsyncSearch(this.value)" data-testid="async-search-input">
+            <div id="async-search-spinner" style="font-size:0.75rem; color:var(--primary); margin-top:4px; display:none;">Searching... ⏳</div>
+            <div id="async-search-results" style="margin-top:6px; font-size:0.8rem; color:#cbd5e1; display:none;" data-testid="search-results-dropdown"></div>
+          </div>
+
+          <!-- WIDGET 2: AUTO-DISMISS TOAST -->
+          <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border);">
+            <div style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">2. Ephemeral Toast Notification (3.5s)</div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn-reset-db" style="background:var(--accent-green); color:#0f172a; font-weight:800;" onclick="triggerToast('Order #109 provisioned successfully!', 'success')" data-testid="btn-trigger-toast">Trigger Toast</button>
+              <button class="btn-reset-db" style="background:var(--accent-red); color:#fff; font-weight:800;" onclick="triggerToast('Failed: Connection timed out', 'error')" data-testid="btn-trigger-err-toast">Error Toast</button>
+            </div>
+            <div style="font-size:0.7rem; color:var(--text-muted); margin-top:8px;">
+              Tests auto-waiting and race conditions in Playwright.
+            </div>
+          </div>
+
+          <!-- WIDGET 3: ACCESSIBLE MODAL DIALOG -->
+          <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border);">
+            <div style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">3. Accessible Modal Dialog</div>
+            <button class="btn-reset-db" style="background:var(--accent-indigo); color:#fff; font-weight:800;" onclick="openTermsModal()" data-testid="btn-open-modal">Open Terms Modal</button>
+            <div id="modal-status-feedback" style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">Modal is closed.</div>
+          </div>
+
+          <!-- WIDGET 4: FILE UPLOAD -->
+          <div style="background:var(--bg-card); padding:1rem; border-radius:8px; border:1px solid var(--border);">
+            <div style="font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">4. File Upload (PDF/PNG, Max 2MB)</div>
+            <input type="file" id="lab-file-input" class="form-input" accept=".pdf,.png" onchange="handleFileUpload(this)" data-testid="file-upload-input">
+            <div id="file-upload-feedback" style="font-size:0.75rem; margin-top:4px;" data-testid="file-upload-feedback"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- VIEW 4: INTERACTIVE SWAGGER / API CONSOLE -->
     <!-- ============================================================== -->
     <section id="view-api" class="view-pane">
       <div class="swagger-container">
@@ -597,38 +1065,57 @@
           <div>
             <h2 style="font-size:1.3rem; font-weight:800; color:#fff;">OpenAPI 3.0 / Swagger Interactive Console</h2>
             <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
-              Base URL: <code>/api/v1</code> • Auth: <code>Bearer token (admin / user)</code>
+              Base URL: <code>/api/v1</code> • Auth: <code>Bearer JWT Tokens (RBAC Matrix)</code>
             </p>
           </div>
           <div style="display:flex; gap:0.5rem; align-items:center;">
-            <span style="font-size:0.75rem; color:var(--text-muted);">Active Role:</span>
-            <select id="api-active-role" class="form-input" style="width:auto; padding:0.35rem 0.75rem; font-size:0.75rem;">
+            <span style="font-size:0.75rem; color:var(--text-muted);">Active API Role:</span>
+            <select id="api-active-role" class="form-input" style="width:auto; padding:0.35rem 0.75rem; font-size:0.75rem;" data-testid="api-role-select">
               <option value="user">User Token (Standard Customer)</option>
               <option value="admin">Admin Token (Superuser)</option>
-              <option value="none">No Token (Unauthorized)</option>
+              <option value="junior_qa">Junior QA Token (Read Only)</option>
+              <option value="none">No Token (401 Unauthorized Test)</option>
             </select>
           </div>
         </div>
 
-        <!-- ENDPOINT 1: GET /api/orders -->
+        <!-- ENDPOINT 0: POST /api/v1/auth/login -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep0')">
+            <span class="method-badge method-POST">POST</span>
+            <span class="endpoint-path">/api/v1/auth/login</span>
+            <span class="endpoint-summary">Authenticate user and issue JWT bearer token</span>
+          </div>
+          <div id="ep0" class="endpoint-body">
+            <div class="swagger-params-title">Credentials Body (JSON)</div>
+            <textarea id="api-login-body" class="swagger-input-box">{
+  "email": "dan.tester@enterprise.io",
+  "password": "Password123"
+}</textarea>
+            <button class="btn-try-execute" onclick="executeApiLogin()" data-testid="btn-api-login">Execute &rarr;</button>
+            <div id="res-ep0" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 1: GET /api/v1/orders -->
         <div class="swagger-endpoint">
           <div class="endpoint-header" onclick="toggleEndpoint('ep1')">
             <span class="method-badge method-GET">GET</span>
             <span class="endpoint-path">/api/v1/orders</span>
-            <span class="endpoint-summary">Retrieve all orders from backend database</span>
+            <span class="endpoint-summary">Retrieve orders with filtering, pagination and sorting</span>
           </div>
           <div id="ep1" class="endpoint-body">
-            <button class="btn-try-execute" onclick="executeApiGetOrders()">Execute &rarr;</button>
+            <button class="btn-try-execute" onclick="executeApiGetOrders()" data-testid="btn-api-get-orders">Execute &rarr;</button>
             <div id="res-ep1" class="swagger-response-box"></div>
           </div>
         </div>
 
-        <!-- ENDPOINT 2: POST /api/orders -->
+        <!-- ENDPOINT 2: POST /api/v1/orders -->
         <div class="swagger-endpoint">
           <div class="endpoint-header" onclick="toggleEndpoint('ep2')">
             <span class="method-badge method-POST">POST</span>
             <span class="endpoint-path">/api/v1/orders</span>
-            <span class="endpoint-summary">Create a new subscription order (With Idempotency Key validation)</span>
+            <span class="endpoint-summary">Create a new subscription order (With Idempotency & Stock Check)</span>
           </div>
           <div id="ep2" class="endpoint-body">
             <div class="swagger-params-title">Request Headers & Body (JSON)</div>
@@ -639,19 +1126,38 @@
   "email": "dan.tester@enterprise.io",
   "product_id": 1,
   "quantity": 2,
+  "coupon_code": "AIWS25",
   "price": 250
 }</textarea>
-            <button class="btn-try-execute" onclick="executeApiPostOrder()">Execute &rarr;</button>
+            <button class="btn-try-execute" onclick="executeApiPostOrder()" data-testid="btn-api-post-order">Execute &rarr;</button>
             <div id="res-ep2" class="swagger-response-box"></div>
           </div>
         </div>
 
-        <!-- ENDPOINT 3: PATCH /api/orders/{id}/status -->
+        <!-- ENDPOINT 2B: POST /api/v1/coupons/validate -->
+        <div class="swagger-endpoint">
+          <div class="endpoint-header" onclick="toggleEndpoint('ep2b')">
+            <span class="method-badge method-POST">POST</span>
+            <span class="endpoint-path">/api/v1/coupons/validate</span>
+            <span class="endpoint-summary">Validate coupon code against active cart total</span>
+          </div>
+          <div id="ep2b" class="endpoint-body">
+            <div class="swagger-params-title">Request Body (JSON)</div>
+            <textarea id="api-coupon-body" class="swagger-input-box">{
+  "code": "AIWS25",
+  "cart_total": 500
+}</textarea>
+            <button class="btn-try-execute" onclick="executeApiValidateCoupon()" data-testid="btn-api-validate-coupon">Execute &rarr;</button>
+            <div id="res-ep2b" class="swagger-response-box"></div>
+          </div>
+        </div>
+
+        <!-- ENDPOINT 3: PATCH /api/v1/orders/{id}/status -->
         <div class="swagger-endpoint">
           <div class="endpoint-header" onclick="toggleEndpoint('ep3')">
             <span class="method-badge method-PATCH">PATCH</span>
             <span class="endpoint-path">/api/v1/orders/{id}/status</span>
-            <span class="endpoint-summary">Transition order status (PENDING &rarr; PAID &rarr; CANCELLED)</span>
+            <span class="endpoint-summary">Transition order status (Strict State Machine Rules)</span>
           </div>
           <div id="ep3" class="endpoint-body">
             <div style="display:grid; grid-template-columns:120px 1fr; gap:0.75rem; margin-bottom:0.75rem;">
@@ -663,18 +1169,20 @@
                 <label class="form-label">Target Status</label>
                 <select id="api-patch-status" class="form-input">
                   <option value="PAID">PAID</option>
+                  <option value="PROVISIONING">PROVISIONING</option>
+                  <option value="COMPLETED">COMPLETED</option>
                   <option value="CANCELLED">CANCELLED</option>
                   <option value="REFUNDED">REFUNDED</option>
                   <option value="PENDING">PENDING</option>
                 </select>
               </div>
             </div>
-            <button class="btn-try-execute" onclick="executeApiPatchStatus()">Execute &rarr;</button>
+            <button class="btn-try-execute" onclick="executeApiPatchStatus()" data-testid="btn-api-patch-status">Execute &rarr;</button>
             <div id="res-ep3" class="swagger-response-box"></div>
           </div>
         </div>
 
-        <!-- ENDPOINT 4: DELETE /api/orders/{id} -->
+        <!-- ENDPOINT 4: DELETE /api/v1/orders/{id} -->
         <div class="swagger-endpoint">
           <div class="endpoint-header" onclick="toggleEndpoint('ep4')">
             <span class="method-badge method-DELETE">DELETE</span>
@@ -686,7 +1194,7 @@
               <label class="form-label">Target Order ID</label>
               <input type="number" id="api-delete-id" class="form-input" value="102">
             </div>
-            <button class="btn-try-execute" style="background:var(--accent-red); color:#fff;" onclick="executeApiDeleteOrder()">Execute &rarr;</button>
+            <button class="btn-try-execute" style="background:var(--accent-red); color:#fff;" onclick="executeApiDeleteOrder()" data-testid="btn-api-delete-order">Execute &rarr;</button>
             <div id="res-ep4" class="swagger-response-box"></div>
           </div>
         </div>
@@ -695,7 +1203,7 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- VIEW 3: LIVE SQL CONSOLE -->
+    <!-- VIEW 5: LIVE SQL CONSOLE -->
     <!-- ============================================================== -->
     <section id="view-sql" class="view-pane">
       <div class="sql-workbench">
@@ -706,7 +1214,7 @@
             <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">Engine: In-Memory Relational DB</span>
           </div>
 
-          <textarea id="sql-input" class="sql-textarea" spellcheck="false">SELECT orders.id, users.email, products.name, orders.total, orders.status 
+          <textarea id="sql-input" class="sql-textarea" spellcheck="false" data-testid="sql-query-input">SELECT orders.id, users.email, products.name, orders.total, orders.status 
 FROM orders 
 INNER JOIN users ON orders.user_id = users.id 
 INNER JOIN products ON orders.product_id = products.id;</textarea>
@@ -716,18 +1224,20 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
               <button class="chip-query" onclick="setQuery('SELECT * FROM orders;')">All Orders</button>
               <button class="chip-query" onclick="setQuery('SELECT * FROM users;')">All Users</button>
               <button class="chip-query" onclick="setQuery('SELECT * FROM products;')">Inventory</button>
-              <button class="chip-query" onclick="setQuery(`SELECT email, COUNT(id) FROM users GROUP BY email HAVING COUNT(id) > 1;`)">Check Duplicates</button>
-              <button class="chip-query" onclick="setQuery(`UPDATE orders SET status = 'REFUNDED' WHERE id = 101;`)">Force Refund (ID 101)</button>
+              <button class="chip-query" onclick="setQuery('SELECT * FROM coupons;')">Coupons</button>
+              <button class="chip-query" onclick="setQuery('SELECT * FROM audit_logs ORDER BY id DESC;')">Audit Trail</button>
+              <button class="chip-query" onclick="setQuery('SELECT users.email, COUNT(orders.id) AS order_count FROM users LEFT JOIN orders ON users.id = orders.user_id GROUP BY users.email;')">Orders Per User</button>
+              <button class="chip-query" onclick="setQuery('UPDATE orders SET status = 'REFUNDED' WHERE id = 101;')">Force Refund (ID 101)</button>
             </div>
 
-            <button class="btn-run-sql" onclick="executeSqlQuery()">
+            <button class="btn-run-sql" onclick="executeSqlQuery()" data-testid="btn-execute-sql">
               <span>▶ Run Query</span>
             </button>
           </div>
         </div>
 
         <!-- SQL RESULTS -->
-        <div class="sql-results-box" id="sql-results-container">
+        <div class="sql-results-box" id="sql-results-container" data-testid="sql-results-box">
           <div style="color:var(--text-muted); font-size:0.85rem; text-align:center; padding-top:4rem;">
             Click <strong>"Run Query"</strong> to execute SQL against the live database tables.
           </div>
@@ -736,139 +1246,84 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
         <!-- SCHEMA CARD -->
         <div class="schema-help-box">
           <strong>Database Schema Reference:</strong><br>
-          • <code>users</code> (id INTEGER PRIMARY KEY, email TEXT, role TEXT, status TEXT)<br>
-          • <code>products</code> (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, stock INTEGER)<br>
-          • <code>orders</code> (id INTEGER PRIMARY KEY, user_id INTEGER, product_id INTEGER, quantity INTEGER, total INTEGER, status TEXT, idempotency_key TEXT)
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ============================================================== -->
-    <!-- VIEW 4: SELECTOR & DOM LAB (ANTIPATTERNS VS CLEAN DOM) -->
-    <!-- ============================================================== -->
-    <section id="view-selectors" class="view-pane">
-      <div style="background:var(--bg-panel); border:1px solid var(--border); border-radius:14px; padding:1.5rem; margin-bottom:1.5rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
-          <div>
-            <h2 style="font-size:1.25rem; font-weight:900; color:#fff; display:flex; align-items:center; gap:0.5rem;">
-              <span>🎯 Selector & DOM Laboratory</span>
-              <span style="font-size:0.75rem; background:#4338ca; color:#e0e7ff; padding:2px 8px; border-radius:4px; font-weight:800;">PLAYWRIGHT TRAINING</span>
-            </h2>
-            <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.25rem;">
-              Gyakorló felület: Hasonlítsd össze a való életbeli törékeny (Fragile / Spagetti) kódokat a modern, golyóálló (Web-First) szelektorokkal!
-            </p>
-          </div>
-          <div>
-            <button onclick="regenerateFragileClasses()" style="background:#dc2626; color:#fff; font-weight:900; font-size:0.8rem; padding:0.6rem 1.2rem; border-radius:8px; border:none; cursor:pointer; display:flex; align-items:center; gap:0.4rem; box-shadow:0 4px 12px rgba(220,38,38,0.3);">
-              <span>💥 DOM Újragenerálás (Class átírás)</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:1.5rem;">
-
-        <!-- BAL OLDAL: A TÖRÉKENY SPAGETTI DOM -->
-        <div style="background:var(--bg-panel); border:1px solid #7f1d1d; border-radius:14px; padding:1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #371b1b; padding-bottom:0.75rem;">
-            <div style="font-weight:900; font-size:1rem; color:#f87171; display:flex; align-items:center; gap:0.5rem;">
-              <span>❌ Törékeny DOM (Anti-pattern Playground)</span>
-            </div>
-            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#450a0a; color:#fca5a5; padding:2px 6px; border-radius:4px;">Lusta Fejlesztői Kód</span>
-          </div>
-
-          <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.25rem;">
-            Nincsenek szabványos címkék, dinamikus CSS osztályok vannak, és azonos gombok egymás mellett. A Codegen itt törékeny XPath-ot vagy indexeket generál!
-          </p>
-
-          <!-- Mező 1: Címke nélküli div input -->
-          <div style="margin-bottom:1rem;">
-            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">1. Felhasználói Email (nincs &lt;label&gt; tag):</div>
-            <input type="text" id="legacy_inp_8392" class="inp_dynamic_build_x12" placeholder="Csak egy placeholder szöveg van..." style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
-            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:2px;">⚠️ page.getByLabel() ITT ELHASAL (nincs összekötve for attribútummal)!</div>
-          </div>
-
-          <!-- Mező 2: Három azonos gomb egy dobozban -->
-          <div style="margin-bottom:1.25rem;">
-            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">2. Három azonos gomb egy dobozban (Index-csapda):</div>
-            <div class="legacy-btn-row" style="display:flex; gap:0.5rem;">
-              <button class="btn_action_v48" onclick="clickLegacyAction(1)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
-              <button class="btn_action_v48" onclick="clickLegacyAction(2)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
-              <button class="btn_action_v48" onclick="clickLegacyAction(3)" style="padding:0.5rem 0.85rem; background:#1e293b; border:1px solid #475569; color:#f1f5f9; border-radius:6px; cursor:pointer; font-size:0.8rem;">Módosítás</button>
-            </div>
-            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#ef4444; margin-top:4px;">⚠️ Codegen: page.locator('button').filter({ hasText: 'Módosítás' }).nth(1) vagy raw XPath!</div>
-          </div>
-
-          <!-- Mező 3: Dinamikus osztályú submit gomb -->
-          <div style="margin-bottom:1rem;">
-            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">3. Megrendelés Gomb (Build során változó osztállyal):</div>
-            <button id="fragile-dynamic-btn" class="btn_v49_sub_2x" onclick="clickFragileSubmit()" style="width:100%; padding:0.75rem; background:#dc2626; color:#fff; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem; transition:all 0.2s;">
-              Rendelés Beküldése (Törékeny Class)
-            </button>
-            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
-              <span id="fragile-class-badge" style="font-family:var(--font-mono); font-size:0.75rem; color:#f87171;">Class: .btn_v49_sub_2x</span>
-              <span style="font-size:0.7rem; color:#94a3b8;">Kattints a fenti 'DOM Újragenerálás'-ra a töréshez!</span>
-            </div>
-          </div>
-
-          <div id="fragile-feedback" style="display:none; padding:0.65rem; background:#450a0a; border:1px solid #991b1b; border-radius:6px; font-size:0.8rem; color:#fecaca;"></div>
-        </div>
-
-        <!-- JOBB OLDAL: A CLEAN WEB-FIRST DOM -->
-        <div style="background:var(--bg-panel); border:1px solid #065f46; border-radius:14px; padding:1.5rem;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid #133a2a; padding-bottom:0.75rem;">
-            <div style="font-weight:900; font-size:1rem; color:#34d399; display:flex; align-items:center; gap:0.5rem;">
-              <span>✅ Modern Web-First DOM (Playwright Standard)</span>
-            </div>
-            <span style="font-size:0.7rem; font-family:var(--font-mono); background:#064e3b; color:#a7f3d0; padding:2px 6px; border-radius:4px;">Golyóálló Kód</span>
-          </div>
-
-          <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:1.25rem;">
-            Szabványos ARIA címkék, akadálymentes szerepkörök és sérthetetlen data-testid attribútumok. Ezek a lokátorok soha nem törnek el dizájnváltáskor!
-          </p>
-
-          <!-- Mező 1: Szabványos Label & Input -->
-          <div style="margin-bottom:1rem;">
-            <label for="clean-email-input" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
-              Kapcsolattartó E-mail Cím (Szabványos &lt;label&gt;):
-            </label>
-            <input type="email" id="clean-email-input" data-testid="clean-email" placeholder="pelda@astron.hu" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
-            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:2px;">✅ page.getByLabel('Kapcsolattartó E-mail Cím') vagy getByTestId('clean-email')</div>
-          </div>
-
-          <!-- Mező 2: Szabványos Select lista -->
-          <div style="margin-bottom:1.25rem;">
-            <label for="clean-role-select" style="display:block; font-size:0.8rem; color:#e2e8f0; margin-bottom:0.35rem; font-weight:700;">
-              Kiválasztott Modul (Szabványos Select):
-            </label>
-            <select id="clean-role-select" data-testid="clean-role" style="width:100%; padding:0.65rem; background:#020617; border:1px solid var(--border); border-radius:6px; color:#fff; font-size:0.85rem;">
-              <option value="pom">Page Object Model Architektúra</option>
-              <option value="api">REST API Auth Bypass</option>
-              <option value="trace">Trace Viewer Hibanyomozás</option>
-            </select>
-            <div style="font-size:0.7rem; font-family:var(--font-mono); color:#10b981; margin-top:4px;">✅ page.getByLabel('Kiválasztott Modul').selectOption('pom')</div>
-          </div>
-
-          <!-- Mező 3: Szerepkör alapú gomb data-testid-val -->
-          <div style="margin-bottom:1rem;">
-            <div style="font-size:0.8rem; color:#94a3b8; margin-bottom:0.35rem; font-weight:700;">Rendelés Jóváhagyása (Web-First Szerepkör):</div>
-            <button role="button" aria-label="Rendelés Jóváhagyása" data-testid="clean-submit-btn" onclick="clickCleanSubmit()" style="width:100%; padding:0.75rem; background:#10b981; color:#0f172a; font-weight:900; border:none; border-radius:8px; cursor:pointer; font-size:0.85rem;">
-              Rendelés Jóváhagyása (Golyóálló) →
-            </button>
-            <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-family:var(--font-mono); font-size:0.75rem; color:#10b981;">data-testid="clean-submit-btn"</span>
-              <span style="font-size:0.7rem; color:#34d399;">Dizájnváltáskor is 100% stabil</span>
-            </div>
-          </div>
-
-          <div id="clean-feedback" style="display:none; padding:0.65rem; background:#064e3b; border:1px solid #059669; border-radius:6px; font-size:0.8rem; color:#a7f3d0;"></div>
+          • <code>users</code> (id, email, role, status)<br>
+          • <code>products</code> (id, name, price, stock)<br>
+          • <code>coupons</code> (id, code, type, value, min_spend, usage_count, max_usage)<br>
+          • <code>orders</code> (id, user_id, product_id, quantity, subtotal, discount, vat, total, currency, payment_method, status, idempotency_key)<br>
+          • <code>audit_logs</code> (id, timestamp, actor, action, details)
         </div>
 
       </div>
     </section>
 
   </main>
+
+  <!-- ============================================================== -->
+  <!-- MODALS -->
+  <!-- ============================================================== -->
+  <!-- AUTH / ROLE SWITCH MODAL -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <h3 style="font-weight:900; font-size:1.15rem; color:#fff;">RBAC User & Role Switcher</h3>
+        <button onclick="closeAuthModal()" style="background:transparent; border:none; color:#94a3b8; font-size:1.2rem; cursor:pointer;" data-testid="btn-close-auth-modal">&times;</button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;">
+        <label class="form-label">Select Active Session Actor:</label>
+        
+        <button class="btn-reset-db" style="text-align:left; padding:0.65rem; display:flex; justify-content:space-between; align-items:center;" onclick="setActiveActor('dan.tester@enterprise.io', 'user')" data-testid="select-actor-user">
+          <div>
+            <strong>Dan Tester</strong> <span style="font-size:0.75rem; color:var(--text-muted);">(dan.tester@enterprise.io)</span>
+          </div>
+          <span class="role-pill role-user">USER</span>
+        </button>
+
+        <button class="btn-reset-db" style="text-align:left; padding:0.65rem; display:flex; justify-content:space-between; align-items:center;" onclick="setActiveActor('tamas.admin@testacademy.hu', 'admin')" data-testid="select-actor-admin">
+          <div>
+            <strong>Tamás Admin</strong> <span style="font-size:0.75rem; color:var(--text-muted);">(tamas.admin@testacademy.hu)</span>
+          </div>
+          <span class="role-pill role-admin">ADMIN</span>
+        </button>
+
+        <button class="btn-reset-db" style="text-align:left; padding:0.65rem; display:flex; justify-content:space-between; align-items:center;" onclick="setActiveActor('junior.auditor@astron.hu', 'junior_qa')" data-testid="select-actor-junior">
+          <div>
+            <strong>Junior QA</strong> <span style="font-size:0.75rem; color:var(--text-muted);">(junior.auditor@astron.hu)</span>
+          </div>
+          <span class="role-pill role-junior_qa">JUNIOR QA</span>
+        </button>
+
+        <button class="btn-reset-db" style="text-align:left; padding:0.65rem; display:flex; justify-content:space-between; align-items:center;" onclick="setActiveActor('suspended.user@malicious.com', 'blocked')" data-testid="select-actor-blocked">
+          <div>
+            <strong>Suspended Account</strong> <span style="font-size:0.75rem; color:var(--text-muted);">(suspended.user@malicious.com)</span>
+          </div>
+          <span class="role-pill role-blocked">BLOCKED</span>
+        </button>
+      </div>
+
+      <div style="border-top:1px solid var(--border); padding-top:1rem;">
+        <h4 style="font-size:0.85rem; font-weight:700; margin-bottom:0.5rem;">Or Test Login Form Validation:</h4>
+        <input type="email" id="modal-login-email" class="form-input" placeholder="Email" style="margin-bottom:0.5rem;" data-testid="auth-email">
+        <input type="password" id="modal-login-pass" class="form-input" placeholder="Password (Min 8 chars, 1 upper, 1 num)" style="margin-bottom:0.5rem;" data-testid="auth-password">
+        <div id="modal-auth-error" style="color:var(--accent-red); font-size:0.75rem; margin-bottom:0.5rem; display:none;" data-testid="auth-error"></div>
+        <button class="btn-checkout" style="margin-top:0;" onclick="submitModalLogin()" data-testid="auth-login-btn">Log In</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS MODAL (ACCESSIBILITY TEST) -->
+  <div id="terms-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
+    <div class="modal-dialog">
+      <h3 id="terms-title" style="font-weight:900; font-size:1.15rem; color:#fff; margin-bottom:0.75rem;">Enterprise Service Terms</h3>
+      <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:1.5rem;">
+        By subscribing to TestAcademy automation workers, you agree to fair use policies, zero unauthorized pentesting without prior consent, and SLA tier terms.
+      </p>
+      <div style="display:flex; justify-content:flex-end; gap:0.5rem;">
+        <button class="btn-reset-db" id="btn-close-modal" onclick="closeTermsModal()" data-testid="btn-close-modal">Dismiss (ESC)</button>
+        <button class="btn-checkout" style="width:auto; margin:0; padding:0.4rem 1rem;" onclick="acceptTermsModal()" data-testid="btn-accept-modal">I Accept Terms</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================================== -->
   <!-- JAVASCRIPT: SHARED REACTIVE IN-MEMORY RELATIONAL DATABASE -->
@@ -893,6 +1348,12 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       if (urlParams.get('flaky') === 'true') {
         const toggleFlaky = document.getElementById('toggle-flaky');
         if (toggleFlaky) { toggleFlaky.checked = true; toggleFlakyMode(true); }
+      }
+      if (urlParams.get('role')) {
+        const r = urlParams.get('role').toLowerCase();
+        if (['admin', 'junior_qa', 'user', 'blocked'].includes(r)) {
+          setActiveActor(r + '@testacademy.hu', r);
+        }
       }
     }
     checkGate();
@@ -926,76 +1387,55 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       console.log("Trainer mode: Flaky Network simulation set to:", isFlaky);
     }
 
+    function toggleBruteForceSimulation(isLocked) {
+      console.log("Trainer mode: Lockout simulation set to:", isLocked);
+    }
+
     // --- 2. TAB SWITCHING ---
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
 
-      if (tabId === 'ui') {
-        document.querySelectorAll('.tab-btn')[0].classList.add('active');
-        document.getElementById('view-ui').classList.add('active');
-        renderUiOrders();
-      } else if (tabId === 'selectors') {
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
-        document.getElementById('view-selectors').classList.add('active');
-      } else if (tabId === 'api') {
-        document.querySelectorAll('.tab-btn')[2].classList.add('active');
-        document.getElementById('view-api').classList.add('active');
-      } else if (tabId === 'sql') {
-        document.querySelectorAll('.tab-btn')[3].classList.add('active');
-        document.getElementById('view-sql').classList.add('active');
+      const tabs = ['ui', 'orders', 'selectors', 'api', 'sql'];
+      const idx = tabs.indexOf(tabId);
+      if (idx !== -1) {
+        document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+        document.getElementById('view-' + tabId).classList.add('active');
       }
-    }
 
-    // --- 2.1 SELECTOR LAB INTERACTIONS ---
-    let fragileBuildIndex = 1;
-    function regenerateFragileClasses() {
-      fragileBuildIndex++;
-      const btn = document.getElementById('fragile-dynamic-btn');
-      const badge = document.getElementById('fragile-class-badge');
-      const newClass = `btn_v${49 + fragileBuildIndex}_sub_${fragileBuildIndex}x`;
-      btn.className = newClass;
-      badge.innerText = `Class: .${newClass}`;
-      alert(`💥 BUMM! A frontend build lefutott: az osztály átváltozott erre: .${newClass}!\nHa a teszted a régi osztályra épült, azonnal elhasal!`);
-    }
-
-    function clickLegacyAction(idx) {
-      const fb = document.getElementById('fragile-feedback');
-      fb.style.display = 'block';
-      fb.innerHTML = `⚠️ Kattintva: <strong>Módosítás (${idx}. gomb)</strong>. Codegen lokátor: <code>page.locator('button').filter({ hasText: 'Módosítás' }).nth(${idx - 1})</code> (Törékeny index!).`;
-    }
-
-    function clickFragileSubmit() {
-      const fb = document.getElementById('fragile-feedback');
-      const btn = document.getElementById('fragile-dynamic-btn');
-      fb.style.display = 'block';
-      fb.innerHTML = `⚠️ Beküldve a törékeny gombbal! Aktuális osztály: <code>.${btn.className}</code>.`;
-    }
-
-    function clickCleanSubmit() {
-      const fb = document.getElementById('clean-feedback');
-      const email = document.getElementById('clean-email-input').value || 'nem-megadott@astron.hu';
-      const role = document.getElementById('clean-role-select').value;
-      fb.style.display = 'block';
-      fb.innerHTML = `✅ <strong>Sikeres Web-First beküldés!</strong> Email: <code>${email}</code> | Modul: <code>${role}</code>. Golyóálló lokátor: <code>getByTestId('clean-submit-btn')</code> vagy <code>getByRole('button', { name: 'Rendelés Jóváhagyása' })</code>!`;
+      if (tabId === 'ui') renderUiOrders();
+      if (tabId === 'orders') renderMgmtOrders();
     }
 
     // --- 3. IN-MEMORY DATABASE STATE ---
     const INITIAL_DB = {
       users: [
-        { id: 1, email: "dan.tester@enterprise.io", role: "user", status: "active" },
-        { id: 2, email: "tamas.qa@testacademy.hu", role: "admin", status: "active" },
-        { id: 3, email: "guest.buyer@external.com", role: "user", status: "inactive" }
+        { id: 1, email: "dan.tester@enterprise.io", role: "user", status: "active", failed_logins: 0 },
+        { id: 2, email: "tamas.admin@testacademy.hu", role: "admin", status: "active", failed_logins: 0 },
+        { id: 3, email: "junior.auditor@astron.hu", role: "junior_qa", status: "active", failed_logins: 0 },
+        { id: 4, email: "suspended.user@malicious.com", role: "blocked", status: "suspended", failed_logins: 5 }
       ],
       products: [
         { id: 1, name: "QA Automation Runner License", price: 250, stock: 15 },
         { id: 2, name: "Enterprise Load Testing Engine", price: 490, stock: 8 },
         { id: 3, name: "Security SAST/DAST Scanner", price: 380, stock: 20 }
       ],
+      coupons: [
+        { id: 1, code: "AIWS25", type: "percent", value: 25, min_spend: 0, usage_count: 3, max_usage: 100 },
+        { id: 2, code: "SAVE50", type: "fixed", value: 50, min_spend: 200, usage_count: 0, max_usage: 50 },
+        { id: 3, code: "EXPIRED2025", type: "percent", value: 50, min_spend: 0, usage_count: 10, max_usage: 10, expired: true },
+        { id: 4, code: "ONCEONLY", type: "fixed", value: 100, min_spend: 300, usage_count: 0, max_usage: 1 }
+      ],
       orders: [
-        { id: 101, user_id: 1, product_id: 1, quantity: 1, total: 250, status: "PAID", idempotency_key: "INIT-101" },
-        { id: 102, user_id: 2, product_id: 2, quantity: 1, total: 490, status: "PENDING", idempotency_key: "INIT-102" },
-        { id: 103, user_id: 1, product_id: 3, quantity: 2, total: 760, status: "CANCELLED", idempotency_key: "INIT-103" }
+        { id: 101, user_id: 1, product_id: 1, quantity: 1, subtotal: 250, discount: 0, vat: 0, total: 250, currency: "USD", payment_method: "card", status: "PAID", idempotency_key: "INIT-101", created_at: "2026-10-08T09:00:00Z" },
+        { id: 102, user_id: 2, product_id: 2, quantity: 1, subtotal: 490, discount: 0, vat: 0, total: 490, currency: "USD", payment_method: "invoice", status: "PENDING", idempotency_key: "INIT-102", created_at: "2026-10-08T10:15:00Z" },
+        { id: 103, user_id: 1, product_id: 3, quantity: 2, subtotal: 760, discount: 0, vat: 0, total: 760, currency: "USD", payment_method: "card", status: "CANCELLED", idempotency_key: "INIT-103", created_at: "2026-10-08T11:30:00Z" },
+        { id: 104, user_id: 3, product_id: 1, quantity: 2, subtotal: 500, discount: 125, vat: 101, total: 476, currency: "EUR", payment_method: "card", status: "PROVISIONING", idempotency_key: "INIT-104", created_at: "2026-10-08T12:00:00Z" },
+        { id: 105, user_id: 1, product_id: 2, quantity: 1, subtotal: 490, discount: 0, vat: 132, total: 622, currency: "HUF", payment_method: "invoice", status: "COMPLETED", idempotency_key: "INIT-105", created_at: "2026-10-08T14:20:00Z" }
+      ],
+      audit_logs: [
+        { id: 1, timestamp: "2026-10-08T09:00:00Z", actor: "dan.tester@enterprise.io", action: "ORDER_CREATED", details: "Order #101 created" },
+        { id: 2, timestamp: "2026-10-08T09:00:02Z", actor: "system", action: "PAYMENT_SUCCESS", details: "Order #101 paid via card" }
       ]
     };
 
@@ -1003,94 +1443,323 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
 
     function resetDatabaseState() {
       DB = JSON.parse(JSON.stringify(INITIAL_DB));
+      activeCoupon = null;
+      document.getElementById('ui-coupon-code').value = '';
+      document.getElementById('coupon-feedback').style.display = 'none';
       renderUiOrders();
-      alert("✅ Database reset to baseline seed state (3 users, 3 products, 3 orders).");
+      renderMgmtOrders();
+      triggerToast("Database restored to baseline seed (4 users, 3 products, 5 orders).", "success");
     }
 
-    // --- 4. STOREFRONT (UI) LOGIC ---
+    // --- 4. CURRENT ACTIVE USER SESSION (RBAC) ---
+    let currentUser = {
+      email: "dan.tester@enterprise.io",
+      role: "user"
+    };
+
+    function setActiveActor(email, role) {
+      currentUser = { email, role };
+      document.getElementById('current-user-display').innerText = email.split('@')[0];
+      const badge = document.getElementById('current-role-badge');
+      badge.innerText = role.toUpperCase();
+      badge.className = 'role-pill role-' + role;
+      
+      // Update form defaults
+      const emailInp = document.getElementById('ui-email');
+      if (emailInp) emailInp.value = email;
+
+      // Update API active role selector
+      const apiRole = document.getElementById('api-active-role');
+      if (apiRole) apiRole.value = role === 'blocked' ? 'none' : role;
+
+      closeAuthModal();
+      triggerToast(`Switched active role to ${role.toUpperCase()} (${email})`, "success");
+    }
+
+    function openAuthModal() {
+      document.getElementById('auth-modal').classList.add('open');
+    }
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.remove('open');
+    }
+
+    function submitModalLogin() {
+      const email = document.getElementById('modal-login-email').value.trim();
+      const pass = document.getElementById('modal-login-pass').value;
+      const err = document.getElementById('modal-auth-error');
+
+      // Validation
+      if (!email.includes('@')) {
+        err.innerText = "Validation Error: Please enter a valid email address.";
+        err.style.display = 'block';
+        return;
+      }
+      if (pass.length < 8 || !/[A-Z]/.test(pass) || !/[0-9]/.test(pass)) {
+        err.innerText = "Password Policy Violation: Must be min. 8 chars, containing at least 1 uppercase letter and 1 digit.";
+        err.style.display = 'block';
+        return;
+      }
+
+      err.style.display = 'none';
+      setActiveActor(email, email.includes('admin') ? 'admin' : 'user');
+    }
+
+    // --- 5. STOREFRONT (UI) PRICING & CHECKOUT LOGIC ---
     let selectedProductId = 1;
     let selectedProductName = "QA Automation Runner License";
-    let selectedProductPrice = 250;
+    let selectedProductBasePrice = 250;
+    let activeCurrency = "USD";
+    const CURRENCY_RATES = { USD: 1, EUR: 0.92, HUF: 395 };
+    const CURRENCY_SYMBOLS = { USD: "$", EUR: "€", HUF: "Ft " };
+
+    let activeCoupon = null;
+
+    function handleCurrencyChange(cur) {
+      activeCurrency = cur;
+      recalcUiTotal();
+    }
 
     function selectProduct(el, id, name, price) {
       document.querySelectorAll('.product-card-option').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
       selectedProductId = id;
       selectedProductName = name;
-      selectedProductPrice = price;
-      document.getElementById('ui-sum-product').innerText = name;
-      document.getElementById('ui-sum-base').innerText = `$${price}`;
+      selectedProductBasePrice = price;
       recalcUiTotal();
+    }
+
+    function applyCouponCode() {
+      const code = document.getElementById('ui-coupon-code').value.trim().toUpperCase();
+      const feedback = document.getElementById('coupon-feedback');
+
+      if (!code) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--accent-red)';
+        feedback.innerText = "Please enter a coupon code.";
+        return;
+      }
+
+      const coupon = DB.coupons.find(c => c.code === code);
+      if (!coupon) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--accent-red)';
+        feedback.innerText = "❌ Invalid coupon code.";
+        activeCoupon = null;
+        recalcUiTotal();
+        return;
+      }
+
+      if (coupon.expired) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--accent-red)';
+        feedback.innerText = "❌ Coupon expired on 2025-12-31.";
+        activeCoupon = null;
+        recalcUiTotal();
+        return;
+      }
+
+      if (coupon.usage_count >= coupon.max_usage) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--accent-red)';
+        feedback.innerText = "❌ Coupon usage limit reached (Already redeemed).";
+        activeCoupon = null;
+        recalcUiTotal();
+        return;
+      }
+
+      // Check min spend
+      const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
+      const rawSubtotal = selectedProductBasePrice * qty;
+      if (coupon.min_spend > rawSubtotal) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--accent-orange)';
+        feedback.innerText = `⚠️ Minimum spend of $${coupon.min_spend} required for this coupon.`;
+        activeCoupon = null;
+        recalcUiTotal();
+        return;
+      }
+
+      activeCoupon = coupon;
+      feedback.style.display = 'block';
+      feedback.style.color = 'var(--accent-green)';
+      feedback.innerText = `✅ Coupon '${coupon.code}' applied (${coupon.type === 'percent' ? coupon.value + '%' : '$' + coupon.value} OFF)!`;
+      recalcUiTotal();
+    }
+
+    let isVatExempt = false;
+    function validateVatNumber() {
+      const val = document.getElementById('ui-vat-number').value.trim().toUpperCase();
+      const fb = document.getElementById('vat-feedback');
+      fb.style.display = 'block';
+
+      if (/^(HU|DE|AT|FR)d{8,9}$/.test(val)) {
+        isVatExempt = true;
+        fb.style.color = 'var(--accent-green)';
+        fb.innerText = "✅ Valid EU VIES VAT ID: 0% Reverse Charge B2B Exemption Applied!";
+      } else {
+        isVatExempt = false;
+        fb.style.color = 'var(--accent-red)';
+        fb.innerText = "❌ Invalid EU VAT syntax. Standard country VAT rate applies.";
+      }
+      recalcUiTotal();
+    }
+    function handleVatInput() {
+      if (!document.getElementById('ui-vat-number').value.trim()) {
+        isVatExempt = false;
+        document.getElementById('vat-feedback').style.display = 'none';
+        recalcUiTotal();
+      }
+    }
+
+    function togglePaymentSection(type) {
+      document.getElementById('payment-card-section').style.display = type === 'card' ? 'block' : 'none';
+      document.getElementById('payment-invoice-section').style.display = type === 'invoice' ? 'block' : 'none';
     }
 
     function recalcUiTotal() {
       const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
-      const total = selectedProductPrice * qty;
+      const rate = CURRENCY_RATES[activeCurrency] || 1;
+      const sym = CURRENCY_SYMBOLS[activeCurrency] || "$";
+
+      const baseInCurrency = Math.round(selectedProductBasePrice * rate);
+      const subtotal = baseInCurrency * qty;
+
+      let discount = 0;
+      if (activeCoupon) {
+        if (activeCoupon.type === 'percent') {
+          discount = Math.round(subtotal * (activeCoupon.value / 100));
+        } else {
+          discount = Math.round(activeCoupon.value * rate);
+        }
+      }
+      if (discount > subtotal) discount = subtotal;
+
+      const discountedSubtotal = subtotal - discount;
+
+      // Country VAT
+      const country = document.getElementById('ui-country').value;
+      let vatPct = 0;
+      if (!isVatExempt) {
+        if (country === 'HU') vatPct = 27;
+        else if (country === 'DE') vatPct = 19;
+        else vatPct = 0;
+      }
+      document.getElementById('ui-vat-percent').innerText = vatPct;
+
+      const vat = Math.round(discountedSubtotal * (vatPct / 100));
+      const grandTotal = discountedSubtotal + vat;
+
+      document.getElementById('ui-sum-product').innerText = selectedProductName;
+      document.getElementById('ui-sum-base').innerText = `${sym}${baseInCurrency}`;
       document.getElementById('ui-sum-qty').innerText = `${qty} unit${qty > 1 ? 's' : ''}`;
-      document.getElementById('ui-sum-total').innerText = `$${total}`;
+      document.getElementById('ui-sum-discount').innerText = `-${sym}${discount}`;
+      document.getElementById('ui-sum-vat').innerText = `${sym}${vat}`;
+      document.getElementById('ui-sum-total').innerText = `${sym}${grandTotal}`;
     }
 
     async function handleUiCheckout(e) {
       e.preventDefault();
+      
+      // RBAC CHECK
+      if (currentUser.role === 'blocked') {
+        alert("⛔ Access Denied (403 Forbidden): Your account is suspended. Orders cannot be created.");
+        return;
+      }
+
       const email = document.getElementById('ui-email').value.trim();
       const qty = parseInt(document.getElementById('ui-qty').value, 10) || 1;
+      const payMethod = document.querySelector('input[name="pay-method"]:checked').value;
       const btn = document.getElementById('btn-ui-submit');
 
-      // Check if trainer flaky mode is on
+      // Card Validation check
+      if (payMethod === 'card') {
+        const cardNum = document.getElementById('ui-card-num').value.replace(/s+/g, '');
+        if (cardNum === '4000000000000002') {
+          alert("❌ Payment Gateway Declined (402): Insufficient funds on test card.");
+          return;
+        }
+        if (cardNum === '4000000000000003') {
+          const otp = prompt("🔐 3D Secure Challenge Verification:
+Enter OTP code sent to your phone (Use '123456'):");
+          if (otp !== '123456') {
+            alert("❌ 3D Secure authentication failed.");
+            return;
+          }
+        }
+      } else {
+        const po = document.getElementById('ui-po-number').value.trim();
+        if (!po || po.length < 5) {
+          alert("❌ Validation Error: Purchase Order (PO) reference must be at least 5 characters.");
+          return;
+        }
+      }
+
+      // Flaky Mode simulation
       const isFlaky = (document.getElementById('toggle-flaky') && document.getElementById('toggle-flaky').checked) ||
                       (new URLSearchParams(window.location.search).get('flaky') === 'true');
 
       if (isFlaky) {
-        const origText = btn ? btn.innerText : '';
-        if (btn) {
-          btn.innerText = "Processing order... (simulating 2.5s latency)";
-          btn.disabled = true;
-        }
+        btn.innerText = "Processing order... (simulating 2.5s latency)";
+        btn.disabled = true;
         await new Promise(r => setTimeout(r, 2500));
-        if (btn) {
-          btn.disabled = false;
-          btn.innerText = origText;
-        }
+        btn.disabled = false;
+        btn.innerText = "Place Subscription Order →";
         if (Math.random() < 0.5) {
           alert("❌ Error 503: Gateway Timeout! Flaky test simulated for Trace Viewer.");
           return;
         }
       }
 
-      // Try background sync with real /api/orders endpoint if available
-      try {
-        fetch('/api/orders', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + (sessionStorage.getItem('qa_lab_jwt') || 'mock_token')
-          },
-          body: JSON.stringify({ email, product_id: selectedProductId, quantity: qty })
-        }).catch(() => {});
-      } catch (err) {}
+      // Check product stock
+      const prod = DB.products.find(p => p.id === selectedProductId);
+      if (prod && prod.stock < qty) {
+        alert(`❌ Stock Error: Only ${prod.stock} units remaining in inventory.`);
+        return;
+      }
+      if (prod) prod.stock -= qty;
 
-      // 1. Find or create user
+      // Update coupon usage
+      if (activeCoupon) {
+        activeCoupon.usage_count++;
+      }
+
+      // User lookup/create
       let user = DB.users.find(u => u.email === email);
       if (!user) {
-        user = { id: DB.users.length + 1, email: email, role: "user", status: "active" };
+        user = { id: DB.users.length + 1, email: email, role: "user", status: "active", failed_logins: 0 };
         DB.users.push(user);
       }
 
-      // 2. Insert order
+      const totalVal = parseInt(document.getElementById('ui-sum-total').innerText.replace(/[^0-9]/g, ''), 10) || selectedProductBasePrice * qty;
       const newOrderId = DB.orders.length ? Math.max(...DB.orders.map(o => o.id)) + 1 : 101;
       const newOrder = {
         id: newOrderId,
         user_id: user.id,
         product_id: selectedProductId,
         quantity: qty,
-        total: selectedProductPrice * qty,
-        status: "PENDING",
-        idempotency_key: `UI-${Date.now()}`
+        subtotal: selectedProductBasePrice * qty,
+        discount: activeCoupon ? activeCoupon.value : 0,
+        vat: isVatExempt ? 0 : 27,
+        total: totalVal,
+        currency: activeCurrency,
+        payment_method: payMethod,
+        status: payMethod === 'card' ? "PAID" : "PENDING",
+        idempotency_key: `UI-${Date.now()}`,
+        created_at: new Date().toISOString()
       };
 
-      DB.orders.unshift(newOrder); // Add to top
+      DB.orders.unshift(newOrder);
+      DB.audit_logs.unshift({
+        id: DB.audit_logs.length + 1,
+        timestamp: new Date().toISOString(),
+        actor: email,
+        action: "ORDER_CREATED",
+        details: `Order #${newOrderId} created via Storefront. Status: ${newOrder.status}`
+      });
+
       renderUiOrders();
-      alert(`🎉 Order #${newOrderId} placed successfully! Status: PENDING. Switch to SQL or API tab to verify the state.`);
+      renderMgmtOrders();
+      triggerToast(`🎉 Order #${newOrderId} placed successfully! Status: ${newOrder.status}`, "success");
     }
 
     function renderUiOrders() {
@@ -1099,19 +1768,291 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
 
       DB.orders.slice(0, 5).forEach(o => {
         const user = DB.users.find(u => u.id === o.user_id) || { email: "Unknown" };
+        const sym = CURRENCY_SYMBOLS[o.currency] || "$";
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>#${o.id}</strong></td>
           <td>${user.email}</td>
-          <td>$${o.total}</td>
+          <td>${sym}${o.total}</td>
           <td><span class="badge-status badge-${o.status}">${o.status}</span></td>
         `;
         tbody.appendChild(tr);
       });
     }
-    renderUiOrders();
 
-    // --- 5. SWAGGER / API CONSOLE LOGIC ---
+    // --- 6. ORDER MANAGEMENT & STATE MACHINE (ERP TABLE) ---
+    let mgmtCurrentPage = 1;
+    const MGMT_PAGE_SIZE = 5;
+
+    function renderMgmtOrders() {
+      const tbody = document.getElementById('mgmt-orders-tbody');
+      tbody.innerHTML = '';
+
+      const searchVal = (document.getElementById('mgmt-search')?.value || '').toLowerCase();
+      const statusFilter = document.getElementById('mgmt-status-filter')?.value || 'ALL';
+      const sortVal = document.getElementById('mgmt-sort')?.value || 'id-desc';
+
+      let filtered = DB.orders.filter(o => {
+        const user = DB.users.find(u => u.id === o.user_id) || { email: '' };
+        const prod = DB.products.find(p => p.id === o.product_id) || { name: '' };
+        
+        const matchSearch = String(o.id).includes(searchVal) ||
+                            user.email.toLowerCase().includes(searchVal) ||
+                            prod.name.toLowerCase().includes(searchVal);
+        const matchStatus = statusFilter === 'ALL' || o.status === statusFilter;
+        return matchSearch && matchStatus;
+      });
+
+      // Sorting
+      if (sortVal === 'id-desc') filtered.sort((a,b) => b.id - a.id);
+      else if (sortVal === 'id-asc') filtered.sort((a,b) => a.id - b.id);
+      else if (sortVal === 'total-desc') filtered.sort((a,b) => b.total - a.total);
+      else if (sortVal === 'total-asc') filtered.sort((a,b) => a.total - b.total);
+
+      // Pagination
+      const totalCount = filtered.length;
+      const totalPages = Math.ceil(totalCount / MGMT_PAGE_SIZE) || 1;
+      if (mgmtCurrentPage > totalPages) mgmtCurrentPage = totalPages;
+
+      const start = (mgmtCurrentPage - 1) * MGMT_PAGE_SIZE;
+      const pageOrders = filtered.slice(start, start + MGMT_PAGE_SIZE);
+
+      document.getElementById('mgmt-pagination-info').innerText = 
+        `Showing ${totalCount ? start + 1 : 0} to ${Math.min(start + MGMT_PAGE_SIZE, totalCount)} of ${totalCount} orders (Page ${mgmtCurrentPage} of ${totalPages})`;
+
+      pageOrders.forEach(o => {
+        const user = DB.users.find(u => u.id === o.user_id) || { email: 'Unknown' };
+        const prod = DB.products.find(p => p.id === o.product_id) || { name: 'Unknown' };
+        const sym = CURRENCY_SYMBOLS[o.currency] || "$";
+
+        // State Machine Action buttons based on Role and Status
+        let actionButtons = '';
+        if (o.status === 'PENDING') {
+          actionButtons += `<button class="btn-table-action btn-pay" onclick="transitionOrderStatus(${o.id}, 'PAID')" data-testid="btn-pay-${o.id}">Pay</button> `;
+          actionButtons += `<button class="btn-table-action btn-cancel" onclick="transitionOrderStatus(${o.id}, 'CANCELLED')" data-testid="btn-cancel-${o.id}">Cancel</button>`;
+        } else if (o.status === 'PAID') {
+          actionButtons += `<button class="btn-table-action btn-pay" style="background:#0284c7; color:#fff;" onclick="transitionOrderStatus(${o.id}, 'PROVISIONING')" data-testid="btn-provision-${o.id}">Provision</button> `;
+          if (currentUser.role === 'admin') {
+            actionButtons += `<button class="btn-table-action btn-refund" onclick="transitionOrderStatus(${o.id}, 'REFUNDED')" data-testid="btn-refund-${o.id}">Refund</button>`;
+          }
+        } else if (o.status === 'PROVISIONING') {
+          actionButtons += `<button class="btn-table-action btn-pay" style="background:#059669; color:#fff;" onclick="transitionOrderStatus(${o.id}, 'COMPLETED')" data-testid="btn-complete-${o.id}">Complete</button>`;
+        } else if (o.status === 'COMPLETED') {
+          if (currentUser.role === 'admin') {
+            actionButtons += `<button class="btn-table-action btn-refund" onclick="transitionOrderStatus(${o.id}, 'REFUNDED')" data-testid="btn-refund-${o.id}">Refund</button>`;
+          } else {
+            actionButtons += `<span style="color:var(--text-muted); font-size:0.7rem;">Locked</span>`;
+          }
+        } else {
+          actionButtons += `<span style="color:var(--text-muted); font-size:0.7rem;">Closed</span>`;
+        }
+
+        if (currentUser.role === 'admin') {
+          actionButtons += ` <button class="btn-table-action btn-delete" onclick="deleteOrderPermanently(${o.id})" data-testid="btn-del-${o.id}">Del</button>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-testid', 'order-row-' + o.id);
+        tr.innerHTML = `
+          <td><strong>#${o.id}</strong></td>
+          <td>${user.email}</td>
+          <td>${prod.name}</td>
+          <td>${o.quantity}</td>
+          <td><strong>${sym}${o.total}</strong></td>
+          <td><span style="font-family:var(--font-mono); font-size:0.75rem;">${o.payment_method.toUpperCase()}</span></td>
+          <td><span class="badge-status badge-${o.status}">${o.status}</span></td>
+          <td>${actionButtons}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function handleMgmtFilter() {
+      mgmtCurrentPage = 1;
+      renderMgmtOrders();
+    }
+    function mgmtChangePage(delta) {
+      mgmtCurrentPage += delta;
+      if (mgmtCurrentPage < 1) mgmtCurrentPage = 1;
+      renderMgmtOrders();
+    }
+
+    function transitionOrderStatus(orderId, nextStatus) {
+      const order = DB.orders.find(o => o.id === orderId);
+      if (!order) return;
+
+      // State machine validity check
+      if (order.status === 'CANCELLED' || order.status === 'REFUNDED') {
+        alert("❌ Invalid State Machine Transition: Cancelled or Refunded orders cannot be re-activated.");
+        return;
+      }
+      if (nextStatus === 'REFUNDED' && currentUser.role !== 'admin') {
+        alert("⛔ Access Denied (403 Forbidden): Only Admin role can refund orders.");
+        return;
+      }
+
+      const prev = order.status;
+      order.status = nextStatus;
+
+      DB.audit_logs.unshift({
+        id: DB.audit_logs.length + 1,
+        timestamp: new Date().toISOString(),
+        actor: currentUser.email,
+        action: "STATUS_TRANSITION",
+        details: `Order #${orderId} transitioned from ${prev} to ${nextStatus}`
+      });
+
+      renderUiOrders();
+      renderMgmtOrders();
+      triggerToast(`Order #${orderId} status updated to ${nextStatus}`, "success");
+    }
+
+    function deleteOrderPermanently(orderId) {
+      if (currentUser.role !== 'admin') {
+        alert("⛔ Access Denied (403 Forbidden): Hard delete requires Admin privileges.");
+        return;
+      }
+      const idx = DB.orders.findIndex(o => o.id === orderId);
+      if (idx !== -1) {
+        DB.orders.splice(idx, 1);
+        renderUiOrders();
+        renderMgmtOrders();
+        triggerToast(`Order #${orderId} permanently deleted from database.`, "error");
+      }
+    }
+
+    function exportOrdersCsv() {
+      let csv = "Order ID,User Email,Product ID,Quantity,Total,Currency,Payment Method,Status,Created At\n";
+      DB.orders.forEach(o => {
+        const u = DB.users.find(usr => usr.id === o.user_id) || { email: '' };
+        csv += `${o.id},"${u.email}",${o.product_id},${o.quantity},${o.total},${o.currency},${o.payment_method},${o.status},"${o.created_at}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `astron_orders_${Date.now()}.csv`;
+      a.click();
+      triggerToast("Orders exported to CSV file.", "success");
+    }
+
+    // --- 7. SELECTOR & DOM LAB INTERACTIONS ---
+    let fragileBuildIndex = 1;
+    function regenerateFragileClasses() {
+      fragileBuildIndex++;
+      const btn = document.getElementById('fragile-dynamic-btn');
+      const badge = document.getElementById('fragile-class-badge');
+      const newClass = `btn_v${49 + fragileBuildIndex}_sub_${fragileBuildIndex}x`;
+      btn.className = newClass;
+      badge.innerText = `Class: .${newClass}`;
+      alert(`💥 BUMM! A frontend build lefutott: az osztály átváltozott erre: .${newClass}!`);
+    }
+
+    function clickLegacyAction(idx) {
+      const fb = document.getElementById('fragile-feedback');
+      fb.style.display = 'block';
+      fb.innerHTML = `⚠️ Clicked: <strong>Modify button (#${idx})</strong>. Locator trap: nth(${idx-1})!`;
+    }
+
+    function clickFragileSubmit() {
+      const fb = document.getElementById('fragile-feedback');
+      const btn = document.getElementById('fragile-dynamic-btn');
+      fb.style.display = 'block';
+      fb.innerHTML = `⚠️ Submitted with brittle dynamic class: <code>.${btn.className}</code>`;
+    }
+
+    function clickCleanSubmit() {
+      const fb = document.getElementById('clean-feedback');
+      const email = document.getElementById('clean-email-input').value || 'test@astron.hu';
+      const role = document.getElementById('clean-role-select').value;
+      fb.style.display = 'block';
+      fb.innerHTML = `✅ <strong>Bulletproof Web-First Submission!</strong> Target: <code>${email}</code> | Role: <code>${role}</code>. Locator: <code>getByTestId('clean-submit-btn')</code>`;
+    }
+
+    // --- 7.1 ASYNC WIDGETS ---
+    let searchDebounceTimer = null;
+    function handleAsyncSearch(val) {
+      clearTimeout(searchDebounceTimer);
+      const spinner = document.getElementById('async-search-spinner');
+      const results = document.getElementById('async-search-results');
+      
+      if (!val.trim()) {
+        spinner.style.display = 'none';
+        results.style.display = 'none';
+        return;
+      }
+
+      spinner.style.display = 'block';
+      results.style.display = 'none';
+
+      searchDebounceTimer = setTimeout(() => {
+        spinner.style.display = 'none';
+        const matches = DB.products.filter(p => p.name.toLowerCase().includes(val.toLowerCase()));
+        results.style.display = 'block';
+        if (matches.length) {
+          results.innerHTML = matches.map(m => `<div style="padding:4px; border-bottom:1px solid #334155;">🔍 ${m.name} ($ ${m.price})</div>`).join('');
+        } else {
+          results.innerHTML = `<div style="color:var(--text-muted);">No products found matching '${val}'.</div>`;
+        }
+      }, 300);
+    }
+
+    function triggerToast(msg, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast-msg toast-${type}`;
+      toast.setAttribute('data-testid', 'toast-notification');
+      toast.innerHTML = `
+        <span>${msg}</span>
+        <button onclick="this.parentElement.remove()" style="background:transparent; border:none; color:#94a3b8; font-size:1rem; cursor:pointer;">&times;</button>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        if (toast.parentElement) toast.remove();
+      }, 3500);
+    }
+
+    function openTermsModal() {
+      document.getElementById('terms-modal').classList.add('open');
+      document.getElementById('modal-status-feedback').innerText = "Modal is OPEN.";
+    }
+    function closeTermsModal() {
+      document.getElementById('terms-modal').classList.remove('open');
+      document.getElementById('modal-status-feedback').innerText = "Modal was dismissed.";
+    }
+    function acceptTermsModal() {
+      document.getElementById('terms-modal').classList.remove('open');
+      document.getElementById('modal-status-feedback').innerText = "Modal terms ACCEPTED!";
+      triggerToast("Terms of service accepted.", "success");
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeTermsModal();
+        closeAuthModal();
+      }
+    });
+
+    function handleFileUpload(input) {
+      const fb = document.getElementById('file-upload-feedback');
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+
+      if (file.size > 2 * 1024 * 1024) {
+        fb.style.color = 'var(--accent-red)';
+        fb.innerText = `❌ Error 413: File size exceeds 2MB limit (${(file.size/1024/1024).toFixed(2)} MB)`;
+        return;
+      }
+      if (!file.name.endsWith('.pdf') && !file.name.endsWith('.png')) {
+        fb.style.color = 'var(--accent-red)';
+        fb.innerText = "❌ Error 415: Unsupported media type. Only .pdf and .png allowed.";
+        return;
+      }
+
+      fb.style.color = 'var(--accent-green)';
+      fb.innerText = `✅ Upload valid: ${file.name} (${Math.round(file.size/1024)} KB)`;
+    }
+
+    // --- 8. SWAGGER / API CONSOLE ENGINE ---
     function toggleEndpoint(id) {
       const el = document.getElementById(id);
       el.classList.toggle('open');
@@ -1130,6 +2071,36 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       `;
     }
 
+    function executeApiLogin() {
+      let body;
+      try {
+        body = JSON.parse(document.getElementById('api-login-body').value);
+      } catch (e) {
+        renderApiResponse('res-ep0', 400, 'Bad Request', { error: "Invalid JSON" });
+        return;
+      }
+      if (!body.email || !body.password) {
+        renderApiResponse('res-ep0', 400, 'Bad Request', { error: "Missing email or password" });
+        return;
+      }
+      if (body.email === 'suspended.user@malicious.com') {
+        renderApiResponse('res-ep0', 403, 'Forbidden', { error: "Account suspended due to policy violations" });
+        return;
+      }
+      if (body.password !== 'Password123') {
+        renderApiResponse('res-ep0', 401, 'Unauthorized', { error: "Invalid credentials" });
+        return;
+      }
+
+      const role = body.email.includes('admin') ? 'admin' : (body.email.includes('junior') ? 'junior_qa' : 'user');
+      renderApiResponse('res-ep0', 200, 'OK', {
+        token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.mock.${Date.now()}`,
+        role: role,
+        expires_in: 3600,
+        user: { email: body.email, role: role }
+      });
+    }
+
     function executeApiGetOrders() {
       const role = document.getElementById('api-active-role').value;
       if (role === 'none') {
@@ -1140,7 +2111,6 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
         return;
       }
 
-      // Enrich orders with user and product
       const enriched = DB.orders.map(o => {
         const user = DB.users.find(u => u.id === o.user_id);
         const prod = DB.products.find(p => p.id === o.product_id);
@@ -1150,6 +2120,7 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
           product_name: prod ? prod.name : null,
           quantity: o.quantity,
           total: o.total,
+          currency: o.currency,
           status: o.status,
           idempotency_key: o.idempotency_key
         };
@@ -1168,61 +2139,119 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
         renderApiResponse('res-ep2', 401, 'Unauthorized', { error: "Missing Bearer token" });
         return;
       }
+      if (role === 'blocked') {
+        renderApiResponse('res-ep2', 403, 'Forbidden', { error: "Account suspended" });
+        return;
+      }
 
       let body;
       try {
         body = JSON.parse(document.getElementById('api-post-body').value);
       } catch (err) {
-        renderApiResponse('res-ep2', 400, 'Bad Request', {
-          error: "Malformed JSON Syntax",
-          details: err.message
-        });
+        renderApiResponse('res-ep2', 400, 'Bad Request', { error: "Malformed JSON Syntax", details: err.message });
         return;
       }
 
-      // Input Validation Traps
-      if (!body.email || !body.product_id || !body.quantity) {
+      if (!body.email || !body.product_id || !body.quantity || body.quantity <= 0) {
         renderApiResponse('res-ep2', 400, 'Bad Request', {
           error: "Validation Failed",
-          required_fields: ["email", "product_id", "quantity"]
+          required_fields: ["email", "product_id", "quantity (must be > 0)"]
         });
         return;
       }
 
-      // Idempotency Trap
       const idemKey = document.getElementById('api-idem-key').value.trim();
       if (idemKey && DB.orders.some(o => o.idempotency_key === idemKey)) {
         renderApiResponse('res-ep2', 409, 'Conflict', {
           error: "Idempotency Conflict",
-          message: `An order with Idempotency-Key '${idemKey}' has already been processed.`
+          message: `Order with Idempotency-Key '${idemKey}' already processed.`
+        });
+        return;
+      }
+
+      const prod = DB.products.find(p => p.id === body.product_id);
+      if (!prod) {
+        renderApiResponse('res-ep2', 404, 'Not Found', { error: "Product not found" });
+        return;
+      }
+      if (prod.stock < body.quantity) {
+        renderApiResponse('res-ep2', 422, 'Unprocessable Entity', {
+          error: "Insufficient Stock",
+          available_stock: prod.stock
         });
         return;
       }
 
       let user = DB.users.find(u => u.email === body.email);
       if (!user) {
-        user = { id: DB.users.length + 1, email: body.email, role: "user", status: "active" };
+        user = { id: DB.users.length + 1, email: body.email, role: "user", status: "active", failed_logins: 0 };
         DB.users.push(user);
       }
 
-      const prod = DB.products.find(p => p.id === body.product_id) || { price: 100 };
+      prod.stock -= body.quantity;
       const newId = DB.orders.length ? Math.max(...DB.orders.map(o => o.id)) + 1 : 101;
       const newOrder = {
         id: newId,
         user_id: user.id,
         product_id: body.product_id,
         quantity: body.quantity,
+        subtotal: (body.price || prod.price) * body.quantity,
+        discount: 0,
+        vat: 0,
         total: (body.price || prod.price) * body.quantity,
+        currency: "USD",
+        payment_method: "card",
         status: "PENDING",
-        idempotency_key: idemKey || `API-${Date.now()}`
+        idempotency_key: idemKey || `API-${Date.now()}`,
+        created_at: new Date().toISOString()
       };
 
       DB.orders.unshift(newOrder);
       renderUiOrders();
+      renderMgmtOrders();
 
       renderApiResponse('res-ep2', 201, 'Created', {
-        message: "Order successfully created and queued for processing.",
+        message: "Order created successfully",
         order: newOrder
+      });
+    }
+
+    function executeApiValidateCoupon() {
+      let body;
+      try {
+        body = JSON.parse(document.getElementById('api-coupon-body').value);
+      } catch (e) {
+        renderApiResponse('res-ep2b', 400, 'Bad Request', { error: "Invalid JSON" });
+        return;
+      }
+
+      const coupon = DB.coupons.find(c => c.code === (body.code || '').toUpperCase());
+      if (!coupon) {
+        renderApiResponse('res-ep2b', 404, 'Not Found', { error: "Coupon not found" });
+        return;
+      }
+      if (coupon.expired) {
+        renderApiResponse('res-ep2b', 410, 'Gone', { error: "Coupon expired" });
+        return;
+      }
+      if (coupon.usage_count >= coupon.max_usage) {
+        renderApiResponse('res-ep2b', 409, 'Conflict', { error: "Coupon already redeemed" });
+        return;
+      }
+      if (coupon.min_spend > (body.cart_total || 0)) {
+        renderApiResponse('res-ep2b', 422, 'Unprocessable Entity', {
+          error: "Minimum cart value not met",
+          required: coupon.min_spend,
+          provided: body.cart_total
+        });
+        return;
+      }
+
+      renderApiResponse('res-ep2b', 200, 'OK', {
+        code: coupon.code,
+        type: coupon.type,
+        value: coupon.value,
+        status: "VALID"
       });
     }
 
@@ -1232,9 +2261,15 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
 
       const order = DB.orders.find(o => o.id === orderId);
       if (!order) {
-        renderApiResponse('res-ep3', 404, 'Not Found', {
-          error: "Resource Not Found",
-          message: `Order #${orderId} does not exist in the database.`
+        renderApiResponse('res-ep3', 404, 'Not Found', { error: "Resource Not Found", message: `Order #${orderId} does not exist.` });
+        return;
+      }
+
+      // State machine conflict trap
+      if (order.status === 'CANCELLED' || order.status === 'REFUNDED') {
+        renderApiResponse('res-ep3', 409, 'Conflict', {
+          error: "Invalid State Transition",
+          message: `Order is currently '${order.status}' and cannot transition to '${targetStatus}'.`
         });
         return;
       }
@@ -1242,6 +2277,7 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       const oldStatus = order.status;
       order.status = targetStatus;
       renderUiOrders();
+      renderMgmtOrders();
 
       renderApiResponse('res-ep3', 200, 'OK', {
         order_id: orderId,
@@ -1255,26 +2291,23 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       const role = document.getElementById('api-active-role').value;
       const orderId = parseInt(document.getElementById('api-delete-id').value, 10);
 
-      // RBAC CHECK
       if (role !== 'admin') {
         renderApiResponse('res-ep4', 403, 'Forbidden', {
           error: "Access Denied",
-          message: "Hard deleting an order requires 'admin' role privileges. Current role: " + role
+          message: "Hard deleting an order requires 'admin' role privileges."
         });
         return;
       }
 
       const idx = DB.orders.findIndex(o => o.id === orderId);
       if (idx === -1) {
-        renderApiResponse('res-ep4', 404, 'Not Found', {
-          error: "Not Found",
-          message: `Order #${orderId} not found.`
-        });
+        renderApiResponse('res-ep4', 404, 'Not Found', { error: "Not Found", message: `Order #${orderId} not found.` });
         return;
       }
 
       DB.orders.splice(idx, 1);
       renderUiOrders();
+      renderMgmtOrders();
 
       renderApiResponse('res-ep4', 200, 'OK', {
         message: `Order #${orderId} was permanently deleted from database.`,
@@ -1282,7 +2315,7 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       });
     }
 
-    // --- 6. SQL CONSOLE ENGINE LOGIC ---
+    // --- 9. SQL CONSOLE ENGINE LOGIC ---
     function setQuery(sql) {
       document.getElementById('sql-input').value = sql;
       executeSqlQuery();
@@ -1300,11 +2333,9 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
       const clean = rawSql.replace(/;$/, '').trim();
 
       try {
-        // Simple SQL parser for simulated execution
-        if (/^UPDATE\s+orders/i.test(clean)) {
-          // UPDATE orders SET status = 'REFUNDED' WHERE id = 101
-          const statusMatch = clean.match(/status\s*=\s*'([^']+)'/i);
-          const idMatch = clean.match(/id\s*=\s*(\d+)/i);
+        if (/^UPDATEs+orders/i.test(clean)) {
+          const statusMatch = clean.match(/statuss*=s*'([^']+)'/i);
+          const idMatch = clean.match(/ids*=s*(d+)/i);
 
           if (statusMatch && idMatch) {
             const status = statusMatch[1];
@@ -1313,100 +2344,50 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
             if (target) {
               target.status = status;
               renderUiOrders();
+              renderMgmtOrders();
               container.innerHTML = `<div style="color:var(--accent-green); font-family:var(--font-mono);">Query OK, 1 row affected. Order #${id} status updated to '${status}'.</div>`;
             } else {
               container.innerHTML = `<div style="color:var(--accent-orange); font-family:var(--font-mono);">Query OK, 0 rows affected. Order #${id} not found.</div>`;
             }
-          } else {
-            container.innerHTML = `<div style="color:var(--accent-red);">Syntax error in UPDATE statement.</div>`;
           }
           return;
         }
 
-        // DELETE Support
-        if (/^DELETE\s+FROM\s+users/i.test(clean)) {
-          const idMatch = clean.match(/id\s*=\s*(\d+)/i);
-          if (idMatch) {
-            const id = parseInt(idMatch[1], 10);
-            const idx = DB.users.findIndex(u => u.id === id);
-            if (idx !== -1) {
-              DB.users.splice(idx, 1);
-              container.innerHTML = `<div style="color:var(--accent-green); font-family:var(--font-mono);">Query OK, 1 row affected. User #${id} deleted from 'users' table. Notice: orphaned rows may remain in 'orders'!</div>`;
-            } else {
-              container.innerHTML = `<div style="color:var(--accent-orange); font-family:var(--font-mono);">Query OK, 0 rows affected. User #${id} not found.</div>`;
-            }
-          } else {
-            container.innerHTML = `<div style="color:var(--accent-red);">Syntax error in DELETE statement.</div>`;
-          }
-          return;
-        }
-
-        if (/^SELECT\s+/i.test(clean)) {
+        if (/^SELECTs+/i.test(clean)) {
           let rows = [];
 
-          // SUM(total) aggregation
-          if (/SUM\(total\)/i.test(clean)) {
-            let filteredOrders = DB.orders;
-            if (/WHERE\s+status\s*=\s*'PAID'/i.test(clean)) {
-              filteredOrders = DB.orders.filter(o => o.status === 'PAID');
-            }
-            const sum = filteredOrders.reduce((acc, curr) => acc + curr.total, 0);
-            rows = [{ "SUM(total)": sum, "paid_order_count": filteredOrders.length }];
-          } else if (/LEFT\s+JOIN\s+orders/i.test(clean) || /WHERE\s+orders\.id\s+IS\s+NULL/i.test(clean)) {
-            // Find users with 0 orders
-            const inactive = DB.users.filter(u => !DB.orders.some(o => o.user_id === u.id));
-            rows = inactive.map(u => ({ user_id: u.id, email: u.email, role: u.role, order_id: "NULL", total: "NULL" }));
-          } else if (/FROM\s+users/i.test(clean)) {
-            // Check for GROUP BY email HAVING COUNT(id) > 1
-            if (/GROUP\s+BY\s+email/i.test(clean) && /HAVING/i.test(clean)) {
-              const emailCounts = {};
-              DB.users.forEach(u => emailCounts[u.email] = (emailCounts[u.email] || 0) + 1);
-              rows = Object.keys(emailCounts)
-                .filter(email => emailCounts[email] > 1)
-                .map(email => ({ email: email, duplicate_count: emailCounts[email] }));
-            } else if (/WHERE\s+email\s*=\s*'([^']+)'/i.test(clean)) {
-              const em = clean.match(/WHERE\s+email\s*=\s*'([^']+)'/i)[1];
-              rows = DB.users.filter(u => u.email === em);
-            } else {
-              rows = DB.users;
-            }
-          } else if (/FROM\s+products/i.test(clean)) {
-            if (/WHERE\s+id\s*=\s*(\d+)/i.test(clean)) {
-              const pid = parseInt(clean.match(/WHERE\s+id\s*=\s*(\d+)/i)[1], 10);
-              rows = DB.products.filter(p => p.id === pid);
-            } else {
-              rows = DB.products;
-            }
-          } else if (/FROM\s+orders/i.test(clean)) {
-            if (/INNER\s+JOIN\s+users/i.test(clean) || /JOIN\s+users/i.test(clean)) {
+          if (/FROMs+coupons/i.test(clean)) {
+            rows = DB.coupons;
+          } else if (/FROMs+audit_logs/i.test(clean)) {
+            rows = DB.audit_logs;
+          } else if (/FROMs+users/i.test(clean)) {
+            rows = DB.users;
+          } else if (/FROMs+products/i.test(clean)) {
+            rows = DB.products;
+          } else if (/FROMs+orders/i.test(clean)) {
+            if (/INNERs+JOINs+users/i.test(clean) || /JOINs+users/i.test(clean)) {
               rows = DB.orders.map(o => {
                 const u = DB.users.find(usr => usr.id === o.user_id) || {};
                 const p = DB.products.find(prd => prd.id === o.product_id) || {};
                 return {
                   order_id: o.id,
-                  user_email: u.email || 'ORPHAN (User Deleted)',
+                  user_email: u.email || 'ORPHAN',
                   product_name: p.name || 'NULL',
                   total: o.total,
+                  currency: o.currency,
                   status: o.status
                 };
               });
-            } else if (/WHERE\s+total\s*=\s*(\d+)/i.test(clean)) {
-              const tot = parseInt(clean.match(/WHERE\s+total\s*=\s*(\d+)/i)[1], 10);
-              rows = DB.orders.filter(o => o.total === tot);
-            } else if (/WHERE\s+id\s*=\s*(\d+)/i.test(clean)) {
-              const oid = parseInt(clean.match(/WHERE\s+id\s*=\s*(\d+)/i)[1], 10);
-              rows = DB.orders.filter(o => o.id === oid);
             } else {
               rows = DB.orders;
             }
           }
 
-          if (rows.length === 0) {
+          if (!rows || rows.length === 0) {
             container.innerHTML = `<div style="color:var(--text-muted); font-family:var(--font-mono);">Empty set (0 rows returned).</div>`;
             return;
           }
 
-          // Render Table
           const cols = Object.keys(rows[0]);
           let html = `<div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); margin-bottom:0.5rem;">${rows.length} row${rows.length > 1 ? 's' : ''} in set.</div>`;
           html += '<table class="e2e-table"><thead><tr>';
@@ -1424,11 +2405,15 @@ INNER JOIN products ON orders.product_id = products.id;</textarea>
           return;
         }
 
-        container.innerHTML = `<div style="color:var(--accent-red);">Unsupported query syntax. Supported: SELECT, UPDATE, DELETE on tables 'users', 'products', 'orders'.</div>`;
+        container.innerHTML = `<div style="color:var(--accent-red);">Query executed against in-memory tables.</div>`;
       } catch (err) {
         container.innerHTML = `<div style="color:var(--accent-red);">SQL Error: ${err.message}</div>`;
       }
     }
+
+    // Initialize views on load
+    renderUiOrders();
+    renderMgmtOrders();
   </script>
 </body>
 </html>
