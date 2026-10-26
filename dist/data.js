@@ -61,8 +61,8 @@ window.SITE_DATA = {
       options: [
         {
           id: "ai-1day",
-          nameHu: "1 Napos Laza Workshop (4 óra 1v1)",
-          nameEn: "1-Day Casual Workshop (4 hours 1v1)",
+          nameHu: "1 Napos Intenzív Workshop (4 óra 1v1)",
+          nameEn: "1-Day Intensive Workshop (4 hours 1v1)",
           price: 59000,
           formVal: "AI-1Day",
           highlightHu: "4 órás intenzív személyes gyakorlat másolható prompt sablonokkal",
@@ -70,8 +70,8 @@ window.SITE_DATA = {
         },
         {
           id: "ai-2day",
-          nameHu: "2 Napos Bővített Képzés (2 × 3-4 óra 1v1)",
-          nameEn: "2-Day Extended Training (2 × 3-4 hours 1v1)",
+          nameHu: "2 Napos Mesterkurzus (2 × 4 óra 1v1)",
+          nameEn: "2-Day Masterclass (2 × 4 hours 1v1)",
           price: 99000,
           formVal: "AI-2Day",
           highlightHu: "Mélyebb gyakorlat + saját munkafolyamatok és táblázatok átültetése AI-ba",
@@ -141,32 +141,32 @@ window.SITE_DATA = {
       formVal: "Corporate",
       badgeHu: "Vállalati Tréningek & Műhelymunka",
       badgeEn: "Corporate Workshops & Consulting",
-      titleHu: "Vállalati QA & AI Műhelymunkák (B2B)",
-      titleEn: "Corporate QA & AI Engineering Workshops (B2B)",
-      subtitleHu: "Személyre szabott, intenzív gyakorlati képzés mérnökcsapatoknak",
-      subtitleEn: "Customized, intensive hands-on workshops for engineering teams",
+      titleHu: "Vállalati Playwright & AI Műhelymunkák (B2B)",
+      titleEn: "Corporate Playwright & AI Engineering Workshops (B2B)",
+      subtitleHu: "Gyakorlati műhelymunkák az Astron Kft.-nél bevált enterprise tematika alapján",
+      subtitleEn: "Hands-on workshops based on our proven Astron enterprise agenda",
       priceLabelHu: "Egyedi árajánlat",
       priceLabelEn: "Custom Quote",
-      descHu: "Valós vállalati igényekre szabott intenzív workshopok (pl. 2 napos felkészülés + 2–4 napos gyakorlati oktatás mérnökcsapatoknak: manuálisból automatizálásba léptetés, AI integráció, CI/CD pipeline).",
-      descEn: "Custom enterprise workshops tailored to your team's stack (e.g. 2-day prep + 2-4 day hands-on workshops: transition from manual to automation, AI tools, CI/CD).",
+      descHu: "Céges csapatokra szabott, valós nagyvállalati (Astron) tematikán alapuló intenzív workshopok. 2 napos felkészülés + 2–4 napos gyakorlati műhelymunka: Playwright setup, Page Object Model, Git/Bitbucket folyamatok, .md specifikációk, autonóm QA subagentek és CI/CD integráció.",
+      descEn: "Custom enterprise workshops based on the proven Astron curriculum. 2-day prep + 2-4 day hands-on training: Playwright setup, Page Object Model, Git/Bitbucket workflow, .md specs, autonomous QA subagents, and CI/CD pipelines.",
       tracks: [
         {
-          nameHu: "QA Bridge Workshop",
-          nameEn: "QA Bridge Workshop",
-          badgeHu: "Bestseller",
-          descHu: "Manuális tesztelők átvezetése az automatizálásba (Java/Playwright) és AI asszisztencia."
+          nameHu: "1. Nap: Alapozás, POM & Git",
+          nameEn: "Day 1: Foundations, POM & Git",
+          badgeHu: "Környezet + Tesztlogika",
+          descHu: "Playwright alapok, auto-wait, stabil szerepkör-lokátorok (getByRole), Page Object Model architektúra és Bitbucket feature ágak kezelése."
         },
         {
-          nameHu: "AI Expert Deep Dive",
-          nameEn: "AI Expert Deep Dive",
-          badgeHu: "Haladóknak",
-          descHu: "Tapasztalt csapatoknak: prompt engineering tesztelésre, automatizált tesztgenerálás."
+          nameHu: "2. Nap: AI Architektúra & CI/CD",
+          nameEn: "Day 2: AI Architecture & CI/CD",
+          badgeHu: "Módszertan + Pipeline",
+          descHu: "Vállalati .md kontextus-kezelés (AGENTS.md, specs/), 4 autonóm QA subagent bevetése, Jenkins / Bitbucket CI futtatás és Trace Viewer hibakeresés."
         },
         {
-          nameHu: "Enterprise Custom",
-          nameEn: "Enterprise Custom",
-          badgeHu: "Egyedi",
-          descHu: "Cégspecifikus infrastruktúra audit, tesztautomatizációs stratégia és architektúra."
+          nameHu: "Vibe Coding Hackathon",
+          nameEn: "Vibe Coding Hackathon",
+          badgeHu: "Gyakorlati Eszközépítés",
+          descHu: "Saját belső segédeszköz építése (HTML riportoló dashboard, tesztadat generátor, Jira bug report készítő script)."
         }
       ]
     }
@@ -176,32 +176,88 @@ window.SITE_DATA = {
     {
       id: "ai-1day",
       price: 59000,
-      nameHu: "Gyakorlati AI Képzés (1 Napos Laza Workshop - 4 óra)",
-      nameEn: "Practical AI Training (1-Day Casual Workshop - 4 hrs)",
+      nameHu: "Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 4 óra)",
+      nameEn: "Practical AI Fundamentals (1-Day Intensive - 4 hrs)",
       descHu: "ChatGPT, Claude, táblázatok, e-mailek és rutin feladatok 1v1",
       descEn: "ChatGPT, Claude, spreadsheets, emails & daily routine 1-on-1",
       badgeHu: "Új Flagship!",
-      formVal: "AI-1Day"
+      formVal: "AI-1Day",
+      curriculum: [
+        "1. Modul: Hatékony promptolás & másolható prompt sablonok",
+        "2. Modul: Szövegírás, hivatalos levelek & e-mailek azonnal",
+        "3. Modul: Nagy PDF-ek összefoglalása & Excel formulák kódolás nélkül",
+        "4. Modul: Prezentációk és kreatív vizuális anyagok készítése",
+        "5. Modul: Napi rutin & időspórolási szokások telefonon és gépen"
+      ]
     },
     {
       id: "ai-2day",
       price: 99000,
-      nameHu: "Gyakorlati AI Képzés (2 Napos Bővített Képzés - 8 óra)",
-      nameEn: "Practical AI Training (2-Day Extended - 8 hrs)",
+      nameHu: "Gyakorlati AI Mesterkurzus (2 Napos Képzés - 8 óra)",
+      nameEn: "Practical AI Masterclass (2-Day Training - 8 hrs)",
       descHu: "Mélyebb gyakorlat, saját munkafolyamatok és sablonok átültetése 1v1",
       descEn: "In-depth practice, integrating your actual sheets and workflows 1-on-1",
       badgeHu: "Mély Gyakorlat",
-      formVal: "AI-2Day"
+      formVal: "AI-2Day",
+      curriculum: [
+        "Az 5 alapmodul teljes, kiterjesztett anyaga személyes 1v1 felügyelettel",
+        "Saját céges dokumentumok, táblázatok és munkafolyamatok átültetése",
+        "Ismétlődő feladatok automatizálása egyedi prompt-rendszerrel",
+        "Kész, személyre szabott produktivitási sabloncsomag átadása"
+      ]
     },
     {
       id: "mentorship-500k",
       price: 500000,
-      nameHu: "Prémium 1v1 Mentorship (Manual + Automation + AI)",
-      nameEn: "Premium 1-on-1 Mentorship (Manual + Automation + AI)",
+      nameHu: "Prémium 1v1 Karrier Mentorship (Manual + Automation + AI)",
+      nameEn: "Premium 1-on-1 Career Mentorship (Manual + Automation + AI)",
       descHu: "Teljes körű karrier-átképzés: manuális alapok, Playwright/Java, AI és interjúfelkészítés",
       descEn: "Comprehensive career transition: manual core, Playwright/Java, AI and interview prep",
       badgeHu: "Minden Egyben",
-      formVal: "Mentorship-500k"
+      formVal: "Mentorship-500k",
+      curriculum: [
+        "100% egyéni 1-on-1 figyelem Dániellel, saját tempódban haladva",
+        "Manuális alapok: Agilis SDLC, Jira, Test Design, SQL lekérdezések, Postman",
+        "Modern automatizálás: Playwright TypeScript / Java Selenide, POM struktúra",
+        "AI eszközök a minőségbiztosításban: hatékony promptolás, teszteset-generálás",
+        "Személyes CV & LinkedIn profilépítés + szimulált technikai interjúk",
+        "Kamatmentes részletfizetés kérhető (2 vagy 3 részletben)"
+      ]
+    },
+    {
+      id: "corporate",
+      price: 0,
+      isCustomPrice: true,
+      priceLabelHu: "Egyedi ajánlat",
+      priceLabelEn: "Custom Quote",
+      nameHu: "Vállalati Playwright & AI Műhelymunka (B2B Astron Tematika)",
+      nameEn: "Corporate Playwright & AI Workshop (B2B Astron Agenda)",
+      descHu: "Astron Informatikai Kft. referencia-tematika: 2 napos felkészülés + 2–4 napos gyakorlati oktatás",
+      descEn: "Astron enterprise curriculum: 2-day prep + 2-4 day hands-on training for QA teams",
+      badgeHu: "B2B Csapatoknak",
+      formVal: "Corporate",
+      curriculum: [
+        "1. Nap: Környezet (Sandbox), Playwright alapok, getByRole lokátorok, Page Object Model (POM), Git & Bitbucket PR folyamat",
+        "2. Nap: Vállalati .md kontextus-kezelés (AGENTS.md, specs/), 4 autonóm QA subagent, CI/CD Jenkins/Bitbucket pipeline futtatás",
+        "Vibe Coding Hackathon: Saját belső segédeszköz építése (riport dashboard, bug-report generátor)",
+        "Egyedi ütemezés a csapat mérete és a cég technológiai stacje szerint"
+      ]
+    },
+    {
+      id: "consulting",
+      price: 15000,
+      nameHu: "1:1 Személyes Konzultáció / Blokk-elhárítás (1 óra)",
+      nameEn: "1-on-1 Personal Consultation / Blocker Solving (1 hr)",
+      descHu: "Közvetlen képernyőmegosztásos hibakeresés, kód-audit és tanácsadás",
+      descEn: "Direct screen-share debugging, code audit, and architecture guidance",
+      badgeHu: "15.000 Ft / óra",
+      formVal: "Consulting",
+      curriculum: [
+        "1 órás dedikált online ülés Borbás Dániellel",
+        "Konkrét elakadások, elbukó tesztek, lokátor-problémák élő debuggolása",
+        "Meglévő tesztautomatizációs kód audit és architektúra tanácsok",
+        "Személyes karriertanácsadás és szintfelmérő"
+      ]
     }
   ],
 
