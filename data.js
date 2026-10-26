@@ -36,8 +36,8 @@ window.SITE_DATA = {
     leadEn: "I'm Dániel Borbás with over 12 years of software testing and automation engineering experience (EPAM, Envision Pharma Group, Carl Zeiss). At TestAcademy, I skip outdated theoretical slides to give you hands-on, enterprise-grade skills through direct, personal 1-on-1 mentoring.",
     supportBoxTitleHu: "Gyakorlati fókusz & 1-on-1 segítség:",
     supportBoxTitleEn: "Practical focus & 1-on-1 support:",
-    supportBoxTextHu: "Nem hagylak magadra a kérdésekkel. A konzultációkon gyakorlati tanácsokkal, valós szakmai példákkal és a legmodernebb eszközökkel (AI eszközök, automatizálási stratégiák) segítem a közvetlen fejlődésedet.",
-    supportBoxTextEn: "You won't be left alone with blockers. In our sessions, we focus on practical guidance, real industry scenarios, and modern QA tools to accelerate your progress.",
+    supportBoxTextHu: "Nem hagylak magadra a kérdésekkel. A konzultációkon a saját, élesben használt AI ágens és Vibe Coding munkafolyamatomat (Antigravity & autonóm ágensek) adom át a kezedbe, hogy te is azonnal működő szoftvereket és belső eszközöket tudj építeni.",
+    supportBoxTextEn: "You won't be left alone with blockers. In our 1-on-1 sessions, I teach you my actual daily agentic Vibe Coding workflow (Antigravity & autonomous AI agents) so you can build functional tools and apps with confidence.",
     tags: [
       { hu: "12+ Év QA Tapasztalat", en: "12+ Years QA Experience" },
       { hu: "Fix 15.000 Ft / óra díj", en: "15k HUF / hr Hourly Rate" },
@@ -186,7 +186,7 @@ window.SITE_DATA = {
         "1. A Vibe Coding etosza: a 'karmester' szerep és a prompt-vezérelt szoftverkészítés",
         "2. Strukturált Prompt Engineering: szerepkörök, korlátok és hallucináció-mentesítés",
         "3. .md Architektúra: üzleti követelmények leírása tiszta Markdown specifikációban",
-        "4. Modern AI kódoló környezet beállítása (Cursor / Claude / Webes eszközök)",
+        "4. Modern autonóm AI kódoló környezet beállítása (Antigravity & Agentic eszközök)",
         "5. Az első működő mini-alkalmazásod vagy belső eszközöd megépítése és futtatása"
       ]
     },
