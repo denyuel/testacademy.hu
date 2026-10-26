@@ -4,6 +4,21 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-26 — Teljes Marketing Kampánycsomag & Facebook Hirdetési Playbook
+
+### 1. Hirdetési Stratégia & Forgatókönyvek Kidolgozása
+- **Felhasználói kérés / Igény:**
+  - *"inkább abba az irányba vinném, hogy kezdjük el a marketing anyag megcsinálását. ugyanúgy, mint a borbaswebdesignnál maradjunk a facebooknál?"*
+  - A felhasználó konkrét, másolható hirdetés-szövegeket, célzásokat és lépésről lépésre követhető marketing stratégiát kért a képzések értékesítésére.
+- **Megoldás & Implementáció:**
+  - Létrehoztuk a `marketing/` struktúrát a repóban:
+    1. `marketing/01_vibe_coding_ads.md`: 3 db teljes körű, azonnal indítható Facebook & Instagram hirdetésszöveg az 59.000 Ft-os és 99.000 Ft-os 1v1 Vibe Coding kurzusokra (Karmester szemlélet, Üzleti eszközépítés, Agentic workflow vs ChatGPT).
+    2. `marketing/02_qa_career_mentorship_ads.md`: 2 db konverziós hirdetés a prémium 500.000 Ft-os Senior QA & Karrier Mentoring termékre (Manuális mókuskerék áttörése, 1v1 vs tömeges bootcamp-ek).
+    3. `marketing/03_consulting_quick_ads.md`: Gyorsan mozgósítható poszt- és hirdetésszöveg az eseti 15.000 Ft/óra hibaelhárítási konzultációkra.
+    4. `marketing/CAMPAIGN_PLAYBOOK.md`: Részletes lépésről lépésre útmutató a Meta Ads Manager büdzsé- és célzás-beállításához, a vizuális kreatívok gyártásához és a beérkező érdeklődők lezárási (sales) folyamatához.
+
+---
+
 ## 📅 2026-10-26 — Teljes Rendszer Hardening: Kétnyelvűség (EN), Konverzió (Web3Forms + WhatsApp) és SEO
 
 ### 1. Kétnyelvű (HU/EN) Kalkulátor Teljes Szinkronizáció
