@@ -4,7 +4,26 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
-## 📅 2026-10-26 — Mobilos Túlnyúlások, Térközök & Kurzus Ellenőrzőlisták (Checkmarks)
+## 📅 2026-10-26 — Munkáltatói & HR Védelem ("Bulletproof" Cégreferenciák)
+
+### 1. Jelenlegi Munkáltató (Carl Zeiss) Eltávolítása a Nyilvános Marketingből
+- **Felhasználói kérés / Igény:**
+  - *"nem akarom a HR-t a nyakamon legyen bulletproof"*
+  - Teljes körű jogi és HR védelem megteremtése: ne lehessen a jelenlegi cég (Carl Zeiss) márkanevét jogosulatlan marketing/kereskedelmi használatnak minősíteni a weboldalon.
+- **Gyökérok:**
+  - Bár a szakmai háttér tényként való említése személyes CV-ben elfogadott, egy kereskedelmi termék weboldalának fejlécében vagy promóciós jelvényében (badge) való szerepeltetés céges belső szabályzatba (Code of Conduct / Trademark policy) ütközhet.
+- **Megoldás & Implementáció:**
+  - A „Carl Zeiss” név teljes eltávolítása az `index.html`-ből, `data.js`-ből és az angol verzióból.
+  - Helyette iparági standardnak megfelelő, nem védjegysértő megnevezések:
+    - Top banner: *„12+ év Senior mérnöki tapasztalat nemzetközi projektekről”*
+    - Hero badge: *„12+ Év Nagyvállalati Tapasztalat • Globális Mérnöki Háttér”*
+    - Mentor badge: *„12+ év QA • Senior Lead”*
+    - Mentor bio: *„...vezető nemzetközi tech és globális orvostechnológiai projekteken (EPAM, nemzetközi nagyvállalatok)...”*
+    - Értékajánlat kártya: *„Globális nagyvállalati háttér”*
+  - A konkrét munkahely és karriertörténet kizárólag Dániel személyes LinkedIn profilján látható (amelyre közvetlen link mutat), így a weboldal 100%-ban golyóálló.
+- **Szabályzat frissítve:**
+  - `AGENTS.md` 3. pontja és `CONTENT_RULES.md` 3. pontja kiegészítve a védjegy- és munkáltatói védelem kötelező betartásával.
+
 
 ### 1. Kurzuskártyák Egységes Ellenőrzőlistája (Checkmarks)
 - **Felhasználói kérés / Igény:**

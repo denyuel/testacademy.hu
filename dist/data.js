@@ -31,9 +31,9 @@ window.SITE_DATA = {
     titleHu: "Senior QA Engineer & AI Mentor",
     titleEn: "Senior QA Engineer & AI Mentor",
     experienceYears: 12,
-    badgeText: "12+ év QA • Carl Zeiss",
-    leadHu: "Borbás Dániel vagyok. Több mint 12 év szoftvertesztelői és automatizálási tapasztalattal rendelkezem (EPAM, Envision Pharma Group, Carl Zeiss). A TestAcademy-nél nem unalmas diasorokat mutogatok: a célom, hogy azonnal használható, életszerű gyakorlatot adjak a kezedbe közvetlen, emberi 1v1 figyelemmel.",
-    leadEn: "I'm Dániel Borbás with over 12 years of software testing and automation engineering experience (EPAM, Envision Pharma Group, Carl Zeiss). At TestAcademy, I skip outdated theoretical slides to give you hands-on, enterprise-grade skills through direct, personal 1-on-1 mentoring.",
+    badgeText: "12+ év QA • Senior Lead",
+    leadHu: "Borbás Dániel vagyok. Több mint 12 év szoftvertesztelői és automatizálási tapasztalattal rendelkezem vezető nemzetközi nagyvállalatoknál (EPAM, globális MedTech & Pharma projektek). A TestAcademy-nél nem unalmas diasorokat mutogatok: a célom, hogy azonnal használható, életszerű gyakorlatot adjak a kezedbe közvetlen, emberi 1v1 figyelemmel.",
+    leadEn: "I'm Dániel Borbás with over 12 years of software testing and automation engineering experience at leading global tech and MedTech/Pharma enterprises (EPAM and global projects). At TestAcademy, I skip outdated theoretical slides to give you hands-on, enterprise-grade skills through direct, personal 1-on-1 mentoring.",
     supportBoxTitleHu: "Gyakorlati fókusz & 1-on-1 segítség:",
     supportBoxTitleEn: "Practical focus & 1-on-1 support:",
     supportBoxTextHu: "Nem hagylak magadra a kérdésekkel. A konzultációkon a saját, élesben használt AI ágens és Vibe Coding munkafolyamatomat (Antigravity & autonóm ágensek) adom át a kezedbe, hogy te is azonnal működő szoftvereket és belső eszközöket tudj építeni.",
@@ -296,10 +296,10 @@ window.SITE_DATA = {
       icon: "experience",
       titleHu: "12+ Év Nagyvállalati Rutin",
       titleEn: "12+ Years Enterprise QA",
-      textHu: "Nem tankönyvekből tanítok: a Carl Zeiss-nél és multinacionális projekteken napi szinten használt, működő eszközöket adom át. Azt tanulod meg, amire a csapatoknak a valóságban szüksége van.",
-      textEn: "I don't teach from theoretical textbooks: I share proven tools used daily at Carl Zeiss and enterprise environments. You learn what engineering teams actually need.",
+      textHu: "Nem tankönyvekből tanítok: a nemzetközi élvonalban és komplex ipari projekteken napi szinten használt, működő eszközöket adom át. Azt tanulod meg, amire a csapatoknak a valóságban szüksége van.",
+      textEn: "I don't teach from theoretical textbooks: I share proven tools used daily in high-end global enterprise environments. You learn what engineering teams actually need.",
       bullets: [
-        { hu: "Carl Zeiss referencia", en: "Carl Zeiss experience" },
+        { hu: "Globális nagyvállalati háttér", en: "Global enterprise background" },
         { hu: "Nincs felesleges elmélet", en: "No fluff, 100% practical" },
         { hu: "Életszerű, azonnal használható tudás", en: "Realistic, actionable skills" }
       ]

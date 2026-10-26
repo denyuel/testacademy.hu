@@ -44,8 +44,9 @@ Ez a dokumentum a TestAcademy projekt központi specifikációja és memóriája
    - Az SVG-k méretét mindig explicit módon rögzíteni kell (`width="14" height="14"`, illetve méretvédelem: `min-width`, `max-width`, `flex-shrink: 0`), hogy dinamikus HTML injektáláskor se torzuljanak el.
 2. 🚫 **Tilos a "laza" és a "sallang / sallangmentes" szavak használata!**
    - Helyettük: *intenzív*, *fókuszált*, *gyakorlatorientált*, *átfogó*, *felesleges elmélet nélkül*.
-3. 🚫 **Tilos konkrét ügyfél- vagy partnercégek (pl. Astron) nevét kiírni (NDA & Ügyfélvédelem)!**
-   - Helyette: *„Enterprise Tematika”*, *„Nagyvállalati referencia”*, *„Nagyvállalati csapatoknál bevált tematika”*.
+3. 🚫 **Tilos konkrét ügyfél-, partner- vagy jelenlegi munkáltatócégek (pl. Astron, Carl Zeiss) nevét kiírni a weboldalon (HR-, Munkajogi- & NDA Védelem, Bulletproof szabály)!**
+   - Helyettük: *„Enterprise Tematika”*, *„Nagyvállalati referencia”*, *„Globális MedTech & Tech nagyvállalati háttér”*.
+   - A konkrét munkahelyek kizárólag a mentor személyes LinkedIn profilján jelenhetnek meg, a kereskedelmi weboldalon tilos céges védjegyeket reklámként szerepeltetni.
 4. 🚫 **Tilos a csomagokat óradíjasnak feltüntetni!**
    - A képzések és csomagok (59k, 99k, 500k) **fix, mindent tartalmazó díjazásúak** (0 Ft rejtett költség).
    - A 15.000 Ft/óra kizárólag az **Eseti 1:1 Konzultáció / Blokk-elhárítás** kategóriára vonatkozik.

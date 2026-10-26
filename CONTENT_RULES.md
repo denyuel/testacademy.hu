@@ -32,7 +32,7 @@
 ## 3. Tartalmi és Stílusbeli Szabályok
 - **Zéró Emoji Szabály:** Tilos emojikat tenni a weboldal felületeire (tiszta SVG ikonok használandók).
 - **Zéró "Laza" és "Sallang" Szóhasználat:** Tilos a "laza", illetve a "sallang / sallangmentes" szavak használata.
-- **NDA Védelem (Partnercégek):** Tilos konkrét ügyfél- vagy partnercégek (pl. Astron) nevét kiírni a nyilvános felületekre. Helyette: *Enterprise Tematika / Nagyvállalati referencia*.
+- **NDA és Munkáltatói Védelem (Bulletproof szabály):** Tilos konkrét ügyfél-, partner- vagy jelenlegi munkáltatócégek (pl. Astron, Carl Zeiss) nevét kiírni a nyilvános felületekre (HR és munkajogi védelem). Helyette: *Enterprise Tematika / Globális MedTech & Tech nagyvállalati háttér*. A konkrét karrier kizárólag a mentor személyes LinkedIn profilján jelenik meg.
 - **Fix Csomagárak vs Eseti Díj:** A képzési csomagok (59k, 99k, 500k) fix árasak. A 15.000 Ft/óra kizárólag az eseti elakadás-elhárító konzultációra érvényes.
 - **Közös Modul:** A kurzuskínálat és az interaktív kalkulátor egyetlen közös modulban él (`#kalkulator`).
 - **Adatszétválasztás:** Minden szöveg és ár a `data.js` `SITE_DATA` objektumában él, nem az `index.html`-ben.
