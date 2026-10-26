@@ -23,7 +23,7 @@
    - Fókusz: Komplex szoftverarchitektúra, autonóm subágensek, spec-driven development.
 3. **Senior QA & Karrier Mentoring (1v1 VIP Mentorship):** `500.000 Ft`
    - Fókusz: Manuális + Automatizálás (Java 17, Selenide, REST Assured) + AI munkafolyamatok + Garancia.
-4. **Vállalati AI & Ágens Workshop (Astron Enterprise Agenda):** `Egyedi árajánlat`
+4. **Vállalati AI & Ágens Workshop (Enterprise Agenda):** `Egyedi árajánlat`
    - Fókusz: Vállalati csapatoknak: Spec-driven dev, POM, autonóm QA subagensek, CI/CD, trace debugging, hackathon.
 5. **1-on-1 Személyes Tanácsadás / Konzultáció:** `15.000 Ft / óra`
 

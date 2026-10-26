@@ -32,7 +32,7 @@ Ez a dokumentum a TestAcademy projekt központi specifikációja és memóriája
 | `ai-1day` | **1v1 Vibe Coding & AI Ágens Alapok** | **59.000 Ft** | 1 napos intenzív (4 óra). Specifikáció-alapú kódolás Antigravity-vel, `.md` memóriák, autonóm ágensek. |
 | `ai-2day` | **1v1 Vibe Coding & AI Deep Dive** | **99.000 Ft** | 2 napos mesterkurzus (2x4 óra). Komplex szoftverek és ágens workflow-k építése manuális kódolás nélkül. |
 | `mentorship` | **Senior QA & Karrier Mentoring (1v1)** | **500.000 Ft** | Egyéni VIP karrierugrás: Manuális + Automatizálás (Java/Selenide) + AI munkafolyamatok. |
-| `corporate` | **Vállalati AI & Agens Workshop (Astron)** | **Egyedi árajánlat** | Csapatoknak (Astron enterprise agenda): Spec-driven dev, POM, autonóm QA subagensek, CI/CD, trace debugging, hackathon. |
+| `corporate` | **Vállalati Playwright & AI Workshop (Enterprise)** | **Egyedi árajánlat** | Csapatoknak (Enterprise agenda): Spec-driven dev, POM, autonóm QA subagensek, CI/CD, trace debugging, hackathon. |
 | `consulting` | **1-on-1 Személyes Tanácsadás** | **15.000 Ft / óra** | Technikai blokkerek feloldása, architektúra tervezés, kód review. |
 
 ---

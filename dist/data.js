@@ -40,7 +40,7 @@ window.SITE_DATA = {
     supportBoxTextEn: "You won't be left alone with blockers. In our 1-on-1 sessions, I teach you my actual daily agentic Vibe Coding workflow (Antigravity & autonomous AI agents) so you can build functional tools and apps with confidence.",
     tags: [
       { hu: "12+ Év QA Tapasztalat", en: "12+ Years QA Experience" },
-      { hu: "Fix 15.000 Ft / óra díj", en: "15k HUF / hr Hourly Rate" },
+      { hu: "Fix Csomagárak (0 Ft rejtett díj)", en: "Fixed Packages (0 Hidden Fees)" },
       { hu: "ISTQB Certified", en: "ISTQB Certified" },
       { hu: "Valódi Nagyvállalati Háttér", en: "Enterprise Background" }
     ]
@@ -143,12 +143,12 @@ window.SITE_DATA = {
       badgeEn: "Corporate Workshops & Consulting",
       titleHu: "Vállalati Playwright & AI Műhelymunkák (B2B)",
       titleEn: "Corporate Playwright & AI Engineering Workshops (B2B)",
-      subtitleHu: "Gyakorlati műhelymunkák az Astron Kft.-nél bevált enterprise tematika alapján",
-      subtitleEn: "Hands-on workshops based on our proven Astron enterprise agenda",
+      subtitleHu: "Gyakorlati műhelymunkák nagyvállalati csapatoknál bevált enterprise tematika alapján",
+      subtitleEn: "Hands-on workshops based on proven enterprise engineering curriculum",
       priceLabelHu: "Egyedi árajánlat",
       priceLabelEn: "Custom Quote",
-      descHu: "Céges csapatokra szabott, valós nagyvállalati (Astron) tematikán alapuló intenzív workshopok. 2 napos felkészülés + 2–4 napos gyakorlati műhelymunka: Playwright setup, Page Object Model, Git/Bitbucket folyamatok, .md specifikációk, autonóm QA subagentek és CI/CD integráció.",
-      descEn: "Custom enterprise workshops based on the proven Astron curriculum. 2-day prep + 2-4 day hands-on training: Playwright setup, Page Object Model, Git/Bitbucket workflow, .md specs, autonomous QA subagents, and CI/CD pipelines.",
+      descHu: "Céges csapatokra szabott, valós nagyvállalati tematikán alapuló intenzív workshopok. 2 napos felkészülés + 2–4 napos gyakorlati műhelymunka: Playwright setup, Page Object Model, Git/Bitbucket folyamatok, .md specifikációk, autonóm QA subagentek és CI/CD integráció.",
+      descEn: "Custom enterprise workshops based on proven enterprise curriculum. 2-day prep + 2-4 day hands-on training: Playwright setup, Page Object Model, Git/Bitbucket workflow, .md specs, autonomous QA subagents, and CI/CD pipelines.",
       tracks: [
         {
           nameHu: "1. Nap: Alapozás, POM & Git",
@@ -231,10 +231,10 @@ window.SITE_DATA = {
       isCustomPrice: true,
       priceLabelHu: "Egyedi ajánlat",
       priceLabelEn: "Custom Quote",
-      nameHu: "Vállalati Playwright & AI Műhelymunka (B2B Astron Tematika)",
-      nameEn: "Corporate Playwright & AI Workshop (B2B Astron Agenda)",
-      descHu: "Astron Informatikai Kft. referencia-tematika: 2 napos felkészülés + 2–4 napos gyakorlati oktatás",
-      descEn: "Astron enterprise curriculum: 2-day prep + 2-4 day hands-on training for QA teams",
+      nameHu: "Vállalati Playwright & AI Műhelymunka (Enterprise Tematika)",
+      nameEn: "Corporate Playwright & AI Workshop (Enterprise Agenda)",
+      descHu: "Nagyvállalati referencia-tematika csapatoknak: 2 napos felkészülés + 2–4 napos gyakorlati oktatás",
+      descEn: "Enterprise QA curriculum: 2-day prep + 2-4 day hands-on training for QA teams",
       badgeHu: "B2B Csapatoknak",
       formVal: "Corporate",
       curriculum: [
@@ -306,14 +306,14 @@ window.SITE_DATA = {
     {
       number: "02",
       icon: "pricing",
-      titleHu: "Transzparens, Világos Árazás",
-      titleEn: "Transparent, Clear Pricing",
-      textHu: "Nincsenek rejtett költségek és apróbetűs trükkök. Az egyéni óradíjam fixen 15.000 Ft/óra, a csomagok pedig egyértelmű, kiszámítható áron érhetők el — kamatmentes részletfizetéssel.",
-      textEn: "No hidden fees or fine-print gimmicks. Personal consulting is strictly 15k HUF / hr, with all packages offered at transparent, predictable rates and installment options.",
+      titleHu: "Fix Csomagárak, Világos Feltételek",
+      titleEn: "Fixed Package Pricing & Clear Terms",
+      textHu: "Minden képzésünk fix, kiszámítható csomagáron vehető igénybe — nincsenek kötelező óradíjas felárak vagy rejtett költségek. Ha pedig nem csomagot keresel, hanem egy konkrét elakadásodat szeretnéd megoldani, eseti tanácsadásra is van lehetőség fix 15.000 Ft/órás díjon.",
+      textEn: "All courses are offered at predictable fixed package rates with zero hidden fees. If you just need targeted help with a specific technical blocker, on-demand consultation is available at 15k HUF / hour.",
       bullets: [
-        { hu: "Fix 15.000 Ft / óra konzultáció", en: "15k HUF / hour consultation" },
+        { hu: "Fix, mindent tartalmazó csomagárak", en: "All-inclusive fixed package rates" },
         { hu: "0 Ft rejtett költség", en: "0 hidden fees" },
-        { hu: "Kamatmentes részletfizetési opció", en: "Interest-free installments" }
+        { hu: "15.000 Ft/óra eseti tanácsadás", en: "15k HUF/hr on-demand consulting" }
       ]
     },
     {
