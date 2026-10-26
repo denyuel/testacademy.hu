@@ -4,6 +4,22 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-26 — Meta Pixel (Konverzió & Lead Követés) Integráció
+
+### 1. Hivatalos Meta Pixel Beágyazása
+- **Felhasználói kérés / Igény:**
+  - *"de mi van ha traceklni akarom a dolgaimat?"*, *"igen és mit állítsak át a honlapon?"*
+  - A felhasználó pontos konverziókövetést kért a Facebook kampányhoz, hogy lássa az oldalmegtekintéseket és a beérkező érdeklődőket (Leads).
+- **Megoldás & Implementáció:**
+  - `index.html` és `dist/index.html`: Beillesztettük a hivatalos Meta Pixel kódot (ID: `1782726332751644`) a `<head>` szekcióba alapértelmezett `fbq('track', 'PageView')` eseménnyel és `<noscript>` fallbackkel.
+  - `thanks.html` és `dist/thanks.html`: Beillesztettük a Meta Pixelt, amely a sikeres űrlapkitöltés és átirányítás után automatikusan elsüti a `fbq('track', 'Lead')` eseményt is.
+- **Minőségbiztosítás & Tesztek:**
+  - `npm run build` lefutott, a `dist/` mappa szinkronizálva.
+  - `npx htmlhint`: 0 hiba.
+  - Selenide UI tesztek (`*UiTest`): **18/18 sikeres teszt**.
+
+---
+
 ## 📅 2026-10-26 — Teljes Marketing Kampánycsomag & Facebook Hirdetési Playbook
 
 ### 1. Hirdetési Stratégia & Forgatókönyvek Kidolgozása
