@@ -42,11 +42,16 @@ Ez a dokumentum a TestAcademy projekt központi specifikációja és memóriája
 1. 🚫 **Tilos az emoji használat a weboldalon!**
    - Emojik helyett kizárólag professzionális, tiszta inline SVG ikonokat használunk.
    - Az SVG-k méretét mindig explicit módon rögzíteni kell (`width="14" height="14"`, illetve méretvédelem: `min-width`, `max-width`, `flex-shrink: 0`), hogy dinamikus HTML injektáláskor se torzuljanak el.
-2. 🚫 **Tilos a "laza" szó használata!**
-   - B2B és lakossági workshopoknál sem használunk "laza" kifejezést. Helyette: *intenzív*, *fókuszált*, *gyakorlatorientált*, *átfogó*.
-3. 🚫 **Tilos a kurzusok és a kalkulátor szétbontása külön szekciókra!**
+2. 🚫 **Tilos a "laza" és a "sallang / sallangmentes" szavak használata!**
+   - Helyettük: *intenzív*, *fókuszált*, *gyakorlatorientált*, *átfogó*, *felesleges elmélet nélkül*.
+3. 🚫 **Tilos konkrét ügyfél- vagy partnercégek (pl. Astron) nevét kiírni (NDA & Ügyfélvédelem)!**
+   - Helyette: *„Enterprise Tematika”*, *„Nagyvállalati referencia”*, *„Nagyvállalati csapatoknál bevált tematika”*.
+4. 🚫 **Tilos a csomagokat óradíjasnak feltüntetni!**
+   - A képzések és csomagok (59k, 99k, 500k) **fix, mindent tartalmazó díjazásúak** (0 Ft rejtett költség).
+   - A 15.000 Ft/óra kizárólag az **Eseti 1:1 Konzultáció / Blokk-elhárítás** kategóriára vonatkozik.
+5. 🚫 **Tilos a kurzusok és a kalkulátor szétbontása külön szekciókra!**
    - A kurzuskínálat és az interaktív kalkulátor egyetlen közös, interaktív modulban él (`#kalkulator`, ahogy a Borbás Webdesign Kalkulátor komponensében).
-4. 🚫 **Tilos általános "ChatGPT promptolgatásként" pozicionálni a Vibe Codingot!**
+6. 🚫 **Tilos általános "ChatGPT promptolgatásként" pozicionálni a Vibe Codingot!**
    - A hiteles érték a valódi agentic workflow: **Google Antigravity**, `.md` specifikációk (`specs/`, `AGENTS.md`), autonóm subágensek és szoftverfejlesztés kézi kódírás nélkül.
 
 ---
