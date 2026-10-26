@@ -63,4 +63,33 @@ public class MobileResponsiveUiTest {
             .as("No badge inside calculator cards should break into two lines")
             .isFalse();
     }
+
+    @ParameterizedTest(name = "Testing card containment on {0}")
+    @ValueSource(strings = {"360x740", "375x812", "390x844", "412x915", "768x1024", "1280x800"})
+    @DisplayName("Verify calculator cards do not overflow their parent container")
+    public void verifyCardsDoNotOverflowParent(String size) {
+        Configuration.browserSize = size;
+        open(LOCAL_HTML_URL);
+
+        // Ensure every calc-card is strictly within its parent container bounds
+        String overflowError = executeJavaScript(
+            "const cards = document.querySelectorAll('.calc-card');" +
+            "let error = '';" +
+            "cards.forEach((card, idx) => {" +
+            "  const parent = card.closest('#calc-base-courses').parentElement;" +
+            "  if (parent) {" +
+            "    const cRect = card.getBoundingClientRect();" +
+            "    const pRect = parent.getBoundingClientRect();" +
+            "    if (cRect.right > pRect.right + 1.0) {" +
+            "      error += 'Card ' + idx + ' right (' + cRect.right.toFixed(1) + ') exceeds parent right (' + pRect.right.toFixed(1) + '); ';" +
+            "    }" +
+            "  }" +
+            "});" +
+            "return error;"
+        );
+
+        assertThat(overflowError)
+            .as("All calculator cards must stay within parent container boundaries on " + size)
+            .isEmpty();
+    }
 }
