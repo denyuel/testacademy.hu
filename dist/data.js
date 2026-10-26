@@ -255,7 +255,7 @@ window.SITE_DATA = {
       badgeHu: "15.000 Ft / óra",
       formVal: "Consulting",
       curriculum: [
-        "1 órás dedikált online ülés Borbás Dániellel",
+        "1 órás dedikált online 1v1 mentoring & konzultáció Borbás Dániellel",
         "Konkrét elakadások, elbukó tesztek, lokátor-problémák élő debuggolása",
         "Meglévő tesztautomatizációs kód audit és architektúra tanácsok",
         "Személyes karriertanácsadás és szintfelmérő"

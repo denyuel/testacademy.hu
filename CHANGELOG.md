@@ -4,6 +4,26 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-26 — Szóhasználat Finomhangolás: „Ülés” cseréje Természetes 1v1 Mentoring & Konzultációra
+
+### 1. Eseti Tanácsadás Csomag Pipás Pont Pontosítása
+- **Felhasználói kérés / Észrevétel:**
+  - *"ez mit jelent? ülés? ,entoringra gondoltál?"* (`media_1793019818814_59057ce0.png`)
+  - A felhasználó jelezte, hogy az 5. kurzuskártyán (Eseti 1:1 Konzultáció / Blokk-elhárítás) az *„1 órás közvetlen online ülés Borbás Dániellel”* megfogalmazás idegenül és furcsán hangzik.
+- **Gyökérok (Root Cause):**
+  - Az angol „session” (1-on-1 session) kifejezés tükörfordításaként került be a szövegbe az „ülés” szó, ami a magyar szakmai nyelvben nem természetes egyéni technikai mentoringra.
+- **Alkalmazott megoldás:**
+  - `index.html` (855. sor):
+    - Előtte: `<span class="text-teal-900 font-semibold">1 órás közvetlen online ülés Borbás Dániellel</span>`
+    - Utána: `<span class="text-teal-900 font-semibold">1 órás közvetlen online 1v1 mentoring & konzultáció Borbás Dániellel</span>`
+  - `data.js` (258. sor):
+    - Előtte: `"1 órás dedikált online ülés Borbás Dániellel"`
+    - Utána: `"1 órás dedikált online 1v1 mentoring & konzultáció Borbás Dániellel"`
+  - `npm run build` lefutott, `dist/index.html` és `dist/data.js` szinkronizálva.
+- **Minőségbiztosítási eredmények:**
+  - `npx htmlhint "index.html" "dist/index.html"` hibátlan (0 hiba).
+  - Selenide UI tesztcsomag (`CandidateEnrollmentFlowUiTest`, `MainWebUiTest`, `MobileResponsiveUiTest`): 16 teszt futott le, 0 hiba.
+
 ## 📅 2026-10-26 — Kalkulátor Floating / Sticky Rögzítés (Csomagok Tetejétől az Aljáig)
 
 ### 1. Lebegő Összesítő Kártya (Desktop Sticky Fix)
