@@ -92,4 +92,19 @@ public class MobileResponsiveUiTest {
             .as("All calculator cards must stay within parent container boundaries on " + size)
             .isEmpty();
     }
+
+    @Test
+    @DisplayName("Verify desktop calculator summary sticks during scroll")
+    public void verifyDesktopCalculatorSummarySticks() {
+        Configuration.browserSize = "1280x900";
+        open(LOCAL_HTML_URL);
+
+        // Check if right column sticks while scrolling down the packages
+        executeJavaScript("window.scrollTo({ top: 2000, behavior: 'instant' });");
+        Number topScrolled = executeJavaScript("return document.querySelector('.lg\\\\:sticky').getBoundingClientRect().top;");
+
+        assertThat(topScrolled.doubleValue())
+            .as("Calculator summary must stick near top-24 (approx 96px) when scrolled down the packages")
+            .isBetween(80.0, 120.0);
+    }
 }

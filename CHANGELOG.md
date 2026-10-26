@@ -4,7 +4,23 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
-## 📅 2026-10-26 — Munkáltatói & HR Védelem ("Bulletproof" Cégreferenciák)
+## 📅 2026-10-26 — Kalkulátor Floating / Sticky Rögzítés (Csomagok Tetejétől az Aljáig)
+
+### 1. Lebegő Összesítő Kártya (Desktop Sticky Fix)
+- **Felhasználói kérés / Igény:**
+  - *"a kalkulátor legyen floating a csomag box tetejétől az aljáig"* (`media_1793019123949_d06813ae.png`).
+  - Amikor a felhasználó asztali vagy nagyobb nézetben görgeti a bal oldali képzési listát (1. csomagtól az 5.-ig, kiegészítők, fizetési módok), a jobb oldali kalkulátor kártya folyamatosan lebegve kísérje a felhasználót a csomag doboz tetejétől az aljáig.
+- **Gyökérok (Root Cause):**
+  - A body alatt lévő fő wrapper `div` rendelkezett egy `overflow-x-hidden` szabállyal.
+  - A CSS szabvány szerint a `position: sticky` hatástalanná válik (nem tapad le), ha bármelyik szülő/ős konténer `overflow: hidden`, `overflow-x: hidden` vagy nem-visible értékkel bír, mert a böngésző nem a görgetett `window`-hoz köti a tapadási koordinátákat.
+  - Ennek következtében a `.lg:sticky` elem görgetéskor azonnal kicsúszott a képernyőről, ahelyett, hogy lebegett volna.
+- **Megoldás & Implementáció:**
+  - Eltávolítottuk az `overflow-x-hidden` osztályt a belső wrapper divről (`index.html`).
+  - Helyette a modern, `position: sticky`-t nem blokkoló `overflow-x: clip;` szabályt állítottuk be az `html, body` gyökéren (`index.html`, `input.css`).
+  - A jobb oldali oszlop (`#calc-summary-box`) `lg:sticky lg:top-24 self-start` beállítást kapott finom `transition-all` átmenettel, a kártya belső elrendezése pedig kisebb laptop magasságokon is kompakt marad (`p-6 sm:p-7 md:p-8`).
+- **Minőségbiztosítási eredmények:**
+  - `MobileResponsiveUiTest#verifyDesktopCalculatorSummarySticks` teszt megírva és zölden lefutva: görgetéskor a kártya stabilan 96px távolságban tapad a fejléc alá a csomagbox teljes magasságában.
+
 
 ### 1. Jelenlegi Munkáltató (Carl Zeiss) Eltávolítása a Nyilvános Marketingből
 - **Felhasználói kérés / Igény:**

@@ -34,6 +34,9 @@
     <script src="./data.js"></script>
 
     <style>
+      html, body {
+        overflow-x: clip;
+      }
       body {
         font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
@@ -241,7 +244,7 @@
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
-    <div class="relative min-h-screen overflow-x-hidden">
+    <div class="relative min-h-screen">
       <!-- TOP ANNOUNCEMENT BAR -->
       <div class="bg-gradient-to-r from-sky-900 via-slate-900 to-sky-900 text-white text-[11px] py-2 px-4 text-center font-medium tracking-wide border-b border-sky-800/40">
         <span class="lang-hu">12+ év Senior mérnöki tapasztalat nemzetközi projektekről • 1v1 Vibe Coding képzések & Senior QA Mentoring</span>
@@ -948,8 +951,8 @@
             </div>
 
             <!-- Right Column: Sticky Summary Box (Desktop) -->
-            <div class="lg:col-span-5 lg:sticky lg:top-24">
-              <div class="bg-white rounded-3xl border-2 border-sky-500/30 p-8 shadow-xl shadow-slate-200/50 space-y-6 relative overflow-hidden">
+            <div id="calc-summary-box" class="lg:col-span-5 lg:sticky lg:top-24 self-start transition-all duration-200">
+              <div class="bg-white rounded-3xl border-2 border-sky-500/30 p-6 sm:p-7 md:p-8 shadow-xl shadow-slate-200/50 space-y-5 sm:space-y-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-sky-400/10 to-teal-400/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
 
                 <div class="border-b border-slate-100 pb-5">
