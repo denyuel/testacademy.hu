@@ -50,64 +50,64 @@ window.SITE_DATA = {
     {
       id: "ai-flagship",
       formVal: "AI-1Day",
-      badgeHu: "Új Flagship Termék • Kódolás Nélkül!",
-      badgeEn: "New Flagship • Zero Coding!",
-      titleHu: "Gyakorlati AI Képzés Hétköznapi Embereknek",
-      titleEn: "Practical AI Training for Everyday Professionals",
-      subtitleHu: "ChatGPT, Claude & No-Code AI eszközök a mindennapi munkában és életben",
-      subtitleEn: "ChatGPT, Claude & No-Code AI tools in everyday work and life",
-      descHu: "Nem kell programozónak lenned! Ez a kurzus azoknak szól, akik még sosem vagy csak alapszinten használtak AI-t, de szeretnének azonnal heti 5-10 órát megspórolni szövegírásban, e-mailekben, táblázatkezelésben és rutin feladatokban.",
-      descEn: "No coding skills required! Designed for beginners who want to leverage ChatGPT, Claude, and practical AI tools to save 5-10 hours weekly on writing, emails, spreadsheets, and repetitive tasks.",
+      badgeHu: "1v1 Flagship • Vibe Coding",
+      badgeEn: "1-on-1 Flagship • Vibe Coding",
+      titleHu: "1v1 Vibe Coding & AI Ágens Építés",
+      titleEn: "1-on-1 Vibe Coding & AI Agent Building",
+      subtitleHu: "Építs szoftveres mini-appokat, .md specifikációkat és autonóm ágenseket kódolási előképzettség nélkül",
+      subtitleEn: "Build mini-apps, .md specifications, and autonomous agents with zero coding experience",
+      descHu: "Nem kell programozónak lenned, sem éveket töltened kódolással. A Vibe Coding lényege, hogy te vagy az ötletgazda és a 'karmester': megtanulsz precíz strukturált promptokat és .md specifikációkat írni, felépíted a saját autonóm AI ágenseidet, és működő webes mini-appokat hozol létre a saját vállalkozásodhoz vagy munkádhoz.",
+      descEn: "No prior programming skills required! Vibe coding turns you into the architect and orchestrator: write precise .md specs, prompt like an engineer, build autonomous AI agents, and launch functional web mini-apps for your work or business.",
       options: [
         {
           id: "ai-1day",
-          nameHu: "1 Napos Intenzív Workshop (4 óra 1v1)",
-          nameEn: "1-Day Intensive Workshop (4 hours 1v1)",
+          nameHu: "1 Napos Vibe Coding Alapok (4 óra 1v1)",
+          nameEn: "1-Day Vibe Coding Fundamentals (4 hours 1v1)",
           price: 59000,
           formVal: "AI-1Day",
-          highlightHu: "4 órás intenzív személyes gyakorlat másolható prompt sablonokkal",
-          highlightEn: "4-hour intensive personal workshop with plug-and-play templates"
+          highlightHu: "Karmester szerep, strukturált promptolás, .md specifikáció és az 1. működő mini-app",
+          highlightEn: "Orchestration, structured prompting, .md specifications and your 1st functional mini-app"
         },
         {
           id: "ai-2day",
-          nameHu: "2 Napos Mesterkurzus (2 × 4 óra 1v1)",
-          nameEn: "2-Day Masterclass (2 × 4 hours 1v1)",
+          nameHu: "2 Napos Vibe Coding & Ágens Mesterkurzus (2 × 4 óra 1v1)",
+          nameEn: "2-Day Vibe Coding & Agent Masterclass (2 × 4 hours 1v1)",
           price: 99000,
           formVal: "AI-2Day",
-          highlightHu: "Mélyebb gyakorlat + saját munkafolyamatok és táblázatok átültetése AI-ba",
-          highlightEn: "In-depth practice + integrating your actual workflows and sheets"
+          highlightHu: "Autonóm ágensek (AGENTS.md), subagentek és saját egyedi üzleti eszköz megépítése",
+          highlightEn: "Autonomous agents (AGENTS.md), subagents and building your custom business tool"
         }
       ],
       modules: [
         {
-          titleHu: "1. Modul: A hatékony kérdezés művészete",
-          titleEn: "Module 1: The art of effective prompting",
-          detailHu: "Promptolás laikusoknak, azonnal használható másolható sablonokkal",
-          detailEn: "Prompt engineering for beginners with plug-and-play templates"
+          titleHu: "1. Modul: A Vibe Coding etosz & A karmester szerep",
+          titleEn: "Module 1: The Vibe Coding ethos & Orchestrator role",
+          detailHu: "Hogyan gondolkodj tervezőként ahelyett, hogy soronként kódolnál",
+          detailEn: "Thinking like an architect and orchestrator instead of typing code"
         },
         {
-          titleHu: "2. Modul: Szövegírás & Üzleti kommunikáció",
-          titleEn: "Module 2: Writing & Business communication",
-          detailHu: "Hivatalos levelek, e-mailek, marketing posztok és összefoglalók 2 perc alatt",
-          detailEn: "Emails, letters, marketing copy and executive summaries in 2 mins"
+          titleHu: "2. Modul: Strukturált Prompt Engineering & Szabályok",
+          titleEn: "Module 2: Structured Prompt Engineering & Rules",
+          detailHu: "Kontextus-adás, minőségi követelmények és a hallucinációk kizárása",
+          detailEn: "Context control, quality constraints, and eliminating AI hallucinations"
         },
         {
-          titleHu: "3. Modul: Dokumentumok és Excel egyszerűen",
-          titleEn: "Module 3: Documents & Spreadsheets made easy",
-          detailHu: "Több tízoldalas PDF-ek áttekintése, Excel formulák írása kódolás nélkül",
-          detailEn: "Summarizing huge PDFs, formula generation without manual struggle"
+          titleHu: "3. Modul: .md Architektúra & Specifikációk írása",
+          titleEn: "Module 3: .md Architecture & Writing Specifications",
+          detailHu: "Üzleti logika leírása specs/ és data dictionary fájlokkal",
+          detailEn: "Defining business logic with modular specs/ and data dictionaries"
         },
         {
-          titleHu: "4. Modul: Kreatív vizualitás & Prezentációk",
-          titleEn: "Module 4: Visuals & Presentations",
-          detailHu: "AI képek, grafikai elemek és gyors prezentáció-vázlatok készítése",
-          detailEn: "Generating stunning images, graphics, and slide outlines fast"
+          titleHu: "4. Modul: Autonóm AI Ágensek (Subagents) létrehozása",
+          titleEn: "Module 4: Building Autonomous AI Subagents",
+          detailHu: "Szakosított ágensek építése (kutató, kódgeneráló, hiba-ellenőr)",
+          detailEn: "Creating specialized roles (scout, coder, quality gatekeeper)"
         },
         {
-          titleHu: "5. Modul: Időspórolási szokások & Napi rutin",
-          titleEn: "Module 5: Daily time-saving habits",
-          detailHu: "Hogyan építsd be az AI-t a telefonodba és a napi munkafolyamataidba",
-          detailEn: "Integrating AI into your mobile and daily desktop routine"
+          titleHu: "5. Modul: Működő saját eszköz élő megépítése",
+          titleEn: "Module 5: Live building your functional tool",
+          detailHu: "Egyedi kalkulátor, belső űrlap vagy mini-app felépítése és futtatása",
+          detailEn: "Deploying and running your custom calculator, dashboard, or workflow app"
         }
       ]
     },
@@ -176,34 +176,35 @@ window.SITE_DATA = {
     {
       id: "ai-1day",
       price: 59000,
-      nameHu: "Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 4 óra)",
-      nameEn: "Practical AI Fundamentals (1-Day Intensive - 4 hrs)",
-      descHu: "ChatGPT, Claude, táblázatok, e-mailek és rutin feladatok 1v1",
-      descEn: "ChatGPT, Claude, spreadsheets, emails & daily routine 1-on-1",
-      badgeHu: "Új Flagship!",
+      nameHu: "1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)",
+      nameEn: "1-on-1 Vibe Coding & Prompt Fundamentals (1 Day / 4h)",
+      descHu: "Karmester szerep, strukturált prompt engineering, .md specifikációk és az 1. működő mini-app",
+      descEn: "Orchestration, structured prompting, .md specs, and your 1st functional mini-app",
+      badgeHu: "1v1 Flagship!",
       formVal: "AI-1Day",
       curriculum: [
-        "1. Modul: Hatékony promptolás & másolható prompt sablonok",
-        "2. Modul: Szövegírás, hivatalos levelek & e-mailek azonnal",
-        "3. Modul: Nagy PDF-ek összefoglalása & Excel formulák kódolás nélkül",
-        "4. Modul: Prezentációk és kreatív vizuális anyagok készítése",
-        "5. Modul: Napi rutin & időspórolási szokások telefonon és gépen"
+        "1. A Vibe Coding etosza: a 'karmester' szerep és a prompt-vezérelt szoftverkészítés",
+        "2. Strukturált Prompt Engineering: szerepkörök, korlátok és hallucináció-mentesítés",
+        "3. .md Architektúra: üzleti követelmények leírása tiszta Markdown specifikációban",
+        "4. Modern AI kódoló környezet beállítása (Cursor / Claude / Webes eszközök)",
+        "5. Az első működő mini-alkalmazásod vagy belső eszközöd megépítése és futtatása"
       ]
     },
     {
       id: "ai-2day",
       price: 99000,
-      nameHu: "Gyakorlati AI Mesterkurzus (2 Napos Képzés - 8 óra)",
-      nameEn: "Practical AI Masterclass (2-Day Training - 8 hrs)",
-      descHu: "Mélyebb gyakorlat, saját munkafolyamatok és sablonok átültetése 1v1",
-      descEn: "In-depth practice, integrating your actual sheets and workflows 1-on-1",
+      nameHu: "1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)",
+      nameEn: "1-on-1 Vibe Coding & Agent Masterclass (2 Days / 8h)",
+      descHu: "Autonóm ágensek (AGENTS.md), subagent architektúra és saját üzleti mini-app megépítése 1v1",
+      descEn: "Autonomous agents (AGENTS.md), subagent roles, and live building your custom business app 1-on-1",
       badgeHu: "Mély Gyakorlat",
       formVal: "AI-2Day",
       curriculum: [
-        "Az 5 alapmodul teljes, kiterjesztett anyaga személyes 1v1 felügyelettel",
-        "Saját céges dokumentumok, táblázatok és munkafolyamatok átültetése",
-        "Ismétlődő feladatok automatizálása egyedi prompt-rendszerrel",
-        "Kész, személyre szabott produktivitási sabloncsomag átadása"
+        "Az 1. nap teljes Vibe Coding és .md specifikációs alapanyaga",
+        "Autonóm AI Ágensek építése: AGENTS.md szabályrendszer és subagent feladatmegosztás",
+        "A saját vállalkozásodra vagy munkádra szabott konkrét mini-app vagy belső eszköz lefejlesztése",
+        "Hibakeresési reflexek: hogyan javíttasd ki az AI-val a runtime hibákat azonnal",
+        "Kész, azonnal használható digitális eszköz vagy automatizmus átadása a kezedbe"
       ]
     },
     {

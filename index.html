@@ -502,17 +502,17 @@
                   <!-- Course 1: AI 1-day Flagship -->
                   <div
                     class="calc-card calc-card-selected p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4"
-                    onclick="app.calcSelectCourse('ai-1day', 59000, 'Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 4 óra)', 'Practical AI Fundamentals (1-Day Intensive - 4 hrs)')"
+                    onclick="app.calcSelectCourse('ai-1day', 59000, '1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)', '1-on-1 Vibe Coding & Prompt Fundamentals (1 Day / 4h)')"
                     data-course-id="ai-1day"
                   >
                     <div class="flex items-center gap-3.5">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
                       <div>
                         <div class="flex items-center gap-2">
-                          <h4 class="font-bold text-slate-900 text-sm md:text-base">Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 4 óra)</h4>
-                          <span class="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Új Flagship!</span>
+                          <h4 class="font-bold text-slate-900 text-sm md:text-base">1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)</h4>
+                          <span class="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">1v1 Flagship!</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-0.5">ChatGPT, Claude, táblázatok, e-mailek és rutin feladatok azonnali 1v1 felgyorsítása</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Karmester szerep, strukturált promptolás, .md specifikáció és az 1. működő mini-appod</p>
                       </div>
                     </div>
                     <div class="text-right flex-shrink-0">
@@ -523,17 +523,17 @@
                   <!-- Course 2: AI 2-day Masterclass -->
                   <div
                     class="calc-card p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4 hover:border-slate-300"
-                    onclick="app.calcSelectCourse('ai-2day', 99000, 'Gyakorlati AI Mesterkurzus (2 Napos Képzés - 8 óra)', 'Practical AI Masterclass (2-Day Training - 8 hrs)')"
+                    onclick="app.calcSelectCourse('ai-2day', 99000, '1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)', '1-on-1 Vibe Coding & Agent Masterclass (2 Days / 8h)')"
                     data-course-id="ai-2day"
                   >
                     <div class="flex items-center gap-3.5">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
                       <div>
                         <div class="flex items-center gap-2">
-                          <h4 class="font-bold text-slate-900 text-sm md:text-base">Gyakorlati AI Mesterkurzus (2 Napos Képzés - 8 óra)</h4>
+                          <h4 class="font-bold text-slate-900 text-sm md:text-base">1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)</h4>
                           <span class="bg-sky-100 text-sky-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Mély Gyakorlat</span>
                         </div>
-                        <p class="text-xs text-slate-500 mt-0.5">Mélyebb gyakorlat, saját munkafolyamatok, dokumentumok és sablonok átültetése 1v1</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Autonóm ágensek (AGENTS.md), subagentek és saját üzleti mini-app megépítése 1v1</p>
                       </div>
                     </div>
                     <div class="text-right flex-shrink-0">
@@ -856,8 +856,8 @@
                   id="form-course"
                   class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 outline-none font-medium text-slate-800 transition-all text-sm cursor-pointer"
                 >
-                  <option value="AI-1Day">Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 59k Ft)</option>
-                  <option value="AI-2Day">Gyakorlati AI Mesterkurzus (2 Napos Képzés - 99k Ft)</option>
+                  <option value="AI-1Day">1v1 Vibe Coding & Prompt Alapok (1 Nap - 59k Ft)</option>
+                  <option value="AI-2Day">1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap - 99k Ft)</option>
                   <option value="Mentorship-500k">Prémium 1v1 Karrier Mentorship: Manual + Auto + AI (500k Ft)</option>
                   <option value="Corporate">Vállalati Playwright & AI Műhelymunka (B2B Astron Tematika)</option>
                   <option value="Consulting">1:1 Személyes Konzultáció (15k/óra)</option>
@@ -1077,15 +1077,15 @@
         constructor() {
           this.courseOptions = {
             hu: [
-              { val: "AI-1Day", text: "Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 59k Ft)" },
-              { val: "AI-2Day", text: "Gyakorlati AI Mesterkurzus (2 Napos Képzés - 99k Ft)" },
+              { val: "AI-1Day", text: "1v1 Vibe Coding & Prompt Alapok (1 Nap - 59k Ft)" },
+              { val: "AI-2Day", text: "1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap - 99k Ft)" },
               { val: "Mentorship-500k", text: "Prémium 1v1 Karrier Mentorship (500k Ft)" },
               { val: "Corporate", text: "Vállalati Playwright & AI Műhelymunka (B2B Astron Tematika)" },
               { val: "Consulting", text: "1:1 Személyes Konzultáció (15k/óra)" }
             ],
             en: [
-              { val: "AI-1Day", text: "Practical AI Fundamentals (1-Day Intensive - 59k Ft)" },
-              { val: "AI-2Day", text: "Practical AI Masterclass (2-Day Training - 99k Ft)" },
+              { val: "AI-1Day", text: "1-on-1 Vibe Coding & Prompt Fundamentals (1 Day - 59k Ft)" },
+              { val: "AI-2Day", text: "1-on-1 Vibe Coding & Agent Masterclass (2 Days - 99k Ft)" },
               { val: "Mentorship-500k", text: "Premium 1-on-1 Career Mentorship (500k Ft)" },
               { val: "Corporate", text: "Corporate Playwright & AI Workshop (B2B Astron Agenda)" },
               { val: "Consulting", text: "1-on-1 Personal Consultation (15k HUF/hr)" }
@@ -1104,15 +1104,15 @@
             baseCourse: {
               id: "ai-1day",
               price: 59000,
-              nameHu: "Gyakorlati AI Alapok (1 Napos Intenzív Workshop - 4 óra)",
-              nameEn: "Practical AI Fundamentals (1-Day Intensive - 4 hrs)",
+              nameHu: "1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)",
+              nameEn: "1-on-1 Vibe Coding & Prompt Fundamentals (1 Day / 4h)",
               formVal: "AI-1Day",
               curriculum: [
-                "1. Modul: Hatékony promptolás & másolható prompt sablonok",
-                "2. Modul: Szövegírás, hivatalos levelek & e-mailek azonnal",
-                "3. Modul: Nagy PDF-ek összefoglalása & Excel formulák kódolás nélkül",
-                "4. Modul: Prezentációk és kreatív vizuális anyagok készítése",
-                "5. Modul: Napi rutin & időspórolási szokások telefonon és gépen"
+                "1. A Vibe Coding etosza: a 'karmester' szerep és a prompt-vezérelt szoftverkészítés",
+                "2. Strukturált Prompt Engineering: szerepkörök, korlátok és hallucináció-mentesítés",
+                "3. .md Architektúra: üzleti követelmények leírása tiszta Markdown specifikációban",
+                "4. Modern AI kódoló környezet beállítása (Cursor / Claude / Webes eszközök)",
+                "5. Az első működő mini-alkalmazásod vagy belső eszközöd megépítése és futtatása"
               ]
             },
             addons: []
