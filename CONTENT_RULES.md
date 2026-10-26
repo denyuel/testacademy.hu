@@ -1,93 +1,36 @@
 # AI Assistant Rules and Protected Content (TestAcademy)
 
-**IMPORTANT:** This document contains the stable, fixed content and structure of the `TestAcademy` website. As an AI assistant, it is **STRICTLY FORBIDDEN** to modify, delete, or accidentally rewrite the text, prices, contact information, and fundamental business logic in it without the EXPLICIT and CLEAR request of the user (Daniel).
+> **MEGJEGYZÉS / NOTE:** A projekt teljes körű technikai és ágens szabályzata a gyökérkönyvtárban lévő [AGENTS.md](file:///c:/Users/Daniel/Projects/websites/testacademy.hu/AGENTS.md) fájlban található. Ez a dokumentum a védett üzleti alapadatokat és tartalmi invariánsokat rögzíti.
 
-Ensure that if coding or design modifications are requested, these content elements remain completely untouched!
+**FONTOS:** Ez a dokumentum a `TestAcademy` weboldal stabil, rögzített adatait és struktúráját tartalmazza. AI asszisztensként **SZIGORÚAN TILOS** a szövegek, árak, kapcsolati adatok és alapvető üzleti logika önkényes átírása, törlése Daniel kifejezett kérése nélkül!
 
 ---
 
-## 1. Core Business Data and Contact Info (PROTECTED)
-- **Name:** TestAcademy | Senior QA Mentoring & AI Automation
+## 1. Védett Üzleti Adatok és Elérhetőségek
+- **Név:** TestAcademy | Senior QA Mentoring & AI Automation
 - **Email:** testacademyhungary@gmail.com
-- **Phone:** +36 30 309 3302
-- **Form Action (Application):** `https://formspree.io/f/mreygyry`
+- **Telefon:** +36 30 309 3302
+- **Űrlap Action (Application):** `https://formspree.io/f/mreygyry`
 - **Copyright:** &copy; 2026 TestAcademy
 
 ---
 
-## 2. Main Headlines and Slogans (PROTECTED)
-- **HU:** 10 év Lead tapasztalat • AI-támogatott tananyag
-- **EN:** 10 Years Lead Experience • AI-Powered Syllabus
-- **Main Headline HU:** Valódi funkcionális tudás.
-- **Main Headline EN:** Real functional skills.
-- **Subheadline HU:** Hétvégi képzések Java 17, Selenide és REST Assured alapokon. Tanulj a szakma sűrűjéből.
-- **Subheadline EN:** Weekend courses with Java 17 & Selenide. Learn from the professionals.
+## 2. Termékkínálat és Árak (Invariánsok)
+
+1. **1v1 Vibe Coding & AI Ágens Alapok (1 napos intenzív, 4 óra):** `59.000 Ft` (Listaár: 79.000 Ft)
+   - Fókusz: Kódolás nélkül valódi szoftverek és AI ágensek építése, Google Antigravity, `.md` specifikációk.
+2. **1v1 Vibe Coding & AI Deep Dive (2 napos mesterkurzus, 2x4 óra):** `99.000 Ft` (Listaár: 140.000 Ft)
+   - Fókusz: Komplex szoftverarchitektúra, autonóm subágensek, spec-driven development.
+3. **Senior QA & Karrier Mentoring (1v1 VIP Mentorship):** `500.000 Ft`
+   - Fókusz: Manuális + Automatizálás (Java 17, Selenide, REST Assured) + AI munkafolyamatok + Garancia.
+4. **Vállalati AI & Ágens Workshop (Astron Enterprise Agenda):** `Egyedi árajánlat`
+   - Fókusz: Vállalati csapatoknak: Spec-driven dev, POM, autonóm QA subagensek, CI/CD, trace debugging, hackathon.
+5. **1-on-1 Személyes Tanácsadás / Konzultáció:** `15.000 Ft / óra`
 
 ---
 
-## 3. Courses and Pricing (PROTECTED)
-
-These courses and their prices are fixed:
-
-### Courses (Weekend Training)
-1. **Junior Manual**
-   - **Price:** 149.000 Ft
-   - **Duration:** 4 Weekends
-   - **Description:** Testing fundamentals, Jira, SQL, and real projects. Not just theory: you gain routine here.
-
-2. **Enterprise Java Automation**
-   - **Price:** 299.000 Ft
-   - **Duration:** 8 Weekends
-   - **Description:** Modern Enterprise automation with Java 17 + Selenide. Complex API & UI architecture and CI/CD.
-
-3. **Zero to Hero QA Masterclass (Combined)**
-   - **Price:** 399.000 Ft
-   - **Duration:** 12 Weekends
-   - **Description:** The complete material of Junior Manual and Enterprise Java Automation at a discounted price. Full transformation from manual basics to senior-level architecture.
-
-### Personal Growth / Mentoring
-1. **Consulting & Coaching**
-   - **Price:** 15.000 Ft / hr
-   - **Type:** 1-on-1 sessions, specific technical blockers, career path planning.
-
-2. **Interview Ready Package (Most Popular)**
-   - **Price:** 99.000 Ft
-   - **Includes:** CV & LinkedIn Audit, Mock Interviews (HU/EN), Soft Skill Boost, Interviewing Techniques.
-
-### Corporate Training / B2B
-1. **AI Expert Deep Dive**
-   - **Price:** 199.000 Ft / day
-   - **Duration:** 1 Day
-   - **Target Audience:** Experienced teams.
-
-2. **QA Bridge Workshop (Bestseller)**
-   - **Price:** 199.000 Ft / day
-   - **Duration:** 2 Days
-   - **Target Audience:** Transitioning manual testers into automation.
-
-3. **Enterprise / Custom**
-   - **Price:** Custom Quote
-   - **Type:** Multi-day extended curriculum, tailored to unique needs.
-
----
-
-## 4. Technical and Structural Principles (STATIC)
-
-1. **Script-Based Bilingualism:**
-   - Bilingual support (HU/EN) is resolved using client-side JavaScript via CSS classes (`.lang-hu`, `.lang-en`, `.lang-hidden`).
-   - When adding any new text, it is mandatory to create both the `lang-hu` and its corresponding `lang-en` (`lang-hidden`) spans.
-   - Do not replace this system with complex packages (e.g., i18n) without an explicit request!
-
-2. **Styling / UI Framework:**
-   - The project uses **Tailwind CSS** via CDN (`<script src="https://cdn.tailwindcss.com"></script>`). Do not use external, complex build tools (e.g., webpack, vite) unless strictly instructed.
-
-3. **Form and Select Options:**
-   - The form dropdown (select) lists are populated from a global JavaScript object named `translations` based on the selected language!
-   - If a product price/name changes, it **MUST** be updated in the `translations` data array within the `<script>` block.
-
-4. **Location and Remote Strategy:**
-   - The courses are primarily **Remote (Online)** focused due to better scalability, lower overhead, and screen-sharing efficiency.
-   - In-person location can be **Budapest** upon request (if minimum capacity is met), Szeged only in special, unique cases. Thus, always emphasize the Remote option on the web.
-
----
-**SUMMARY:** Before modifying the contents of any file, read this `.md` file first to refresh your memory. Ensure that the business contents above remain consistent!
+## 3. Tartalmi és Stílusbeli Szabályok
+- **Zéró Emoji Szabály:** Tilos emojikat tenni a weboldal felületeire (tiszta SVG ikonok használandók).
+- **Zéró "Laza" Szóhasználat:** Tilos a "laza" szó használata minden képzésnél és workshopnál.
+- **Közös Modul:** A kurzuskínálat és az interaktív kalkulátor egyetlen közös modulban él (`#kalkulator`).
+- **Adatszétválasztás:** Minden szöveg és ár a `data.js` `SITE_DATA` objektumában él, nem az `index.html`-ben.
