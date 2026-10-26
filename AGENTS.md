@@ -87,12 +87,22 @@ A Maven/Selenide tesztcsomag (`qa-automation/`) és a belső logikai tesztek a k
 Mielőtt bármilyen feladatot késznek jelentesz:
 1. `npm run build` lefut sikeresen.
 2. `npx htmlhint "index.html" "dist/index.html"` nem jelez szintaktikai hibát.
-3. Logikai teszt lefut:
-   ```powershell
-   node test-app-logic.js
-   ```
-4. UI tesztek futtatása (ha módosult a HTML szerkezet):
+3. UI tesztek futtatása:
    ```powershell
    & "qa-automation/maven/apache-maven-3.9.6/bin/mvn.cmd" test -Dtest=*UiTest -f qa-automation/pom.xml
    ```
+4. Változásnapló frissítése a `CHANGELOG.md` fájlban (hiba, gyökérok, megoldás, tesztek).
 5. `git status` tiszta, `main` branch szinkronban a remote-tal.
+
+---
+
+## 6. Kötelező Változásnaplózás (CHANGELOG.md Szabály)
+
+**MINDEN AI ÁGENSNEK KÖTELEZŐ:**
+A felhasználónak nem kell külön kérnie: bármilyen javítás, bugfix, stílusmódosítás vagy új funkció készítése után a változtatást KÖTELEZŐ rögzíteni a gyökérkönyvtárban lévő `CHANGELOG.md` fájlban az alábbi struktúrában:
+- **Dátum és Cím**
+- **Felhasználói kérés / Probléma leírása** (képernyőképek vagy hibaüzenetek hivatkozása)
+- **Gyökérok (Root Cause)** pontos technikai magyarázata
+- **Alkalmazott megoldás** (érintett fájlok, CSS/HTML/JS struktúra)
+- **Minőségbiztosítási eredmények** (mely tesztek futottak le sikerrel)
+- **Git commit hash**
