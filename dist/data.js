@@ -183,11 +183,11 @@ window.SITE_DATA = {
       badgeHu: "1v1 Flagship!",
       formVal: "AI-1Day",
       curriculum: [
-        "1. A Vibe Coding etosza: a 'karmester' szerep és a prompt-vezérelt szoftverkészítés",
-        "2. Strukturált Prompt Engineering: szerepkörök, korlátok és hallucináció-mentesítés",
-        "3. .md Architektúra: üzleti követelmények leírása tiszta Markdown specifikációban",
-        "4. Modern autonóm AI kódoló környezet beállítása (Antigravity & Agentic eszközök)",
-        "5. Az első működő mini-alkalmazásod vagy belső eszközöd megépítése és futtatása"
+        "1. A Vibe Coding etosza: a 'karmester' szemlélet és prompt-vezérelt építés kézi kódolás helyett",
+        "2. Strukturált Prompt Engineering: szerepkörök, korlátok és a hallucinációk kizárása",
+        "3. .md Architektúra: üzleti specifikációk és adatlogika rögzítése tiszta Markdownban",
+        "4. Antigravity AI fejlesztői környezet konfigurációja és mindennapi használata",
+        "5. Az 1. működő mini-webalkalmazásod (kalkulátor vagy belső eszköz) megépítése és futtatása"
       ]
     },
     {
@@ -195,16 +195,17 @@ window.SITE_DATA = {
       price: 99000,
       nameHu: "1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)",
       nameEn: "1-on-1 Vibe Coding & Agent Masterclass (2 Days / 8h)",
-      descHu: "Autonóm ágensek (AGENTS.md), subagent architektúra és saját üzleti mini-app megépítése 1v1",
+      descHu: "Autonóm ágensek (AGENTS.md), subagent architektúra és saját üzleti szoftver megépítése 1v1",
       descEn: "Autonomous agents (AGENTS.md), subagent roles, and live building your custom business app 1-on-1",
       badgeHu: "Mély Gyakorlat",
       formVal: "AI-2Day",
       curriculum: [
-        "Az 1. nap teljes Vibe Coding és .md specifikációs alapanyaga",
-        "Autonóm AI Ágensek építése: AGENTS.md szabályrendszer és subagent feladatmegosztás",
-        "A saját vállalkozásodra vagy munkádra szabott konkrét mini-app vagy belső eszköz lefejlesztése",
-        "Hibakeresési reflexek: hogyan javíttasd ki az AI-val a runtime hibákat azonnal",
-        "Kész, azonnal használható digitális eszköz vagy automatizmus átadása a kezedbe"
+        "1. NAP (4 óra): A teljes 1. napi Vibe Coding, specifikációs és Antigravity környezeti alapozás",
+        "2. NAP (4 óra): Autonóm Multi-Ágens Rendszer felépítése (AGENTS.md szabályrendszer és subágensek)",
+        "2. NAP: A te saját vállalkozásodra/munkádra szabott egyedi szoftvereszköz élő megépítése 1v1-ben",
+        "2. NAP: Külső adatok, fájlok és API-k bekötése a működő webalkalmazásba",
+        "2. NAP: Hibakeresési reflexek (Trace & Debugging): runtime hibák automatikus javíttatása az AI-val",
+        "Azonnal élesben használható, saját egyedi szoftver és forráskód átadása a kezedbe"
       ]
     },
     {
