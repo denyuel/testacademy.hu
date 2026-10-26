@@ -77,6 +77,14 @@ html {
   background-color: #f0f9ff;
 }
 
+#calc-summary-items svg {
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  max-width: 14px !important;
+  flex-shrink: 0 !important;
+}
+
 /* Mobile Sticky Bar (Borbas Webdesign style) */
 .calc-sticky-bar {
   display: none;
@@ -152,4 +160,3 @@ html {
     box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
   }
 }
-
