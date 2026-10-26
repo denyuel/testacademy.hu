@@ -5,10 +5,10 @@
 window.SITE_DATA = {
   brand: {
     name: "TestAcademy",
-    taglineHu: "Senior QA Mentoring & Gyakorlati AI",
-    taglineEn: "Senior QA Mentoring & Practical AI",
-    missionHu: "Valódi funkcionális és tesztautomatizációs tudás a szakma sűrűjéből. 12+ év tapasztalat, egyéni 1v1 mentoring és modern AI képzések Borbás Dánieltől.",
-    missionEn: "Real-world functional & test automation engineering skills. 12+ years of senior experience, 1-on-1 mentoring and modern practical AI courses by Dániel Borbás."
+    taglineHu: "1v1 Vibe Coding & Senior QA Mentoring",
+    taglineEn: "1-on-1 Vibe Coding & Senior QA Mentoring",
+    missionHu: "Valódi funkcionális és tesztautomatizációs tudás a szakma sűrűjéből. 12+ év tapasztalat, egyéni 1v1 Vibe Coding és Senior QA mentoring Borbás Dánieltől.",
+    missionEn: "Real-world engineering & AI development skills. 12+ years of senior experience, 1-on-1 Vibe Coding and QA mentoring by Dániel Borbás."
   },
 
   contact: {
@@ -335,8 +335,8 @@ window.SITE_DATA = {
     {
       qHu: "Kezdők is részt vehetnek az 1v1 képzéseken?",
       qEn: "Can absolute beginners join the 1-on-1 programs?",
-      aHu: "Igen! Mind a Gyakorlati AI képzés, mind az 1v1 Mentorship az alapoktól építkezik. Nem szükséges előzetes IT vagy programozói háttér, mindent a saját tempódban, gyakorlati feladatokon keresztül tanulunk meg.",
-      aEn: "Yes! Both the Practical AI training and the 1-on-1 Mentorship start from the foundations. No prior IT background is required; everything is learned at your own pace through hands-on practice."
+      aHu: "Igen! Mind az 1v1 Vibe Coding képzés, mind a Senior QA Mentorship a legelső lépésektől építkezik. Nem szükséges előzetes IT vagy programozói háttér, mindent a saját tempódban, valós gyakorlati feladatokon keresztül tanulunk meg.",
+      aEn: "Yes! Both the 1-on-1 Vibe Coding training and the Senior QA Mentorship start from the ground up. No prior programming background is required; everything is learned at your own pace through hands-on practice."
     },
     {
       qHu: "Hogyan történik az 1v1 oktatás?",
