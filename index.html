@@ -94,6 +94,24 @@
         background-color: #f0f9ff !important;
       }
 
+      #calc-summary-items svg {
+        width: 14px !important;
+        height: 14px !important;
+        min-width: 14px !important;
+        max-width: 14px !important;
+        flex-shrink: 0 !important;
+      }
+
+      /* Badge & Pill line-break protection everywhere */
+      .calc-card span[class*="rounded-"],
+      .calc-card span[class*="uppercase"],
+      .badge-pill,
+      span[class*="text-[10px]"][class*="uppercase"],
+      span[class*="text-[9px]"][class*="uppercase"] {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+      }
+
       /* Mobile sticky summary bar */
       .calc-sticky-bar {
         position: fixed;
@@ -407,8 +425,8 @@
             <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-100 flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                  <span class="badge-pill text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-100 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-sky-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
                     <span>Valós Tapasztalat</span>
                   </span>
                   <span class="text-[10px] font-bold text-slate-400 font-mono">01</span>
@@ -429,8 +447,8 @@
             <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-100 flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5 text-teal-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                  <span class="badge-pill text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-100 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-teal-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                     <span>Transzparens Árazás</span>
                   </span>
                   <span class="text-[10px] font-bold text-slate-400 font-mono">02</span>
@@ -451,8 +469,8 @@
             <div class="bg-white rounded-3xl border border-slate-200/80 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-500/30 transition-all flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  <span class="badge-pill text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 flex items-center gap-1.5 whitespace-nowrap flex-shrink-0">
+                    <svg class="w-3.5 h-3.5 text-indigo-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span>Közvetlen Kapcsolat</span>
                   </span>
                   <span class="text-[10px] font-bold text-slate-400 font-mono">03</span>
@@ -510,78 +528,78 @@
                 <div class="grid gap-3.5" id="calc-base-courses">
                   <!-- Category 1: Vibe Coding -->
                   <div class="flex items-center gap-2 pt-1">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-3 py-1 rounded-full border border-sky-200/80">
+                    <span class="badge-pill text-[10px] font-bold uppercase tracking-widest text-sky-800 bg-sky-50 px-3 py-1 rounded-full border border-sky-200/80 whitespace-nowrap flex-shrink-0">
                       1v1 Vibe Coding Műhelyek (Flagship)
                     </span>
                   </div>
 
                   <!-- Course 1: AI 1-day Flagship -->
                   <div
-                    class="calc-card calc-card-selected p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4"
+                    class="calc-card calc-card-selected p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-3 sm:gap-4"
                     onclick="app.calcSelectCourse('ai-1day', 59000, '1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)', '1-on-1 Vibe Coding & Prompt Fundamentals (1 Day / 4h)')"
                     data-course-id="ai-1day"
                   >
-                    <div class="flex items-center gap-3.5">
+                    <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
-                      <div>
-                        <div class="flex items-center gap-2">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <h4 class="font-bold text-slate-900 text-sm md:text-base">1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)</h4>
-                          <span class="bg-teal-100 text-teal-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">1v1 Flagship!</span>
+                          <span class="badge-pill bg-teal-100 text-teal-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap flex-shrink-0 tracking-wider">1v1 Flagship!</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Karmester szerep, strukturált promptolás, .md specifikáció és az 1. működő mini-appod</p>
                       </div>
                     </div>
-                    <div class="text-right flex-shrink-0">
+                    <div class="text-right flex-shrink-0 whitespace-nowrap">
                       <span class="text-base md:text-lg font-black text-sky-600">59.000 Ft</span>
                     </div>
                   </div>
 
                   <!-- Course 2: AI 2-day Masterclass -->
                   <div
-                    class="calc-card p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4 hover:border-slate-300"
+                    class="calc-card p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-3 sm:gap-4 hover:border-slate-300"
                     onclick="app.calcSelectCourse('ai-2day', 99000, '1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)', '1-on-1 Vibe Coding & Agent Masterclass (2 Days / 8h)')"
                     data-course-id="ai-2day"
                   >
-                    <div class="flex items-center gap-3.5">
+                    <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
-                      <div>
-                        <div class="flex items-center gap-2">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <h4 class="font-bold text-slate-900 text-sm md:text-base">1v1 Vibe Coding & Ágens Mesterkurzus (2 Nap / 8 óra)</h4>
-                          <span class="bg-sky-100 text-sky-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Mély Gyakorlat</span>
+                          <span class="badge-pill bg-sky-100 text-sky-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap flex-shrink-0 tracking-wider">Mély Gyakorlat</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Autonóm ágensek (AGENTS.md), subagentek és saját üzleti mini-app megépítése 1v1</p>
                       </div>
                     </div>
-                    <div class="text-right flex-shrink-0">
+                    <div class="text-right flex-shrink-0 whitespace-nowrap">
                       <span class="text-base md:text-lg font-black text-slate-900">99.000 Ft</span>
                     </div>
                   </div>
 
                   <!-- Category 2: Mentorship -->
                   <div class="flex items-center gap-2 pt-3 border-t border-slate-100">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-800 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/80">
+                    <span class="badge-pill text-[10px] font-bold uppercase tracking-widest text-indigo-800 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/80 whitespace-nowrap flex-shrink-0">
                       Hosszú Távú Karrier Átképzés (VIP Mentoring)
                     </span>
                   </div>
 
                   <!-- Course 3: Mentorship 500k -->
                   <div
-                    class="calc-card p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4 hover:border-slate-300"
+                    class="calc-card p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-3 sm:gap-4 hover:border-slate-300"
                     data-testid="enroll-manual-btn"
                     onclick="app.calcSelectCourse('mentorship-500k', 500000, 'Prémium 1v1 Karrier Mentorship (Manual + Automation + AI)', 'Premium 1-on-1 Career Mentorship (Manual + Automation + AI)')"
                     data-course-id="mentorship-500k"
                   >
-                    <div class="flex items-center gap-3.5">
+                    <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
-                      <div>
-                        <div class="flex items-center gap-2">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <h4 class="font-bold text-slate-900 text-sm md:text-base">Prémium 1v1 Karrier Mentorship (Manual + Automation + AI)</h4>
-                          <span class="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Minden Egyben</span>
+                          <span class="badge-pill bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap flex-shrink-0 tracking-wider">Minden Egyben</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Teljes körű mérnöki átképzés: manuális alapok, Playwright/Java, AI és próbainterjúk</p>
                       </div>
                     </div>
-                    <div class="text-right flex-shrink-0">
+                    <div class="text-right flex-shrink-0 whitespace-nowrap">
                       <span class="text-base md:text-lg font-black text-slate-900">500.000 Ft</span>
                       <span class="text-[10px] text-teal-600 font-semibold block">Részletfizetéssel is</span>
                     </div>
@@ -589,49 +607,49 @@
 
                   <!-- Category 3: Corporate & Consulting -->
                   <div class="flex items-center gap-2 pt-3 border-t border-slate-100">
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                    <span class="badge-pill text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-slate-100 px-3 py-1 rounded-full border border-slate-200 whitespace-nowrap flex-shrink-0">
                       Vállalati Képzések & Eseti Tanácsadás
                     </span>
                   </div>
 
                   <!-- Course 4: Corporate B2B (Enterprise Agenda) -->
                   <div
-                    class="calc-card p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4 hover:border-slate-300"
+                    class="calc-card p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-3 sm:gap-4 hover:border-slate-300"
                     onclick="app.calcSelectCourse('corporate', 0, 'Vállalati Playwright & AI Műhelymunka (Enterprise Tematika)', 'Corporate Playwright & AI Workshop (Enterprise Agenda)')"
                     data-course-id="corporate"
                   >
-                    <div class="flex items-center gap-3.5">
+                    <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
-                      <div>
-                        <div class="flex items-center gap-2">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <h4 class="font-bold text-slate-900 text-sm md:text-base">Vállalati Playwright & AI Műhelymunka (B2B)</h4>
-                          <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Enterprise Tematika</span>
+                          <span class="badge-pill bg-amber-100 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap flex-shrink-0 tracking-wider">Enterprise Tematika</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Nagyvállalati referencia: 2 napos felkészülés + 2–4 napos intenzív gyakorlati műhelymunka</p>
                       </div>
                     </div>
-                    <div class="text-right flex-shrink-0">
+                    <div class="text-right flex-shrink-0 whitespace-nowrap">
                       <span class="text-base md:text-lg font-bold text-sky-600">Egyedi ajánlat</span>
                     </div>
                   </div>
 
                   <!-- Course 5: Hourly Consulting -->
                   <div
-                    class="calc-card p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-4 hover:border-slate-300"
+                    class="calc-card p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 cursor-pointer transition-all flex items-center justify-between gap-3 sm:gap-4 hover:border-slate-300"
                     onclick="app.calcSelectCourse('consulting', 15000, 'Eseti 1:1 Konzultáció / Blokk-elhárítás (1 óra)', '1-on-1 Personal Consultation / Blocker Solving (1 hr)')"
                     data-course-id="consulting"
                   >
-                    <div class="flex items-center gap-3.5">
+                    <div class="flex items-center gap-3 sm:gap-3.5 min-w-0">
                       <div class="calc-radio-indicator w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center flex-shrink-0"></div>
-                      <div>
-                        <div class="flex items-center gap-2">
+                      <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                           <h4 class="font-bold text-slate-900 text-sm md:text-base">Eseti 1:1 Konzultáció / Blokk-elhárítás (1 óra)</h4>
-                          <span class="bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-md uppercase">Eseti Tanácsadás</span>
+                          <span class="badge-pill bg-slate-100 text-slate-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase whitespace-nowrap flex-shrink-0 tracking-wider">Eseti Tanácsadás</span>
                         </div>
                         <p class="text-xs text-slate-500 mt-0.5">Konkrét technikai elakadás, teszthiba vagy kód-audit azonnali online megoldása</p>
                       </div>
                     </div>
-                    <div class="text-right flex-shrink-0">
+                    <div class="text-right flex-shrink-0 whitespace-nowrap">
                       <span class="text-base md:text-lg font-black text-slate-900">15.000 Ft</span>
                     </div>
                   </div>

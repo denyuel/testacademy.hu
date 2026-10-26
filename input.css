@@ -85,6 +85,16 @@ html {
   flex-shrink: 0 !important;
 }
 
+/* Badge & Pill line-break protection */
+.calc-card span[class*="rounded-"],
+.calc-card span[class*="uppercase"],
+.badge-pill,
+span[class*="text-[10px]"][class*="uppercase"],
+span[class*="text-[9px]"][class*="uppercase"] {
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
 /* Mobile Sticky Bar (Borbas Webdesign style) */
 .calc-sticky-bar {
   display: none;
