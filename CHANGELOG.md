@@ -4,6 +4,24 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-26 — Felesleges GitHub Actions CI Pipeline Eltávolítása
+
+### 1. Felesleges Értesítési Emailek Megszüntetése
+- **Felhasználói kérés / Probléma leírása:**
+  - *"a github actions failel kell ez nekem, emrt folyamat kapok róla failed emailt?"* (`media_1793020407142_e038c4d2.png`)
+  - A felhasználó minden commit/push után piros hibaüzenetes email értesítést kapott a GitHubtól a korábban felvett *TestAcademy QA Integration Pipeline* leállása miatt.
+- **Gyökérok (Root Cause):**
+  - A `.github/workflows/qa-tests.yml` fájl automatikusan lefutott minden egyes `main` branch-re történő push alkalmával (`on: push: branches: [ "main" ]`).
+  - A pipeline nem a Cloudflare Pages/Workers-en futó weboldal élesítését végezte, hanem a repóban lévő mintaprojekt (`qa-automation`) Java és API tesztjeit próbálta futtatni egy Ubuntu runneren.
+  - Mivel a felhős runneren a mock API szerver (`json-server`) nem indult el megbízhatóan, a CI futások sorozatosan elhasaltak, és a GitHub riasztási emaileket küldött.
+- **Alkalmazott megoldás:**
+  - A `.github/workflows/qa-tests.yml` fájl és a `.github/` mappa teljes eltávolítása a repóból.
+  - A weboldal változatlanul és zavartalanul működik a Cloudflare-en.
+- **Minőségbiztosítási eredmények:**
+  - GitHub Actions nem fut tovább automatikusan, a felesleges értesítő levelek azonnal és véglegesen megszűntek.
+
+---
+
 ## 📅 2026-10-26 — Szóhasználat Finomhangolás: „Ülés” cseréje Természetes 1v1 Mentoring & Konzultációra
 
 ### 1. Eseti Tanácsadás Csomag Pipás Pont Pontosítása
