@@ -98,13 +98,45 @@ public class MobileResponsiveUiTest {
     public void verifyDesktopCalculatorSummarySticks() {
         Configuration.browserSize = "1280x900";
         open(LOCAL_HTML_URL);
+        com.codeborne.selenide.WebDriverRunner.getWebDriver().manage().window().setSize(new org.openqa.selenium.Dimension(1280, 900));
 
-        // Check if right column sticks while scrolling down the packages
-        executeJavaScript("window.scrollTo({ top: 2000, behavior: 'instant' });");
+        // Scroll directly to the calculator course packages
+        executeJavaScript("document.getElementById('calc-base-courses').scrollIntoView({ behavior: 'instant', block: 'start' });");
         Number topScrolled = executeJavaScript("return document.querySelector('.lg\\\\:sticky').getBoundingClientRect().top;");
 
         assertThat(topScrolled.doubleValue())
             .as("Calculator summary must stick near top-24 (approx 96px) when scrolled down the packages")
             .isBetween(80.0, 120.0);
+    }
+
+    @Test
+    @DisplayName("Verify calculator bilingual switching to English")
+    public void verifyCalculatorEnglishLanguageSwitch() {
+        Configuration.browserSize = "1280x900";
+        open(LOCAL_HTML_URL);
+        com.codeborne.selenide.WebDriverRunner.getWebDriver().manage().window().setSize(new org.openqa.selenium.Dimension(1280, 900));
+
+        // Click English switch button
+        $("#btn-en").click();
+
+        // Verify English text is visible in course card and Hungarian is hidden
+        $("#calc-base-courses").shouldHave(com.codeborne.selenide.Condition.text("1-on-1 Vibe Coding & Prompt Fundamentals"));
+        $("#calc-base-courses").shouldHave(com.codeborne.selenide.Condition.text("1-on-1 Vibe Coding & Agent Masterclass"));
+        $("#calc-base-courses").shouldHave(com.codeborne.selenide.Condition.text("Premium 1-on-1 Career Mentorship"));
+
+        // Verify summary box displays English title
+        $("#calc-summary-base").shouldHave(com.codeborne.selenide.Condition.text("1-on-1 Vibe Coding"));
+    }
+
+    @Test
+    @DisplayName("Verify contact form endpoint, access key and redirect")
+    public void verifyContactFormEndpointAndFields() {
+        Configuration.browserSize = "1280x900";
+        open(LOCAL_HTML_URL);
+
+        $("form[action='https://api.web3forms.com/submit']").shouldBe(com.codeborne.selenide.Condition.exist);
+        $("input[name='access_key']").shouldHave(com.codeborne.selenide.Condition.value("87c4fa66-64b6-4431-9c4e-d20da0ff1cef"));
+        $("input[name='redirect']").shouldHave(com.codeborne.selenide.Condition.value("https://testacademy.hu/thanks.html"));
+        $("a[href*='wa.me']").shouldBe(com.codeborne.selenide.Condition.exist);
     }
 }

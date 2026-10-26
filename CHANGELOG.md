@@ -4,6 +4,35 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-26 — Teljes Rendszer Hardening: Kétnyelvűség (EN), Konverzió (Web3Forms + WhatsApp) és SEO
+
+### 1. Kétnyelvű (HU/EN) Kalkulátor Teljes Szinkronizáció
+- **Felhasználói kérés / Igény:**
+  - *"mindegyiken végig mehetsz , ha jól tudom a forspree már be van kötve"*
+  - Angol nyelvváltás esetén a teljes interaktív modul (mind az 5 kurzuskártya címestül, leírásostul, pipástul, a 3 kiegészítő modul és az élő curriculum) váltson át tiszta, professzionális angolra.
+- **Gyökérok & Hiányosság:**
+  - Korábban a kalkulátorkártyák belsejében csak magyar nyelvű szövegek voltak, így a felső „EN” gomb megnyomásakor a kártyák és pipák magyarul maradtak.
+- **Alkalmazott megoldás:**
+  - `index.html`: Minden kategória-jelvény, kurzuscím, leírás, pipa és kiegészítő modul megkapta a szabványos `<span class="lang-hu">` és `<span class="lang-en lang-hidden">` címkéket.
+  - `data.js`: Minden kurzushoz hozzáadásra került a `curriculumEn` mező, így angol nézetben az összesítő dobozban is angolul jelennek meg az egyes tematikai pontok.
+
+### 2. Konverzió és Kapcsolatfelvétel Megerősítése (Web3Forms & WhatsApp)
+- **Implementáció:**
+  - Ellenőriztük a meglévő űrlapot: a Web3Forms API-n (`https://api.web3forms.com/submit`, kulcs: `87c4fa66-64b6-4431-9c4e-d20da0ff1cef`) keresztül küldi be a nevet, emailt, telefonszámot, választott kurzust és a részletes kalkulációs összeállítást, majd átirányít a kétnyelvű `thanks.html` oldalra.
+  - A Borbás Webdesign konverziós szabályzat (Rule 4) szerint a meglévő telefonos hívógomb mellé bekerült egy azonnali, 1-kattintásos WhatsApp közvetlen chat gomb (`https://wa.me/36303093302?text=...`) a mobilos gyors konverzió támogatására.
+
+### 3. SEO, Közösségi Megosztás (OG Tags), Favicon & Keresőmotorok
+- **Implementáció:**
+  - Létrehoztunk egy tiszta, modern vektorgrafikus `favicon.svg` ikont, ezzel megszüntetve a hiányzó `favicon.ico` miatti 404-es konzolhibákat.
+  - Bekötésre került a Canonical tag (`https://testacademy.hu/`), az alternate `hreflang` címkék (hu, en, x-default) és a Twitter Card meta adatok.
+  - Létrehoztuk a keresőrobotok számára elengedhetetlen `robots.txt` és `sitemap.xml` fájlokat, és beállítottuk azok automatikus szinkronizációját a `package.json` build parancsában.
+
+### 4. Minőségbiztosítási Eredmények:
+- `npx htmlhint "index.html" "dist/index.html" "thanks.html" "dist/thanks.html"`: 0 hiba.
+- Új Selenide UI tesztek megírva és zölden lefutva (`verifyCalculatorEnglishLanguageSwitch`, `verifyContactFormEndpointAndFields`): **összesen 18/18 teszt sikeres!**
+
+---
+
 ## 📅 2026-10-26 — Felesleges GitHub Actions CI Pipeline Eltávolítása
 
 ### 1. Felesleges Értesítési Emailek Megszüntetése

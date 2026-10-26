@@ -188,6 +188,13 @@ window.SITE_DATA = {
         "3. .md Architektúra: üzleti specifikációk és adatlogika rögzítése tiszta Markdownban",
         "4. Antigravity AI fejlesztői környezet konfigurációja és mindennapi használata",
         "5. Az 1. működő mini-webalkalmazásod (kalkulátor vagy belső eszköz) megépítése és futtatása"
+      ],
+      curriculumEn: [
+        "1. The Vibe Coding ethos: orchestrator mindset & prompt-driven development without manual coding",
+        "2. Structured Prompt Engineering: roles, constraints, eliminating hallucinations",
+        "3. .md Architecture: business specs and data logic in clean Markdown",
+        "4. Google Antigravity setup and real-world daily workflows",
+        "5. Building and launching your 1st functional mini web app (calculator / internal tool)"
       ]
     },
     {
@@ -206,6 +213,14 @@ window.SITE_DATA = {
         "2. NAP: Külső adatok, fájlok és API-k bekötése a működő webalkalmazásba",
         "2. NAP: Hibakeresési reflexek (Trace & Debugging): runtime hibák automatikus javíttatása az AI-val",
         "Azonnal élesben használható, saját egyedi szoftver és forráskód átadása a kezedbe"
+      ],
+      curriculumEn: [
+        "DAY 1 (4h): Comprehensive foundation in Vibe Coding, .md specs, and Antigravity IDE",
+        "DAY 2 (4h): Autonomous Multi-Agent Architecture (AGENTS.md rule system & subagents)",
+        "DAY 2: Live 1-on-1 development of your custom software tailored to your business/work",
+        "DAY 2: Integrating external data, files, and third-party APIs into the live app",
+        "DAY 2: Runtime trace debugging: guiding AI to fix errors autonomously",
+        "Full delivery of your tailored software, production code, and architecture docs"
       ]
     },
     {
@@ -224,6 +239,14 @@ window.SITE_DATA = {
         "AI eszközök a minőségbiztosításban: hatékony promptolás, teszteset-generálás",
         "Személyes CV & LinkedIn profilépítés + szimulált technikai interjúk",
         "Kamatmentes részletfizetés kérhető (2 vagy 3 részletben)"
+      ],
+      curriculumEn: [
+        "100% individual 1-on-1 attention with Dániel at your own pace",
+        "Manual QA core: Agile SDLC, Jira, Test Design, SQL queries, Postman",
+        "Modern automation: Playwright TypeScript / Java Selenide, Page Object Model",
+        "AI in software testing: high-leverage prompting & automated test case generation",
+        "Personal CV & LinkedIn optimization + simulated technical mock interviews",
+        "Interest-free installment plan available (2 or 3 months)"
       ]
     },
     {
@@ -243,6 +266,12 @@ window.SITE_DATA = {
         "2. Nap: Vállalati .md kontextus-kezelés (AGENTS.md, specs/), 4 autonóm QA subagent, CI/CD Jenkins/Bitbucket pipeline futtatás",
         "Vibe Coding Hackathon: Saját belső segédeszköz építése (riport dashboard, bug-report generátor)",
         "Egyedi ütemezés a csapat mérete és a cég technológiai stacje szerint"
+      ],
+      curriculumEn: [
+        "Day 1: Sandbox environment, Playwright fundamentals, getByRole locators, Page Object Model, Git & Bitbucket PR workflow",
+        "Day 2: Enterprise .md context (AGENTS.md, specs/), 4 autonomous QA subagents, CI/CD Jenkins/Bitbucket pipeline integration",
+        "Vibe Coding Hackathon: Build an internal engineering tool (reporting dashboard, bug report generator)",
+        "Tailored schedule and roadmap based on team size and tech stack"
       ]
     },
     {
@@ -259,6 +288,12 @@ window.SITE_DATA = {
         "Konkrét elakadások, elbukó tesztek, lokátor-problémák élő debuggolása",
         "Meglévő tesztautomatizációs kód audit és architektúra tanácsok",
         "Személyes karriertanácsadás és szintfelmérő"
+      ],
+      curriculumEn: [
+        "1-hour dedicated online 1-on-1 mentoring & consultation with Dániel Borbás",
+        "Live debugging of blockers, failing test suites, and locator issues",
+        "Audit of existing test automation architecture and code quality",
+        "Personal career coaching and technical skill assessment"
       ]
     }
   ],
