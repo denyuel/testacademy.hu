@@ -4,6 +4,26 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-10-30 — Konverziós Útvonal Hardening (Lead Friction Csökkentés & Naptár Integráció)
+
+### 1. Konverziós Küszöb Csökkentése & Direkt Naptárfoglalás
+- **Felhasználói kérés / Igény:**
+  - *"ezt a részét értem, de nincs egyenlőre lead"*, *"igen"* (konverziós javítás kérése)
+  - 254 landing page látogató után a látogatói útvonalból eltávolítottuk a pszichológiai akadályokat, hogy a "fizetési kötelezettség" tévhite ne riassza el az érdeklődőket.
+- **Megoldás & Implementáció:**
+  - `index.html` & `dist/index.html`:
+    1. **Asztali kalkulátor összesítő:** A korábbi *"Jelentkezés a választott csomagra →"* gombot átírtuk **„Ingyenes 15 perces egyeztetés kérése →”**-re, és alá közvetlen Google Calendar integrációs gombot helyeztünk el (**„Vagy foglalj időpontot a naptáramba (Google Meet)”** - `https://calendar.app.google/ivGJS5PB8t5eTDdv6`).
+    2. **Mobil lebegő sáv (Sticky Bar):** A gomb felirata **„Egyeztetés kérése (0 Ft) →”**-re módosult, csökkentve az azonnali fizetéstől való félelmet mobilon.
+    3. **Kapcsolat / Űrlap szekció (`#join`):**
+       - Kiemelt közvetlen naptárfoglaló gomb elhelyezése a telefonszám és WhatsApp mellett.
+       - Az űrlap küldés gombja átnevezve: **„Ingyenes 15 perces egyeztetés kérése (0 Ft) →”**.
+- **Minőségbiztosítás & Tesztek:**
+  - `npm run build`: Sikeres, a `dist/` mappa szinkronizálva.
+  - `npx htmlhint`: 0 szintaktikai hiba.
+  - Selenide UI tesztek (`*UiTest`): **18/18 sikeres teszt**.
+
+---
+
 ## 📅 2026-10-26 — Meta Pixel (Konverzió & Lead Követés) Integráció
 
 ### 1. Hivatalos Meta Pixel Beágyazása

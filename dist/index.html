@@ -1148,14 +1148,26 @@
                   onclick="app.calcProceedToEnroll()"
                   class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-lg shadow-sky-600/25 uppercase tracking-wider text-xs flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span class="lang-hu">Jelentkezés a választott csomagra →</span>
-                  <span class="lang-en lang-hidden">Apply with this selection →</span>
+                  <span class="lang-hu">Ingyenes 15 perces egyeztetés kérése →</span>
+                  <span class="lang-en lang-hidden">Request free 15-min chat →</span>
                 </button>
+
+                <!-- Direct Google Calendar Link -->
+                <a
+                  href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 px-6 rounded-2xl transition-all shadow-md uppercase tracking-wider text-xs flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  <span class="lang-hu">Vagy foglalj időpontot a naptáramba (Google Meet)</span>
+                  <span class="lang-en lang-hidden">Or book instantly in my Google Calendar</span>
+                </a>
 
                 <div class="pt-2 text-center space-y-1 text-[11px] text-slate-400">
                   <p>
-                    <span class="lang-hu">100% Gyakorlat • 1v1 Figyelem • Ingyenes Szintfelmérés</span>
-                    <span class="lang-en lang-hidden">100% Hands-on • 1-on-1 Focus • Free Skill Assessment</span>
+                    <span class="lang-hu">0 Ft Kötelezettség • 100% Gyakorlat • Ingyenes Szintfelmérés</span>
+                    <span class="lang-en lang-hidden">0 Ft Obligation • 100% Hands-on • Free Assessment</span>
                   </p>
                 </div>
               </div>
@@ -1178,8 +1190,8 @@
               class="calc-sticky-bar__btn bg-sky-600 hover:bg-sky-700 text-white cursor-pointer"
               onclick="app.calcProceedToEnroll()"
             >
-              <span class="lang-hu">Jelentkezés →</span>
-              <span class="lang-en lang-hidden">Apply →</span>
+              <span class="lang-hu">Egyeztetés kérése (0 Ft) →</span>
+              <span class="lang-en lang-hidden">Request chat (0 Ft) →</span>
             </button>
           </div>
         </aside>
@@ -1222,15 +1234,20 @@
               </div>
 
               <div class="pt-3 border-t border-slate-100 flex flex-wrap gap-2.5">
+                <a href="https://calendar.app.google/ivGJS5PB8t5eTDdv6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2.5 rounded-full text-xs font-bold transition-all shadow-md shadow-sky-600/20">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                  <span class="lang-hu">Időpontfoglalás a naptáramba (Google Meet)</span>
+                  <span class="lang-en lang-hidden">Book directly in my Calendar</span>
+                </a>
                 <a href="tel:+36303093302" class="inline-flex items-center gap-2 bg-slate-100 hover:bg-sky-50 text-slate-800 hover:text-sky-600 px-4 py-2.5 rounded-full text-xs font-bold transition-all border border-slate-200">
                   <svg class="w-4 h-4 text-sky-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  <span class="lang-hu">Azonnali kérdésed van? Hívj: +36 30 309 3302</span>
-                  <span class="lang-en lang-hidden">Quick question? Call: +36 30 309 3302</span>
+                  <span class="lang-hu">+36 30 309 3302</span>
+                  <span class="lang-en lang-hidden">+36 30 309 3302</span>
                 </a>
                 <a href="https://wa.me/36303093302?text=Szia%20D%C3%A1niel!%20%C3%89rdekl%C5%91dn%C3%A9k%20a%20TestAcademy%20k%C3%A9pz%C3%A9sekkel%20kapcsolatban." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 hover:text-emerald-900 px-4 py-2.5 rounded-full text-xs font-bold transition-all border border-emerald-200">
                   <svg class="w-4 h-4 text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                  <span class="lang-hu">WhatsApp üzenet</span>
-                  <span class="lang-en lang-hidden">WhatsApp Chat</span>
+                  <span class="lang-hu">WhatsApp</span>
+                  <span class="lang-en lang-hidden">WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -1331,10 +1348,10 @@
                 type="submit"
                 data-testid="submit-btn"
                 aria-label="Küldés / Send"
-                class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-md shadow-sky-600/20 uppercase tracking-wider text-xs block text-center cursor-pointer mt-4"
+                class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md shadow-sky-600/20 uppercase tracking-wider text-xs block text-center cursor-pointer mt-4"
               >
-                <span class="lang-hu">Jelentkezés Elküldése →</span>
-                <span class="lang-en lang-hidden">Send Application →</span>
+                <span class="lang-hu">Ingyenes 15 perces egyeztetés kérése (0 Ft) →</span>
+                <span class="lang-en lang-hidden">Request free 15-min chat (0 Ft) →</span>
               </button>
             </form>
           </div>
