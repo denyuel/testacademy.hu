@@ -4,6 +4,28 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-11-02 — Meta Lead Generálási Minőségbiztosítás (Higher Intent & Célközönség Hardening)
+
+### 1. Véletlen Félrekattintások és Junk Leadek Teljes Kiszűrése
+- **Felhasználói kérés / Probléma leírása:**
+  - A Meta Instant Form kampányból (`TestAcademy - Instant Form Leads (59k Vibe Coding)`) 2 lead érkezett:
+    1. *Fehérvári Mária* (`marika0156@gmail.com`, `+36 20 250 7182`) – idős hölgy, aki nem tudta, mire kattintott.
+    2. *„Nő Macska”* (`dickcsabane1@gmail.com`, `+36 20 805 9456`) – fantázianevű Facebook profil, valószínűleg szintén idősebb felhasználó félrekattintása az esti hírfolyamban.
+- **Gyökérok (Root Cause):**
+  1. **Űrlap típus:** Az eredeti űrlap "More volume" típusú volt, ahol a Meta a Facebook profilból automatikusan előtölti a nevet, emailt és telefonszámot, és egyetlen érintéssel beküldi az űrlapot anélkül, hogy a felhasználónak bármit gépelnie vagy megerősítenie kellene.
+  2. **Advantage+ Audience kiskapu:** Bár a javaslatoknál be volt állítva a 24–48-as kor, az Advantage+ algoritmus ezt csupán "tippként" kezelte, és a legolcsóbb kattintások reményében megmutatta a Facebookon sokat görgető 60+ korosztálynak is (5,8–6,8 millió fős korlátlan közönség).
+- **Alkalmazott megoldás (Hardening):**
+  1. **Ad Set szintű célzás szigorítása:** Kikapcsoltuk az Advantage+ korlátlan kilépését (`Further limit the reach of your ads` -> szigorú felülbírálás), így a 24–48 éves korhatár átléphetetlen hard ceiling lett.
+  2. **Új Instant Form (`TestAcademy Vibe Coding - Minősített (Higher Intent)`):**
+     - Form type átállítva **Higher intent**-re (hozzáadva az elküldés előtti ellenőrző és jóváhagyó képernyőt / Review screen).
+     - **Kötelező feleletválasztós szűrőkérdés** beépítése: *„Milyen célból érdekel a képzés?”* (Saját szoftver építése / Munkahelyi automatizálás / Karrierváltás). Mivel a Meta ezt nem tudja a profilból kitalálni, kizárólag a tudatos, szöveget olvasó érdeklődők tudják beküldeni az űrlapot.
+     - Letisztult kapcsolati mezők (Név, Email, Telefonszám) hivatalos adatkezelési nyilatkozattal és a `https://testacademy.hu` visszairányítással.
+- **Minőségbiztosítási eredmények:**
+  - Az új űrlap és az Ad Set módosítások közzétéve (Published).
+  - A hirdetés aktív státuszban fut 5.000 Ft/nap büdzsével, védve a félrekattintások ellen.
+
+---
+
 ## 📅 2026-10-30 — Konverziós Útvonal Hardening (Lead Friction Csökkentés & Naptár Integráció)
 
 ### 1. Konverziós Küszöb Csökkentése & Direkt Naptárfoglalás
