@@ -55,10 +55,10 @@
     <!-- End Meta Pixel Code -->
 
     <!-- Local compiled Tailwind CSS -->
-    <link rel="stylesheet" href="./output.css" />
+    <link rel="stylesheet" href="./output.css?v=20261108_2" />
 
     <!-- External Global Site Data Architecture (Borbás Webdesign Standard) -->
-    <script src="./data.js"></script>
+    <script src="./data.js?v=20261108_2"></script>
 
     <style>
       html, body {
@@ -2008,8 +2008,17 @@
             `;
           });
 
+          let sections = m.sections;
+          if (!sections || sections.length === 0) {
+            if (m.rows && m.rows.length > 0) {
+              sections = [{ titleHu: "Képzési Modulok & Eredmények", titleEn: "Modules & Deliverables", rows: m.rows }];
+            } else {
+              sections = [];
+            }
+          }
+
           let bodyHtml = "";
-          (m.sections || []).forEach((sec, sIdx) => {
+          sections.forEach((sec, sIdx) => {
             bodyHtml += `
               <tr class="bg-slate-100/90 border-y border-slate-200">
                 <td colspan="4" class="p-3 sm:p-3.5 font-bold text-xs uppercase tracking-wider text-slate-800">

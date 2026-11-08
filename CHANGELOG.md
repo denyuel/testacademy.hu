@@ -4,6 +4,28 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-11-08 — Cache-Busting & Visszafelé Kompatibilitás a Táblázat Renderelésnél
+
+### 1. Üres Táblázat Törzs (Empty TBODY) Hibaelhárítása Cloudflare / Böngésző Cache Mismatch Esetén
+- **Felhasználói kérés / Igény:**
+  - *"hova tunt a táblázat?"* (képernyőkép csatolva: a táblázat fejléce és lábléce látható volt 4 oszloppal, de a sorok nem jelentek meg).
+- **Gyökérok (Root Cause):**
+  - A felhasználó böngészője és a Cloudflare edge gyorsítótárazta a korábbi `data.js` fájlt (amelyben még a 4 oszlopos `m.rows` struktúra élt), miközben a friss `index.html`-t töltötte be, amely már az `m.sections` tömbön futott végig.
+  - Mivel a gyorsítótárazott `data.js`-ben az `m.sections` mező `undefined` volt, az `(m.sections || [])` üres tömbként értékelt ki, így a `<tbody>` üres maradt, a sorok nem renderelődtek le.
+  - Emellett a `<script src="./data.js">` hivatkozás nem tartalmazott verziószámot (`?v=`), így a böngésző nem kérte le a friss adatfájlt.
+- **Alkalmazott megoldás:**
+  - **Kettős kompatibilitás (Fallback):** Az `index.html`-ben lévő `renderPackageMatrix()` függvény fel lett készítve arra, hogy ha az `m.sections` nem elérhető, automatikusan az `m.rows` tömböt csomagolja egy alapértelmezett szekcióba.
+  - **Cache-Busting bevezetése:** A fejlécben lévő hivatkozásokat verziószámmal láttuk el: `<script src="./data.js?v=20261108_2"></script>` és `<link rel="stylesheet" href="./output.css?v=20261108_2" />`, ami azonnal kikényszeríti a böngészőkből és a CDN-ből a legfrissebb forráskód azonnali letöltését.
+- **Érintett fájlok:**
+  - `index.html`
+  - `dist/index.html`
+- **Minőségbiztosítási eredmények:**
+  - `npm run build` lefutott (553ms).
+  - `npx htmlhint` 0 hiba.
+  - Selenide UI tesztek: **18/18 teszt zöld, BUILD SUCCESS**.
+
+---
+
 ## 📅 2026-11-08 — Csomag Összehasonlító Mátrix Értéklétra Átalakítás (Progresszív Pipák) & UI/Nyelvtani Audit
 
 ### 1. Progresszív SaaS Funkciómátrix & Érték-Halmozódás Implementálása
