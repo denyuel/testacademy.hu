@@ -4,6 +4,40 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-11-08 — Csomag Összehasonlító Mátrix Értéklétra Átalakítás (Progresszív Pipák) & UI/Nyelvtani Audit
+
+### 1. Progresszív SaaS Funkciómátrix & Érték-Halmozódás Implementálása
+- **Felhasználói kérés / Igény:**
+  - *"végig kellene nézni az odlalt, hogy van e rajta UI hiba , nyelvtani valami az összehasonlitas jól néz e ki miert nem pipa végig az egész es novekszika  cosmagoknal stb"*
+- **Gyökérok (Root Cause):**
+  - A korábbi táblázat vegyesen tartalmazott leíró szövegeket és pipákat, a 4. oszlopban lévő eseti konzultáció pedig megtörte a képzések érték-hierarchiáját (sok hiányzó pipával zárult a táblázat jobb széle ahelyett, hogy a legmagasabb szint mindent vinné).
+  - A modern pricing táblázatok pszichológiája szerint a látogató látni akarja a fokozatos érték-felhalmozódást: Alapok (7 pipa) ➔ Deep Dive (12 pipa) ➔ Senior Mentorship (**19 pipa, teli zöld oszlop, pipa végig az egész!**).
+  - Az alapelvek kártyáknál (`#testimonials`) hiányoztak az angol nyelvű spanok, a Hero gombban pedig a "15 Perc Konzultáció" nyelvtanilag pongyola volt.
+- **Alkalmazott megoldás:**
+  - **Progresszív Értékmátrix (3 fókuszált kurzusszint):**
+    - A `SITE_DATA.packageMatrix` struktúráját 3 tematikus szekcióra bontottuk (1. Vibe Coding Alapok, 2. Autonóm Ágensek & Üzleti Eszközök, 3. Tesztautomatizálás & Karrier Mentoring).
+    - Az 1v1 Alapok az 1. blokkban végig pipás (7 pipa).
+    - Az 1v1 Deep Dive az 1. és 2. blokkban végig pipás (12 pipa).
+    - A Senior QA Mentorship **minden egyes sorban zöld pipát kapott (19 pipa végig az egész!)**, vizuálisan igazolva az all-inclusive VIP státuszt.
+  - **Eseti Konzultáció & Vállalati Tréningek szeparált kártyablokk:**
+    - A táblázat alá került egy elegáns kiegészítő modul két közvetlen kártyával (Eseti 15k/óra és B2B Enterprise), így a mátrix fókuszált maradt, de az eseti igények is azonnal elérhetők.
+  - **Nyelvtani & Kétnyelvűségi javítások:**
+    - Hero gomb javítva: *"Ingyenes 15 Perces Konzultáció"* (HU) / *"Free 15-Min Intro Call"* (EN).
+    - A `#testimonials` blokk 3 alapelv-kártyája megkapta a hiányzó `.lang-hu` és `.lang-en` spanokat, így angol nyelvváltáskor most már ezek is hibátlanul átváltanak.
+- **Érintett fájlok:**
+  - `data.js`
+  - `index.html`
+  - `dist/data.js` (szinkronizálva)
+  - `dist/index.html` (szinkronizálva)
+  - `output.css` és `dist/output.css` (Tailwind fordítás)
+- **Minőségbiztosítási eredmények:**
+  - `npm run build` lefutott (695ms).
+  - `npx htmlhint` 0 szintaktikai hibát talált.
+  - Maven / Selenide UI tesztcsomag: **18 teszt lefutott, 0 hiba, BUILD SUCCESS**.
+  - Vizuális screenshot ellenőrzés headless Chrome-mal elvégezve (`crop_table_full.png`, `crop_table_bottom_cards.png`).
+
+---
+
 ## 📅 2026-11-08 — Csomag Összehasonlító Mátrix & Transzparencia Modul (ROI), Szövegcsiszolás
 
 ### 1. Csomagok Közti Különbségek Táblázat & Érték-Összehasonlítás (Us vs. Traditional Bootcamps)

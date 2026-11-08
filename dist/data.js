@@ -399,8 +399,8 @@ window.SITE_DATA = {
     badgeEn: "Package Comparison",
     titleHu: "Melyik képzés való neked?",
     titleEn: "Which track is right for you?",
-    subtitleHu: "Lásd át egyetlen táblázatban a képzések mélységét, időtartamát, technológiai fókuszát és a kézzelfogható kimenetet.",
-    subtitleEn: "Compare track depth, duration, tech focus, and tangible deliverables side by side.",
+    subtitleHu: "Lásd át egyetlen táblázatban a képzések mélységét, időtartamát, a növekvő funkciókat és az átadott konkrét eredményeket.",
+    subtitleEn: "Compare track depth, duration, accumulating features, and concrete deliverables side by side.",
     columns: [
       {
         id: "ai-1day",
@@ -412,8 +412,8 @@ window.SITE_DATA = {
         badgeHu: "1v1 Flagship",
         badgeEn: "1-on-1 Flagship",
         badgeClass: "badge-flagship",
-        durationHu: "1 nap (4 óra)",
-        durationEn: "1 day (4 hours)",
+        durationHu: "1 nap (4 óra 1v1)",
+        durationEn: "1 day (4h 1-on-1)",
         highlight: false
       },
       {
@@ -423,11 +423,11 @@ window.SITE_DATA = {
         priceFormattedEn: "99,000 HUF",
         nameHu: "1v1 Vibe Coding Deep Dive",
         nameEn: "1-on-1 Vibe Coding Deep Dive",
-        badgeHu: "Mély Gyakorlat",
-        badgeEn: "Deep Practice",
+        badgeHu: "Legnépszerűbb • Mély Gyakorlat",
+        badgeEn: "Most Popular • Deep Practice",
         badgeClass: "badge-deep",
-        durationHu: "2 nap (2 × 4 óra)",
-        durationEn: "2 days (2 × 4 hours)",
+        durationHu: "2 nap (2 × 4 óra 1v1)",
+        durationEn: "2 days (2 × 4h 1-on-1)",
         highlight: true
       },
       {
@@ -437,108 +437,177 @@ window.SITE_DATA = {
         priceFormattedEn: "500,000 HUF",
         nameHu: "Senior QA Mentorship",
         nameEn: "Senior QA Mentorship",
-        badgeHu: "Teljes Karrier",
-        badgeEn: "Full Career VIP",
+        badgeHu: "VIP Teljes Karrier",
+        badgeEn: "VIP Full Career",
         badgeClass: "badge-mentorship",
         durationHu: "Átfogó egyéni program",
         durationEn: "Comprehensive individual program",
-        highlight: false
-      },
-      {
-        id: "consulting",
-        price: 15000,
-        priceFormatted: "15.000 Ft / óra",
-        priceFormattedEn: "15,000 HUF / hour",
-        nameHu: "Eseti 1:1 Konzultáció",
-        nameEn: "1-on-1 Consultation",
-        badgeHu: "Rugalmas",
-        badgeEn: "Flexible",
-        badgeClass: "badge-consulting",
-        durationHu: "1 óra / alkalom",
-        durationEn: "1 hour / session",
-        highlight: false
+        highlight: false,
+        isAllInclusive: true
       }
     ],
-    rows: [
+    sections: [
       {
-        labelHu: "Oktatási forma",
-        labelEn: "Format",
-        valuesHu: ["100% Egyéni 1v1", "100% Egyéni 1v1", "100% Egyéni 1v1", "100% Egyéni 1v1"],
-        valuesEn: ["100% Personal 1-on-1", "100% Personal 1-on-1", "100% Personal 1-on-1", "100% Personal 1-on-1"]
-      },
-      {
-        labelHu: "Fő szakmai fókusz",
-        labelEn: "Primary focus",
-        valuesHu: [
-          "Karmesteri szemlélet, strukturált promptok, .md specifikáció",
-          "Komplex webes eszközök, AGENTS.md architektúra & subágensek",
-          "Teljes körű karrierugrás: manuális alapok + automatizálás + AI",
-          "Konkrét elakadások debuggolása, kód review & karriertanács"
-        ],
-        valuesEn: [
-          "Orchestrator mindset, structured prompts, .md specification",
-          "Complex web applications, AGENTS.md architecture & subagents",
-          "Full career transformation: manual core + automation + AI",
-          "Targeted blocker debugging, code review & career guidance"
+        titleHu: "Vibe Coding & Specifikációs Alapok",
+        titleEn: "Vibe Coding & Specification Core",
+        rows: [
+          {
+            labelHu: "100% Egyéni 1v1 oktatás képernyőmegosztással (nem csoportos)",
+            labelEn: "100% Personal 1-on-1 screen-share mentoring (not group)",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: "Vibe Coding 'karmesteri' szemlélet (kézi szintaxis-gépelés helyett)",
+            labelEn: "Orchestrator mindset (prompt-driven vs typing code)",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: "Strukturált Prompt Engineering & hallucináció-kizárás",
+            labelEn: "Structured Prompt Engineering & hallucination elimination",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: ".md Architektúra & specifikációk készítése (specs/)",
+            labelEn: ".md Architecture & writing specifications (specs/)",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: "Google Antigravity AI fejlesztői környezet konfiguráció",
+            labelEn: "Google Antigravity AI IDE configuration & setup",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: "Működő webalkalmazás a saját gépeden a képzés végére",
+            labelEn: "Functional web app running on your PC by end of session",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          },
+          {
+            labelHu: "100% Forráskód- és projekt-tulajdonjog (nincs vendor lock-in)",
+            labelEn: "100% Source code & repository ownership (no vendor lock-in)",
+            valuesHu: [true, true, true],
+            valuesEn: [true, true, true]
+          }
         ]
       },
       {
-        labelHu: ".md specifikációk & kontextus-építés",
-        labelEn: ".md specs & context architecture",
-        valuesHu: [true, true, true, "Igény szerint"],
-        valuesEn: [true, true, true, "On demand"]
-      },
-      {
-        labelHu: "Autonóm AI ágensek & subagent rendszerek",
-        labelEn: "Autonomous AI agents & subagent systems",
-        valuesHu: [false, true, true, false],
-        valuesEn: [false, true, true, false]
-      },
-      {
-        labelHu: "Kézzelfogható kimenet a gépeden",
-        labelEn: "Deliverable on your PC",
-        valuesHu: [
-          "1 db működő webalkalmazás a gépeden",
-          "Komplett saját üzleti szoftver forráskóddal",
-          "Teljes automatizációs projekt, CV & profil",
-          "Azonnal javított, futó kód"
-        ],
-        valuesEn: [
-          "1 functional web application on your PC",
-          "Complete custom business software with code",
-          "Full automation repo, CV & profile audit",
-          "Instantly debugged running code"
+        titleHu: "Autonóm Ágensek & Egyedi Üzleti Eszközök (Deep Dive)",
+        titleEn: "Autonomous Agents & Custom Software Building",
+        rows: [
+          {
+            labelHu: "Autonóm Multi-Ágens Rendszer felépítése (AGENTS.md szabályok)",
+            labelEn: "Autonomous Multi-Agent Architecture (AGENTS.md rules)",
+            valuesHu: [false, true, true],
+            valuesEn: [false, true, true]
+          },
+          {
+            labelHu: "Szakosított Subágensek építése (Kutató, Kódgeneráló, Reviewer)",
+            labelEn: "Specialized Subagents (Researcher, Coder, Reviewer)",
+            valuesHu: [false, true, true],
+            valuesEn: [false, true, true]
+          },
+          {
+            labelHu: "Saját egyedi üzleti munkaeszközöd / szoftvered élő megépítése",
+            labelEn: "Live building of your custom business tool / internal software",
+            valuesHu: [false, true, true],
+            valuesEn: [false, true, true]
+          },
+          {
+            labelHu: "Külső API-k, adatbázisok & fájlkezelés integrálása a szoftverbe",
+            labelEn: "External APIs, databases & third-party data integration",
+            valuesHu: [false, true, true],
+            valuesEn: [false, true, true]
+          },
+          {
+            labelHu: "Runtime trace hibakeresés & önjavító AI ágens folyamatok",
+            labelEn: "Runtime trace debugging & autonomous AI error healing",
+            valuesHu: [false, true, true],
+            valuesEn: [false, true, true]
+          }
         ]
       },
       {
-        labelHu: "Tesztautomatizálás (Playwright / Java)",
-        labelEn: "Test automation (Playwright / Java)",
-        valuesHu: [false, false, true, "Opcionális"],
-        valuesEn: [false, false, true, "Optional"]
-      },
-      {
-        labelHu: "CV, LinkedIn Audit & Próbainterjú",
-        labelEn: "Personal CV, LinkedIn & Mock Interview",
-        valuesHu: [
-          "Kiegészítő modul (+15k)",
-          "Kiegészítő modul (+15k)",
-          "Beépített díjmentes elem",
-          "Konzultációként kérhető"
-        ],
-        valuesEn: [
-          "Add-on module (+15k)",
-          "Add-on module (+15k)",
-          "Included in package",
-          "Available on demand"
+        titleHu: "Tesztautomatizálás, Karrier & Nagyvállalati QA (Mentorship)",
+        titleEn: "Test Automation & Career Transformation",
+        rows: [
+          {
+            labelHu: "Manuális szoftvertesztelési alapok (Agilis QA, Jira, Test Design)",
+            labelEn: "Manual software testing foundations (Agile QA, Jira, Test Design)",
+            valuesHu: [false, false, true],
+            valuesEn: [false, false, true]
+          },
+          {
+            labelHu: "API tesztelés & SQL adatbázis lekérdezések (Postman)",
+            labelEn: "API testing & SQL database queries (Postman)",
+            valuesHu: [false, false, true],
+            valuesEn: [false, false, true]
+          },
+          {
+            labelHu: "Modern Tesztautomatizálás: Playwright TypeScript / Java Selenide",
+            labelEn: "Modern Test Automation: Playwright TypeScript / Java Selenide",
+            valuesHu: [false, false, true],
+            valuesEn: [false, false, true]
+          },
+          {
+            labelHu: "Page Object Model (POM) & Vállalati tesztkeretrendszer építés",
+            labelEn: "Page Object Model (POM) & Enterprise test framework",
+            valuesHu: [false, false, true],
+            valuesEn: [false, false, true]
+          },
+          {
+            labelHu: "CI/CD integráció (Jenkins / GitHub Actions / Bitbucket)",
+            labelEn: "CI/CD integration (Jenkins / GitHub Actions / Bitbucket)",
+            valuesHu: [false, false, true],
+            valuesEn: [false, false, true]
+          },
+          {
+            labelHu: "Személyes CV, LinkedIn profil audit & karriertanácsadás",
+            labelEn: "Personal CV, LinkedIn profile audit & career coaching",
+            valuesHu: ["Kiegészítő (+15k)", "Kiegészítő (+15k)", true],
+            valuesEn: ["Add-on (+15k)", "Add-on (+15k)", true]
+          },
+          {
+            labelHu: "Szimulált éles technikai próbainterjúk (HU / EN)",
+            labelEn: "Simulated technical mock interviews (HU / EN)",
+            valuesHu: ["Kiegészítő (+15k)", "Kiegészítő (+15k)", true],
+            valuesEn: ["Add-on (+15k)", "Add-on (+15k)", true]
+          },
+          {
+            labelHu: "Kamatmentes részletfizetési lehetőség (2–3 hónap)",
+            labelEn: "Interest-free installment plan (2–3 months)",
+            valuesHu: [false, false, "2–3 havi részlet"],
+            valuesEn: [false, false, "2–3 months"]
+          }
         ]
-      },
-      {
-        labelHu: "Kamatmentes részletfizetés",
-        labelEn: "Interest-free installment plan",
-        valuesHu: [false, false, "2 vagy 3 havi részlet", false],
-        valuesEn: [false, false, "2 or 3 months", false]
       }
-    ]
+    ],
+    otherOptionsHu: {
+      title: "Egyedi elakadásod vagy vállalati csapatigényed van?",
+      consultingTitle: "Eseti 1:1 Konzultáció / Blokk-elhárítás",
+      consultingPrice: "15.000 Ft / óra",
+      consultingDesc: "Konkrét technikai elakadások, teszthibák azonnali képernyőmegosztásos megoldása és kód-audit.",
+      consultingBtn: "Konzultáció kiválasztása →",
+      corporateTitle: "Vállalati Playwright & AI Műhelymunka (B2B)",
+      corporatePrice: "Egyedi ajánlat",
+      corporateDesc: "Csapatoknak szabott nagyvállalati tematika: POM, 4 autonóm subagent és belső eszközépítő hackathon.",
+      corporateBtn: "Vállalati képzés kiválasztása →"
+    },
+    otherOptionsEn: {
+      title: "Need on-demand troubleshooting or corporate team training?",
+      consultingTitle: "1-on-1 Personal Consultation / Blocker Solving",
+      consultingPrice: "15,000 HUF / hour",
+      consultingDesc: "Live screen-share debugging of immediate technical blockers, failing tests, and architecture review.",
+      consultingBtn: "Select Consultation →",
+      corporateTitle: "Corporate Playwright & AI Workshop (B2B)",
+      corporatePrice: "Custom Quote",
+      corporateDesc: "Enterprise agenda tailored for QA teams: POM, 4 autonomous subagents, and internal hackathon.",
+      corporateBtn: "Select Corporate Track →"
+    }
   },
 
   roiComparison: {
