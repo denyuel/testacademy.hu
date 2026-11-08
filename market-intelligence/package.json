@@ -1,0 +1,13 @@
+{
+  "name": "market-intelligence-hunter",
+  "version": "1.0.0",
+  "description": "Autonomous Market Intelligence & Competitor Hunter Engine for TestAcademy and Borbás Webdesign",
+  "main": "run.js",
+  "scripts": {
+    "hunt": "node run.js",
+    "hunt:testacademy": "node run.js --vertical=education",
+    "hunt:webdesign": "node run.js --vertical=webdesign"
+  },
+  "author": "Borbás Dániel",
+  "license": "ISC"
+}

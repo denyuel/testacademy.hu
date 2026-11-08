@@ -430,10 +430,10 @@
 
           <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
             <span class="lang-hu">
-              Építs saját szoftvereket, mini-appokat és autonóm AI ágenseket kódolási előképzettség nélkül a Vibe Codinggal — vagy lépj szintet prémium 1v1 Senior QA mérnöki mentoringgal közvetlenül Borbás Dánieltől.
+              Építs működő szoftvereket, munkaeszközöket és autonóm AI ágenseket manuális kódolás nélkül a Vibe Codinggal — vagy lépj szintet prémium 1v1 Senior QA mérnöki mentoringgal közvetlenül Borbás Dánieltől.
             </span>
             <span class="lang-en lang-hidden">
-              Build functional apps and autonomous AI agents with zero coding experience through 1-on-1 Vibe Coding — or advance your career with enterprise QA mentoring directly from Dániel Borbás.
+              Build functional web applications and autonomous AI agents without manual coding through 1-on-1 Vibe Coding — or advance your career with Senior QA mentoring directly from Dániel Borbás.
             </span>
           </p>
 
@@ -706,8 +706,8 @@
                             </span>
                           </div>
                           <p class="text-xs text-slate-500 mb-2.5 leading-relaxed">
-                            <span class="lang-hu">Karmester szerep, strukturált promptolás, .md specifikáció és az 1. működő mini-appod</span>
-                            <span class="lang-en lang-hidden">Orchestrator mindset, structured prompting, .md specs, and your 1st functional mini-app</span>
+                            <span class="lang-hu">Karmesteri szemlélet, strukturált promptolás, .md specifikáció és az 1. működő alkalmazás a saját gépeden</span>
+                            <span class="lang-en lang-hidden">Orchestrator mindset, structured prompting, .md specs, and your 1st functional app on your PC</span>
                           </p>
                           <div class="pt-2.5 border-t border-slate-100 flex flex-col gap-1.5 text-xs text-slate-600">
                             <div class="flex items-start gap-2 leading-snug">
@@ -727,8 +727,8 @@
                             <div class="flex items-start gap-2 leading-snug">
                               <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                               <span>
-                                <span class="lang-hu">.md specifikációk & az 1. működő mini-appod</span>
-                                <span class="lang-en lang-hidden">.md architecture & your 1st working mini-app</span>
+                                <span class="lang-hu">.md specifikációk & az 1. működő alkalmazásod</span>
+                                <span class="lang-en lang-hidden">.md architecture & your 1st working application</span>
                               </span>
                             </div>
                           </div>
@@ -1173,6 +1173,12 @@
               </div>
             </div>
           </div>
+
+          <!-- PACKAGE COMPARISON MATRIX (BORBÁS WEBDESIGN ARCHITECTURE) -->
+          <div id="calc-package-matrix-mount" class="mt-16 pt-12 border-t border-slate-200/80"></div>
+
+          <!-- ROI & TRANSPARENCY COMPARISON (US VS TRADITIONAL BOOTCAMPS) -->
+          <div id="calc-roi-mount" class="mt-16"></div>
         </section>
 
         <!-- MOBILE STICKY BAR -->
@@ -1599,6 +1605,8 @@
         }
 
         init() {
+          this.renderPackageMatrix();
+          this.renderRoiComparison();
           const savedLang = this.getStoredLang() || "hu";
           this.setLanguage(savedLang);
           this.calcUpdate();
@@ -1892,6 +1900,237 @@
           if (menu) menu.classList.add("hidden");
           if (iconOpen) iconOpen.classList.remove("hidden");
           if (iconClose) iconClose.classList.add("hidden");
+        }
+
+        renderPackageMatrix() {
+          const mount = document.getElementById("calc-package-matrix-mount");
+          if (!mount || !window.SITE_DATA || !window.SITE_DATA.packageMatrix) return;
+          const m = window.SITE_DATA.packageMatrix;
+
+          let colsHtml = "";
+          m.columns.forEach((col) => {
+            const isHighlight = col.highlight;
+            colsHtml += `
+              <th class="p-4 sm:p-5 text-left align-top min-w-[200px] sm:min-w-[220px] ${isHighlight ? 'bg-sky-50/70 border-x-2 border-t-2 border-sky-400/60 rounded-t-2xl' : 'border-b border-slate-200'}">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="badge-pill ${col.badgeClass} text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                      <span class="lang-hu">${col.badgeHu}</span>
+                      <span class="lang-en lang-hidden">${col.badgeEn}</span>
+                    </span>
+                  </div>
+                  <div class="font-bold text-slate-900 text-sm sm:text-base leading-snug">
+                    <span class="lang-hu">${col.nameHu}</span>
+                    <span class="lang-en lang-hidden">${col.nameEn}</span>
+                  </div>
+                  <div class="text-xs text-slate-500 font-medium">
+                    <span class="lang-hu">${col.durationHu}</span>
+                    <span class="lang-en lang-hidden">${col.durationEn}</span>
+                  </div>
+                  <div class="text-lg sm:text-xl font-black text-slate-900 pt-1">
+                    <span class="lang-hu">${col.priceFormatted}</span>
+                    <span class="lang-en lang-hidden">${col.priceFormattedEn}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onclick="app.calcSelectCourse('${col.id}', ${col.price}); document.getElementById('calc-base-courses').scrollIntoView({ behavior: 'smooth', block: 'start' });"
+                    class="w-full mt-2 py-2 px-3 text-[11px] font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${isHighlight ? 'bg-sky-600 hover:bg-sky-700 text-white shadow-sm' : 'bg-slate-100 hover:bg-sky-50 text-slate-700 hover:text-sky-700 border border-slate-200'}"
+                  >
+                    <span class="lang-hu">Kiválasztás →</span>
+                    <span class="lang-en lang-hidden">Select Track →</span>
+                  </button>
+                </div>
+              </th>
+            `;
+          });
+
+          let rowsHtml = "";
+          m.rows.forEach((row, rIdx) => {
+            rowsHtml += `
+              <tr class="${rIdx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'} border-b border-slate-100">
+                <td class="p-4 sm:p-5 font-semibold text-xs sm:text-sm text-slate-900 min-w-[160px] sm:min-w-[190px] border-r border-slate-100">
+                  <span class="lang-hu">${row.labelHu}</span>
+                  <span class="lang-en lang-hidden">${row.labelEn}</span>
+                </td>
+            `;
+            m.columns.forEach((col, cIdx) => {
+              const valHu = row.valuesHu[cIdx];
+              const valEn = row.valuesEn[cIdx];
+              const isHighlight = col.highlight;
+
+              let cellContent = "";
+              if (valHu === true) {
+                cellContent = `
+                  <div class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
+                    <svg width="14" height="14" style="width: 14px; height: 14px; min-width: 14px; max-width: 14px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                `;
+              } else if (valHu === false) {
+                cellContent = `
+                  <span class="text-slate-300 font-bold text-base">—</span>
+                `;
+              } else {
+                cellContent = `
+                  <span class="text-xs text-slate-700 leading-snug">
+                    <span class="lang-hu">${valHu}</span>
+                    <span class="lang-en lang-hidden">${valEn}</span>
+                  </span>
+                `;
+              }
+
+              rowsHtml += `
+                <td class="p-4 sm:p-5 text-xs sm:text-sm text-slate-700 align-middle ${isHighlight ? 'bg-sky-50/40 border-x-2 border-sky-400/60 font-medium' : ''}">
+                  ${cellContent}
+                </td>
+              `;
+            });
+            rowsHtml += `</tr>`;
+          });
+
+          mount.innerHTML = `
+            <div class="max-w-5xl mx-auto">
+              <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-3">
+                  <span class="lang-hu">${m.badgeHu}</span>
+                  <span class="lang-en lang-hidden">${m.badgeEn}</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-2">
+                  <span class="lang-hu">${m.titleHu}</span>
+                  <span class="lang-en lang-hidden">${m.titleEn}</span>
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  <span class="lang-hu">${m.subtitleHu}</span>
+                  <span class="lang-en lang-hidden">${m.subtitleEn}</span>
+                </p>
+              </div>
+
+              <div class="relative overflow-hidden bg-white border border-slate-200/90 rounded-3xl shadow-sm">
+                <div class="p-3 bg-slate-50 border-b border-slate-200 text-center text-[11px] text-slate-500 block md:hidden">
+                  <span class="lang-hu">← Vízszintesen görgethető összehasonlító táblázat →</span>
+                  <span class="lang-en lang-hidden">← Scroll horizontally to compare all packages →</span>
+                </div>
+                <div class="overflow-x-auto w-full">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-200">
+                        <th class="p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-slate-400 min-w-[160px] sm:min-w-[190px] border-r border-slate-100 align-bottom">
+                          <span class="lang-hu">Jellemzők & Eredmények</span>
+                          <span class="lang-en lang-hidden">Features & Deliverables</span>
+                        </th>
+                        ${colsHtml}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${rowsHtml}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        renderRoiComparison() {
+          const mount = document.getElementById("calc-roi-mount");
+          if (!mount || !window.SITE_DATA || !window.SITE_DATA.roiComparison) return;
+          const roi = window.SITE_DATA.roiComparison;
+
+          let cardsHtml = "";
+          roi.cards.forEach((card, idx) => {
+            cardsHtml += `
+              <div class="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-7 shadow-sm hover:border-slate-300 transition-all flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2.5 mb-4">
+                    <span class="w-7 h-7 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center text-xs font-bold font-mono flex-shrink-0">
+                      0${idx + 1}
+                    </span>
+                    <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug">
+                      <span class="lang-hu">${card.titleHu}</span>
+                      <span class="lang-en lang-hidden">${card.titleEn}</span>
+                    </h4>
+                  </div>
+
+                  <div class="space-y-3 pt-2">
+                    <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70 text-xs leading-relaxed text-slate-600">
+                      <div class="flex items-center gap-2 font-bold text-slate-700 text-[11px] uppercase tracking-wider mb-1.5">
+                        <svg width="14" height="14" style="width: 14px; height: 14px; min-width: 14px; max-width: 14px; flex-shrink: 0;" class="text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        <span class="lang-hu">Hagyományos Csoportos Képzés</span>
+                        <span class="lang-en lang-hidden">Traditional Group Bootcamp</span>
+                      </div>
+                      <p>
+                        <span class="lang-hu">${card.bootcampHu}</span>
+                        <span class="lang-en lang-hidden">${card.bootcampEn}</span>
+                      </p>
+                    </div>
+
+                    <div class="p-3.5 rounded-2xl bg-sky-50/70 border border-sky-200 text-xs leading-relaxed text-slate-800">
+                      <div class="flex items-center gap-2 font-bold text-sky-800 text-[11px] uppercase tracking-wider mb-1.5">
+                        <svg width="14" height="14" style="width: 14px; height: 14px; min-width: 14px; max-width: 14px; flex-shrink: 0;" class="text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span class="lang-hu">TestAcademy 1v1 Modell</span>
+                        <span class="lang-en lang-hidden">TestAcademy 1-on-1 Model</span>
+                      </div>
+                      <p class="font-medium text-slate-700">
+                        <span class="lang-hu">${card.testAcademyHu}</span>
+                        <span class="lang-en lang-hidden">${card.testAcademyEn}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+
+          mount.innerHTML = `
+            <div class="max-w-5xl mx-auto">
+              <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-sky-500/20 bg-sky-50 text-sky-700 text-xs font-semibold uppercase tracking-wider mb-3">
+                  <span class="lang-hu">${roi.badgeHu}</span>
+                  <span class="lang-en lang-hidden">${roi.badgeEn}</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-2">
+                  <span class="lang-hu">${roi.titleHu}</span>
+                  <span class="lang-en lang-hidden">${roi.titleEn}</span>
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                  <span class="lang-hu">${roi.subtitleHu}</span>
+                  <span class="lang-en lang-hidden">${roi.subtitleEn}</span>
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                ${cardsHtml}
+              </div>
+
+              <div class="mt-8 p-6 sm:p-8 rounded-3xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+                <div class="space-y-1.5 text-center sm:text-left">
+                  <div class="inline-flex items-center gap-2 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                    <svg width="16" height="16" style="width: 16px; height: 16px; min-width: 16px; max-width: 16px; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span class="lang-hu">0 Ft kockázat • Előzetes szintfelmérés</span>
+                    <span class="lang-en lang-hidden">0 Ft risk • Upfront assessment</span>
+                  </div>
+                  <h4 class="text-lg sm:text-xl font-bold text-white">
+                    <span class="lang-hu">Bizonytalan vagy, melyik csomag illik a céljaidhoz?</span>
+                    <span class="lang-en lang-hidden">Not sure which track fits your project?</span>
+                  </h4>
+                  <p class="text-xs sm:text-sm text-slate-300 max-w-xl">
+                    <span class="lang-hu">Beszéljünk 15 percet kötetlenül Google Meeten. Átbeszéljük a céljaidat, és pontosan azt ajánlom, amire a projektednek szüksége van.</span>
+                    <span class="lang-en lang-hidden">Let's talk for 15 minutes informally on Google Meet. We'll map your goals and find the exact path for your project.</span>
+                  </p>
+                </div>
+                <div class="flex-shrink-0 w-full sm:w-auto">
+                  <a
+                    href="https://calendar.app.google/ivGJS5PB8t5eTDdv6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold px-6 py-3.5 rounded-full text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer"
+                  >
+                    <span class="lang-hu">Időpontfoglalás (0 Ft) →</span>
+                    <span class="lang-en lang-hidden">Book Free Call →</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
         }
       }
 

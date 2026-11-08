@@ -4,6 +4,124 @@ Ez a dokumentum a TestAcademy projekt hivatalos változásnaplója és hibajaví
 
 ---
 
+## 📅 2026-11-08 — Csomag Összehasonlító Mátrix & Transzparencia Modul (ROI), Szövegcsiszolás
+
+### 1. Csomagok Közti Különbségek Táblázat & Érték-Összehasonlítás (Us vs. Traditional Bootcamps)
+- **Felhasználói kérés / Igény:**
+  - *"bele kellene rakni a csomagok közti különbségek táblázatot illetve van e még valami meg látás? érdmees lesnipeolni a kompetitortok websitejat és abból kivenni dolgoakt ötleteket? illetve reviewzni klelene a szövegeket is a honlapon, hogy a cheesy szarokat gyomlaljuk ki"*
+- **Gyökérok (Root Cause):**
+  - A látogatók számára korábban csak a kártyák listája és a kalkulátor állt rendelkezésre, de nem volt egyetlen áttekinthető, strukturált mátrix, amely feketén-fehéren összehasonlította volna a 4 szintet (1v1 Alapok, Deep Dive, Karrier Mentoring, Eseti Konzultáció) óraszám, formátum, subágensek, kézzelfogható szoftverkimenet és CV felkészítés mentén.
+  - A piaci versenytársak (Codecool, Masterfield, PROGmasters) 1.1M–1.8M Ft-os merev, csoportos bootcampeket hirdetnek; a TestAcademy 1v1 és 0 Ft intézményi rezsi előnyét kiemelő transzparens megtakarítási / ROI érvrendszer hiányzott a kalkulátor alól.
+  - Néhány helyen még előfordultak elcsépelt kifejezések ("mini-appokat kódolási előképzettség nélkül").
+- **Alkalmazott megoldás:**
+  - **Szigorú adat- és tartalom szétválasztás (Borbás Webdesign Szabály):**
+    - A `data.js`-ben létrehoztuk a `SITE_DATA.packageMatrix` és `SITE_DATA.roiComparison` objektumokat teljes kétnyelvű (HU / EN) támogatással.
+  - **Csomag Összehasonlító Táblázat:**
+    - Beépítettük a `#calc-package-matrix-mount` konténert közvetlenül a `#kalkulator` szekcióba (megőrizve a szabályt, hogy a kurzusok és a kalkulátor egyetlen modulban élnek).
+    - A táblázat Nordic Light stílusban, reszponzív vízszintes görgetéssel, kiemelt Flagship és Deep Dive oszloppal, zöld körös SVG pipákkal és pill badge-ekkel jelenik meg.
+    - Minden oszlop alján interaktív "Kiválasztás →" gomb található, ami azonnal kiválasztja a kurzust a kalkulátorban és finoman odagörget.
+  - **Transzparencia & Megtakarítás (ROI: Us vs Traditional Bootcamps):**
+    - Beépítettük a `#calc-roi-mount` konténert: 4 összehasonlító kártya (100% Egyéni figyelem vs. 20 fős csoportok, 2026-os Agentic workflow vs. kézi kódolás, 0 Ft rezsi vs. 1.1M–1.8M Ft tandíj, Működő szoftver a saját gépeden vs. papír bizonyítvány).
+    - Hozzáadva egy elegáns, sötét tónusú "0 Ft kockázat • Előzetes szintfelmérés" konverziós sáv közvetlen Google Naptár foglaló gombbal.
+  - **Szövegcsiszolás (Anti-cheesy copy overhaul):**
+    - A Hero és kalkulátor leírásokban lecseréltük a sallangos szövegeket ("szoftveres mini-appokat kódolási előképzettség nélkül" -> "működő szoftvereket, munkaeszközöket és autonóm AI ágenseket manuális kódolás nélkül").
+  - **Zéró runtime sérülékenység & Emojik kizárása:**
+    - Kizárólag explicit inline SVG ikonok (`width="14" height="14"` és `width="16" height="16"` méretvédelemmel).
+- **Érintett fájlok:**
+  - `data.js`
+  - `index.html`
+  - `dist/data.js` (szinkronizálva)
+  - `dist/index.html` (szinkronizálva)
+  - `output.css` és `dist/output.css` (új Tailwind osztályok lefordítva)
+- **Minőségbiztosítási eredmények:**
+  - `npm run build` sikeresen lefutott (565ms).
+  - `npx htmlhint "index.html" "dist/index.html"` 0 szintaktikai hibát talált.
+  - Maven / Selenide UI tesztcsomag: **18 teszt lefutott, 0 hiba, BUILD SUCCESS** (`CandidateEnrollmentFlowUiTest`, `MainWebUiTest`, `MobileResponsiveUiTest` 6 különböző mobil/tablet felbontáson).
+  - Vizuális screenshot ellenőrzés headless Chrome-mal elvégezve (`matrix_desktop.png`, `shot_matrix_view.png`, `shot_matrix_bottom.png`).
+
+---
+
+## 📅 2026-11-08 — Kódbázis Nagytakarítás, Moduláris Átszervezés & Autonóm Ütemező
+
+### 1. Repó Tisztítás & GitIgnore Hardening
+- **Felhasználói kérés / Igény:**
+  - *"a test academy kezd eléggé crowded lenni cleanupéolni kellene kod sinzten is amia websitehoz tartozik és ami mondjuk okatatás azt kulon rakni az md fileokat egyeb levegőben logo artifactotakat is rendszerezni, gitignore ba rakni ami oda illik stb stb"*
+- **Alkalmazott megoldás (Strukturális nagytakarítás):**
+  - **GitIgnore szigorítás:** Kizártuk a verziókövetésből a személyes és üzleti fájlokat (`számlázási szerződés/`, `_private_business/`, `dokumentumok/`, `astron/`), a backup fájlokat (`*.backup.html`, `*_backup.html`), és a tesztfuttatási képeket (`screenshots/`, `qa-automation/build/`).
+  - **Oktatási szeparáció:** Létrejött az `education/` mappa, ahová átmozgattuk a `content_drafts/` teljes tartalmát.
+  - **Marketing modul központosítása:** A gyökérben lévő rendering scriptek (`render_ad.js`, `render_social_post.js`, `take_screenshots.js`) átkerültek a `marketing/scripts/` mappába, dinamikus `__dirname` elérési utakkal.
+  - **Csomagkezelő frissítés:** A `package.json`-ba bekerült az `npm run render:post` parancs.
+  - **Autonóm heti feladatütemező:** Létrehoztuk a `market-intelligence/run_weekly.bat` és a `market-intelligence/setup_windows_scheduler.ps1` fájlokat, amivel a heti kutató robot minden vasárnap este 20:00-kor önállóan lefut.
+- **Érintett fájlok és mappák:**
+  - `.gitignore`
+  - `package.json`
+  - `education/content_drafts/`
+  - `marketing/scripts/`
+  - `market-intelligence/run_weekly.bat`
+  - `market-intelligence/setup_windows_scheduler.ps1`
+- **Minőségbiztosítási eredmények:**
+  - `git status` teljesen letisztult, csak az izolált moduláris mappák maradtak.
+  - `npm run build` sikeresen lefutott (567ms).
+
+---
+
+## 📅 2026-11-07 — Market Intelligence & Competitor Hunter Engine (MICHE) Implementálása
+
+### 1. Heti Piackutató & Versenytárs Árelemző Rendszer Beépítése
+- **Felhasználói kérés / Igény:**
+  - *"kellene nekem olyan egy olyan automata script és flow, ami minden héten lefut és levadássza a neten a kompetitorokat kilistázza megnézi, ki mit ad anyagot és mennyiért adja, hogyan erdemes nekem pozicionalni magam a piacon..."*
+  - *"okay vissza térve a a kutatóra az kód szinten hova menjen? ... oaky, akkor hajra csináld"*
+- **Alkalmazott megoldás (Architektúra & Implementáció):**
+  - Létrehoztuk a dedikált, izolált `market-intelligence/` modult:
+    1. `specs/system_spec.md`: Rendszerspecifikáció, adatmodell és JSON séma mindkét üzletágra (TestAcademy és Borbás Webdesign).
+    2. `src/targets.js`: Célpont- és kulcsszó-nyilvántartás (Codecool, PROGmasters, Masterfield, Webrakéta, KreatívWeb stb.) és belső referenciaértékek (Baseline).
+    3. `src/fetcher.js`: Natív, aszinkron HTTP adatgyűjtő timeout és bot-védelem elkerülő fejlécekkel, HTML tisztítóval.
+    4. `src/extractor.js`: Heurisztikus ár-, technológiai stack-, garancia- és konverziós csatorna kinyerő.
+    5. `src/analyzer.js`: Stratégiai rés-elemzés (Gap Analysis) és a 4 elvesztett Borbás Webdesign lead gyökérok-diagnózisa.
+    6. `src/reporter.js`: Markdown és önálló, dizájnos vizuális HTML dashboard előállító.
+    7. `run.js`: Fővezérlő CLI script.
+  - A gyökér `package.json`-ba bekerült az `npm run hunt` parancs az egy-kattintásos azonnali indításhoz.
+  - A `.gitignore` frissült a `market-intelligence/reports/` kivételével, megvédve a weboldal git történetét a lementett heti riportoktól.
+- **Érintett fájlok:**
+  - `package.json`
+  - `.gitignore`
+  - `market-intelligence/specs/system_spec.md`
+  - `market-intelligence/src/targets.js`
+  - `market-intelligence/src/fetcher.js`
+  - `market-intelligence/src/extractor.js`
+  - `market-intelligence/src/analyzer.js`
+  - `market-intelligence/src/reporter.js`
+  - `market-intelligence/run.js`
+- **Minőségbiztosítási eredmények:**
+  - `npm run hunt` parancs tesztelve és élesben lefutott (10 céldomén bejárva).
+  - A legfrissebb Markdown jelentés (`latest.md`) és az interaktív HTML dashboard (`dashboard.html`) hibátlanul legenerálódott.
+
+---
+
+## 📅 2026-11-07 — Minimalista Fejlesztési Doktrína (Ponytail Protokoll) Beépítése a Szabályzatba
+
+### 1. Anti-Overengineering & Kódlábnyom-Minimalizálás az AGENTS.md-ben
+- **Felhasználói kérés / Igény:**
+  - *"jó akkor rakd be a szabályzatba"*
+  - A Ponytail anti-overengineering és pragmatikus minimalista kódolási elveinek beépítése az ágens operációs memóriájába és szabályzatába (`AGENTS.md`), külső 3rd-party csomagok vagy sérülékeny runtime pluginok telepítése nélkül.
+- **Alkalmazott megoldás:**
+  - Az `AGENTS.md` 1. fejezete kiegészült a `1.D. Minimalista Fejlesztési Doktrína & Anti-Overengineering (Ponytail Protokoll)` alfejezettel.
+  - A „Lustaság Létrája” (Ladder of Laziness) 7 lépcsős kötelező döntési sorrend rögzítése:
+    1. YAGNI (valóban szükséges-e a funkció),
+    2. Meglévő kód újrafelhasználása,
+    3. Stdlib / natív nyelv előnyben részesítése,
+    4. Natív platform / böngésző funkciók használata külső JS helyett,
+    5. Új npm csomag behúzásának szigorú tiltása engedély nélkül,
+    6. Egyszerű, 1–5 soros procedurális kód a túlbonyolított absztrakciók helyett,
+    7. Minimális diff footprint (kisebb diff = kevesebb bug és alacsonyabb tokenfogyasztás).
+  - Non-negotiable védelem: hibakezelést, biztonsági validációt és teszteket minimalizmus címén tilos elhagyni.
+- **Érintett fájlok:**
+  - `AGENTS.md`
+- **Minőségbiztosítás:**
+  - `AGENTS.md` szerkezeti integritása ellenőrizve.
+
+---
+
 ## 📅 2026-11-02 — Meta Lead Generálási Minőségbiztosítás (Higher Intent & Célközönség Hardening)
 
 ### 1. Véletlen Félrekattintások és Junk Leadek Teljes Kiszűrése

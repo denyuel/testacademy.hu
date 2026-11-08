@@ -329,3 +329,28 @@ dist/tudastar.html
 # SDET Learning Playground
 learning-playground/
 
+
+# Market Intelligence reports and outputs
+market-intelligence/reports/
+
+# Private business documents & contracts
+"számlázási szerződés/"
+_private_business/
+dokumentumok/
+astron/
+
+# Backup & scratch HTMLs
+*_backup.html
+*.backup.html
+*.bak
+
+# Temporary test captures & screenshots
+screenshots/
+test_shot.png
+fb_ads_test.png
+qa-automation/build/
+qa-automation/visual_desktop.png
+qa-automation/visual_mobile.png
+
+*számlázási*
+*szerz*d*s*

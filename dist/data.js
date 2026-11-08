@@ -54,10 +54,10 @@ window.SITE_DATA = {
       badgeEn: "1-on-1 Flagship • Vibe Coding",
       titleHu: "1v1 Vibe Coding & AI Ágens Építés",
       titleEn: "1-on-1 Vibe Coding & AI Agent Building",
-      subtitleHu: "Építs szoftveres mini-appokat, .md specifikációkat és autonóm ágenseket kódolási előképzettség nélkül",
-      subtitleEn: "Build mini-apps, .md specifications, and autonomous agents with zero coding experience",
-      descHu: "Nem kell programozónak lenned, sem éveket töltened kódolással. A Vibe Coding lényege, hogy te vagy az ötletgazda és a 'karmester': megtanulsz precíz strukturált promptokat és .md specifikációkat írni, felépíted a saját autonóm AI ágenseidet, és működő webes mini-appokat hozol létre a saját vállalkozásodhoz vagy munkádhoz.",
-      descEn: "No prior programming skills required! Vibe coding turns you into the architect and orchestrator: write precise .md specs, prompt like an engineer, build autonomous AI agents, and launch functional web mini-apps for your work or business.",
+      subtitleHu: "Építs működő webes eszközöket, .md specifikációkat és autonóm ágenseket manuális kódolás nélkül",
+      subtitleEn: "Build functional web apps, .md specifications, and autonomous agents without manual coding",
+      descHu: "Nem kell programozónak lenned, sem éveket töltened szintaxis-magolással. A Vibe Coding lényege, hogy te vagy az építész és a 'karmester': megtanulsz precíz strukturált promptokat és .md specifikációkat írni, felépíted a saját autonóm AI ágenseidet, és működő webes alkalmazást hozol létre a saját gépeden.",
+      descEn: "No prior programming skills required! Vibe coding turns you into the architect and orchestrator: write precise .md specs, prompt with engineering rigor, build autonomous AI agents, and launch functional software for your work or business.",
       options: [
         {
           id: "ai-1day",
@@ -65,8 +65,8 @@ window.SITE_DATA = {
           nameEn: "1-Day Vibe Coding Fundamentals (4 hours 1v1)",
           price: 59000,
           formVal: "AI-1Day",
-          highlightHu: "Karmester szerep, strukturált promptolás, .md specifikáció és az 1. működő mini-app",
-          highlightEn: "Orchestration, structured prompting, .md specifications and your 1st functional mini-app"
+          highlightHu: "Karmesteri szemlélet, strukturált promptolás, .md specifikáció és az 1. működő alkalmazás a gépeden",
+          highlightEn: "Orchestration mindset, structured prompting, .md specifications, and your 1st functional app on your PC"
         },
         {
           id: "ai-2day",
@@ -178,8 +178,8 @@ window.SITE_DATA = {
       price: 59000,
       nameHu: "1v1 Vibe Coding & Prompt Alapok (1 Nap / 4 óra)",
       nameEn: "1-on-1 Vibe Coding & Prompt Fundamentals (1 Day / 4h)",
-      descHu: "Karmester szerep, strukturált prompt engineering, .md specifikációk és az 1. működő mini-app",
-      descEn: "Orchestration, structured prompting, .md specs, and your 1st functional mini-app",
+      descHu: "Karmesteri szemlélet, strukturált prompt engineering, .md specifikációk és az 1. működő alkalmazás a saját gépeden",
+      descEn: "Orchestration mindset, structured prompting, .md specs, and your 1st functional app on your PC",
       badgeHu: "1v1 Flagship!",
       formVal: "AI-1Day",
       curriculum: [
@@ -187,14 +187,14 @@ window.SITE_DATA = {
         "2. Strukturált Prompt Engineering: szerepkörök, korlátok és a hallucinációk kizárása",
         "3. .md Architektúra: üzleti specifikációk és adatlogika rögzítése tiszta Markdownban",
         "4. Antigravity AI fejlesztői környezet konfigurációja és mindennapi használata",
-        "5. Az 1. működő mini-webalkalmazásod (kalkulátor vagy belső eszköz) megépítése és futtatása"
+        "5. Az 1. működő webalkalmazásod (kalkulátor, belső eszköz vagy automatizálás) megépítése a gépeden"
       ],
       curriculumEn: [
         "1. The Vibe Coding ethos: orchestrator mindset & prompt-driven development without manual coding",
         "2. Structured Prompt Engineering: roles, constraints, eliminating hallucinations",
         "3. .md Architecture: business specs and data logic in clean Markdown",
         "4. Google Antigravity setup and real-world daily workflows",
-        "5. Building and launching your 1st functional mini web app (calculator / internal tool)"
+        "5. Building and launching your 1st functional web app (calculator, internal tool, or automation) on your PC"
       ]
     },
     {
@@ -392,5 +392,195 @@ window.SITE_DATA = {
       aHu: "Töltsd ki az űrlapot vagy foglalj egy ingyenes 15 perces konzultációt! 24 órán belül egyeztetünk, átbeszéljük a céljaidat és a számodra ideális időbeosztást.",
       aEn: "Fill out the form or book a free 15-minute introductory call! We'll connect within 24 hours to discuss your goals and coordinate a flexible schedule."
     }
-  ]
+  ],
+
+  packageMatrix: {
+    badgeHu: "Csomag Összehasonlítás",
+    badgeEn: "Package Comparison",
+    titleHu: "Melyik képzés való neked?",
+    titleEn: "Which track is right for you?",
+    subtitleHu: "Lásd át egyetlen táblázatban a képzések mélységét, időtartamát, technológiai fókuszát és a kézzelfogható kimenetet.",
+    subtitleEn: "Compare track depth, duration, tech focus, and tangible deliverables side by side.",
+    columns: [
+      {
+        id: "ai-1day",
+        price: 59000,
+        priceFormatted: "59.000 Ft",
+        priceFormattedEn: "59,000 HUF",
+        nameHu: "1v1 Vibe Coding Alapok",
+        nameEn: "1-on-1 Vibe Coding Fundamentals",
+        badgeHu: "1v1 Flagship",
+        badgeEn: "1-on-1 Flagship",
+        badgeClass: "badge-flagship",
+        durationHu: "1 nap (4 óra)",
+        durationEn: "1 day (4 hours)",
+        highlight: false
+      },
+      {
+        id: "ai-2day",
+        price: 99000,
+        priceFormatted: "99.000 Ft",
+        priceFormattedEn: "99,000 HUF",
+        nameHu: "1v1 Vibe Coding Deep Dive",
+        nameEn: "1-on-1 Vibe Coding Deep Dive",
+        badgeHu: "Mély Gyakorlat",
+        badgeEn: "Deep Practice",
+        badgeClass: "badge-deep",
+        durationHu: "2 nap (2 × 4 óra)",
+        durationEn: "2 days (2 × 4 hours)",
+        highlight: true
+      },
+      {
+        id: "mentorship-500k",
+        price: 500000,
+        priceFormatted: "500.000 Ft",
+        priceFormattedEn: "500,000 HUF",
+        nameHu: "Senior QA Mentorship",
+        nameEn: "Senior QA Mentorship",
+        badgeHu: "Teljes Karrier",
+        badgeEn: "Full Career VIP",
+        badgeClass: "badge-mentorship",
+        durationHu: "Átfogó egyéni program",
+        durationEn: "Comprehensive individual program",
+        highlight: false
+      },
+      {
+        id: "consulting",
+        price: 15000,
+        priceFormatted: "15.000 Ft / óra",
+        priceFormattedEn: "15,000 HUF / hour",
+        nameHu: "Eseti 1:1 Konzultáció",
+        nameEn: "1-on-1 Consultation",
+        badgeHu: "Rugalmas",
+        badgeEn: "Flexible",
+        badgeClass: "badge-consulting",
+        durationHu: "1 óra / alkalom",
+        durationEn: "1 hour / session",
+        highlight: false
+      }
+    ],
+    rows: [
+      {
+        labelHu: "Oktatási forma",
+        labelEn: "Format",
+        valuesHu: ["100% Egyéni 1v1", "100% Egyéni 1v1", "100% Egyéni 1v1", "100% Egyéni 1v1"],
+        valuesEn: ["100% Personal 1-on-1", "100% Personal 1-on-1", "100% Personal 1-on-1", "100% Personal 1-on-1"]
+      },
+      {
+        labelHu: "Fő szakmai fókusz",
+        labelEn: "Primary focus",
+        valuesHu: [
+          "Karmesteri szemlélet, strukturált promptok, .md specifikáció",
+          "Komplex webes eszközök, AGENTS.md architektúra & subágensek",
+          "Teljes körű karrierugrás: manuális alapok + automatizálás + AI",
+          "Konkrét elakadások debuggolása, kód review & karriertanács"
+        ],
+        valuesEn: [
+          "Orchestrator mindset, structured prompts, .md specification",
+          "Complex web applications, AGENTS.md architecture & subagents",
+          "Full career transformation: manual core + automation + AI",
+          "Targeted blocker debugging, code review & career guidance"
+        ]
+      },
+      {
+        labelHu: ".md specifikációk & kontextus-építés",
+        labelEn: ".md specs & context architecture",
+        valuesHu: [true, true, true, "Igény szerint"],
+        valuesEn: [true, true, true, "On demand"]
+      },
+      {
+        labelHu: "Autonóm AI ágensek & subagent rendszerek",
+        labelEn: "Autonomous AI agents & subagent systems",
+        valuesHu: [false, true, true, false],
+        valuesEn: [false, true, true, false]
+      },
+      {
+        labelHu: "Kézzelfogható kimenet a gépeden",
+        labelEn: "Deliverable on your PC",
+        valuesHu: [
+          "1 db működő webalkalmazás a gépeden",
+          "Komplett saját üzleti szoftver forráskóddal",
+          "Teljes automatizációs projekt, CV & profil",
+          "Azonnal javított, futó kód"
+        ],
+        valuesEn: [
+          "1 functional web application on your PC",
+          "Complete custom business software with code",
+          "Full automation repo, CV & profile audit",
+          "Instantly debugged running code"
+        ]
+      },
+      {
+        labelHu: "Tesztautomatizálás (Playwright / Java)",
+        labelEn: "Test automation (Playwright / Java)",
+        valuesHu: [false, false, true, "Opcionális"],
+        valuesEn: [false, false, true, "Optional"]
+      },
+      {
+        labelHu: "CV, LinkedIn Audit & Próbainterjú",
+        labelEn: "Personal CV, LinkedIn & Mock Interview",
+        valuesHu: [
+          "Kiegészítő modul (+15k)",
+          "Kiegészítő modul (+15k)",
+          "Beépített díjmentes elem",
+          "Konzultációként kérhető"
+        ],
+        valuesEn: [
+          "Add-on module (+15k)",
+          "Add-on module (+15k)",
+          "Included in package",
+          "Available on demand"
+        ]
+      },
+      {
+        labelHu: "Kamatmentes részletfizetés",
+        labelEn: "Interest-free installment plan",
+        valuesHu: [false, false, "2 vagy 3 havi részlet", false],
+        valuesEn: [false, false, "2 or 3 months", false]
+      }
+    ]
+  },
+
+  roiComparison: {
+    badgeHu: "Átláthatóság & Megtakarítás",
+    badgeEn: "Transparency & Value",
+    titleHu: "Miért éri meg jobban a TestAcademy 1v1 modellje?",
+    titleEn: "Why the TestAcademy 1-on-1 Model Delivers Superior Value",
+    subtitleHu: "Hagyományos 6–8 hónapos csoportos képzések vs. Célirányos, intenzív 1v1 mentoring Borbás Dániellel.",
+    subtitleEn: "Traditional 6–8 month group bootcamps vs. Targeted, intensive 1-on-1 mentoring with Dániel Borbás.",
+    cards: [
+      {
+        titleHu: "100% Egyéni Figyelem vs. 20 Fős Csoportok",
+        titleEn: "100% Personal Attention vs. 20-Student Cohorts",
+        bootcampHu: "A csoportos tanfolyamokon merev a tanmenet. Ha elakadsz vagy kérdésed van, a csoport halad tovább, te pedig lemaradsz.",
+        bootcampEn: "Group bootcamps follow rigid curriculums. If you get stuck, the cohort moves on without addressing your exact blocker.",
+        testAcademyHu: "Végig közvetlenül velem dolgozol képernyőmegosztással. Minden perc a te egyedi projektedről, kódodról és kérdéseidről szól.",
+        testAcademyEn: "You work directly with me via screen-share. Every single minute is dedicated to your code, project, and questions."
+      },
+      {
+        titleHu: "2026-os Agentic Módszertan vs. Kézi Szintaxis-Gépelés",
+        titleEn: "2026 Agentic Workflow vs. Outdated Manual Typing",
+        bootcampHu: "Hónapokig tartó manuális szintaxis-magolás és diavetítések, amiket a modern AI ágensek már másodpercek alatt felépítenek.",
+        bootcampEn: "Months of memorizing syntax rules that modern autonomous AI agents can generate and test in seconds.",
+        testAcademyHu: "Modern Vibe Coding és Google Antigravity munkafolyamat: specifikációkból és autonóm ágensekből építesz stabil szoftvert órák alatt.",
+        testAcademyEn: "Modern Vibe Coding with Google Antigravity: build robust, tested software in hours using specs and autonomous subagents."
+      },
+      {
+        titleHu: "0 Ft Intézményi Rezsi vs. 1.1M – 1.8M Ft Tandíj",
+        titleEn: "0 Overhead vs. 1.1M – 1.8M HUF Bootcamp Fees",
+        bootcampHu: "A milliós tandíj jelentős része a bérelt oktatótermeket, a sales jutalékokat és a marketingbüdzsét fedezi, nem a te fejlődésedet.",
+        bootcampEn: "A large portion of 1M+ tuition pays for physical classroom leases, sales commissions, and marketing overhead.",
+        testAcademyHu: "Nincsenek bürokratikus költségek. Kizárólag a tiszta 15.000 Ft/órás szakértői időért fizetsz, átlátható és fix csomagokban.",
+        testAcademyEn: "No bloated overhead. You strictly pay for pure 15,000 HUF/hr senior lead engineering time in transparent, fixed packages."
+      },
+      {
+        titleHu: "Működő Szoftver a Gépeden vs. Papír Bizonyítvány",
+        titleEn: "Running Software on Your PC vs. Paper Certificate",
+        bootcampHu: "Fél év után kapsz egy bizonyítványt, de valós, önállóan megépített és élesben futó termék nélkül nehéz elhelyezkedni.",
+        bootcampEn: "After months you receive a certificate, but lack a custom, independently deployed application for your portfolio.",
+        testAcademyHu: "Már a legelső 4 órás alapozás végére egy valóságban működő alkalmazás fut a saját gépeden, aminek tiéd a forráskódja.",
+        testAcademyEn: "By the end of your very first 4-hour session, a fully functional application runs on your PC with 100% code ownership."
+      }
+    ]
+  }
 };

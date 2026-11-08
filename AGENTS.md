@@ -23,6 +23,18 @@ Ez a dokumentum a TestAcademy projekt központi specifikációja és memóriája
 - A Cloudflare Workers a `./dist` könyvtárból szolgálja ki az oldalt.
 - Bármilyen módosítás történik a gyökér `index.html`-ben vagy `data.js`-ben, az azonnal szinkronizálandó a `dist/` mappával is, és a `npm run build` futtatása kötelező commit előtt!
 
+### D. Minimalista Fejlesztési Doktrína & Anti-Overengineering (Ponytail Protokoll)
+- **Alapelv:** „A legjobb kód az, amit soha nem kellett megírni.” Kerülni kell a mesterséges komplexitást, a felesleges absztrakciókat és a kódduplikációt.
+- **A „Lustaság Létrája” (Kötelező döntési sorrend bármilyen módosítás előtt):**
+  1. *Kell ez egyáltalán?* Ha a funkció vagy elem nem feltétlenül szükséges az üzleti célhoz, NE írd meg (YAGNI elv).
+  2. *Létezik már a kódbázisban?* Mindig keresd meg és használd újra a meglévő függvényeket, szelektorokat, segédváltozókat (pl. `data.js`). Ne írd újra!
+  3. *Tudja a nyelv szabványos eszköztára (stdlib / Vanilla JS)?* Mindig a beépített nyelvi elemeket részesítsd előnyben.
+  4. *Megoldható natív platform/böngésző képességgel?* (Pl. natív HTML5 űrlap-validáció, CSS Grid/Flexbox külső JS helyett).
+  5. *Megoldható a már telepített csomagokkal?* **Szigorúan tilos** új `npm` vagy külső könyvtárat behúzni felhasználói jóváhagyás nélkül!
+  6. *Megoldható 1–5 soros tiszta, egyszerű kóddal?* Kerüld a túlbonyolított absztrakciókat, factory patternöket és wrapper rétegeket, ha egy egyszerű függvény is elvégzi a munkát.
+  7. *Csak legvégső esetben:* Írj új egyedi logikát – de törekedj a minimális kódlábnyomra (kisebb git diff = kevesebb hiba és kisebb tokenköltség).
+- **Invariáns kivétel (Non-negotiables):** Hibakezelést, biztonsági validációt és teszteket minimalizmus címén tilos elhagyni!
+
 ---
 
 ## 2. Termékportfólió és Árstruktúra (Invariánsok)

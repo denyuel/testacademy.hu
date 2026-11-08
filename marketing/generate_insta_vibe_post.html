@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>TestAcademy — High Engagement Social Post</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Newsreader:ital,opsz,wght@1,6..72,500;1,6..72,600;1,6..72,700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    #post-canvas {
+      width: 1080px;
+      height: 1080px;
+      background: #faf7f2;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 90px 90px 75px 90px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+
+    /* Subtle fine paper grain / noise effect */
+    #post-canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+      background-size: 16px 16px;
+      pointer-events: none;
+    }
+
+    /* Decorative Retro Spark / Starburst elements */
+    .spark {
+      position: absolute;
+      color: #df6e51;
+      font-size: 58px;
+      line-height: 1;
+      user-select: none;
+      font-weight: 300;
+    }
+    .spark-top-right {
+      top: 130px;
+      right: 140px;
+      transform: rotate(12deg);
+    }
+    .spark-mid-left {
+      top: 480px;
+      left: 110px;
+      transform: rotate(-15deg);
+      font-size: 68px;
+    }
+
+    /* Top Brand Tag */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1.5px solid #ebd9c8;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 19px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 14px rgba(223, 110, 81, 0.08);
+    }
+    .brand-pill .dot {
+      width: 10px;
+      height: 10px;
+      background: #df6e51;
+      border-radius: 50%;
+    }
+    .edition-tag {
+      font-size: 18px;
+      font-weight: 700;
+      color: #78716c;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Main Typography Block */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 76px;
+      line-height: 1.15;
+      color: #111827;
+      margin-bottom: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .connector-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-style: normal;
+      font-size: 34px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 22px;
+      letter-spacing: -0.5px;
+    }
+
+    .accent-phrase {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 70px;
+      line-height: 1.18;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .year-text {
+      font-family: 'Playfair Display', serif;
+      font-style: normal;
+      font-size: 58px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    /* Highlighter styles matching the user's template */
+    .highlight-yellow {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .highlight-yellow::after {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      bottom: 6px;
+      height: 38%;
+      background: #fde047;
+      z-index: -1;
+      opacity: 0.85;
+      border-radius: 4px;
+    }
+
+    .highlight-blue {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .highlight-blue::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      bottom: 6px;
+      height: 40%;
+      background: #bae6fd;
+      z-index: -1;
+      opacity: 0.85;
+      border-radius: 4px;
+    }
+
+    .highlight-purple {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      z-index: 1;
+    }
+    .highlight-purple::after {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      bottom: 4px;
+      height: 40%;
+      background: #e9d5ff;
+      z-index: -1;
+      opacity: 0.85;
+      border-radius: 4px;
+    }
+
+    /* Bottom Value & Author Card */
+    .bottom-bar {
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border: 1.5px solid #e7e5e4;
+      border-radius: 28px;
+      padding: 24px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .avatar {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fde047;
+      font-weight: 800;
+      font-size: 22px;
+      border: 2px solid #e2e8f0;
+    }
+    .author-text h4 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .author-text p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #78716c;
+    }
+    .cta-badge {
+      background: #111827;
+      color: #ffffff;
+      padding: 14px 26px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cta-badge span.price {
+      color: #fde047;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="post-canvas">
+    <!-- Starburst accents like in the template -->
+    <div class="spark spark-top-right">✱</div>
+    <div class="spark spark-mid-left">✱</div>
+
+    <!-- Header -->
+    <div class="brand-header">
+      <div class="brand-pill">
+        <div class="dot"></div>
+        <span>TestAcademy • 1v1 Műhely</span>
+      </div>
+      <div class="edition-tag">2026 AI MASTERCLASS</div>
+    </div>
+
+    <!-- Center Typography -->
+    <div class="hero-content">
+      <h1 class="main-title">
+        <span class="highlight-yellow">Vibe Coding módszerek,</span>
+      </h1>
+      
+      <p class="connector-text">
+        amik kiváltják az 5 hónapos kurzusokat
+      </p>
+
+      <h2 class="accent-phrase">
+        <span class="highlight-blue">és működő szoftvert adnak</span>
+      </h2>
+
+      <div class="year-text">
+        <span class="highlight-purple">4 óra alatt.</span>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+      <div class="author-info">
+        <div class="avatar">BD</div>
+        <div class="author-text">
+          <h4>Borbás Dániel</h4>
+          <p>Senior AI & QA Mentor • 12+ év tapasztalat</p>
+        </div>
+      </div>
+
+      <div class="cta-badge">
+        <span>Bevezető ár:</span>
+        <span class="price">59.000 Ft</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
